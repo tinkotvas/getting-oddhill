@@ -25,13 +25,12 @@
 
 <script>
 import PromotedStage from './components/PromotedStage'
-
 import ProfilePuff from './components/ProfilePuff'
 
 export default {
   name: 'ExampleApp',
   components: {
-      PromotedStage
+    PromotedStage,
     ProfilePuff
   }
 }
