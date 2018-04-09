@@ -1,5 +1,5 @@
 <template>
-    <div id="MainApp">
+    <div id="ExampleApp">
         <section class="container-fluid">
             <div class="row">
                 <div id="menubar" class="col-12 mx-auto">
@@ -32,7 +32,7 @@ import ExamplePuff from './components/ExamplePuff'
 import ExamplePuff2 from './components/ExamplePuff2.vue'
 
 export default {
-  name: 'App',
+  name: 'ExampleApp',
   components: {
     ExampleMenu,
     ExampleStage,
