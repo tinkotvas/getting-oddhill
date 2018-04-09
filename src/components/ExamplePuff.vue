@@ -18,4 +18,8 @@ export default {
 li{
     color:red;
 }
+
+p{
+    color:red;
+}
 </style>

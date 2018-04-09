@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'MenuBar'
+  name: 'ExampleMenu'
 }
 </script>
 
