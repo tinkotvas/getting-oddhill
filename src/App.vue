@@ -15,6 +15,7 @@
                 </div>
 
                 <div id="puffs" class="col-4 d-none d-sm-block">
+                  <ProfilePuff></ProfilePuff>
                 </div>
             </div>
         </section>
@@ -23,9 +24,12 @@
 
 <script>
 
+import ProfilePuff from './components/ProfilePuff'
+
 export default {
   name: 'ExampleApp',
   components: {
+    ProfilePuff
   }
 }
 </script>
