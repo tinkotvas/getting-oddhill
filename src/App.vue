@@ -1,5 +1,5 @@
 <template>
-    <div id="ExampleApp">
+    <div id="App">
         <section class="container-fluid">
             <div class="row">
                 <div id="menubar" class="col-12 mx-auto">
@@ -18,6 +18,7 @@
                 <div id="puffs" class="col-4 d-none d-sm-block">
                   <ProfilePuff></ProfilePuff>
                 </div>
+                <TopicPuff></TopicPuff>
             </div>
         </section>
     </div>
@@ -28,10 +29,11 @@ import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
 
 export default {
-  name: 'ExampleApp',
+  name: 'App',
   components: {
     PromotedStage,
     ProfilePuff
+      TopicPuff
   }
 }
 </script>
