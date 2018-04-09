@@ -32,8 +32,8 @@ export default {
   name: 'App',
   components: {
     PromotedStage,
-    ProfilePuff
-      TopicPuff
+    ProfilePuff,
+    TopicPuff
   }
 }
 </script>
