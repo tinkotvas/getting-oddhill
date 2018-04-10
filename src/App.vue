@@ -1,6 +1,6 @@
 <template>
     <div id="App">
-        <section class="container-fluid">
+        <section class="container-fluid mb-3">
             <div class="row">
                 <div id="menubar" class="col-12 mx-auto">
                     <div class="col-12 border">
@@ -12,10 +12,10 @@
 
         <section class="container">
             <div class="row">
-                <div id="stages" class="col-12 col-sm-8">
+                <div id="stages" class="col-12 col-md-8">
                     <promoted-stage></promoted-stage>
                 </div>
-                <div id="puffs" class="col-4 d-none d-sm-block">
+                <div id="puffs" class="col-4 d-none d-md-block">
                   <profile-puff></profile-puff>
                   <topic-puff></topic-puff>
                 </div>
