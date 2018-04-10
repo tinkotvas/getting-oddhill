@@ -1,30 +1,26 @@
 <template>
     <div class="d-flex flex-row">
-        <div id="fullmenu" class="d-flex flex-row">
+
             <a class="navbar-brand">Getting Oddhill</a>
             <a class="ml-4 mt-2" href="#">Home</a>
             <a class="ml-4 mt-2" href="#">Posts</a>
             <a class="ml-4 mt-2 pr-4 mr-auto" href="#">Profiles</a>
             <input class="form-control m-1 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary m-1" type="submit">Search</button>
+            <button class="btn btn-outline-primary m-1 mr-auto" type="submit">Search</button>
             <a class="ml-4 mt-2" href="#">Login</a>
-        </div>
-        <div class="dropdown">
-            <div class="dropdown_header" @click="toggleDropdown($event)">
-                <p class="ml-4 mt-2" href="#">Header</p>
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                <i class="fa fa-angle-up" aria-hidden="true"></i>
-            </div>
 
-            <div class="dropdown_content">
-                <ul>
-                    <li>Lorem ipsum</li>
-                    <li>Lorem ipsum dolor sit</li>
-                    <li>Lorem ipsum dolor</li>
-                </ul>
+            <div class="dropdown">
+                <div class="dropdown_header" @click="toggleDropdown($event)">
+                    <p class="ml-4 mt-2" href="#">Menu</p>
+                </div>
+                <div class="dropdown_content">
+                    <ul>
+                        <li>Home</li>
+                        <li>Posts</li>
+                        <li>Profiles</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-
     </div>
 </template>
 
