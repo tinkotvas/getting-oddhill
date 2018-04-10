@@ -1,14 +1,13 @@
 <template>
     <div class="col-12 border">
-        <div v-for="post in promotedPosts" :key="post">
-            <p>{{post.message}}</p>
+        <div v-for="(post, key) of promotedPosts" :key="key">
+            <p>{{post}} {{key}}</p>
         </div>
     </div>
 </template>
 
 <script>
 const json = require('../assets/json/posts.json')
-console.log(json)
 
 export default {
   name: 'PromotedStage',

@@ -4,33 +4,36 @@
             <div class="row">
                 <div id="menubar" class="col-12 mx-auto">
                     <div class="col-12 border">
+                        <example-menu></example-menu>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="container-fluid">
+        <section class="container">
             <div class="row">
                 <div id="stages" class="col-12 col-sm-8">
-                    <PromotedStage></PromotedStage>
+                    <promoted-stage></promoted-stage>
                 </div>
-
                 <div id="puffs" class="col-4 d-none d-sm-block">
-                  <ProfilePuff></ProfilePuff>
+                  <profile-puff></profile-puff>
+                  <topic-puff></topic-puff>
                 </div>
-                <TopicPuff></TopicPuff>
             </div>
         </section>
     </div>
 </template>
 
 <script>
+import ExampleMenu from './components/ExampleMenu'
 import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
+import TopicPuff from './components/TopicPuff'
 
 export default {
   name: 'App',
   components: {
+    ExampleMenu,
     PromotedStage,
     ProfilePuff,
     TopicPuff
