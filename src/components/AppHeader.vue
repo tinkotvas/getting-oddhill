@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row bg-light pl-2 pr-2">
 
             <a class="navbar-brand">Getting Oddhill</a>
             <a class="ml-4 mt-2" href="#">Home</a>
