@@ -2,7 +2,7 @@
     <div id="promoted-stage" class="col-12 p-0 border">
         <div id="promoted-post" class="m-2" v-for="(post, key) of promotedPosts" :key="key">
           <h6>{{post.heading}}</h6>
-           <p class="m-0"> {{(post.message).substring(0,155)}} ...</p>
+           <p class="m-0"> {{(post.message).substring(0,155)}}...</p>
            <div class="d-flex">
              <p class="m-0 mr-auto font-italic p-1">{{post.author}}</p>
              <div class="promoted-topics align-items-end p-1">
