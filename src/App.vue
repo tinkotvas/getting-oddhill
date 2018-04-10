@@ -3,9 +3,7 @@
         <section class="container-fluid mb-3">
             <div class="row">
                 <div id="menubar" class="col-12 mx-auto">
-                    <div class="col-12 border">
-                        <example-menu></example-menu>
-                    </div>
+                    <app-header></app-header>
                 </div>
             </div>
         </section>
@@ -25,7 +23,7 @@
 </template>
 
 <script>
-import ExampleMenu from './components/ExampleMenu'
+import AppHeader from './components/AppHeader'
 import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
@@ -33,7 +31,7 @@ import TopicPuff from './components/TopicPuff'
 export default {
   name: 'App',
   components: {
-    ExampleMenu,
+    AppHeader,
     PromotedStage,
     ProfilePuff,
     TopicPuff
