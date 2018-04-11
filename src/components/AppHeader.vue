@@ -2,16 +2,16 @@
   <div class="d-flex flex-row bg-light pl-2 pr-2">
 
     <a class="navbar-brand">Getting Oddhill</a>
-    <a class="ml-4 mt-2" href="#">Home</a>
-    <a class="ml-4 mt-2" href="#">Posts</a>
-    <a class="ml-4 mt-2 pr-4 mr-auto" href="#">Profiles</a>
+    <router-link class="ml-4 mt-2" to="/">Home</router-link>
+    <router-link class="ml-4 mt-2" to="posts">Posts</router-link>
+    <router-link class="ml-4 mt-2 pr-4 mr-auto" to="#">Profiles</router-link>
     <input class="form-control m-1 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-primary m-1 mr-auto" type="submit">Search</button>
-    <a class="ml-4 mt-2" href="#">Login</a>
+    <router-link class="ml-4 mt-2" to="#">Login</router-link>
 
     <div class="dropdown">
       <div class="dropdown_header" @click="toggleDropdown($event)">
-        <p class="ml-4 mt-2" href="#">Menu</p>
+        <p class="ml-4 mt-2" to="#">Menu</p>
       </div>
       <div class="dropdown_content">
         <ul>
