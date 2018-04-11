@@ -1,23 +1,25 @@
 {
-  {
-    "name": "Adam",
-    "picture": "1.jpg"
-  },
-  {
-    "name": "Ben",
-    "picture": "2.jpg"
-  },
-  {
-    "name": "Calle",
-    "picture": "3.jpg"
-  },
-  {
-    "name": "Lasse",
-    "picture": "4.jpg"
-  },
-  {
-    "name": "Simon",
-    "picture": "5.jpg"
+  "profiles":{
+    "1":{
+      "name": "Adam",
+      "picture": "1.jpg"
+    },
+    "2":{
+      "name": "Anna",
+      "picture": "2.jpg"
+    },
+    "3":{
+      "name": "Calle",
+      "picture": "3.jpg"
+    },
+    "4":{
+      "name": "Daniel",
+      "picture": "4.jpg"
+    },
+    "5":{
+      "name": "Sussan",
+      "picture": "5.jpg"
+    }
   }
-
 }
+
