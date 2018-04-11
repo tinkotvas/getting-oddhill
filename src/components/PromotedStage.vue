@@ -6,7 +6,8 @@
            <div class="d-flex">
              <p class="m-0 mr-auto font-italic p-1">{{post.author}}</p>
              <div class="promoted-topics align-items-end p-1">
-                <a class="p-1 ml-1" href="#" v-for="(topic,key) of post.topics" :key="key">
+               <!-- <b-tag type="is-primary" size="is-medium">Medium</b-tag> -->
+                <a class="is-primary is-medium tag p-1 ml-1" href="#" v-for="(topic,key) of post.topics" :key="key">
                   {{topic}}
                 </a>
              </div>
