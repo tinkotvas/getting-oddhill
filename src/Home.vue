@@ -1,7 +1,6 @@
 <template>
     <div id="App">
 
-
         <section class="container">
             <div class="row">
                 <div id="stages" class="col-12 col-md-8">

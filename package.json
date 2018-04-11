@@ -12,6 +12,7 @@
     "linta": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "buefy": "^0.6.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"

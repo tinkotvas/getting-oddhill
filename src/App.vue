@@ -18,7 +18,7 @@
 import AppHeader from './components/AppHeader'
 export default {
   name: 'app',
-  components:{ AppHeader }
+  components: { AppHeader }
 }
 </script>
 <!-- styling for the component -->
