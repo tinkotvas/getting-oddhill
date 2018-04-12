@@ -1,20 +1,19 @@
 {
     "posts":{
         "1":{
-            "promoted":true,
             "author":"Tin",
             "topics":["node.js","Oddhill"],
             "heading":"How about them Node.JS",
             "message":"Non proident deserunt magna quis enim sunt Lorem. Non fugiat cupidatat velit magna commodo. Duis ullamco sit ut enim Lorem do sit dolor consectetur ea nisi. Id ullamco exercitation Lorem Lorem qui pariatur amet adipisicing aute. Est qui duis dolore anim id cillum labore duis exercitation eiusmod cupidatat proident laboris reprehenderit."
         },
         "2":{
-            "promoted":true,
             "author":"Luigi",
             "topics":["Nintendo.js","SuperMarioJS"],
             "heading":"Gotta save Peach",
             "message":"Exercitation occaecat commodo sit mollit in. Elit dolore magna dolor dolor mollit amet mollit officia culpa enim culpa elit occaecat consectetur. Irure reprehenderit pariatur et cupidatat qui id reprehenderit in reprehenderit magna irure est. Ea culpa ad sit incididunt Lorem aliquip fugiat consequat cupidatat quis anim consectetur nisi. Commodo sint irure proident nulla aliquip eu sunt quis exercitation nostrud. Mollit do esse voluptate laboris nulla sit sit quis aliquip labore ipsum non nulla adipisicing. Ad fugiat enim exercitation adipisicing reprehenderit excepteur est anim ea pariatur excepteur."
         },
         "3":{
+            "promoted":true,
             "author":"Swan",
             "topics":["DoveJS","PidgeonMail"],
             "heading":"Birds and such",
@@ -33,6 +32,7 @@
             "message":"Exercitation occaecat commodo sit mollit in. Elit dolore magna dolor dolor mollit amet mollit officia culpa enim culpa elit occaecat consectetur. Irure reprehenderit pariatur et cupidatat qui id reprehenderit in reprehenderit magna irure est. Ea culpa ad sit incididunt Lorem aliquip fugiat consequat cupidatat quis anim consectetur nisi. Commodo sint irure proident nulla aliquip eu sunt quis exercitation nostrud. Mollit do esse voluptate laboris nulla sit sit quis aliquip labore ipsum non nulla adipisicing. Ad fugiat enim exercitation adipisicing reprehenderit excepteur est anim ea pariatur excepteur."
         },
         "6":{
+            "promoted":true,
             "author":"Mona Lisa",
             "topics":["Di Caprio","Titanic"],
             "heading":"Smiling your way to victory",
