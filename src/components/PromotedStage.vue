@@ -1,4 +1,27 @@
 <template>
+  <div id="promoted-stage">
+    <article class="media" v-for="(post, key) of promotedPosts" :key="key">
+      <!--Left content like img-->
+
+      <!--Main content -->
+      <div class="media-content">
+        <div class="content">
+          <p><strong>{{post.heading}}</strong><br>
+          {{(post.message).substring(0,155)}}...</p>
+        </div>
+        <nav class="level is-mobile">
+          <div class="level-left">
+          </div>
+          <div class="level-right">
+            <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
+              {{topic}}
+            </router-link>
+          </div>
+        </nav>
+      </div>
+    </article>
+  </div>
+<!--
   <div id="promoted-stage" class="column">
     <div id="promoted-post" class="" v-for="(post, key) of promotedPosts" :key="key">
       <h6>{{post.heading}}</h6>
@@ -6,7 +29,6 @@
       <div class="">
         <p class="">{{post.author}}</p>
         <div class="">
-          <!-- <b-tag type="is-primary" size="is-medium">Medium</b-tag> -->
           <a class="is-primary is-medium tag" href="#" v-for="(topic,key) of post.topics" :key="key">
                       {{topic}}
                     </a>
@@ -14,6 +36,7 @@
       </div>
     </div>
   </div>
+  -->
 </template>
 
 <script>
@@ -47,7 +70,5 @@ export default {
 </script>
 
 <style scoped>
-  a {
-    background: #ADD8E6;
-  }
+
 </style>
