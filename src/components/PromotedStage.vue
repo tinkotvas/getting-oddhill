@@ -31,7 +31,7 @@ export default {
   methods: {
     getData: function (event) {
       this.isLoading = true
-      axios.get('http://192.168.2.10s7:1337/post/')
+      axios.get('http://192.168.2.107:1337/post/')
         .then(({
           data
         }) => {

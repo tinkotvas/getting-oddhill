@@ -1,14 +1,16 @@
-[
-    {
-    "topic": "node.js",
-    "mentions": 15   
-    },
-    {
-    "topic": "Oddhill",
-    "mentions": 20   
-    },
-    {
-    "topic": "",
-    "mentions": 10  
+{
+    "topics":{
+        "1": {
+            "tag": "node.js",
+            "mentions": 15   
+        },
+        "2": {
+            "tag": "Oddhill",
+            "mentions": 20   
+        },
+        "3": {
+            "tag": "Paulina",
+            "mentions": 10  
+        }
     }
-]
+}
