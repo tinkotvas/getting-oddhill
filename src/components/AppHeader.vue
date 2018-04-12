@@ -8,10 +8,19 @@
 <script>
 export default {
   name: 'AppHeader',
+  data () {
+    return {
+      navActive: false
+    }
+  },
   methods: {
     toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')
+    },
+    toggleMenu () {
+      this.navActive = !this.navActive
     }
+
   }
 }
 </script>
