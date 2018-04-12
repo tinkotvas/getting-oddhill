@@ -13,8 +13,8 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-          <router-link class="ml-4 mt-2" to="/">Home</router-link>
-    <router-link class="ml-4 mt-2" to="posts">Posts</router-link>
+          <router-link class="navbar-item" to="/">Home</router-link>
+    <router-link class="navbar-item" to="posts">Posts</router-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" href="/documentation/overview/start/">
           Docs
