@@ -15,8 +15,6 @@ import Posts from './Posts'
 Vue.use(Buefy)
 Vue.use(VueRouter)
 
-require('../node_modules/bootstrap/scss/bootstrap.scss')
-
 Vue.config.productionTip = false
 
 let routes = [

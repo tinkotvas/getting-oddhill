@@ -1,12 +1,12 @@
 <template>
     <div id="App">
-
-        <section class="container">
-            <div class="row">
-                <div id="stages" class="col-12 col-md-8">
+        <section class="">
+            <div class="columns">
+                <div id="stages" class="column">
+                    <promoted-stage></promoted-stage>
                     <promoted-stage></promoted-stage>
                 </div>
-                <div id="puffs" class="col-4 d-none d-md-block">
+                <div id="puffs" class="column">
                   <profile-puff></profile-puff>
                   <topic-puff></topic-puff>
                 </div>

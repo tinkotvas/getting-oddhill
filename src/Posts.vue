@@ -2,11 +2,11 @@
     <div id="App">
 
         <section class="container">
-            <div class="row">
-                <div id="stages" class="col-12 col-md-8">
+            <div class="coulmns">
+                <div id="stages" class="coulmn">
                     <h1> BRA JOBBAT </h1>
                 </div>
-                <div id="puffs" class="col-4 d-none d-md-block">
+                <div id="puffs" class="coulmn">
 
                 </div>
             </div>
