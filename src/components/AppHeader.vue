@@ -1,9 +1,9 @@
 <template>
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-    </a>
+    <router-link class="navbar-item" to="/">
+      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: router-link modern CSS framework based on Flexbox" width="112" height="28">
+    </router-link>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="toggleMenu" :class="{'is-active': navActive}">
       <span></span>
       <span></span>
@@ -16,30 +16,30 @@
           <router-link class="navbar-item" to="/">Home</router-link>
     <router-link class="navbar-item" to="posts">Posts</router-link>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/documentation/overview/start/">
+        <a target="_blank" class="navbar-link" href="https://bulma.io/documentation/overview/start/">
           Docs
         </a>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="/documentation/overview/start/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/overview/start/">
             Overview
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
             Modifiers
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
             Columns
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/layout/container/">
             Layout
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/form/general/">
             Form
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/elements/box/">
             Elements
           </a>
-          <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+          <a target="_blank" class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
             Components
           </a>
         </div>
@@ -49,24 +49,8 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
-              <span class="icon">
-                <i class="fab fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.6.2/bulma-0.6.2.zip">
-              <span class="icon">
-                <i class="fas fa-download"></i>
-              </span>
-              <span>Download</span>
-            </a>
-          </p>
+      
+
         </div>
       </div>
     </div>
@@ -76,21 +60,21 @@
 
 <script>
 export default {
-  name: 'AppHeader',
-  data () {
+  name: "AppHeader",
+  data() {
     return {
       navActive: false
-    }
+    };
   },
   methods: {
-    toggleDropdown (event) {
-      event.currentTarget.classList.toggle('is-active')
+    toggleDropdown(event) {
+      event.currentTarget.classList.toggle("is-active");
     },
-    toggleMenu () {
-      this.navActive = !this.navActive
+    toggleMenu() {
+      this.navActive = !this.navActive;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
