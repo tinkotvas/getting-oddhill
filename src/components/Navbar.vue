@@ -2,7 +2,7 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
     <router-link class="navbar-item" to="/">
-      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: router-link modern CSS framework based on Flexbox" width="112" height="28">
+      <h1>Getting Oddhill</h1>
     </router-link>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="toggleMenu" :class="{'is-active': navActive}">
       <span></span>
@@ -13,8 +13,8 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu" :class="{'is-active': navActive}">
     <div class="navbar-start">
-          <router-link class="navbar-item" to="/">Home</router-link>
-    <router-link class="navbar-item" to="posts">Posts</router-link>
+      <router-link class="navbar-item" to="/">Home</router-link>
+      <router-link class="navbar-item" to="posts">Posts</router-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a target="_blank" class="navbar-link" href="https://bulma.io/documentation/overview/start/">
           Docs
@@ -47,11 +47,44 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
+      <b-dropdown position="is-bottom-left">
+        <a class="navbar-item" slot="trigger">
+            <span>Login</span>
+        </a>
+        <b-dropdown-item custom style="min-width:300px">
+            <form action="">
+              <b-field label="Email">
+                  <b-input
+                      type="email"
+                      placeholder="Your email"
+                      required>
+                  </b-input>
+              </b-field>
 
-        </div>
-      </div>
+              <b-field label="Password">
+                  <b-input
+                      type="password"
+                      password-reveal
+                      placeholder="Your password"
+                      required>
+                  </b-input>
+              </b-field>
+
+              
+
+              
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <b-checkbox>Remember me</b-checkbox>
+                </div>
+                <div class="level-right">
+                  <button class="button is-primary is-bottom-right">Login</button>
+                </div>
+              </nav>
+            </form>
+        </b-dropdown-item>
+    </b-dropdown>
+
     </div>
   </div>
 </nav>
@@ -59,7 +92,7 @@
 
 <script>
 export default {
-  name: 'AppHeader',
+  name: 'Navbar',
   data () {
     return {
       navActive: false
@@ -76,6 +109,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
 </style>
