@@ -1,15 +1,11 @@
 <template>
   <div class="column">
-      <section>
-        <b-field label="Add some tags">
-            <b-taginput
-                v-model="tags"
-                icon="label"
-                placeholder="Add a tag">
-            </b-taginput>
-        </b-field>
-        <p class="content"><b>Tags:</b> {{ tags }}</p>
-    </section>
+      <h1>TopicPuff</h1>
+
+    <div v-for="(tag, key) of myTopics" :key="key"> 
+      <button class="button is-dark is-rounded" href="#"> {{ tag.tag }} </button>  
+    </div>
+
   </div>
 </template>
 
@@ -18,18 +14,13 @@ const json = require('../assets/json/topics.json')
 
 export default {
   name: 'TopicPuff',
-          data() {
-            return {
-                tags: [
-                    'Auckland',
-                    'Wellington',
-                    'Napier'
-                ]
-            }
-        }
+  data(){
+    return{
+      myTopics: json.topics
+    }
+  } 
 }
 </script>
 
 <style>
-
 </style>
