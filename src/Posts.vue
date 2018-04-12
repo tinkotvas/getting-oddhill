@@ -1,13 +1,15 @@
 <template>
     <div id="App">
-
-        <section class="container">
-            <div class="coulmns">
-                <div id="stages" class="coulmn">
-                    <h1> BRA JOBBAT </h1>
-                </div>
-                <div id="puffs" class="coulmn">
-
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div id="stages" class="column">
+                        <post-stage class="box"></post-stage>
+                    </div>
+                    <div id="puffs" class="column is-3">
+                        <profile-puff class="box"></profile-puff>
+                        <topic-puff class="box"></topic-puff>
+                    </div>
                 </div>
             </div>
         </section>
@@ -16,14 +18,14 @@
 
 <script>
 import AppHeader from './components/AppHeader'
-import PromotedStage from './components/PromotedStage'
+import PostStage from './components/PostsStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
 
 export default {
   components: {
     AppHeader,
-    PromotedStage,
+    PostStage,
     ProfilePuff,
     TopicPuff
   }

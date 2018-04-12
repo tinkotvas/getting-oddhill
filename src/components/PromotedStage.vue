@@ -1,7 +1,6 @@
 <template>
   <div id="promoted-stage">
-    <article class="media" v-for="(post, key) of promotedPosts" :key="key">
-      <!--Left content like img-->
+    <article v-if="post.promoted" class="media" v-for="(post, key) of promotedPosts" :key="key">
 
       <!--Main content -->
       <div class="media-content">

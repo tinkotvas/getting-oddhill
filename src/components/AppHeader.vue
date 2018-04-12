@@ -49,7 +49,6 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-      
 
         </div>
       </div>
@@ -60,21 +59,21 @@
 
 <script>
 export default {
-  name: "AppHeader",
-  data() {
+  name: 'AppHeader',
+  data () {
     return {
       navActive: false
-    };
+    }
   },
   methods: {
-    toggleDropdown(event) {
-      event.currentTarget.classList.toggle("is-active");
+    toggleDropdown (event) {
+      event.currentTarget.classList.toggle('is-active')
     },
-    toggleMenu() {
-      this.navActive = !this.navActive;
+    toggleMenu () {
+      this.navActive = !this.navActive
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

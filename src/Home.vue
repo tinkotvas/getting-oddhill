@@ -7,8 +7,8 @@
                         <promoted-stage class="box"></promoted-stage>
                     </div>
                     <div id="puffs" class="column is-3">
-                    <profile-puff class="box"></profile-puff>
-                    <topic-puff class="box"></topic-puff>
+                        <profile-puff class="box"></profile-puff>
+                        <topic-puff class="box"></topic-puff>
                     </div>
                 </div>
             </div>
