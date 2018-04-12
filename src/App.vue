@@ -1,16 +1,18 @@
 <template>
   <div id="app">
   <!-- the router outlet, where all matched components would ber viewed -->
-        <section class="container-fluid">
-            <div class="row">
-                <div id="menubar" class="col-12 mx-auto">
-                    <div class="col-12 border">
+        <section class="columns">
+            <div class="column">
+                <div id="menubar" class="">
+                    <div class="">
                         <app-header></app-header>
                     </div>
                 </div>
             </div>
         </section>
+
     <router-view></router-view>
+
   </div>
 </template>
 

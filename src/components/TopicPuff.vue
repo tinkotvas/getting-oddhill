@@ -1,12 +1,30 @@
 <template>
-  <div class="col-12 border">
-      <h1>TopicPuff</h1>
+  <div class="column">
+      <section>
+        <b-field label="Add some tags">
+            <b-taginput
+                v-model="tags"
+                icon="label"
+                placeholder="Add a tag">
+            </b-taginput>
+        </b-field>
+        <p class="content"><b>Tags:</b> {{ tags }}</p>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TopicPuff'
+  name: 'TopicPuff',
+          data() {
+            return {
+                tags: [
+                    'Auckland',
+                    'Wellington',
+                    'Napier'
+                ]
+            }
+        }
 }
 </script>
 
