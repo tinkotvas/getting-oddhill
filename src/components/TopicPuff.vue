@@ -2,8 +2,8 @@
   <div class="column">
       <h1>TopicPuff</h1>
 
-    <div v-for="(tag, key) of myTopics" :key="key">
-      <button class="button is-dark is-rounded" href="#"> {{ tag.tag }} </button>
+    <div id="tags" v-for="(tag, key) of myTopics" :key="key"> 
+      <button class="button is-primary is-rounded" href="#"> {{ tag.tag }} </button>  
     </div>
 
   </div>
@@ -23,4 +23,13 @@ export default {
 </script>
 
 <style>
+
+  div#tags{
+    display: inline;
+  }
+
+  button.button{
+    margin-right: 5px;
+    margin-top: 10px;
+  }
 </style>
