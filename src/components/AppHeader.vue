@@ -77,16 +77,16 @@
 <script>
 export default {
   name: 'AppHeader',
-  data() {
+  data () {
     return {
       navActive: false
     }
   },
   methods: {
-    toggleDropdown(event) {
+    toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')
     },
-    toggleMenu() {
+    toggleMenu () {
       this.navActive = !this.navActive
     }
   }

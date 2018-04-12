@@ -16,15 +16,15 @@
 <script>
 export default {
   name: 'TopicPuff',
-          data() {
-            return {
-                tags: [
-                    'Auckland',
-                    'Wellington',
-                    'Napier'
-                ]
-            }
-        }
+  data () {
+    return {
+      tags: [
+        'Auckland',
+        'Wellington',
+        'Napier'
+      ]
+    }
+  }
 }
 </script>
 
