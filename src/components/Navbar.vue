@@ -1,9 +1,9 @@
 <template>
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <router-link class="navbar-item" to="/">
+    <span class="navbar-item">
       <h1>Getting Oddhill</h1>
-    </router-link>
+    </span>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="toggleMenu" :class="{'is-active': navActive}">
       <span></span>
       <span></span>
@@ -17,7 +17,7 @@
       <router-link class="navbar-item" to="posts">Posts</router-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a target="_blank" class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-          Docs
+          Bulma Docs
         </a>
         <div class="navbar-dropdown is-boxed">
           <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -35,12 +35,39 @@
           <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/form/general/">
             Form
           </a>
-          <hr class="navbar-divider">
           <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/elements/box/">
             Elements
           </a>
-          <a target="_blank" class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+          <a target="_blank" class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
             Components
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a target="_blank" class="navbar-link" href="https://buefy.github.io/#/documentation/start/">
+          Buefy Docs
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/layout">
+            Layout & elements
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/dropdown">
+            Dropdowns
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/autocomplete">
+            Autocomplete
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/field">
+            Field
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/input">
+            Input
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/message">
+            Message
+          </a>
+          <a target="_blank" class="navbar-item" href="https://buefy.github.io/#/documentation/snackbar">
+            Snackbar
           </a>
         </div>
       </div>
@@ -110,5 +137,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.router-link-exact-active{
+  color: #7957d5;
+}
 </style>
