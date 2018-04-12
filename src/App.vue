@@ -1,18 +1,10 @@
 <template>
   <div id="app">
-  <!-- the router outlet, where all matched components would ber viewed -->
-        <section class="columns">
-            <div class="column">
-                <div id="menubar" class="">
-                    <div class="">
-                        <app-header></app-header>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <div id="navbar" class="">
+        <app-header></app-header>
+    </div>
+    <!-- the router outlet, where all matched components would ber viewed -->
     <router-view></router-view>
-
   </div>
 </template>
 

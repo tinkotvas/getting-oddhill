@@ -1,9 +1,8 @@
 <template>
     <div id="App">
-        <section class="">
+        <section class="section">
             <div class="columns">
                 <div id="stages" class="column">
-                    <promoted-stage></promoted-stage>
                     <promoted-stage></promoted-stage>
                 </div>
                 <div id="puffs" class="column">
