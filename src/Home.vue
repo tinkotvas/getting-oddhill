@@ -1,13 +1,15 @@
 <template>
     <div id="App">
         <section class="section">
-            <div class="columns">
-                <div id="stages" class="column">
-                    <promoted-stage></promoted-stage>
-                </div>
-                <div id="puffs" class="column">
-                  <profile-puff></profile-puff>
-                  <topic-puff></topic-puff>
+            <div class="container">
+                <div class="columns">
+                    <div id="stages" class="column">
+                        <promoted-stage class="box"></promoted-stage>
+                    </div>
+                    <div id="puffs" class="column is-3">
+                    <profile-puff class="box"></profile-puff>
+                    <topic-puff class="box"></topic-puff>
+                    </div>
                 </div>
             </div>
         </section>
