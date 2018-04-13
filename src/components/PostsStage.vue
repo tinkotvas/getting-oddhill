@@ -31,6 +31,11 @@
           </div>
         </nav>
       </div>
+
+        <button class="delete" @click="deletePost(post.id)">
+
+        </button> 
+
     </article>
   </div>
 </template>
@@ -46,6 +51,11 @@ export default {
       isLoading: true,
       isFullPage: false,
       promotedPosts: []
+    }
+  },
+  methods: {
+    deletePost(id) {
+      db.collection('posts').doc(id).delete()
     }
   },
   mounted () {
