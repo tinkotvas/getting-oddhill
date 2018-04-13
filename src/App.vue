@@ -17,7 +17,21 @@ export default {
   components: { Navbar }
 }
 </script>
-<!-- styling for the component -->
-<style>
 
+<!-- Universal styles -->
+<style lang="scss">
+  // Import theme variables first and overrides last, do not change the order
+  // Change to Darkly for dark theme and Flatly for light theme
+  @import "~bulmaswatch/flatly/variables";
+  // @import "~bulmaswatch/darkly/variables";
+  @import "~bulma/sass/utilities/_all";
+
+  // --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization)
+
+  // --- End custom variables ---
+
+  @import "~bulma";
+  @import "~buefy/src/scss/buefy";
+  @import "~bulmaswatch/flatly/overrides";
+  // @import "~bulmaswatch/darkly/overrides";
 </style>
