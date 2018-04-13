@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted: function () {
-      this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt','desc'))
+    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
       .then((doc) => {
         this.isLoading = false
       })

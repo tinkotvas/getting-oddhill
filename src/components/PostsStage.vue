@@ -1,9 +1,9 @@
 <template>
   <div id="posts-stage">
-          <b-loading
-        :is-full-page="isFullPage"
-        :active.sync="isLoading"
-        :can-cancel="true"/>
+    <b-loading
+      :is-full-page="isFullPage"
+      :active.sync="isLoading"
+      :can-cancel="true"/>
     <article
       class="media"
       v-for="(post, key) of promotedPosts"
@@ -49,7 +49,7 @@ export default {
     }
   },
   mounted () {
-    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt','desc'))
+    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
       .then((doc) => {
         this.isLoading = false
       })
