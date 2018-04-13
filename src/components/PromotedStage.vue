@@ -11,9 +11,11 @@
           <div class="level-left">
           </div>
           <div class="level-right">
-            <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
-              {{topic}}
-            </router-link>
+            <b-taglist>
+              <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
+                {{topic}}
+              </router-link>
+            </b-taglist>
           </div>
         </nav>
       </div>
