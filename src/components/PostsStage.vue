@@ -4,6 +4,7 @@
       class="media"
       v-for="(post, key) of promotedPosts"
       :key="key">
+      <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :canCancel="true"></b-loading>
       <!--Left content like img-->
       <!--Main content -->
       <div class="media-content no-overflow">
@@ -39,31 +40,28 @@ import { db } from '../main.js'
 export default {
   data () {
     return {
-      isLoading: false,
+      isLoading: true,
+      isFullPage: false,
       promotedPosts: []
     }
   },
-  firestore () {
-    return {
-      promotedPosts: db.collection('posts').orderBy('createdAt')
+  mounted () {
+    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt'))
+      .then((doc) => {
+        this.isLoading = false
+      })
+      .catch((error) => {
+        console.log('error in loading: ', error)
+      })
     }
-  }
   // ,
-  // mounted: function () {
-  //   this.getData()
-  // },
-  // methods: {
-  //   getData: function (event) {
-  //     this.isLoading = true
-  //     axios
-  //       .get('http://192.168.2.107:1337/post/')
-  //       .then(({ data }) => {
-  //         this.promotedPosts = data
-  //       })
-  //       .catch(err => (this.isLoading = false))
+  // firestore () {
+  //   return {
+  //     promotedPosts: db.collection('posts').orderBy('createdAt')
+  //     }
   //   }
-  // }
-}
+  }
+
 </script>
 
 <style scoped>
