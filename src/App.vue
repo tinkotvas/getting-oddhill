@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="navbar" class="">
-        <app-header></app-header>
+        <navbar></navbar>
     </div>
     <!-- the router outlet, where all matched components would ber viewed -->
     <router-view></router-view>
@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
+import Navbar from './components/Navbar'
 export default {
   name: 'app',
-  components: { AppHeader }
+  components: { Navbar }
 }
 </script>
 <!-- styling for the component -->

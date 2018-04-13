@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
+import Navbar from './components/Navbar'
 import PostStage from './components/PostsStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
 
 export default {
   components: {
-    AppHeader,
+    Navbar,
     PostStage,
     ProfilePuff,
     TopicPuff
