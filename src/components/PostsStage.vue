@@ -12,11 +12,11 @@
                 <div class="level-left">
                 </div>
                 <div class="level-right">
-                <b-taglist>
-                  <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
-                    {{topic}}
-                </router-link>
-                </b-taglist>
+                  <b-taglist>
+                    <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
+                        {{topic}}
+                    </router-link>
+                  </b-taglist>
                 </div>
             </nav>
             </div>
@@ -34,22 +34,23 @@ export default {
       isLoading: false,
       promotedPosts: json.posts
     }
-  },
-  methods: {
-    getData: function (event) {
-      this.isLoading = true
-      axios.get('http://192.168.2.107:1337/post/')
-        .then(({
-          data
-        }) => {
-          this.promotedPosts = data
-        })
-        .catch(err => this.isLoading = false)
-    }
-  },
-  mounted: function () {
-  		this.getData()
-  	}
+  }
+  // ,
+  // methods: {
+  //   getData: function (event) {
+  //     this.isLoading = true
+  //     axios.get('http://192.168.2.107:1337/post/')
+  //       .then(({
+  //         data
+  //       }) => {
+  //         this.promotedPosts = data
+  //       })
+  //       .catch(err => this.isLoading = false)
+  //   }
+  // },
+  // mounted: function () {
+  // 		this.getData()
+  // 	}
 }
 </script>
 
