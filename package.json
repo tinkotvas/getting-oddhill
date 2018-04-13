@@ -13,7 +13,6 @@
     "linta": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "buefy": "^0.6.5",
     "firebase": "^4.12.1",
     "bulmaswatch": "^0.6.2",
