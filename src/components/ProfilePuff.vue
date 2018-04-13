@@ -3,7 +3,7 @@
     <h1>ProfilePuff</h1>
     <!-- <img src="../assets/1.jpg"> -->
     <div v-for="(profile, key) of profiles" :key = "key">
-      <img :src="require('@/assets/' + profile.picture)" alt="Avatar"/>
+      <img :src="require('@/assets/avatar/' + profile.picture)" alt="Avatar"/>
       <a href="#">{{ profile.name }}</a>
 
     </div>
