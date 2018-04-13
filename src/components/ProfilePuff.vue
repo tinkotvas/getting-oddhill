@@ -2,8 +2,13 @@
   <div class="column">
     <h1>ProfilePuff</h1>
     <!-- <img src="../assets/1.jpg"> -->
-    <div v-for="(profile, key) of profiles" :key = "key">
-      <img :src="require('@/assets/avatar/' + profile.picture)" alt="Avatar" class="profile-img"/>
+    <div
+      v-for="(profile, key) of profiles"
+      :key = "key">
+      <img
+        :src="require('@/assets/avatar/' + profile.picture)"
+        alt="Avatar"
+        class="profile-img">
       <a href="#">{{ profile.name }}</a>
 
     </div>

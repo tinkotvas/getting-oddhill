@@ -1,19 +1,23 @@
 <template>
-    <div id="App">
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div id="stages" class="column">
-                        <post-stage class="box"></post-stage>
-                    </div>
-                    <div id="puffs" class="column is-3">
-                        <profile-puff class="box"></profile-puff>
-                        <topic-puff class="box"></topic-puff>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+  <div id="App">
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div
+            id="stages"
+            class="column">
+            <post-stage class="box"/>
+          </div>
+          <div
+            id="puffs"
+            class="column is-3">
+            <profile-puff class="box"/>
+            <topic-puff class="box"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
