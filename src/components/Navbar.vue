@@ -13,7 +13,10 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu" :class="{'is-active': navActive}">
     <div class="navbar-start">
-      <router-link class="navbar-item" to="/">Home</router-link>
+      <router-link class="navbar-item" to="/">
+      <b-icon
+                icon="home">
+            </b-icon> Home</router-link>
       <router-link class="navbar-item" to="posts">Posts</router-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a target="_blank" class="navbar-link" href="https://bulma.io/documentation/overview/start/">
@@ -97,9 +100,9 @@
                   </b-input>
               </b-field>
 
-              
 
-              
+
+
               <nav class="level is-mobile">
                 <div class="level-left">
                   <b-checkbox>Remember me</b-checkbox>
