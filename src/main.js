@@ -11,15 +11,29 @@ import App from './App'
 // and then the differente page-comopnents
 import Home from './Home'
 import Posts from './Posts'
+import AddPost from './AddPost'
+
+import VueFire from 'vuefire'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 Vue.use(Buefy)
 Vue.use(VueRouter)
+Vue.use(VueFire)
+
+firebase.initializeApp({
+  projectId: 'getting-oddhill',
+  databaseURL: 'https://getting-oddhill.firebaseio.com'
+})
+
+export const db = firebase.firestore()
 
 Vue.config.productionTip = false
 
 let routes = [
   { path: '/', component: Home },
-  { path: '/posts', component: Posts }
+  { path: '/posts', component: Posts },
+  { path: '/posts/add', component: AddPost }
 ]
 
 /* eslint-disable no-new */

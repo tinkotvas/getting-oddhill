@@ -1,9 +1,14 @@
 <template>
   <div id="posts-stage">
+    <b-loading
+      :is-full-page="isFullPage"
+      :active.sync="isLoading"
+      :can-cancel="true"/>
     <article
       class="media"
       v-for="(post, key) of promotedPosts"
       :key="key">
+
       <!--Left content like img-->
       <!--Main content -->
       <div class="media-content no-overflow">
@@ -33,29 +38,33 @@
 <script>
 const axios = require('axios')
 const json = require('../assets/json/posts.json')
+import { db } from '../main.js'
 
 export default {
   data () {
     return {
-      isLoading: false,
-      promotedPosts: json.posts
+      isLoading: true,
+      isFullPage: false,
+      promotedPosts: []
     }
   },
-  mounted: function () {
-    this.getData()
-  },
-  methods: {
-    getData: function (event) {
-      this.isLoading = true
-      axios
-        .get('http://192.168.2.107:1337/post/')
-        .then(({ data }) => {
-          this.promotedPosts = data
-        })
-        .catch(err => (this.isLoading = false))
-    }
+  mounted () {
+    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
+      .then((doc) => {
+        this.isLoading = false
+      })
+      .catch((error) => {
+        console.log('error in loading: ', error)
+      })
   }
+  // ,
+  // firestore () {
+  //   return {
+  //     promotedPosts: db.collection('posts').orderBy('createdAt')
+  //     }
+  //   }
 }
+
 </script>
 
 <style scoped>
