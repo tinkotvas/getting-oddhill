@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "buefy": "^0.6.5",
+    "bulmaswatch": "^0.6.2",
     "mdi": "^2.2.43",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
