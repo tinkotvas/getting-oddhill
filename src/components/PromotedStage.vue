@@ -31,7 +31,7 @@
 </template>
 
 <script>
-const axios = require('axios')
+import { db } from '../main.js'
 
 export default {
   name: 'PromotedStage',
@@ -42,27 +42,18 @@ export default {
     }
   },
   mounted: function () {
-  		this.getData()
+      this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt','desc'))
+      .then((doc) => {
+        this.isLoading = false
+      })
+      .catch((error) => {
+        console.log('error in loading: ', error)
+      })
   },
   methods: {
-    getData: function (event) {
-      const json = require('../assets/json/posts.json')
-      this.promotedPosts = json.posts
-    },
     isPromoted: function (index) {
       return this.promotedPosts[index].promoted
     }
-
-    // getData: function (event) {
-    //   this.isLoading = true
-    //   axios.get('http://192.168.2.107:1337/post/')
-    //     .then(({
-    //       data
-    //     }) => {
-    //       this.promotedPosts = data
-    //     })
-    //     .catch(err => this.isLoading = false)
-    // }
   }
 }
 </script>

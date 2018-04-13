@@ -1,14 +1,4 @@
 <template>
-  <!-- <div id="create-post">
-    <form @submit="addPost(author, heading, message, topics)">
-        <input v-model="author" placeholder="Author">
-        <input v-model="heading" placeholder="Heading">
-        <input v-model="message" placeholder="Message">
-        <input v-model="topics" placeholder="Topics">
-        <button type="submit">Add New Post</button>
-    </form>
-  </div> -->
-
       <section>
         <b-field label="author">
             <b-input v-model="author"></b-input>
@@ -30,9 +20,13 @@
         <b-field label="message">
             <b-input v-model="message" maxlength="5000" type="textarea"></b-input>
         </b-field>
-        <p class="control">
-            <button class="button" @click="addPost(author, heading, message, topics)">Add New Post</button>
-            
+        <p class="level">
+            <button class="button" @click="addPost(author, heading, message, topics, promoted)">Add New Post</button>
+
+                <b-switch v-model="promoted">
+                    Promoted
+                </b-switch>
+
         </p>
     </section>
 </template>
@@ -46,14 +40,16 @@ export default {
         author: '',
         heading: '',
         message: '',
-        topics: []
+        topics: [],
+        promoted: false
     }
   },
   methods: { 
-    addPost (author, heading, message, topics) {      // <-- and here 
-      const createdAt = new Date()
-      db.collection('posts').add({ author, createdAt, heading, message, topics })
-      this.$router.push('/posts')
+    addPost (author, heading, message, topics, promoted) {      // <-- and here 
+        const createdAt = new Date()
+        db.collection('posts').add({ author, createdAt, heading, message, topics, promoted })
+        let url = promoted ? '/' : '/posts';
+        this.$router.push(url)
     }
   }
 }
