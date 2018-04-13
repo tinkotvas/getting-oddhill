@@ -3,7 +3,7 @@
     <h1>ProfilePuff</h1>
     <!-- <img src="../assets/1.jpg"> -->
     <div v-for="(profile, key) of profiles" :key = "key">
-      <img :src="require('@/assets/avatar/' + profile.picture)" alt="Avatar"/>
+      <img :src="require('@/assets/avatar/' + profile.picture)" alt="Avatar" class="profile-img"/>
       <a href="#">{{ profile.name }}</a>
 
     </div>
@@ -25,5 +25,9 @@ export default {
 </script>
 
 <style>
-
+  .profile-img {
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+  }
 </style>
