@@ -41,8 +41,6 @@
 </template>
 
 <script>
-const axios = require('axios')
-const json = require('../assets/json/posts.json')
 import { db } from '../main.js'
 
 export default {
