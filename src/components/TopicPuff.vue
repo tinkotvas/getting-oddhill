@@ -2,8 +2,8 @@
   <div class="column">
     <h1>TopicPuff</h1>
 
-    <div id="tags" v-for="(tag, key) of myTopics" :key="key"> 
-      <button class="button is-primary is-rounded" href="#"> {{ tag.mentions }} </button>  
+    <div id="tags" v-for="(tag, index) of sortArray" :key="index">
+      <button class="button is-primary is-rounded" href="#"> {{ tag.mentions }} </button>
     </div>
 
   </div>
@@ -28,14 +28,15 @@ export default {
   computed: {
     sortArray: function(){
       function compare(a, b) {
-        if(a.tag.mentions < b.tag.mentions)
+        if(a.mentions < b.mentions)
           return -1;
-        if(a.tag.mentions > b.tag.mentions)
+        if(a.mentions > b.mentions)
           return 1;
-        return 0;  
+        return 0;
       }
-      
-      return this.myTopics.sort(compare);
+      /* Gör om object till array med Object.values() först,
+      .sort() finns bara på arrays */
+      return Object.values(this.myTopics).sort(compare);
     }
   }
 
