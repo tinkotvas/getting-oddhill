@@ -13,8 +13,20 @@ import App from './App'
 import Home from './Home'
 import Posts from './Posts'
 
+import VueFire from 'vuefire'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
 Vue.use(Buefy)
 Vue.use(VueRouter)
+Vue.use(VueFire)
+
+firebase.initializeApp({
+  projectId: 'getting-oddhill',
+  databaseURL: 'https://getting-oddhill.firebaseio.com'
+})
+
+export const db = firebase.firestore()
 
 Vue.config.productionTip = false
 

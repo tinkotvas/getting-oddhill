@@ -33,28 +33,36 @@
 <script>
 const axios = require('axios')
 const json = require('../assets/json/posts.json')
+import { db } from '../main.js'
+
 
 export default {
   data () {
     return {
       isLoading: false,
-      promotedPosts: json.posts
+      promotedPosts: []
     }
   },
-  mounted: function () {
-    this.getData()
-  },
-  methods: {
-    getData: function (event) {
-      this.isLoading = true
-      axios
-        .get('http://192.168.2.107:1337/post/')
-        .then(({ data }) => {
-          this.promotedPosts = data
-        })
-        .catch(err => (this.isLoading = false))
+  firestore () {
+    return {
+      promotedPosts: db.collection('posts').orderBy('createdAt')
     }
   }
+  // ,
+  // mounted: function () {
+  //   this.getData()
+  // },
+  // methods: {
+  //   getData: function (event) {
+  //     this.isLoading = true
+  //     axios
+  //       .get('http://192.168.2.107:1337/post/')
+  //       .then(({ data }) => {
+  //         this.promotedPosts = data
+  //       })
+  //       .catch(err => (this.isLoading = false))
+  //   }
+  // }
 }
 </script>
 
