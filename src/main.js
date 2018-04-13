@@ -12,6 +12,7 @@ import App from './App'
 // and then the differente page-comopnents
 import Home from './Home'
 import Posts from './Posts'
+import AddPost from './AddPost'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
@@ -32,7 +33,8 @@ Vue.config.productionTip = false
 
 let routes = [
   { path: '/', component: Home },
-  { path: '/posts', component: Posts }
+  { path: '/posts', component: Posts },
+  { path: '/posts/add', component: AddPost }
 ]
 
 /* eslint-disable no-new */
