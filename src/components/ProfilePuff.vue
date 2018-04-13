@@ -1,15 +1,16 @@
 <template>
-  <div class="column">
+  <div class="column" :style="{ 'min-height': '200px' }">
     <h1>ProfilePuff</h1>
-    <!-- <img src="../assets/1.jpg"> -->
-    <div
-      v-for="(profile, key) of profiles"
-      :key = "key">
-      <img
-        :src="require('@/assets/avatar/' + profile.picture)"
-        alt="Avatar"
-        class="profile-img">
-      <a href="#">{{ profile.name }}</a>
+    <div :style="{ 'position': 'relative', 'padding-top': '30px'}">
+      <div :style="{ 'display': 'inline' }"
+        v-for="(profile, index) of profiles"
+        :key = "index">
+        <img
+          :src="require('@/assets/avatar/' + profile.picture)"
+          :style="{ left:index * 30 + 'px'}" alt="Avatar"
+          class="profile-img">
+    </div>
+      <!-- <a href="#">{{ profile.name }}</a> -->
 
     </div>
   </div>
@@ -17,7 +18,6 @@
 
 <script>
 const json = require('../assets/json/profiles.json')
-// Object.entries(json.profiles).forEach(([key, profile]) => {profile.picture = '../assets/' + profile.picture})
 
 export default {
   name: 'ProfilePuff',
@@ -34,5 +34,7 @@ export default {
     width: 70px;
     border: 1px solid #ccc;
     border-radius: 50%;
+    position: absolute;
+    z-index: auto;
   }
 </style>
