@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev-nr": "webpack-dev-server --no-inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
@@ -15,6 +16,7 @@
     "axios": "^0.18.0",
     "buefy": "^0.6.5",
     "firebase": "^4.12.1",
+    "bulmaswatch": "^0.6.2",
     "mdi": "^2.2.43",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
