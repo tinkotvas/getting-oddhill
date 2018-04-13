@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+import 'mdi/css/materialdesignicons.css'
 
 // import base app vue component
 import App from './App'
