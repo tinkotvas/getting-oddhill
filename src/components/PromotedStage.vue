@@ -1,19 +1,26 @@
 <template>
   <div id="promoted-stage">
-    <article v-if="isPromoted(key)" class="media" v-for="(post, key) of promotedPosts" :key="key">
+    <article
+      v-if="isPromoted(key)"
+      class="media"
+      v-for="(post, key) of promotedPosts"
+      :key="key">
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p><strong>{{post.heading}}</strong><br>
-          {{(post.message).substring(0,155)}}...</p>
+          <p><strong>{{ post.heading }}</strong><br>
+            {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
-          <div class="level-left">
-          </div>
+          <div class="level-left"/>
           <div class="level-right">
             <b-taglist>
-              <router-link v-for="(topic,key) of post.topics" :key="key" class="is-info is-small tag" :to="'topic?'+topic">
-                {{topic}}
+              <router-link
+                v-for="(topic,key) of post.topics"
+                :key="key"
+                class="is-info is-small tag"
+                :to="'topic?'+topic">
+                {{ topic }}
               </router-link>
             </b-taglist>
           </div>
@@ -34,12 +41,15 @@ export default {
       promotedPosts: []
     }
   },
+  mounted: function () {
+  		this.getData()
+  },
   methods: {
     getData: function (event) {
       const json = require('../assets/json/posts.json')
       this.promotedPosts = json.posts
     },
-    isPromoted: function(index){
+    isPromoted: function (index) {
       return this.promotedPosts[index].promoted
     }
 
@@ -53,9 +63,6 @@ export default {
     //     })
     //     .catch(err => this.isLoading = false)
     // }
-  },
-  mounted: function () {
-  		this.getData()
   }
 }
 </script>
