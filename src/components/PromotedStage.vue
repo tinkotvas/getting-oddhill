@@ -2,7 +2,7 @@
   <div id="promoted-stage">
     <article v-if="isPromoted(key)" class="media" v-for="(post, key) of promotedPosts" :key="key">
       <!--Main content -->
-      <div class="media-content">
+      <div class="media-content no-overflow">
         <div class="content">
           <p><strong>{{post.heading}}</strong><br>
           {{(post.message).substring(0,155)}}...</p>
@@ -61,5 +61,7 @@ export default {
 </script>
 
 <style scoped>
-
+ .no-overflow {
+   overflow: initial
+ }
 </style>
