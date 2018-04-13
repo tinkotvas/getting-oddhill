@@ -1,29 +1,35 @@
 <template>
-    <div id="App">
-
-        <section class="container">
-            <div class="coulmns">
-                <div id="stages" class="coulmn">
-                    <h1> BRA JOBBAT </h1>
-                </div>
-                <div id="puffs" class="coulmn">
-
-                </div>
-            </div>
-        </section>
-    </div>
+  <div id="App">
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div
+            id="stages"
+            class="column">
+            <post-stage class="box"/>
+          </div>
+          <div
+            id="puffs"
+            class="column is-3">
+            <profile-puff class="box"/>
+            <topic-puff class="box"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
-import PromotedStage from './components/PromotedStage'
+import Navbar from './components/Navbar'
+import PostStage from './components/PostsStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
 
 export default {
   components: {
-    AppHeader,
-    PromotedStage,
+    Navbar,
+    PostStage,
     ProfilePuff,
     TopicPuff
   }

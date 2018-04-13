@@ -1,26 +1,20 @@
 <template>
   <div id="app">
-  <!-- the router outlet, where all matched components would ber viewed -->
-        <section class="columns">
-            <div class="column">
-                <div id="menubar" class="">
-                    <div class="">
-                        <app-header></app-header>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    <router-view></router-view>
-
+    <div
+      id="navbar"
+      class="">
+      <navbar/>
+    </div>
+    <!-- the router outlet, where all matched components would ber viewed -->
+    <router-view/>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
+import Navbar from './components/Navbar'
 export default {
-  name: 'app',
-  components: { AppHeader }
+  name: 'App',
+  components: { Navbar }
 }
 </script>
 <!-- styling for the component -->

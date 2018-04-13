@@ -1,29 +1,34 @@
 <template>
-    <div id="App">
-        <section class="">
-            <div class="columns">
-                <div id="stages" class="column">
-                    <promoted-stage></promoted-stage>
-                    <promoted-stage></promoted-stage>
-                </div>
-                <div id="puffs" class="column">
-                  <profile-puff></profile-puff>
-                  <topic-puff></topic-puff>
-                </div>
-            </div>
-        </section>
-    </div>
+  <div id="App">
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div
+            id="stages"
+            class="column">
+            <promoted-stage class="box"/>
+          </div>
+          <div
+            id="puffs"
+            class="column is-3">
+            <profile-puff class="box"/>
+            <topic-puff class="box"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
+import Navbar from './components/Navbar'
 import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
 
 export default {
   components: {
-    AppHeader,
+    Navbar,
     PromotedStage,
     ProfilePuff,
     TopicPuff
