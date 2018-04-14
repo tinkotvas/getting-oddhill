@@ -31,13 +31,16 @@
           </div>
         </nav>
       </div>
+
+        <button class="delete" @click="deletePost(post.id)">
+
+        </button> 
+
     </article>
   </div>
 </template>
 
 <script>
-const axios = require('axios')
-const json = require('../assets/json/posts.json')
 import { db } from '../main.js'
 
 export default {
@@ -46,6 +49,11 @@ export default {
       isLoading: true,
       isFullPage: false,
       promotedPosts: []
+    }
+  },
+  methods: {
+    deletePost(id) {
+      db.collection('posts').doc(id).delete()
     }
   },
   mounted () {
