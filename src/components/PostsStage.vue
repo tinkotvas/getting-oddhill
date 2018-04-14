@@ -16,7 +16,9 @@
             {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
-          <div class="level-left"/>
+          <div class="level-left">
+            <small>{{post.author}}</small>
+          </div>
           <div class="level-right">
             <b-taglist>
               <router-link
