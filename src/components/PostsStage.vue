@@ -1,10 +1,13 @@
 <template>
-  <b-notification :closable="false" ref="postsstage" id="posts-stage" class="no-overflow">
-    <article 
+  <b-notification
+    :closable="false"
+    ref="postsstage"
+    id="posts-stage"
+    >
+    <article
       class="media is-loading"
       v-for="(post, key) of promotedPosts"
       :key="key">
-
       <!--Left content like img-->
       <!--Main content -->
       <div class="media-content no-overflow">
@@ -28,10 +31,9 @@
         </nav>
       </div>
 
-        <button class="delete" @click="deletePost(post.id)">
-
-        </button> 
-
+      <button
+        class="delete"
+        @click="deletePost(post.id)"/>
     </article>
   </b-notification>
 </template>
@@ -39,34 +41,30 @@
 <script>
 import { db } from '../main.js'
 
-
 export default {
   data () {
     return {
       postRef: db.collection('posts'),
-      isLoading: true,
-      isFullPage: false,
       promotedPosts: []
-    }
-  },
-  methods: {
-    deletePost(id) {
-      db.collection('posts').doc(id).delete()
     }
   },
   mounted () {
     const loadingComponent = this.$loading.open({
-                    container: this.isFullPage ? null : this.$refs.postsstage.$el
-                })
+      container: this.isFullPage ? null : this.$refs.postsstage.$el
+    })
 
     this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
       .then((doc) => {
-        this.isLoading = false
         loadingComponent.close()
       })
       .catch((error) => {
         console.log('error in loading: ', error)
       })
+  },
+  methods: {
+    deletePost (id) {
+      this.postRef.doc(id).delete()
+    }
   }
   // ,
   // firestore () {
@@ -81,5 +79,9 @@ export default {
 <style scoped lang="scss">
 .no-overflow {
   overflow: hidden;
+}
+.notification{
+  padding:1.25rem;
+  min-height:100px;
 }
 </style>

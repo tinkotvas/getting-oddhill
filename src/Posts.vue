@@ -6,7 +6,7 @@
           <div
             id="stages"
             class="column">
-            <post-stage class="box"/>
+            <post-stage/>
           </div>
           <div
             id="puffs"
