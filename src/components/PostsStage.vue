@@ -1,11 +1,7 @@
 <template>
-  <div id="posts-stage">
-    <b-loading
-      :is-full-page="isFullPage"
-      :active.sync="isLoading"
-      :can-cancel="true"/>
-    <article
-      class="media"
+  <b-notification :closable="false" ref="postsstage" id="posts-stage" class="no-overflow">
+    <article 
+      class="media is-loading"
       v-for="(post, key) of promotedPosts"
       :key="key">
 
@@ -37,15 +33,17 @@
         </button> 
 
     </article>
-  </div>
+  </b-notification>
 </template>
 
 <script>
 import { db } from '../main.js'
 
+
 export default {
   data () {
     return {
+      postRef: db.collection('posts'),
       isLoading: true,
       isFullPage: false,
       promotedPosts: []
@@ -57,9 +55,14 @@ export default {
     }
   },
   mounted () {
-    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
+    const loadingComponent = this.$loading.open({
+                    container: this.isFullPage ? null : this.$refs.postsstage.$el
+                })
+
+    this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
       .then((doc) => {
         this.isLoading = false
+        loadingComponent.close()
       })
       .catch((error) => {
         console.log('error in loading: ', error)
@@ -75,8 +78,8 @@ export default {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .no-overflow {
-  overflow: initial;
+  overflow: hidden;
 }
 </style>
