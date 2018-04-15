@@ -24,7 +24,6 @@
 const json = require('../../assets/Json/profiles.json')
 
 export default {
-  name: 'ProfilePuff',
   data () {
     return {
       profiles: json.profiles

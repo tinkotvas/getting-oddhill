@@ -34,7 +34,6 @@
 import { db } from '../../main.js'
 
 export default {
-  name: 'PromotedStage',
   data () {
     return {
       isLoading: false,

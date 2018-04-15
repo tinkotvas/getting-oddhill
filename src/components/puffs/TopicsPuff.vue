@@ -15,10 +15,9 @@
 </template>
 
 <script>
-const json = require('../../assets/Json/profiles.json')
+const json = require('../../assets/Json/topics.json')
 
 export default {
-  name: 'TopicPuff',
   data () {
     return {
       myTopics: json.topics

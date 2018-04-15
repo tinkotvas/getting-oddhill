@@ -3,7 +3,7 @@
     :closable="false"
     ref="postsstage"
     id="posts-stage"
-    >
+  >
     <article
       class="media is-loading"
       v-for="(post, key) of promotedPosts"
@@ -17,7 +17,7 @@
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <small>{{post.author}}</small>
+            <small>{{ post.author }}</small>
           </div>
           <div class="level-right">
             <b-taglist>

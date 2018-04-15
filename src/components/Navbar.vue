@@ -179,7 +179,6 @@
 
 <script>
 export default {
-  name: 'Navbar',
   data () {
     return {
       navActive: false
