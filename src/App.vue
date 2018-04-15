@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div
-      id="navbar"
-      class="">
       <navbar/>
-    </div>
     <!-- the router outlet, where all matched components would ber viewed -->
     <router-view/>
   </div>

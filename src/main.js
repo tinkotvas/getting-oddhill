@@ -9,9 +9,9 @@ import 'mdi/css/materialdesignicons.css'
 import App from './App'
 
 // and then the differente page-comopnents
-import Home from './Home'
-import Posts from './Posts'
-import AddPost from './AddPost'
+import HomePage from './components/pages/HomePage'
+import PostsPage from './components/pages/PostsPage'
+import PostsAddPage from './components/pages/PostsAddPage'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
@@ -31,9 +31,9 @@ export const db = firebase.firestore()
 Vue.config.productionTip = false
 
 let routes = [
-  { path: '/', component: Home },
-  { path: '/posts', component: Posts },
-  { path: '/posts/add', component: AddPost }
+  { path: '/', component: HomePage },
+  { path: '/posts', component: PostsPage },
+  { path: '/posts/add', component: PostsAddPage }
 ]
 
 /* eslint-disable no-new */
