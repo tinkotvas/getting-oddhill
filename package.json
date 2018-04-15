@@ -19,7 +19,8 @@
     "mdi": "^2.2.43",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuefire": "^2.0.0-alpha.7"
+    "vuefire": "^2.0.0-alpha.7",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@firebase/app-types": "^0.1.2",
