@@ -1,10 +1,14 @@
 <template>
-  <div id="promoted-stage">
+  <b-notification
+    :closable="false"
+    ref="postsstage"
+    id="posts-stage"
+  >
     <article
-      v-if="isPromoted(key)"
-      class="media"
+      class="media is-loading"
       v-for="(post, key) of promotedPosts"
       :key="key">
+      <!--Left content like img-->
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
@@ -12,7 +16,9 @@
             {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
-          <div class="level-left"/>
+          <div class="level-left">
+            <small>{{ post.author }}</small>
+          </div>
           <div class="level-right">
             <b-taglist>
               <router-link
@@ -26,40 +32,58 @@
           </div>
         </nav>
       </div>
+
+      <button
+        class="delete"
+        @click="deletePost(post.id)"/>
     </article>
-  </div>
+  </b-notification>
 </template>
 
 <script>
-import { db } from '../main.js'
+import { db } from '../../main.js'
 
 export default {
-  name: 'PromotedStage',
   data () {
     return {
-      isLoading: false,
+      postRef: db.collection('posts'),
       promotedPosts: []
     }
   },
-  mounted: function () {
-    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
+  mounted () {
+    const loadingComponent = this.$loading.open({
+      container: this.isFullPage ? null : this.$refs.postsstage.$el
+    })
+
+    this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
       .then((doc) => {
-        this.isLoading = false
+        loadingComponent.close()
       })
       .catch((error) => {
         console.log('error in loading: ', error)
       })
   },
   methods: {
-    isPromoted: function (index) {
-      return this.promotedPosts[index].promoted
+    deletePost (id) {
+      this.postRef.doc(id).delete()
     }
   }
+  // ,
+  // firestore () {
+  //   return {
+  //     promotedPosts: db.collection('posts').orderBy('createdAt')
+  //     }
+  //   }
 }
+
 </script>
 
-<style scoped>
- .no-overflow {
-   overflow: initial
- }
+<style scoped lang="scss">
+.no-overflow {
+  overflow: hidden;
+}
+.notification{
+  padding:1.25rem;
+  min-height:100px;
+}
 </style>

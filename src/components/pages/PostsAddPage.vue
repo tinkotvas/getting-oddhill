@@ -1,18 +1,18 @@
 <template>
-  <div id="App">
+  <div id="postsadd">
     <section class="section">
       <div class="container">
         <div class="columns">
           <div
             id="stages"
             class="column">
-            <post-create-stage class="box"/>
+            <post-add-stage class="box"/>
           </div>
           <div
             id="puffs"
             class="column is-3">
-            <profile-puff class="box"/>
-            <topic-puff class="box"/>
+            <profiles-puff class="box"/>
+            <topics-puff class="box"/>
           </div>
         </div>
       </div>
@@ -21,17 +21,16 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar'
-import PostCreateStage from './components/PostCreateStage'
-import ProfilePuff from './components/ProfilePuff'
-import TopicPuff from './components/TopicPuff'
-
+// Stages
+import PostAddStage from '../stages/PostAddStage'
+// Puffs
+import ProfilesPuff from '../puffs/ProfilesPuff'
+import TopicsPuff from '../puffs/TopicsPuff'
 export default {
   components: {
-    Navbar,
-    PostCreateStage,
-    ProfilePuff,
-    TopicPuff
+    PostAddStage,
+    ProfilesPuff,
+    TopicsPuff
   }
 }
 </script>
