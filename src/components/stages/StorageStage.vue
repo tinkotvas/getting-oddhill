@@ -29,14 +29,11 @@ export default {
   },
   methods: {
     getFileUrls () {
-        for(let image in this.imageUrls){
-
-            storage.ref(`images/${this.imageUrls[image].srvName}`).getDownloadURL().then((url) => {
-                this.imageUrls[image].url = url
-                console.log(this.imageUrls[image])
+        Object.keys(this.imageUrls).map((key, index)=> {
+            storage.ref(`images/${this.imageUrls[key].srvName}`).getDownloadURL().then((url) => {
+                this.imageUrls[key].url = url
             })
-            
-        }
+        });
 
     }
   }
