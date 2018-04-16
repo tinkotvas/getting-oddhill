@@ -1,9 +1,9 @@
 <template>
   <div id="storage">
     <div
-      v-for="(image, key) in imageUrls"
+      v-for="(image, key) in allPageImages"
       :key="key"
-      >
+    >
       <img :src="image.url">
     </div>
 
@@ -11,30 +11,27 @@
 </template>
 
 <script>
-import { db, storage } from '../../main.js'
+import { storage } from '../../main.js'
 
 export default {
   data () {
     return {
-      imagesRef: null,
-        imageUrls: {
-            'img1': { srvName: 'dejan.png', url: null },
-            'img2': { srvName: 'tin.jpeg', url: null }
-        }
+      allPageImages: {
+        'img1': { filenameOnServer: 'dejan.png', url: null },
+        'img2': { filenameOnServer: 'tin.jpeg', url: null }
+      }
     }
   },
   mounted () {
-    this.imagesRef = storage.ref('images')
     this.getFileUrls()
   },
   methods: {
     getFileUrls () {
-        Object.keys(this.imageUrls).map((key, index)=> {
-            storage.ref(`images/${this.imageUrls[key].srvName}`).getDownloadURL().then((url) => {
-                this.imageUrls[key].url = url
-            })
-        });
-
+      Object.keys(this.allPageImages).map((key, index) => {
+        storage.ref(`images/${this.allPageImages[key].filenameOnServer}`).getDownloadURL().then((url) => {
+          this.allPageImages[key].url = url
+        })
+      })
     }
   }
 }
