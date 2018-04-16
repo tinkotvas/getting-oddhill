@@ -43,7 +43,8 @@ let routes = [
 /* eslint-disable no-new */
 const router = new VueRouter({
   routes, // short for routes: routes
-  mode: 'history'
+  mode: 'history',
+  linkExactActiveClass: 'is-active'
 })
 
 new Vue({

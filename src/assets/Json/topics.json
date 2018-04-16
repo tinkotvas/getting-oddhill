@@ -5,12 +5,24 @@
             "mentions": 15   
         },
         "2": {
-            "tag": "Oddhill",
-            "mentions": 20   
+            "tag": "oddhill",
+            "mentions": 100   
         },
         "3": {
-            "tag": "Paulina",
-            "mentions": 10  
+            "tag": "paulina",
+            "mentions": 50  
+        },
+        "4": {
+            "tag": "shamin",
+            "mentions": 50  
+        },
+        "5": {
+            "tag": "tin",
+            "mentions": 5  
+        },
+        "6": {
+            "tag": "jonas",
+            "mentions": 5  
         }
     }
 }
