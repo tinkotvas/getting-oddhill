@@ -179,7 +179,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       navActive: false
     }
