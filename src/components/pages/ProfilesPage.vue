@@ -2,19 +2,19 @@
   <div id="App">
     <div class="section">
       <div class="container">
-        <profile-page-stage/>
+        <div class="columns">
+          <h1>Profiles</h1>
+
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProfilePageStage from '../stages/ProfilePageStage'
 
 export default {
-  components: {
-    ProfilePageStage
-  }
+
 }
 
 </script>

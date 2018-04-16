@@ -13,7 +13,7 @@ import HomePage from './components/pages/HomePage'
 import PostsPage from './components/pages/PostsPage'
 import PostsAddPage from './components/pages/PostsAddPage'
 import ProfilePage from './components/pages/ProfilePage'
-
+import ProfilesPage from './components/pages/ProfilesPage'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
@@ -36,8 +36,8 @@ let routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
-  { path: '/profile', component: ProfilePage }
-
+  { path: '/profile', component: ProfilePage },
+  { path: '/profiles', component: ProfilesPage }
 ]
 
 /* eslint-disable no-new */
