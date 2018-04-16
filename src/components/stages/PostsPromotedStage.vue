@@ -1,10 +1,10 @@
 <template>
-  <div id="posts-stage">
+  <div id="promoted-stage">
     <article
+      v-if="isPromoted(key)"
       class="media"
       v-for="(post, key) of promotedPosts"
       :key="key">
-      <!--Left content like img-->
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
@@ -31,35 +31,34 @@
 </template>
 
 <script>
-const axios = require('axios')
-const json = require('../assets/json/posts.json')
+import { db } from '../../main.js'
 
 export default {
   data () {
     return {
       isLoading: false,
-      promotedPosts: json.posts
+      promotedPosts: []
     }
   },
   mounted: function () {
-    this.getData()
+    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
+      .then((doc) => {
+        this.isLoading = false
+      })
+      .catch((error) => {
+        console.log('error in loading: ', error)
+      })
   },
   methods: {
-    getData: function (event) {
-      this.isLoading = true
-      axios
-        .get('http://192.168.2.107:1337/post/')
-        .then(({ data }) => {
-          this.promotedPosts = data
-        })
-        .catch(err => (this.isLoading = false))
+    isPromoted: function (index) {
+      return this.promotedPosts[index].promoted
     }
   }
 }
 </script>
 
 <style scoped>
-.no-overflow {
-  overflow: initial;
-}
+ .no-overflow {
+   overflow: initial
+ }
 </style>
