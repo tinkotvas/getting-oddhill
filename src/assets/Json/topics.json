@@ -2,11 +2,11 @@
     "topics":{
         "1": {
             "tag": "node.js",
-            "mentions": 1   
+            "mentions": 15   
         },
         "2": {
             "tag": "Oddhill",
-            "mentions": 20   
+            "mentions": 100   
         },
         "3": {
             "tag": "Paulina",
