@@ -1,6 +1,6 @@
 <template>
-  <div class="column">
-    <h1>Topics</h1>
+  <div class="content">
+    <h3>Topics</h3>
 
     <div id="tags" v-for="(tag, index) of sortArray" :key="index"> 
       <button class="button is-primary is-rounded" href="#"> {{ tag.tag | uppercase }} </button>  

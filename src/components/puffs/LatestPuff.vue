@@ -1,10 +1,10 @@
 <template>
   <b-notification class="content" :closable="false" ref="latestpuff">
-      <h1>LatestPuff</h1>
+      <h3>LatestPuff</h3>
       
       <p v-for="(post, key) of latestPosts" :key="key">
 
-          {{ post.heading }}
+          <a href="#">{{ post.heading }}</a>
 
       </p>
     
