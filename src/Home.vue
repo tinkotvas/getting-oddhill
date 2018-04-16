@@ -13,6 +13,7 @@
             class="column is-3">
             <profile-puff class="box"/>
             <topic-puff class="box"/>
+            <news-puff class="box"/>
           </div>
         </div>
       </div>
@@ -25,13 +26,15 @@ import Navbar from './components/Navbar'
 import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
+import NewsPuff from './components/NewsPuff'
 
 export default {
   components: {
     Navbar,
     PromotedStage,
     ProfilePuff,
-    TopicPuff
+    TopicPuff,
+    NewsPuff
   }
 }
 </script>
