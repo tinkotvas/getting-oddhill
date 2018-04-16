@@ -11,6 +11,8 @@ import App from './App'
 // and then the differente page-comopnents
 import Home from './Home'
 import Posts from './Posts'
+import Profiles from './Profiles'
+
 
 Vue.use(Buefy)
 Vue.use(VueRouter)
@@ -19,7 +21,8 @@ Vue.config.productionTip = false
 
 let routes = [
   { path: '/', component: Home },
-  { path: '/posts', component: Posts }
+  { path: '/posts', component: Posts },
+  { path: '/profiles', component: Profiles }
 ]
 
 /* eslint-disable no-new */

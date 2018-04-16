@@ -28,6 +28,9 @@
         <router-link
           class="navbar-item"
           to="posts">Posts</router-link>
+        <router-link
+        class="navbar-item"
+        to="profiles">Profiles</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
