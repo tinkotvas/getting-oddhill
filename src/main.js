@@ -38,7 +38,7 @@ export const storage = firebase.storage()
 
 Vue.config.productionTip = false
 
-const routes = [
+export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
