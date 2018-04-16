@@ -179,16 +179,16 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       navActive: false
     }
   },
   methods: {
-    toggleDropdown (event) {
+    toggleDropdown(event) {
       event.currentTarget.classList.toggle('is-active')
     },
-    toggleMenu () {
+    toggleMenu() {
       this.navActive = !this.navActive
     }
   }
@@ -196,4 +196,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$navactive: #1abc9c;
+.is-active {
+  color: $navactive !important;
+}
+
+.navbar.is-transparent a.navbar-item:hover,
+.navbar.is-transparent a.navbar-link:hover, {
+  color: transparentize($navactive, 0.1) !important;
+}
 </style>
