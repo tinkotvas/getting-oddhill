@@ -11,7 +11,7 @@
 
 <script>
 
-const json = require('../assets/json/topics.json')
+const json = require('@/assets/json/topics.json')
 
 export default {
   name: 'TopicPuff',

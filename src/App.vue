@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div
-      id="navbar"
-      class="">
-      <navbar/>
-    </div>
+    <navbar/>
     <!-- the router outlet, where all matched components would ber viewed -->
     <router-view/>
   </div>
@@ -13,7 +9,6 @@
 <script>
 import Navbar from './components/Navbar'
 export default {
-  name: 'App',
   components: { Navbar }
 }
 </script>
