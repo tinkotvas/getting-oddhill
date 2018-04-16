@@ -12,6 +12,7 @@ import App from './App'
 import HomePage from './components/pages/HomePage'
 import PostsPage from './components/pages/PostsPage'
 import PostsAddPage from './components/pages/PostsAddPage'
+import StoragePage from './components/pages/StoragePage'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
@@ -23,7 +24,8 @@ Vue.use(VueFire)
 
 firebase.initializeApp({
   projectId: 'getting-oddhill',
-  databaseURL: 'https://getting-oddhill.firebaseio.com'
+  databaseURL: 'https://getting-oddhill.firebaseio.com',
+  storageBucket: 'getting-oddhill.appspot.com'
 })
 
 export const db = firebase.firestore()
@@ -33,7 +35,8 @@ Vue.config.productionTip = false
 let routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
-  { path: '/posts/add', component: PostsAddPage }
+  { path: '/posts/add', component: PostsAddPage },
+  { path: '/storage', component: StoragePage }
 ]
 
 /* eslint-disable no-new */
