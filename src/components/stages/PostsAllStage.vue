@@ -37,6 +37,13 @@
         class="delete"
         @click="deletePost(post.id)"/>
     </article>
+    <div class="level">
+      <div class="level-item">
+        <button
+        class="button"
+        @click="getMoreData()">Get more..</button>
+      </div>
+    </div>
   </b-notification>
 </template>
 
@@ -51,21 +58,42 @@ export default {
     }
   },
   mounted () {
-    const loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.postsstage.$el
-    })
+    this.initLoading()
+    this.getFirstData();
 
-    this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
-      .then((doc) => {
-        loadingComponent.close()
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
   },
   methods: {
     deletePost (id) {
       this.postRef.doc(id).delete()
+    },
+    initLoading () {
+      this.loadingComponent = this.$loading.open({
+        container: this.$refs.postsstage.$el
+      })
+    },
+    getFirstData(){
+      this.postRef.orderBy('createdAt', 'desc').limit(2).get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.promotedPosts.push(doc.data())
+          })
+          this.lastDocument = snapshot.docs[snapshot.docs.length - 1];
+          this.loadingComponent.close()
+        }).catch(err =>{
+          console.log('Error getting documents', err)
+        })
+    },
+    getMoreData(){
+      console.log(this.promotedPosts)
+      this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(1).get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.promotedPosts.push(doc.data())
+          })
+          this.lastDocument = snapshot.docs[snapshot.docs.length - 1];
+        }).catch(err =>{
+          console.log('Error getting documents', err)
+        })
     }
   }
   // ,
@@ -74,6 +102,13 @@ export default {
   //     promotedPosts: db.collection('posts').orderBy('createdAt')
   //     }
   //   }
+  // this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
+  //       .then((doc) => {
+  //         loadingComponent.close()
+  //       })
+  //       .catch((error) => {
+  //         console.log('error in loading: ', error)
+  //       })
 }
 
 </script>
