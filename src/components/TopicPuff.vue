@@ -3,7 +3,7 @@
     <h1>TopicPuff</h1>
 
     <div id="tags" v-for="(tag, index) of sortArray" :key="index"> 
-      <button class="button is-primary is-rounded" href="#"> {{ tag.tag }} </button>  
+      <button class="button is-primary is-rounded" href="#"> {{ tag.tag | uppercase }} </button>  
     </div>
 
   </div>
@@ -21,9 +21,11 @@ export default {
     }
   },
 
-  // filters: ('uppercase', function(value) {
-  //   return value.toUppercase();
-  // }),
+  filters: {
+    uppercase: function (value) {
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
 
   computed: {
     sortArray: function(){
