@@ -30,7 +30,7 @@ export const db = firebase.firestore()
 
 Vue.config.productionTip = false
 
-let routes = [
+export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage }

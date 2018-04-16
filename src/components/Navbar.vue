@@ -135,6 +135,7 @@
       </div>
 
       <div class="navbar-end">
+        <super-navigator/>
         <b-dropdown position="is-bottom-left">
           <a
             class="navbar-item"
@@ -178,17 +179,22 @@
 </template>
 
 <script>
+import SuperNavigator from './SuperNavigator'
+
 export default {
-  data() {
+  components: {
+    SuperNavigator
+  },
+  data () {
     return {
       navActive: false
     }
   },
   methods: {
-    toggleDropdown(event) {
+    toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')
     },
-    toggleMenu() {
+    toggleMenu () {
       this.navActive = !this.navActive
     }
   }
