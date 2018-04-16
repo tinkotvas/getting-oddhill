@@ -1,13 +1,18 @@
 <template>
-  <b-notification class="content" :closable="false" ref="latestpuff">
-      <h3>LatestPuff</h3>
-      
-      <p v-for="(post, key) of latestPosts" :key="key">
+  <b-notification
+    class="content"
+    :closable="false"
+    ref="latestpuff">
+    <h3>LatestPuff</h3>
 
-          <a href="#">{{ post.heading }}</a>
+    <p
+      v-for="(post, key) of latestPosts"
+      :key="key">
 
-      </p>
-    
+      <a href="#">{{ post.heading }}</a>
+
+    </p>
+
   </b-notification>
 </template>
 
@@ -15,25 +20,25 @@
 import { db } from '../../main.js'
 
 export default {
-  data(){
-      return {
-        isLoading: false,
-        postRef: db.collection('posts'),
-        latestPosts: []
-      }
+  data () {
+    return {
+      isLoading: false,
+      postRef: db.collection('posts'),
+      latestPosts: []
+    }
   },
-  mounted(){
+  mounted () {
     const loadingComponent = this.$loading.open({
       container: this.isFullPage ? null : this.$refs.latestpuff.$el
     })
 
     this.$bind('latestPosts', this.postRef.orderBy('createdAt', 'desc').limit(5))
-    .then((doc) => {
-      loadingComponent.close()
-    })
-    .catch((error) => {
-      console.log('error in loading: ', error)
-    })
+      .then((doc) => {
+        loadingComponent.close()
+      })
+      .catch((error) => {
+        console.log('error in loading: ', error)
+      })
   }
 }
 </script>
@@ -47,9 +52,3 @@ export default {
   min-height:100px;
 }
 </style>
-
-
-
-
-
-

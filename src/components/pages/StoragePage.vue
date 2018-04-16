@@ -2,7 +2,7 @@
   <div id="storage">
     <section class="section">
       <div class="container">
-          <storage-stage/>
+        <storage-stage/>
       </div>
     </section>
   </div>

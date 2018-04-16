@@ -1,28 +1,44 @@
 <template>
   <div id="storage">
-      <h1>Hello</h1>
+    <div
+      v-for="(image, key) in imageUrls"
+      :key="key"
+      >
+      <img :src="image.url">
+    </div>
+
   </div>
 </template>
 
 <script>
-import { db } from '../../main.js'
+import { db, storage } from '../../main.js'
 
 export default {
   data () {
     return {
-      anArray: []
-    }
-  },
-  watch: {
-    anArray: function (d) {
-      //trigger when anArray changes
+      imagesRef: null,
+        imageUrls: {
+            'img1': { srvName: 'dejan.png', url: null },
+            'img2': { srvName: 'tin.jpeg', url: null }
+        }
     }
   },
   mounted () {
-    //triggers when mounted
+    this.imagesRef = storage.ref('images')
+    this.getFileUrls()
   },
   methods: {
-      //methods
+    getFileUrls () {
+        for(let image in this.imageUrls){
+
+            storage.ref(`images/${this.imageUrls[image].srvName}`).getDownloadURL().then((url) => {
+                this.imageUrls[image].url = url
+                console.log(this.imageUrls[image])
+            })
+            
+        }
+
+    }
   }
 }
 

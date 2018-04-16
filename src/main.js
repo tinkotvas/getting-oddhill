@@ -16,6 +16,7 @@ import StoragePage from './components/pages/StoragePage'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
+import FirebaseStorage from 'firebase'
 import 'firebase/firestore'
 
 Vue.use(Buefy)
@@ -23,12 +24,17 @@ Vue.use(VueRouter)
 Vue.use(VueFire)
 
 firebase.initializeApp({
-  projectId: 'getting-oddhill',
+  apiKey: 'AIzaSyDeLiS3ER7wxcsKEDS8VjsasYQJHl-4cqU',
+  authDomain: 'getting-oddhill.firebaseapp.com',
   databaseURL: 'https://getting-oddhill.firebaseio.com',
-  storageBucket: 'getting-oddhill.appspot.com'
+  projectId: 'getting-oddhill',
+  storageBucket: 'getting-oddhill.appspot.com',
+  storage: 'getting-oddhill.appspot.com',
+  messagingSenderId: '116989958771'
 })
 
 export const db = firebase.firestore()
+export const storage = FirebaseStorage.storage(firebase)
 
 Vue.config.productionTip = false
 
