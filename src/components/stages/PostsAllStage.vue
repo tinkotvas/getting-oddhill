@@ -89,20 +89,20 @@ export default {
       })
     },
     getData () {
-      let limit = 2;
+      let limit = 2
 
       if (this.isLoading === true) { return }
 
-      this.initLoading();
+      this.initLoading()
       this.isLoading = true;
       (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
         .then(snapshot => {
           this.loadingComponent.close()
           this.isLoading = false
           // continue only if we have any documents
-          if (snapshot.docs.length == 0) { 
+          if (snapshot.docs.length == 0) {
             return
-          }else if(snapshot.docs.length < limit){
+          } else if (snapshot.docs.length < limit) {
             this.showMoreButton = false
           }
           snapshot.forEach(doc => {
@@ -112,7 +112,6 @@ export default {
             this.promotedPosts.push(tmp)
           })
           this.lastDocument = snapshot.docs[snapshot.docs.length - 1]
-
         }).catch(err => {
           console.log('Error getting documents', err)
         })
