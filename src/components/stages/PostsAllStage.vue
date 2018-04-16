@@ -42,6 +42,7 @@
         <button
           id="getMoreBtn"
           class="button"
+          v-if="showMoreButton"
           @click="getData()">Get more..</button>
       </div>
     </div>
@@ -58,7 +59,8 @@ export default {
       postRef: db.collection('posts'),
       promotedPosts: [],
       newPostChecker: null,
-      newPostCheckerBound: false
+      newPostCheckerBound: false,
+      showMoreButton: true
     }
   },
   watch: {
@@ -67,9 +69,7 @@ export default {
     }
   },
   mounted () {
-    this.initLoading()
     this.getData()
-
     // watcher
     this.$bind('newPostChecker', this.postRef.orderBy('createdAt', 'desc').limit(1)).then((doc) => {
       this.newPostCheckerBound = true
@@ -89,13 +89,22 @@ export default {
       })
     },
     getData () {
+      let limit = 2;
+
       if (this.isLoading === true) { return }
 
+      this.initLoading();
       this.isLoading = true;
-      (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(2) : this.postRef.orderBy('createdAt', 'desc').limit(2)).get()
+      (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
         .then(snapshot => {
+          this.loadingComponent.close()
+          this.isLoading = false
           // continue only if we have any documents
-          if (snapshot.docs.length == 0) { return }
+          if (snapshot.docs.length == 0) { 
+            return
+          }else if(snapshot.docs.length < limit){
+            this.showMoreButton = false
+          }
           snapshot.forEach(doc => {
             console.log('doc', doc)
             let tmp = doc.data()
@@ -103,8 +112,7 @@ export default {
             this.promotedPosts.push(tmp)
           })
           this.lastDocument = snapshot.docs[snapshot.docs.length - 1]
-          this.loadingComponent.close()
-          this.isLoading = false
+
         }).catch(err => {
           console.log('Error getting documents', err)
         })
