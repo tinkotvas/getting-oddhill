@@ -13,7 +13,7 @@
             class="column is-3">
             <profile-puff class="box"/>
             <topic-puff class="box"/>
-            <news-puff class="box"/>
+            <latest-puff class="box"/>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@ import Navbar from './components/Navbar'
 import PromotedStage from './components/PromotedStage'
 import ProfilePuff from './components/ProfilePuff'
 import TopicPuff from './components/TopicPuff'
-import NewsPuff from './components/NewsPuff'
+import LatestPuff from './components/LatestPuff'
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
     PromotedStage,
     ProfilePuff,
     TopicPuff,
-    NewsPuff
+    LatestPuff
   }
 }
 </script>
