@@ -1,57 +1,43 @@
 <template>
-  <div class="column">
-    <h1>Topics</h1>
+  <div
+    class="column"
+    :style="{ 'min-height': '200px' }">
+    <h1>ProfilePuff</h1>
+    <div :style="{ 'position': 'relative', 'padding-top': '30px'}">
+      <div
+        :style="{ 'display': 'inline' }"
+        v-for="(profile, index) of profiles"
+        :key = "index">
+        <img
+          :src="require('@/assets/avatar/' + profile.picture)"
+          :style="{ left:index * 30 + 'px'}"
+          alt="Avatar"
+          class="profile-img">
+      </div>
+      <!-- <a href="#">{{ profile.name }}</a> -->
 
-    <div id="tags" v-for="(tag, index) of sortArray" :key="index"> 
-      <button class="button is-primary is-rounded" href="#"> {{ tag.tag | uppercase }} </button>  
     </div>
-
   </div>
 </template>
 
 <script>
-
-const json = require('@/assets/json/topics.json')
+const json = require('@/assets/json/profiles.json')
 
 export default {
-  name: 'TopicPuff',
   data () {
     return {
-      myTopics: json.topics
-    }
-  },
-
-  filters: {
-    uppercase: function (value) {
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  },
-
-  computed: {
-    sortArray: function(){
-      function compare(a, b) {
-        if(a.mentions > b.mentions)
-          return -1;
-        if(a.mentions < b.mentions)
-          return 1;
-        return 0;  
-      }
-      
-      return Object.values(this.myTopics).sort(compare);
+      profiles: json.profiles
     }
   }
-
 }
 </script>
 
 <style>
-
-  div#tags{
-    display: inline;
-  }
-
-  button.button{
-    margin-right: 5px;
-    margin-top: 10px;
+  .profile-img {
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    position: absolute;
+    z-index: auto;
   }
 </style>

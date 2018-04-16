@@ -54,8 +54,4 @@ $link-focus-border: $primary;
 @import '~buefy/src/scss/buefy';
 @import "~bulmaswatch/flatly/overrides";
 // @import '~bulmaswatch/darkly/overrides';
-
-.router-link-exact-active {
-  color: $turquoise;
-}
 </style>
