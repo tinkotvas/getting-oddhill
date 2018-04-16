@@ -13,6 +13,7 @@
             class="column is-3">
             <profiles-puff class="box"/>
             <topics-puff class="box"/>
+            <latest-puff class="box"/>
           </div>
         </div>
       </div>
@@ -26,11 +27,14 @@ import PostsPromotedStage from '../stages/PostsPromotedStage'
 // Puffs
 import ProfilesPuff from '../puffs/ProfilesPuff'
 import TopicsPuff from '../puffs/TopicsPuff'
+import LatestPuff from '../puffs/LatestPuff'
+
 export default {
   components: {
     PostsPromotedStage,
     ProfilesPuff,
-    TopicsPuff
+    TopicsPuff,
+    LatestPuff
   }
 }
 </script>

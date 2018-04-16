@@ -14,7 +14,6 @@
 const json = require('@/assets/json/topics.json')
 
 export default {
-  name: 'TopicPuff',
   data () {
     return {
       myTopics: json.topics
