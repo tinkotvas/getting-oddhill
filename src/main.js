@@ -16,7 +16,7 @@ import StoragePage from './components/pages/StoragePage'
 
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
-import FirebaseStorage from 'firebase'
+import 'firebase/storage'
 import 'firebase/firestore'
 
 Vue.use(Buefy)
@@ -34,11 +34,11 @@ firebase.initializeApp({
 })
 
 export const db = firebase.firestore()
-export const storage = FirebaseStorage.storage(firebase)
+export const storage = firebase.storage()
 
 Vue.config.productionTip = false
 
-let routes = [
+const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
