@@ -27,7 +27,13 @@
           icon="home"/> Home</router-link>
         <router-link
           class="navbar-item"
-          to="/posts">Posts</router-link>
+          to="posts">Posts</router-link>
+        <router-link
+          class="navbar-item"
+          to="profiles">Profiles</router-link>
+        <router-link
+          class="navbar-item"
+          to="profile">Profile</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
@@ -135,6 +141,7 @@
       </div>
 
       <div class="navbar-end">
+        <super-navigator/>
         <b-dropdown position="is-bottom-left">
           <a
             class="navbar-item"
@@ -178,7 +185,12 @@
 </template>
 
 <script>
+import SuperNavigator from './SuperNavigator'
+
 export default {
+  components: {
+    SuperNavigator
+  },
   data () {
     return {
       navActive: false
@@ -196,7 +208,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.router-link-exact-active{
-  color: #7957d5;
+$navactive: #1abc9c;
+.is-active {
+  color: $navactive !important;
+}
+
+.navbar.is-transparent a.navbar-item:hover,
+.navbar.is-transparent a.navbar-link:hover, {
+  color: transparentize($navactive, 0.1) !important;
 }
 </style>

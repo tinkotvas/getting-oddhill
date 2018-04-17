@@ -35,8 +35,17 @@
 
       <button
         class="delete"
-        @click="deletePost(post.id)"/>
+        @click="deletePost(key, post.id)"/>
     </article>
+    <div class="level">
+      <div class="level-item">
+        <button
+          id="getMoreBtn"
+          class="button"
+          v-if="showMoreButton"
+          @click="getData()">Get more..</button>
+      </div>
+    </div>
   </b-notification>
 </template>
 
@@ -46,26 +55,64 @@ import { db } from '../../main.js'
 export default {
   data () {
     return {
+      isLoading: false,
       postRef: db.collection('posts'),
-      promotedPosts: []
+      promotedPosts: [],
+      newPostChecker: null,
+      newPostCheckerBound: false,
+      showMoreButton: false
+    }
+  },
+  watch: {
+    newPostChecker: function (d) {
+      if (this.newPostCheckerBound) { console.log('boom', d) }
     }
   },
   mounted () {
-    const loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.postsstage.$el
+    this.getData()
+    // watcher
+    this.$bind('newPostChecker', this.postRef.orderBy('createdAt', 'desc').limit(1)).then((doc) => {
+      this.newPostCheckerBound = true
     })
-
-    this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
-      .then((doc) => {
-        loadingComponent.close()
-      })
       .catch((error) => {
         console.log('error in loading: ', error)
       })
   },
   methods: {
-    deletePost (id) {
+    deletePost (key, id) {
+      this.$delete(this.promotedPosts, key)
       this.postRef.doc(id).delete()
+    },
+    initLoading () {
+      this.loadingComponent = this.$loading.open({
+        container: this.$refs.postsstage.$el
+      })
+    },
+    getData () {
+      let limit = 2
+      if (this.isLoading === true) { return }
+
+      this.initLoading()
+      this.isLoading = true;
+      (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
+        .then(snapshot => {
+          this.isLoading = false
+          this.loadingComponent.close()
+          this.showMoreButton = !(snapshot.docs.length < limit)
+          // continue only if we have any documents
+          if (snapshot.docs.length == 0) {
+            return
+          }
+          snapshot.forEach(doc => {
+            console.log('doc', doc)
+            let tmp = doc.data()
+            tmp.id = doc.id
+            this.promotedPosts.push(tmp)
+          })
+          this.lastDocument = snapshot.docs[snapshot.docs.length - 1]
+        }).catch(err => {
+          console.log('Error getting documents', err)
+        })
     }
   }
   // ,
@@ -74,6 +121,13 @@ export default {
   //     promotedPosts: db.collection('posts').orderBy('createdAt')
   //     }
   //   }
+  // this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
+  //       .then((doc) => {
+  //         loadingComponent.close()
+  //       })
+  //       .catch((error) => {
+  //         console.log('error in loading: ', error)
+  //       })
 }
 
 </script>
