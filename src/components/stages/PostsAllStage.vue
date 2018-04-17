@@ -97,7 +97,7 @@ export default {
       (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
         .then(snapshot => {
           this.isLoading = false
-          this.loadingComponent.close()
+         // this.loadingComponent.close()
           this.showMoreButton = !(snapshot.docs.length < limit)
           // continue only if we have any documents
           if (snapshot.docs.length == 0) {
