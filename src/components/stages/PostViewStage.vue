@@ -1,54 +1,40 @@
 <template>
-    <b-notification ref="poststage" :closable="false">
-        <div  v-if="post.heading" class="columns is-centerered no-overflow">
-            <div class="column is-10">
-                <article class="media">
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                            <strong>{{post.heading}}</strong> <small>@{{post.author}}</small>
-                            <br><br>
-                            {{post.message}}
-                            </p>
-                        </div>
-                    </div>
-                </article>
+  <b-notification
+    ref="poststage"
+    :closable="false">
+    <div
+      v-if="post.heading"
+      class="columns is-centerered no-overflow">
+      <div class="column is-10">
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>{{ post.heading }}</strong> <small>@{{ post.author }}</small>
+                <br><br>
+                {{ post.message }}
+              </p>
             </div>
-        </div>
-    </b-notification>
+          </div>
+        </article>
+      </div>
+    </div>
+  </b-notification>
 </template>
 
 <script>
-import { db } from '../../main.js'
 
 export default {
-  data () {
-    return {
-        isLoading: true,
-        post: []
-    }
-  },
+  props: ['post'],
   mounted () {
-      this.initLoading()
-      this.bindPost()
-      
+    this.$parent.$options.methods.initLoading(this)
   },
   methods: {
-    bindPost: function(){
-        this.$bind('post', db.collection('posts').doc(this.$route.params.id))
-      .then((doc) => {
-        this.isLoading = false
-        this.loadingComponent.close()
+    initLoading: function (vm) {
+      vm.loadingComponent = this.$loading.open({
+        container: vm.$refs.poststage.$el
       })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
-    },
-    initLoading () {
-      this.loadingComponent = this.$loading.open({
-        container: this.$refs.poststage.$el
-      })
-    },
+    }
   }
 }
 
