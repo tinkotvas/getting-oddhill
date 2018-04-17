@@ -27,7 +27,13 @@
           icon="home"/> Home</router-link>
         <router-link
           class="navbar-item"
-          to="/posts">Posts</router-link>
+          to="posts">Posts</router-link>
+        <router-link
+          class="navbar-item"
+          to="profiles">Profiles</router-link>
+        <router-link
+          class="navbar-item"
+          to="profile">Profile</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
@@ -135,6 +141,7 @@
       </div>
 
       <div class="navbar-end">
+        <super-navigator/>
         <b-dropdown position="is-bottom-left">
           <a
             class="navbar-item"
@@ -178,17 +185,22 @@
 </template>
 
 <script>
+import SuperNavigator from './SuperNavigator'
+
 export default {
-  data() {
+  components: {
+    SuperNavigator
+  },
+  data () {
     return {
       navActive: false
     }
   },
   methods: {
-    toggleDropdown(event) {
+    toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')
     },
-    toggleMenu() {
+    toggleMenu () {
       this.navActive = !this.navActive
     }
   }

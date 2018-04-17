@@ -1,28 +1,48 @@
 <template>
-  <div class="column">
-    <h1>TopicPuff</h1>
+  <div class="content">
+    <h3>Topics</h3>
 
     <div
       id="tags"
-      v-for="(tag, key) of myTopics"
-      :key="key">
+      v-for="(tag, index) of sortArray"
+      :key="index">
       <button
         class="button is-primary is-rounded"
-        href="#"> {{ tag.tag }} </button>
+        href="#"> {{ tag.tag | uppercase }} </button>
     </div>
 
   </div>
 </template>
 
 <script>
-const json = require('../../assets/Json/topics.json')
+
+const json = require('@/assets/json/topics.json')
 
 export default {
+
+  filters: {
+    uppercase: function (value) {
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
   data () {
     return {
       myTopics: json.topics
     }
+  },
+
+  computed: {
+    sortArray: function () {
+      function compare (a, b) {
+        if (a.mentions > b.mentions) { return -1 }
+        if (a.mentions < b.mentions) { return 1 }
+        return 0
+      }
+
+      return Object.values(this.myTopics).sort(compare)
+    }
   }
+
 }
 </script>
 
