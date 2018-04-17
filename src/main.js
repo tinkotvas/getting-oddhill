@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Buefy from 'buefy'
+import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
 // import base app vue component
@@ -21,6 +22,9 @@ import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
 
+import store from './store/store'
+
+Vue.use(Vuex)
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueFire)
@@ -60,5 +64,6 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  router
+  router,
+  store
 }).$mount('#app')
