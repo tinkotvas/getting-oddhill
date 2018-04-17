@@ -156,7 +156,8 @@
                 <b-input
                   type="email"
                   placeholder="Your email"
-                  required/>
+                  required
+                  v-model="email"/>
               </b-field>
 
               <b-field label="Password">
@@ -164,7 +165,8 @@
                   type="password"
                   password-reveal
                   placeholder="Your password"
-                  required/>
+                  required
+                  v-model="password"/>
               </b-field>
 
               <nav class="level is-mobile">
@@ -172,8 +174,12 @@
                   <b-checkbox>Remember me</b-checkbox>
                 </div>
                 <div class="level-right">
-                  <button class="button is-primary is-bottom-right">Login</button>
-                  <button class="button is-primary is-bottom-left">Register</button>
+                  <button
+                    class="button is-primary is-bottom-right"
+                    @click.prevent="onSignIn">Login</button>
+                  <button
+                    class="button is-primary is-bottom-left"
+                    @click.prevent="onSignUp">Register</button>
                 </div>
               </nav>
             </form>
@@ -194,7 +200,9 @@ export default {
   },
   data () {
     return {
-      navActive: false
+      navActive: false,
+      email: '',
+      password: ''
     }
   },
   methods: {
@@ -203,6 +211,18 @@ export default {
     },
     toggleMenu () {
       this.navActive = !this.navActive
+    },
+    onSignUp () {
+      this.$store.dispatch('signUp', {
+        email: this.email,
+        password: this.password
+      })
+    },
+    onSignIn () {
+      this.$store.dispatch('signIn', {
+        email: this.email,
+        password: this.password
+      })
     }
   }
 }
@@ -215,7 +235,7 @@ $navactive: #1abc9c;
 }
 
 .navbar.is-transparent a.navbar-item:hover,
-.navbar.is-transparent a.navbar-link:hover, {
+.navbar.is-transparent a.navbar-link:hover {
   color: transparentize($navactive, 0.1) !important;
 }
 </style>
