@@ -60,7 +60,7 @@ export default {
       promotedPosts: [],
       newPostChecker: null,
       newPostCheckerBound: false,
-      showMoreButton: true
+      showMoreButton: false
     }
   },
   watch: {
@@ -90,20 +90,18 @@ export default {
     },
     getData () {
       let limit = 2
-
       if (this.isLoading === true) { return }
 
       this.initLoading()
       this.isLoading = true;
       (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
         .then(snapshot => {
-          this.loadingComponent.close()
           this.isLoading = false
+          this.loadingComponent.close()
+          this.showMoreButton = !(snapshot.docs.length < limit)
           // continue only if we have any documents
           if (snapshot.docs.length == 0) {
             return
-          } else if (snapshot.docs.length < limit) {
-            this.showMoreButton = false
           }
           snapshot.forEach(doc => {
             console.log('doc', doc)
