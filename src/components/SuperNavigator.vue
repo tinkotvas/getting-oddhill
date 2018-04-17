@@ -2,7 +2,7 @@
   <div class="navbar-item has-dropdown is-hoverable">
     <p class="navbar-item">
       <b-icon
-        icon="auto-fix"/>
+        icon="snowman"/>
     </p>
     <div class="navbar-dropdown is-boxed">
       <router-link
