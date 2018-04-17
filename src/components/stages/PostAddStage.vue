@@ -16,24 +16,37 @@
     </b-field>
 
     <b-field label="message">
-      <b-input
+      <!-- <b-input
         v-model="message"
         maxlength="5000"
-        type="textarea"/>
+        type="textarea"/> -->
+        <div id="editSection"></div>
     </b-field>
     <p class="level">
       <button
         class="button"
-        @click="addPost(author, heading, message, topics, promoted)">Add New Post</button>
+        @click="addPost(author, heading, (editor.getValue()), topics, promoted)">Add New Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
     </p>
+    <button
+        class="button"
+        @click="boom()">BRUR</button>
   </section>
 </template>
 
 <script>
 import { db } from '../../main.js'
+
+require('codemirror/lib/codemirror.css') // codemirror
+require('tui-editor/dist/tui-editor.css'); // editor ui
+require('tui-editor/dist/tui-editor-contents.css'); // editor content
+require('highlight.js/styles/github.css'); // code block highlight
+
+var Editor = require('tui-editor');
+
+
 
 export default {
   data () {
@@ -42,7 +55,8 @@ export default {
       heading: '',
       message: '',
       topics: [],
-      promoted: false
+      promoted: false,
+      editor: {}
     }
   },
   methods: {
@@ -51,7 +65,18 @@ export default {
       db.collection('posts').add({ author, createdAt, heading, message, topics, promoted })
       let url = promoted ? '/' : '/posts'
       this.$router.push(url)
+    },
+    boom(){
+      console.log(this.editor.getValue())
     }
+  },
+  mounted () {
+    this.editor = new Editor({
+      el: document.querySelector('#editSection'),
+      initialEditType: 'wysiwyg',
+      previewStyle: 'vertical',
+      usageStatistics: 'false'
+    })
   }
 }
 
