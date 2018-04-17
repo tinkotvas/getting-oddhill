@@ -27,7 +27,13 @@
           icon="home"/> Home</router-link>
         <router-link
           class="navbar-item"
-          to="/posts">Posts</router-link>
+          to="posts">Posts</router-link>
+        <router-link
+          class="navbar-item"
+          to="profiles">Profiles</router-link>
+        <router-link
+          class="navbar-item"
+          to="profile">Profile</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
