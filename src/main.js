@@ -10,7 +10,7 @@ import App from './App'
 
 // and then the differente page-comopnents
 import HomePage from './components/pages/HomePage'
-import PostViewA from './components/views/PostViewA'
+import PostsPage from './components/pages/PostsPage'
 import PostsAddPage from './components/pages/PostsAddPage'
 import StoragePage from './components/pages/StoragePage'
 
@@ -40,7 +40,7 @@ Vue.config.productionTip = false
 
 export const routes = [
   { path: '/', component: HomePage },
-  { path: '/posts', component: PostViewA },
+  { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
   { path: '/storage', component: StoragePage }
 ]

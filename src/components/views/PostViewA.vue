@@ -1,19 +1,20 @@
 <template>
   <div class="posts">
+    View A
     <section class="section">
       <div class="container">
         <div class="columns">
           <div
             id="stages"
             class="column">
-            <posts-all-stage/>
+
+            <slot/>
           </div>
-         </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
-
 
 <script>
 // Stages

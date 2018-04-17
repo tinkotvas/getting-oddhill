@@ -1,40 +1,57 @@
 <template>
-  <div id="posts">
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div
-            id="stages"
-            class="column">
-            <posts-all-stage/>
-          </div>
-          <div
-            id="puffs"
-            class="column is-3">
-            <profiles-puff class="box"/>
-            <topics-puff class="box"/>
-          </div>
-        </div>
+  <div>
+    <button
+      class="button is-primary"
+      @click="postsView='post-view-a'">View A</button>
+    <button
+      class="button is-primary"
+      @click="postsView='post-view-b'">View B</button>
+    <keep-alive>
+      <component :is="postsView">
+        Hej
+      </component>
+    </keep-alive>
+    <div
+      v-for="(post, key) of allPosts"
+      :key="key">
+      <!-- <router-view/> -->
+
+      <!-- <router-view name="viewD"/> -->
+      1
+      <!-- <div v-if="view === 0">
+
       </div>
-    </section>
+      <div v-if="view === 1">
+
+      </div>
+      <div v-if="view === 2">
+
+      </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 // Stages
 import PostsAllStage from '../stages/PostsAllStage'
-// Puffs
-import ProfilesPuff from '../puffs/ProfilesPuff'
-import TopicsPuff from '../puffs/TopicsPuff'
+import PostViewA from '../views/PostViewA'
+import PostViewB from '../views/PostViewB'
+import PostViewC from '../views/PostViewC'
+
 export default {
   components: {
     PostsAllStage,
-    ProfilesPuff,
-    TopicsPuff
+    PostViewA,
+    PostViewB,
+    PostViewC
+  },
+  data () {
+    return {
+      view: 0,
+      allPosts: null,
+      postsView: 'post-view-a'
+    }
   }
+//   router: subRouter
 }
 </script>
-
-<style>
-
-</style>
