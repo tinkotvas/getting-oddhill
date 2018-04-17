@@ -39,7 +39,7 @@
 </template>
 
 <script>
-const json = require('../../assets/Json/profiles.json')
+const json = require('../../assets/json/profiles.json')
 
 export default {
   data () {
