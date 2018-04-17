@@ -150,7 +150,7 @@
           </a>
           <b-dropdown-item
             custom
-            style="min-width:300px">
+            style="min-width:350px">
             <form action="">
               <b-field label="Email">
                 <b-input
@@ -173,6 +173,7 @@
                 </div>
                 <div class="level-right">
                   <button class="button is-primary is-bottom-right">Login</button>
+                  <button class="button is-primary is-bottom-left">Register</button>
                 </div>
               </nav>
             </form>
