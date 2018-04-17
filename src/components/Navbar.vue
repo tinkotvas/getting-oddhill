@@ -185,7 +185,7 @@
             </form>
           </b-dropdown-item>
         </b-dropdown>
-
+        <span v-if="user">Logged in</span>
       </div>
     </div>
   </nav>
@@ -203,6 +203,11 @@ export default {
       navActive: false,
       email: '',
       password: ''
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.getters.user
     }
   },
   methods: {
