@@ -1,6 +1,7 @@
 <template>
   <b-notification
     ref="poststage"
+    id="poststage"
     :closable="false">
     <div
       v-if="post.heading"
@@ -12,7 +13,7 @@
               <p>
                 <strong>{{ post.heading }}</strong> <small>@{{ post.author }}</small>
                 <br><br>
-                {{ post.message }}
+                {{ this.renderWYSIWYG(post.message) }}
               </p>
             </div>
           </div>
@@ -24,6 +25,8 @@
 
 <script>
 import { db } from '../../main.js'
+
+const Viewer = require('tui-editor/dist/tui-editor-Viewer')
 
 export default {
   data () {
@@ -51,6 +54,13 @@ export default {
       this.loadingComponent = this.$loading.open({
         container: this.$refs.poststage.$el
       })
+    },
+    renderWYSIWYG(content){
+        this.editor = new Viewer({
+            el: document.querySelector('#poststage'),
+            height: '500px',
+            initialValue: content
+        });        
     }
   }
 }
