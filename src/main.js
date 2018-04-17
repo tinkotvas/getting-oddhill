@@ -6,6 +6,8 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
+
+import store from './store/store'
 // import base app vue component
 import App from './App'
 
@@ -23,9 +25,7 @@ import 'firebase/storage'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-import store from './store/store'
 
-Vue.use(Vuex)
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueFire)
