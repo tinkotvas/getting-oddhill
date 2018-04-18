@@ -27,7 +27,7 @@ Vue.use(VueRouter)
 Vue.use(VueFire)
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyDeLiS3ER7wxcsKEDS8VjsasYQJHl-4cqU',
+  apiKey: 'AIzaSyBU9mexyTAMLNCuRDRGpWk-OHLplQWHqf8',
   authDomain: 'getting-oddhill.firebaseapp.com',
   databaseURL: 'https://getting-oddhill.firebaseio.com',
   projectId: 'getting-oddhill',
