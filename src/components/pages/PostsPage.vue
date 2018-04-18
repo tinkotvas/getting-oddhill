@@ -1,33 +1,32 @@
 <template>
-  <div>
-    <button
-      class="button is-primary"
-      @click="postsView='post-view-a'">View A</button>
-    <button
-      class="button is-primary"
-      @click="postsView='post-view-b'">View B</button>
-    <keep-alive>
-      <component :is="postsView">
-        Hej
-      </component>
-    </keep-alive>
-    <div
-      v-for="(post, key) of allPosts"
-      :key="key">
-      <!-- <router-view/> -->
-
-      <!-- <router-view name="viewD"/> -->
-      1
-      <!-- <div v-if="view === 0">
-
+  <div id="posts">
+    <section class="section">
+      <div class="container">
+        <button
+          class="button is-primary"
+          @click="postsView='post-view-a'">View A</button>
+        <button
+          class="button is-primary"
+          @click="postsView='post-view-b'">View B</button>
+        <button
+          class="button is-primary"
+          @click="postsView='post-view-c'">View C</button>
+        <keep-alive>
+          <component :is="postsView">
+            <div class="columns">
+              <div
+                id="stages"
+                class="column">
+                <posts-all-stage/>
+              </div>
+            </div>
+          </component>
+        </keep-alive>
+        <div
+          v-for="(post, key) of allPosts"
+          :key="key"/>
       </div>
-      <div v-if="view === 1">
-
-      </div>
-      <div v-if="view === 2">
-
-      </div> -->
-    </div>
+    </section>
   </div>
 </template>
 
@@ -52,6 +51,6 @@ export default {
       postsView: 'post-view-a'
     }
   }
-//   router: subRouter
+  //   router: subRouter
 }
 </script>

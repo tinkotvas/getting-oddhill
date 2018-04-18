@@ -1,6 +1,5 @@
 <template>
   <div class="posts">
-    View A
     <section class="section">
       <div class="container">
         <div class="columns">
