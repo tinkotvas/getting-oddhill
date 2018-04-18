@@ -2,15 +2,17 @@
   <div id="posts">
     <section class="section">
       <div class="container">
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-a'">View A</button>
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-b'">View B</button>
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-c'">View C</button>
+        <div class="view-btn field is-grouped">
+          <button
+            class="button is-primary is-small"
+            @click="postsView='post-view-a'">View A</button>
+          <button
+            class="button is-primary is-small"
+            @click="postsView='post-view-b'">View B</button>
+          <button
+            class="button is-primary is-small"
+            @click="postsView='post-view-c'">View C</button>
+        </div>
         <keep-alive>
           <component :is="postsView">
             <div class="columns">
