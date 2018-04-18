@@ -2,8 +2,8 @@
   <div id="post">
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-centered">
+          <div class="column is-12-tablet is-8-desktop">
             <post-view-stage
               :post="post"
               ref="poststage"/>
