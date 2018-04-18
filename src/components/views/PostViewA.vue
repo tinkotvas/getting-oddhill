@@ -2,26 +2,36 @@
   <div class="posts">
     <section class="section">
       <div class="container">
-        <div class="column">
+        <!-- <div class="column">
           <div
             id="stages"
             class="column">
 
             <slot/>
-          </div>
+          </div> -->
+          <keep-alive>
+          <component :is="postsPage">
+            <div class="columns">
+              <div
+                id="stages"
+                class="column">
+                <posts-page/>
+              </div>
+            </div>
+          </component>
+        </keep-alive>
         </div>
-      </div>
     </section>
   </div>
 </template>
 
 <script>
 // Stages
-import PostsAllStage from '../stages/PostsAllStage'
+import PostsPage from '../pages/PostsPage'
 
 export default {
   components: {
-    PostsAllStage
+    PostsPage
   }
 }
 </script>

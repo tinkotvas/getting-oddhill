@@ -17,11 +17,11 @@
 
 <script>
 // Stages
-import PostsAllStage from '../stages/PostsAllStage'
+import PostsPage from '../pages/PostsPage'
 
 export default {
   components: {
-    PostsAllStage
+    PostsPage
   }
 }
 </script>
