@@ -16,6 +16,7 @@ import HomePage from './components/pages/HomePage'
 import PostsPage from './components/pages/PostsPage'
 import PostsAddPage from './components/pages/PostsAddPage'
 import StoragePage from './components/pages/StoragePage'
+import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
 
@@ -49,6 +50,7 @@ export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
+  { path: '/posts/:id', component: PostPage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }
