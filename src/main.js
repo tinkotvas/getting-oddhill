@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Buefy from 'buefy'
+import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
+
+import store from './store/store'
 // import base app vue component
 import App from './App'
 
@@ -21,6 +24,7 @@ import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
+import 'firebase/auth'
 
 Vue.use(Buefy)
 Vue.use(VueRouter)
@@ -38,6 +42,7 @@ firebase.initializeApp({
 
 export const db = firebase.firestore()
 export const storage = firebase.storage()
+export const auth = firebase.auth()
 
 Vue.config.productionTip = false
 
@@ -61,6 +66,14 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>',
-  router
+  router,
+  store,
+  created () {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('updateUserInfo', user)
+      }
+    })
+  },
+  template: '<App/>'
 }).$mount('#app')
