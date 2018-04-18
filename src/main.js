@@ -25,7 +25,6 @@ import 'firebase/storage'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueFire)
@@ -65,7 +64,14 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>',
   router,
-  store
+  store,
+  created () {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('updateUserInfo', user)
+      }
+    })
+  },
+  template: '<App/>'
 }).$mount('#app')
