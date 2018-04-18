@@ -43,7 +43,7 @@
           id="getMoreBtn"
           class="button"
           v-if="showMoreButton"
-          @click="getData()">Get more..</button>
+          @click="getMorePosts()">Get more..</button>
       </div>
     </div>
   </b-notification>
@@ -56,7 +56,7 @@ export default {
   data () {
     return {
       isLoading: false,
-      showMoreButton: false
+      showMoreButton: true
     }
   },
   computed: {
@@ -79,6 +79,9 @@ export default {
     },
     getPosts () {
       this.$store.dispatch('getPosts')
+    },
+    getMorePosts () {
+      this.$store.dispatch('getMorePosts')
     }
     // ,
     // getData () {
