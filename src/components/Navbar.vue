@@ -142,11 +142,12 @@
 
       <div class="navbar-end">
         <super-navigator/>
-        <b-dropdown position="is-bottom-left">
+        <a v-if="user" @click.prevent="onSignOut" class="navbar-item">Log out</a>
+        <b-dropdown v-else position="is-bottom-left">
           <a
             class="navbar-item"
             slot="trigger">
-            <span>Login</span>
+            <span>Log in</span>
           </a>
           <b-dropdown-item
             custom
@@ -185,7 +186,6 @@
             </form>
           </b-dropdown-item>
         </b-dropdown>
-        <span v-if="user">Logged in</span>
       </div>
     </div>
   </nav>
@@ -228,6 +228,9 @@ export default {
         email: this.email,
         password: this.password
       })
+    },
+    onSignOut () {
+      this.$store.dispatch('signOut')
     }
   }
 }
