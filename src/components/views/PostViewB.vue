@@ -5,7 +5,7 @@
         <div class="columns">
           <div
             id="stages"
-            class="column"
+            class="box"
             style="color: red">
             <slot/>
           </div>

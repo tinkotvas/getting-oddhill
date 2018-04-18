@@ -2,15 +2,21 @@
   <div id="posts">
     <section class="section">
       <div class="container">
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-a'">View A</button>
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-b'">View B</button>
-        <button
-          class="button is-primary"
-          @click="postsView='post-view-c'">View C</button>
+        <div
+          class="view-btn field is-grouped"
+          align="right">
+          <p class="control">
+            <a
+              class="button is-primary"
+              @click="postsView='post-view-a'">View A</a>
+            <a
+              class="button is-primary"
+              @click="postsView='post-view-b'">View B</a>
+            <a
+              class="button is-primary"
+              @click="postsView='post-view-c'">View C</a>
+          </p>
+        </div>
         <keep-alive>
           <component :is="postsView">
             <div class="columns">
@@ -54,3 +60,10 @@ export default {
   //   router: subRouter
 }
 </script>
+
+<style>
+  .view-btn{
+    float: right;
+  }
+</style>
+
