@@ -48,7 +48,7 @@ export default {
           }
         )
     },
-    autoSignIn ({commit}, payload) {
+    updateUserInfo ({commit}, payload) {
       commit('setUser', {
         id: payload.uid,
         name: payload.displayName,
