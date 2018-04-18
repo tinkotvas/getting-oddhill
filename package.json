@@ -10,7 +10,8 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "linta": "eslint --fix --ext .js,.vue src"
+    "linta": "eslint --fix --ext .js,.vue src",
+    "fix": "eslint --fix --ext .js,.vue"
   },
   "dependencies": {
     "buefy": "^0.6.5",
