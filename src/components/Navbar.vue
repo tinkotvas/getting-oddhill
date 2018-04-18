@@ -182,7 +182,7 @@
                 <div class="level-right">
                   <button
                     class="button is-primary is-bottom-right"
-                    @click.prevent="onSignIn">Login</button>
+                    @click.prevent="onSignIn">Log in</button>
                   <button
                     class="button is-primary is-bottom-left"
                     @click.prevent="onSignUp">Register</button>
