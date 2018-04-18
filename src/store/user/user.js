@@ -14,7 +14,7 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(payload.email, payload.password)
-        .then((user) => {
+        /* .then((user) => {
           const newUser = {
             id: user.uid,
             name: user.displayName,
@@ -22,7 +22,7 @@ export default {
             photoUrl: user.photoURL
           }
           commit('setUser', newUser)
-        })
+        }) */
         .catch((error) => {
           console.log(error)
         })
@@ -35,7 +35,7 @@ export default {
           firebase
             .auth()
             .signInWithEmailAndPassword(payload.email, payload.password)
-            .then((user) => {
+            /* .then((user) => {
               const newUser = {
                 id: user.uid,
                 name: user.displayName,
@@ -43,7 +43,7 @@ export default {
                 photoUrl: user.photoURL
               }
               commit('setUser', newUser)
-            })
+            }) */
             .catch((error) => {
               console.log(error)
             })
