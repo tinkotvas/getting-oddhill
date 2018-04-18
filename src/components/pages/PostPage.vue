@@ -2,11 +2,11 @@
   <div id="post">
     <section class="section">
       <div class="container">
-        <div class="columns is-centered">
+        <div
+          class="columns is-centered"
+          ref="section">
           <div class="column is-12-tablet is-8-desktop">
-            <post-view-stage
-              :post="post"
-              ref="poststage"/>
+            <post-view-stage :post="post"/>
           </div>
         </div>
       </div>
@@ -24,29 +24,39 @@ export default {
   components: {
     PostViewStage
   },
-  mounted () {
-    this.getPost()
-  },
-  methods: {
-    getPost: function(){
-      this.$store.dispatch('getPost', {
-        id: this.$route.params.id
-        })
-    },
-    initLoading (vm) {
-      // vm.loadingComponent = vm.$loading.open({
-      //   container: vm.$refs.poststage.$el
-      // })
+  computed: {
+    post () {
+      return this.$store.getters.posts
     }
   },
-  computed: {
-    post(){
-      return this.$store.getters.posts
+  watch: {
+    post: function () {
+      this.loadingComponent.close()
+    }
+  },
+  mounted () {
+    this.getPost()
+    this.initLoading()
+  },
+  methods: {
+    getPost: function () {
+      this.$store.dispatch('getPost', {
+        id: this.$route.params.id
+      })
+    },
+    initLoading () {
+      this.loadingComponent = this.$loading.open({
+        container: this.$refs.section
+      })
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
+//for loader
+.columns{
+  min-height: 100px;
+}
 </style>
