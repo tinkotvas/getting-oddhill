@@ -142,8 +142,13 @@
 
       <div class="navbar-end">
         <super-navigator/>
-        <a v-if="user" @click.prevent="onSignOut" class="navbar-item">Log out</a>
-        <b-dropdown v-else position="is-bottom-left">
+        <a
+          v-if="user"
+          @click.prevent="onSignOut"
+          class="navbar-item">Log out</a>
+        <b-dropdown
+          v-else
+          position="is-bottom-left">
           <a
             class="navbar-item"
             slot="trigger">
