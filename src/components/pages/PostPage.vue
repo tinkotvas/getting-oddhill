@@ -24,28 +24,24 @@ export default {
   components: {
     PostViewStage
   },
-  data () {
-    return {
-      post: []
-    }
-  },
   mounted () {
-    this.bindPost()
+    this.getPost()
   },
   methods: {
-    bindPost: function () {
-      this.$bind('post', db.collection('posts').doc(this.$route.params.id))
-        .then((doc) => {
-          this.$refs.poststage.loadingComponent.close()
-        })
-        .catch((error) => {
-          console.log('error in loading: ', error)
+    getPost: function(){
+      this.$store.dispatch('getPost', {
+        id: this.$route.params.id
         })
     },
     initLoading (vm) {
-      vm.loadingComponent = vm.$loading.open({
-        container: vm.$refs.poststage.$el
-      })
+      // vm.loadingComponent = vm.$loading.open({
+      //   container: vm.$refs.poststage.$el
+      // })
+    }
+  },
+  computed: {
+    post(){
+      return this.$store.getters.posts
     }
   }
 }
