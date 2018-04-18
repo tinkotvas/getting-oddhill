@@ -44,7 +44,7 @@ export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
-  { path: '/profile', component: ProfilePage },
+  { path: '/profile/:id', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }
 ]
