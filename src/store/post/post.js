@@ -23,7 +23,6 @@ export default {
     },
     setRealtimeRef (state, payload) {
       state.realtimeRef = payload.onSnapshot(snapshot => {
-        console.log("change in db")
         // IF we're getting multiple posts
         if (snapshot.docs) {
           let posts = []
