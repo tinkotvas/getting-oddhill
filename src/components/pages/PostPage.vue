@@ -34,7 +34,7 @@ export default {
       this.loadingComponent.close()
     }
   },
-  created () {
+  mounted () {
     this.getPost()
     this.initLoading()
   },
