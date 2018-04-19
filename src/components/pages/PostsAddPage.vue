@@ -8,12 +8,6 @@
             class="column">
             <post-add-stage class="box"/>
           </div>
-          <div
-            id="puffs"
-            class="column is-3">
-            <profiles-puff class="box"/>
-            <topics-puff class="box"/>
-          </div>
         </div>
       </div>
     </section>

@@ -43,7 +43,7 @@ export default {
     this.getPosts()
   },
   destroyed () {
-    this.$store.$dispatch('unsubRealtime')
+    this.$store.dispatch('unsubRealtime')
   },
   methods: {
     isPromoted: function (index) {
