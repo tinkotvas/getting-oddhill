@@ -54,9 +54,6 @@ export default {
           console.log('Error getting documents', err)
         })
     },
-    getPostRealtime ({ commit }, payload) {
-      commit('setRealtimeRef', db.collection('posts').doc(payload.id))
-    },
     getPosts ({ commit }, payload = {}) {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
@@ -94,8 +91,10 @@ export default {
           console.log('Error getting documents', err)
         })
     },
+    getPostRealtime ({ commit }, payload) {
+      commit('setRealtimeRef', db.collection('posts').doc(payload.id))
+    },
     getPostsRealtime ({ commit }, payload = {}) {
-      console.log('payload', payload)
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
       if (!payload.limit) { payload.limit = 10 }

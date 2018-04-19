@@ -40,11 +40,14 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.dispatch('getPostsRealtime')
+    this.getPosts()
   },
   methods: {
     isPromoted: function (index) {
       return this.promotedPosts[index].promoted
+    },
+    getPosts(){
+      this.$store.dispatch('getPostsRealtime')
     }
   },
   destroyed () {
