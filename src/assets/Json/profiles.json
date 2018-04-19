@@ -1,0 +1,25 @@
+{
+  "profiles":{
+    "1":{
+      "name": "Adam",
+      "picture": "1.jpg"
+    },
+    "2":{
+      "name": "Anna",
+      "picture": "2.jpg"
+    },
+    "3":{
+      "name": "Calle",
+      "picture": "3.jpg"
+    },
+    "4":{
+      "name": "Daniel",
+      "picture": "4.jpg"
+    },
+    "5":{
+      "name": "Sussan",
+      "picture": "5.jpg"
+    }
+  }
+}
+

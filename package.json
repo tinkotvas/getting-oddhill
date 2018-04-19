@@ -6,18 +6,26 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev-nr": "webpack-dev-server --no-inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "linta": "eslint --fix --ext .js,.vue src"
+    "linta": "eslint --fix --ext .js,.vue src",
+    "fix": "eslint --fix --ext .js,.vue"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "buefy": "^0.6.5",
+    "bulmaswatch": "^0.6.2",
+    "firebase": "^4.12.1",
+    "mdi": "^2.2.43",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuefire": "^2.0.0-alpha.7",
+    "vuex": "^3.0.1",
+    "vuexfire": "^3.0.0-alpha.2"
   },
   "devDependencies": {
+    "@firebase/app-types": "^0.1.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
