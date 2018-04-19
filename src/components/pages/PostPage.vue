@@ -6,7 +6,10 @@
           class="columns is-centered"
           ref="section">
           <div class="column is-12-tablet is-8-desktop">
-            <post-view-stage v-if="this.$route.params.id === post.id" :post="post"/>
+            <!-- alternative to forgetting post when exiting page -->
+            <post-view-stage
+              v-if="this.$route.params.id === post.id"
+              :post="post"/>
           </div>
         </div>
       </div>
@@ -40,7 +43,7 @@ export default {
   },
   destroyed () {
     this.$store.dispatch('unsubRealtime')
-    //this.$store.dispatch('forgetPost')
+    // this.$store.dispatch('forgetPost')
   },
   methods: {
     getPost: function () {

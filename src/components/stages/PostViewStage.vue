@@ -1,10 +1,6 @@
 <template>
-  <div
-    v-if="post.message"
-    class="media">
-    <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
-    <vue-markdown class="media-content">{{ post.message }}</vue-markdown>
-  </div>
+  <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
+  <vue-markdown class="content">{{ post.message }}</vue-markdown>
 </template>
 
 <script>
