@@ -6,7 +6,6 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
-
 import store from './store/store'
 // import base app vue component
 import App from './App'
