@@ -39,7 +39,7 @@ export default {
     this.initLoading()
   },
   destroyed () {
-    this.$store.$dispatch('unsubRealtimeRef')
+    this.$store.dispatch('unsubRealtime')
   },
   methods: {
     getPost: function () {

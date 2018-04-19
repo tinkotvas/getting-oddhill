@@ -22,8 +22,8 @@ export default {
       state.posts.splice(index, 1)
     },
     setRealtimeRef (state, payload) {
-      state.realtimeRef = payload
-      state.realtimeRef.onSnapshot(snapshot => {
+      state.realtimeRef = payload.onSnapshot(snapshot => {
+        console.log("change in db")
         // IF we're getting multiple posts
         if (snapshot.docs) {
           let posts = []
@@ -105,6 +105,9 @@ export default {
       db.collection('posts').doc(payload.id).delete().then(
         commit('deletePost', payload.index)
       )
+    },
+    unsubRealtime ({ commit }, payload) {
+      commit('unsubRealtimeRef', payload)
     }
   },
   getters: {
