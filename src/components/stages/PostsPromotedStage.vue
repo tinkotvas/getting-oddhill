@@ -42,16 +42,16 @@ export default {
   mounted: function () {
     this.getPosts()
   },
+  destroyed () {
+    this.$store.$dispatch('unsubRealtimeRef')
+  },
   methods: {
     isPromoted: function (index) {
       return this.promotedPosts[index].promoted
     },
-    getPosts(){
+    getPosts () {
       this.$store.dispatch('getPostsRealtime')
     }
-  },
-  destroyed () {
-    this.$store.$dispatch('unsubRealtimeRef')
   }
 }
 </script>
