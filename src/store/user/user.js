@@ -3,15 +3,15 @@ import { db } from '../../main.js'
 
 export default {
   state: {
-    user: null
+    currentUser: null
   },
   mutations: {
     setUser (state, payload) {
-      state.user = payload
+      state.currentUser = payload
     },
     setUserData (state, payload) {
-      if (state.user) {
-        state.user.userData = payload
+      if (state.currentUser) {
+        state.currentUser.userData = payload
       }
     }
   },
@@ -74,8 +74,8 @@ export default {
     }
   },
   getters: {
-    user (state) {
-      return state.user
+    currentUser (state) {
+      return state.currentUser
     }
   }
 }
