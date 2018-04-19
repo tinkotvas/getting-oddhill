@@ -6,6 +6,15 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
+import VueFire from 'vuefire'
+import firebase from 'firebase/app'
+import 'firebase/storage'
+import 'firebase/firestore'
+import 'firebase/auth'
+
+Vue.use(Buefy)
+Vue.use(VueRouter)
+Vue.use(VueFire)
 
 import store from './store/store'
 // import base app vue component
@@ -19,16 +28,6 @@ import StoragePage from './components/pages/StoragePage'
 import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
-
-import VueFire from 'vuefire'
-import firebase from 'firebase/app'
-import 'firebase/storage'
-import 'firebase/firestore'
-import 'firebase/auth'
-
-Vue.use(Buefy)
-Vue.use(VueRouter)
-Vue.use(VueFire)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyBU9mexyTAMLNCuRDRGpWk-OHLplQWHqf8',

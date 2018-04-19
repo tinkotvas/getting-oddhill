@@ -27,13 +27,13 @@
           icon="home"/> Home</router-link>
         <router-link
           class="navbar-item"
-          to="posts">Posts</router-link>
+          to="/posts">Posts</router-link>
         <router-link
           class="navbar-item"
-          to="profiles">Profiles</router-link>
+          to="/profiles">Profiles</router-link>
         <router-link
           class="navbar-item"
-          to="profile">Profile</router-link>
+          to="/profile">Profile</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
@@ -143,7 +143,7 @@
       <div class="navbar-end">
         <super-navigator/>
         <a
-          v-if="user"
+          v-if="currentUser"
           @click.prevent="onSignOut"
           class="navbar-item">Log out</a>
         <b-dropdown
@@ -211,8 +211,8 @@ export default {
     }
   },
   computed: {
-    user () {
-      return this.$store.getters.user
+    currentUser () {
+      return this.$store.getters.currentUser
     }
   },
   methods: {
@@ -250,5 +250,9 @@ $navactive: #1abc9c;
 .navbar.is-transparent a.navbar-item:hover,
 .navbar.is-transparent a.navbar-link:hover {
   color: transparentize($navactive, 0.1) !important;
+}
+
+.dropdown .dropdown-menu .dropdown-content .level .button {
+  margin-left: 6px;
 }
 </style>

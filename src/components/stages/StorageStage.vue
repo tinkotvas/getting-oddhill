@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { db,storage } from '../../main.js'
+import { db, storage } from '../../main.js'
 
 export default {
   data () {
@@ -54,14 +54,14 @@ export default {
       dropFiles: []
     }
   },
-  watch:{
-    dropFiles: function(file){
-      console.log("Dropped file")
-      this.storageRef.child('images/'+file[0].name)
-      .put(file[0])
-      .then(function(snapshot){
-        console.log("FIle uploaded")
-      })
+  watch: {
+    dropFiles: function (file) {
+      console.log('Dropped file')
+      this.storageRef.child('images/' + file[0].name)
+        .put(file[0])
+        .then(function (snapshot) {
+          console.log('FIle uploaded')
+        })
     }
   },
   mounted () {

@@ -1,7 +1,7 @@
 <template>
   <div id="promoted-stage">
     <article
-      v-if="isPromoted(key)"
+      v-if="isPromoted(key) && promotedPosts"
       class="media"
       v-for="(post, key) of promotedPosts"
       :key="key">
@@ -34,24 +34,23 @@
 import { db } from '../../main.js'
 
 export default {
-  data () {
-    return {
-      isLoading: false,
-      promotedPosts: []
+  computed: {
+    promotedPosts () {
+      return this.$store.getters.posts
     }
   },
   mounted: function () {
-    this.$bind('promotedPosts', db.collection('posts').orderBy('createdAt', 'desc'))
-      .then((doc) => {
-        this.isLoading = false
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
+    this.getPosts()
+  },
+  destroyed () {
+    this.$store.dispatch('unsubRealtime')
   },
   methods: {
     isPromoted: function (index) {
       return this.promotedPosts[index].promoted
+    },
+    getPosts () {
+      this.$store.dispatch('getPostsRealtime')
     }
   }
 }
