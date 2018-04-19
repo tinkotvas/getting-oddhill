@@ -7,7 +7,7 @@
     </div>
     <div class="section">
       <div class="container">
-          <profile-post-puff :userData="userData"/>
+        <profile-post-puff :user-data="userData"/>
       </div>
     </div>
   </div>
@@ -26,24 +26,24 @@ export default {
     ProfilePageStage,
     ProfilePostPuff
   },
-  data() {
+  data () {
     return {
       userData: {}
     }
   },
-  methods: {
-    bindPost: function(){
-      this.$bind('userData', db.collection('users').doc(this.$route.params.id))
-      .then((doc)=> {
-        console.log(this.userData)
-      })
-      .catch((error)=> {
-        console.log('error', error);
-      })
-    }
+  created () {
+    this.bindPost()
   },
-  mounted () {
-    this.bindPost();
+  methods: {
+    bindPost: function () {
+      this.$bind('userData', db.collection('users').doc(this.$route.params.id))
+        .then((doc) => {
+          console.log(this.userData)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    }
   }
 }
 
