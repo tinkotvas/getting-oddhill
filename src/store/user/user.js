@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { db } from '../../main.js'
 
 export default {
   state: {
