@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     post () {
-      return this.$store.getters.posts
+      return this.$store.getters.post
     }
   },
   watch: {
@@ -38,9 +38,12 @@ export default {
     this.getPost()
     this.initLoading()
   },
+  destroyed () {
+    this.$store.dispatch('unsubRealtime')
+  },
   methods: {
     getPost: function () {
-      this.$store.dispatch('getPost', {
+      this.$store.dispatch('getPostRealtime', {
         id: this.$route.params.id
       })
     },
