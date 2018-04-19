@@ -21,9 +21,14 @@ import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
 
+import VueMoment from 'vue-moment'
+import 'moment/locale/sv'
+import 'moment/locale/en-gb'
+
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueFire)
+Vue.use(VueMoment)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDeLiS3ER7wxcsKEDS8VjsasYQJHl-4cqU',
