@@ -2,23 +2,43 @@
   "profiles":{
     "1":{
       "name": "Batman",
-      "picture": "1.jpg"
+      "picture": "1.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "2":{
-      "name": "Anna",
-      "picture": "2.jpg"
+      "name": "Superman",
+      "picture": "2.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "3":{
-      "name": "Calle",
-      "picture": "3.jpg"
+      "name": "Wonder woman",
+      "picture": "3.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "4":{
-      "name": "Daniel",
-      "picture": "4.jpg"
+      "name": "Spiderman",
+      "picture": "4.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "5":{
-      "name": "Sussan",
-      "picture": "5.jpg"
+      "name": "Black widow",
+      "picture": "5.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     }
   }
 }
