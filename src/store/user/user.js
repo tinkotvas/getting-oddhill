@@ -8,6 +8,11 @@ export default {
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    setUserData (state, payload) {
+      if (state.user) {
+        state.user.userData = payload
+      }
     }
   },
   actions: {
@@ -56,6 +61,11 @@ export default {
         name: payload.displayName,
         email: payload.email,
         photoUrl: payload.photoURL
+      })
+      db.collection('users').doc(payload.uid).get().then((doc) => {
+        if (doc.exists) {
+          commit('setUserData', doc)
+        }
       })
     },
     signOut ({ commit }) {
