@@ -2,9 +2,11 @@
   <div id="post">
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column">
-            <post-view-stage/>
+        <div
+          class="columns is-centered"
+          ref="section">
+          <div class="column is-12-tablet is-8-desktop">
+            <post-view-stage :post="post"/>
           </div>
         </div>
       </div>
@@ -13,6 +15,7 @@
 </template>
 
 <script>
+import { db } from '../../main.js'
 // Stages
 import PostViewStage from '../stages/PostViewStage'
 // Puffs
@@ -20,10 +23,43 @@ import PostViewStage from '../stages/PostViewStage'
 export default {
   components: {
     PostViewStage
+  },
+  computed: {
+    post () {
+      return this.$store.getters.post
+    }
+  },
+  watch: {
+    post: function () {
+      this.loadingComponent.close()
+    }
+  },
+  mounted () {
+    this.getPost()
+    this.initLoading()
+  },
+  destroyed () {
+    this.$store.dispatch('unsubRealtime')
+  },
+  methods: {
+    getPost: function () {
+      this.$store.dispatch('getPostRealtime', {
+        id: this.$route.params.id
+      })
+    },
+    initLoading () {
+      this.loadingComponent = this.$loading.open({
+        container: this.$refs.section
+      })
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
+//for loader
+.columns{
+  min-height: 100px;
+}
 </style>
