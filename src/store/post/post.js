@@ -44,6 +44,9 @@ export default {
     }
   },
   actions: {
+    forgetPost ({ commit }, payload) {
+      commit('setPost', [])
+    },
     getPost ({ commit }, payload) {
       db.collection('posts').doc(payload.id).get()
         .then(snapshot => {

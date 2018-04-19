@@ -34,12 +34,13 @@ export default {
       this.loadingComponent.close()
     }
   },
-  mounted () {
+  created () {
     this.getPost()
     this.initLoading()
   },
   destroyed () {
     this.$store.dispatch('unsubRealtime')
+    this.$store.dispatch('forgetPost')
   },
   methods: {
     getPost: function () {
