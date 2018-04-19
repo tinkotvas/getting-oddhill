@@ -3,22 +3,18 @@
     v-if="post.heading"
     class="media">
     <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
-    <div class="media-content">
-      <p>
-        <strong>{{ post.heading }}</strong> <small>@{{ post.author }}</small>
-        <br><br>
-        {{ post.message }}
-      </p>
-    </div>
+    <vue-markdown class="media-content">{{post.message}}</vue-markdown>
   </div>
 </template>
 
 <script>
-
-const Viewer = require('tui-editor/dist/tui-editor-Viewer')
+import VueMarkdown from 'vue-markdown'
 
 export default {
-  props: ['post']
+  props: ['post'],
+  components:{
+    VueMarkdown
+  }
 }
 
 </script>
