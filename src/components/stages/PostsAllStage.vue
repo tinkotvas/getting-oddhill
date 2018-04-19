@@ -69,8 +69,6 @@ export default {
   },
   methods: {
     deletePost (key, id) {
-      // this.$delete(this.posts, key)
-      // this.postRef.doc(id).delete()
       this.$store.dispatch('deletePost', { index: key, id})
     },
     initLoading () {
@@ -84,47 +82,7 @@ export default {
     getMorePosts () {
       this.$store.dispatch('getMorePosts')
     }
-    // ,
-    // getData () {
-    //   let limit = 2
-    //   if (this.isLoading === true) { return }
-
-    //   this.initLoading()
-    //   this.isLoading = true;
-    //   (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
-    //     .then(snapshot => {
-    //       this.isLoading = false
-    //       this.loadingComponent.close()
-    //       this.showMoreButton = !(snapshot.docs.length < limit)
-    //       // continue only if we have any documents
-    //       if (snapshot.docs.length == 0) {
-    //         return
-    //       }
-    //       snapshot.forEach(doc => {
-    //         console.log('doc', doc)
-    //         let tmp = doc.data()
-    //         tmp.id = doc.id
-    //         this.posts.push(tmp)
-    //       })
-    //       this.lastDocument = snapshot.docs[snapshot.docs.length - 1]
-    //     }).catch(err => {
-    //       console.log('Error getting documents', err)
-    //     })
-    // }
   }
-  // ,
-  // firestore () {
-  //   return {
-  //     promotedPosts: db.collection('posts').orderBy('createdAt')
-  //     }
-  //   }
-  // this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
-  //       .then((doc) => {
-  //         loadingComponent.close()
-  //       })
-  //       .catch((error) => {
-  //         console.log('error in loading: ', error)
-  //       })
 }
 
 </script>
