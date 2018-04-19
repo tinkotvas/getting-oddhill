@@ -3,7 +3,7 @@
     v-if="post.message"
     class="media">
     <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
-    <vue-markdown class="media-content">{{post.message}}</vue-markdown>
+    <vue-markdown class="media-content">{{ post.message }}</vue-markdown>
   </div>
 </template>
 
@@ -11,10 +11,10 @@
 import VueMarkdown from 'vue-markdown'
 
 export default {
-  props: ['post'],
-  components:{
+  components: {
     VueMarkdown
-  }
+  },
+  props: ['post']
 }
 
 </script>

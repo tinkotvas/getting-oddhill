@@ -20,7 +20,7 @@
         v-model="message"
         maxlength="5000"
         type="textarea"/> -->
-        <div id="editSection"></div>
+      <div id="editSection"/>
     </b-field>
     <p class="level">
       <button
@@ -31,8 +31,8 @@
       </b-switch>
     </p>
     <button
-        class="button"
-        @click="boom()">BRUR</button>
+      class="button"
+      @click="boom()">BRUR</button>
   </section>
 </template>
 
@@ -40,13 +40,11 @@
 import { db } from '../../main.js'
 
 require('codemirror/lib/codemirror.css') // codemirror
-require('tui-editor/dist/tui-editor.css'); // editor ui
-require('tui-editor/dist/tui-editor-contents.css'); // editor content
-require('highlight.js/styles/github.css'); // code block highlight
+require('tui-editor/dist/tui-editor.css') // editor ui
+require('tui-editor/dist/tui-editor-contents.css') // editor content
+require('highlight.js/styles/github.css') // code block highlight
 
-var Editor = require('tui-editor');
-
-
+var Editor = require('tui-editor')
 
 export default {
   data () {
@@ -59,17 +57,6 @@ export default {
       editor: {}
     }
   },
-  methods: {
-    addPost (author, heading, message, topics, promoted) { // <-- and here
-      const createdAt = new Date()
-      db.collection('posts').add({ author, createdAt, heading, message, topics, promoted })
-      let url = promoted ? '/' : '/posts'
-      this.$router.push(url)
-    },
-    boom(){
-      console.log(this.editor.getValue())
-    }
-  },
   mounted () {
     this.editor = new Editor({
       el: document.querySelector('#editSection'),
@@ -77,6 +64,17 @@ export default {
       previewStyle: 'vertical',
       usageStatistics: 'false'
     })
+  },
+  methods: {
+    addPost (author, heading, message, topics, promoted) { // <-- and here
+      const createdAt = new Date()
+      db.collection('posts').add({ author, createdAt, heading, message, topics, promoted })
+      let url = promoted ? '/' : '/posts'
+      this.$router.push(url)
+    },
+    boom () {
+      console.log(this.editor.getValue())
+    }
   }
 }
 
