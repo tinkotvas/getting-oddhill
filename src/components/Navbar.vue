@@ -251,4 +251,8 @@ $navactive: #1abc9c;
 .navbar.is-transparent a.navbar-link:hover {
   color: transparentize($navactive, 0.1) !important;
 }
+
+.dropdown .dropdown-menu .dropdown-content .level .button {
+  margin-left: 6px;
+}
 </style>
