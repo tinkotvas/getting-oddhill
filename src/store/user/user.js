@@ -1,12 +1,18 @@
 import * as firebase from 'firebase'
+import { db } from '../../main.js'
 
 export default {
   state: {
-    user: null
+    currentUser: null
   },
   mutations: {
     setUser (state, payload) {
-      state.user = payload
+      state.currentUser = payload
+    },
+    setUserData (state, payload) {
+      if (state.currentUser) {
+        state.currentUser.userData = payload
+      }
     }
   },
   actions: {
@@ -56,6 +62,11 @@ export default {
         email: payload.email,
         photoUrl: payload.photoURL
       })
+      db.collection('users').doc(payload.uid).get().then((doc) => {
+        if (doc.exists) {
+          commit('setUserData', doc)
+        }
+      })
     },
     signOut ({ commit }) {
       firebase.auth().signOut()
@@ -63,8 +74,8 @@ export default {
     }
   },
   getters: {
-    user (state) {
-      return state.user
+    currentUser (state) {
+      return state.currentUser
     }
   }
 }

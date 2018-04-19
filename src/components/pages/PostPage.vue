@@ -2,11 +2,14 @@
   <div id="post">
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column">
+        <div
+          class="columns is-centered"
+          ref="section">
+          <div class="column is-12-tablet is-8-desktop">
+            <!-- alternative to forgetting post when exiting page -->
             <post-view-stage
-              :post="post"
-              ref="poststage"/>
+              v-if="this.$route.params.id === post.id"
+              :post="post"/>
           </div>
         </div>
       </div>
@@ -24,33 +27,43 @@ export default {
   components: {
     PostViewStage
   },
-  data () {
-    return {
-      post: []
+  computed: {
+    post () {
+      return this.$store.getters.post
+    }
+  },
+  watch: {
+    post: function () {
+      this.loadingComponent.close()
     }
   },
   mounted () {
-    this.bindPost()
+    this.getPost()
+    this.initLoading()
+  },
+  destroyed () {
+    this.$store.dispatch('unsubRealtime')
+    // this.$store.dispatch('forgetPost')
   },
   methods: {
-    bindPost: function () {
-      this.$bind('post', db.collection('posts').doc(this.$route.params.id))
-        .then((doc) => {
-          this.$refs.poststage.loadingComponent.close()
-        })
-        .catch((error) => {
-          console.log('error in loading: ', error)
-        })
+    getPost: function () {
+      this.$store.dispatch('getPostRealtime', {
+        id: this.$route.params.id
+      })
     },
-    initLoading (vm) {
-      vm.loadingComponent = vm.$loading.open({
-        container: vm.$refs.poststage.$el
+    initLoading () {
+      this.loadingComponent = this.$loading.open({
+        container: this.$refs.section
       })
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
+//for loader
+.columns{
+  min-height: 100px;
+}
 </style>
