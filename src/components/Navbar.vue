@@ -140,14 +140,16 @@
         </div>
       </div>
 
-      <div class="navbar-end">
+      <div
+        v-if="authReady"
+        class="navbar-end">
         <super-navigator/>
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
           class="navbar-item">Log out</a>
         <b-dropdown
-          v-else
+          v-if="!currentUser"
           position="is-bottom-left">
           <a
             class="navbar-item"
@@ -197,6 +199,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import SuperNavigator from './SuperNavigator'
 
 export default {
@@ -213,7 +216,8 @@ export default {
   computed: {
     currentUser () {
       return this.$store.getters.currentUser
-    }
+    },
+    ...mapState({authReady: state => state.user.authReady})
   },
   methods: {
     toggleDropdown (event) {
