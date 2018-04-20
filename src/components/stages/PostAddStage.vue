@@ -68,11 +68,13 @@ export default {
   methods: {
     addPost (author, heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      db.collection('posts').add({ author, createdAt, heading, message, topics, promoted }).then(() => {
-        let url = promoted ? '/' : '/posts'
-        this.$router.push(url)
-      }
-      )
+      this.$store.dispatch('addPost', { author, createdAt, heading, message, topics, promoted, vm: this })
+      //
+      // db.collection('posts').add({ author, createdAt, heading, message, topics, promoted }).then(() => {
+      //   let url = promoted ? '/' : '/posts'
+      //   this.$router.push(url)
+      // }
+      // )
     },
     boom () {
       console.log(this.editor.getValue())
