@@ -74,10 +74,12 @@ new Vue({
   store,
   created () {
     firebase.auth().onAuthStateChanged((user) => {
+      this.$store.commit('setAuthReady', true)
       if (user) {
         this.$store.dispatch('updateUserInfo', user)
       }
     })
   },
+
   template: '<App/>'
 }).$mount('#app')
