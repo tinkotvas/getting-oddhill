@@ -15,7 +15,7 @@
             <div class="box">
               <span v-if="post.message">
                 <strong>{{ post.heading }}</strong>
-                <br><span>{{ localTimeSv(post.createdAt) }}</span>
+                <br><span>{{ localTimeSv(post.createdAt.toDate()) }}</span>
                 <br>{{ post.message | truncate }}
               </span>
             </div>
