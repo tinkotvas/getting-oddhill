@@ -3,7 +3,8 @@ import { db } from '../../main.js'
 
 export default {
   state: {
-    currentUser: null
+    currentUser: null,
+    authReady: false
   },
   mutations: {
     setUser (state, payload) {
@@ -13,6 +14,9 @@ export default {
       if (state.currentUser) {
         state.currentUser.profileData = payload
       }
+    },
+    setAuthReady (state, payload) {
+      state.authReady = payload
     }
   },
   actions: {
@@ -64,7 +68,7 @@ export default {
       })
       db.collection('users').doc(payload.uid).get().then((doc) => {
         if (doc.exists) {
-          commit('setProfileData', doc)
+          commit('setProfileData', doc.data())
         }
       })
     },
