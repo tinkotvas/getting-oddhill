@@ -8,7 +8,7 @@
     </div>
     <div class="section" v-if="userData">
       <div class="container">
-        <profile-post-puff :user-data="userData"/>
+        <profile-post-puff :posts="userData.posts"/>
       </div>
     </div>
   </div>
