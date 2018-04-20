@@ -1,11 +1,12 @@
 <template>
   <div id="App">
-    <div class="section">
+    <div class="section"  v-if="userData">
       <div class="container">
-        <profile-page-stage/>
+        <profile-page-stage
+        :user-data="currentUser.profileData"/>
       </div>
     </div>
-    <div class="section">
+    <div class="section" v-if="userData">
       <div class="container">
         <profile-post-puff :user-data="userData"/>
       </div>
@@ -26,25 +27,25 @@ export default {
     ProfilePageStage,
     ProfilePostPuff
   },
-  data () {
-    return {
-      userData: {}
-    }
-  },
-  created () {
-    this.bindPost()
-  },
-  methods: {
-    bindPost: function () {
-      this.$bind('userData', db.collection('users').doc(this.$route.params.id))
-        .then((doc) => {
-          console.log(this.userData)
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
+  computed: {
+    currentUser () {
+      return this.$store.getters.currentUser
+    },
+    userData () {
+      return this.$store.getters.profileData
     }
   }
+  // methods: {
+  //   bindPost: function () {
+  //     this.$bind('userData', db.collection('users').doc(this.$route.params.id))
+  //       .then((doc) => {
+  //         console.log(this.userData)
+  //       })
+  //       .catch((error) => {
+  //         console.log('error', error)
+  //       })
+  //   }
+  // }
 }
 
 </script>

@@ -8,8 +8,8 @@
         <h3><strong>Inlägg av Batman</strong></h3>
         <div class="columns is-multiline">
           <div  class="column is-6"
-            :v-if="userData.posts"
-            v-for="(post, key) in userData.posts"
+            v-if="posts"
+            v-for="(post, key) in posts"
             :key="key">
             <div class="box">
               <span v-if="post.message">
@@ -33,11 +33,16 @@ export default {
       return value.substring(0, 300) + '...'
     }
   },
-  props: ['userData'],
+  props: ['posts'],
   methods: {
     localTimeSv: function (value) {
       let date = this.$moment(value)
       return date.locale('sv').format('dddd, MMMM Do YYYY')
+    }
+  },
+  mounted: {
+    postsData () {
+      console.log(this.posts)
     }
   }
 }
