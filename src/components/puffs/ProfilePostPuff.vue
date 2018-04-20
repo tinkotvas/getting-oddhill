@@ -7,7 +7,8 @@
         ref="ProfilePostPuff">
         <h3><strong>Inlägg av Batman</strong></h3>
         <div class="columns is-multiline">
-          <div  class="column is-6"
+          <div
+            class="column is-6"
             v-if="postsData.length > 0"
             v-for="(post, key) in postsData"
             :key="key">
@@ -29,17 +30,20 @@
 import { db } from '../../main.js'
 
 export default {
-  data () {
-    return {
-      postsData: []
-      }
-  },
   filters: {
     truncate: function (value) {
       return value.substring(0, 300) + '...'
     }
   },
   props: ['posts'],
+  data () {
+    return {
+      postsData: []
+    }
+  },
+  mounted: function () {
+    this.getPostsData()
+  },
   methods: {
     localTimeSv: function (value) {
       let date = this.$moment(value)
@@ -47,16 +51,13 @@ export default {
     },
     getPostsData () {
       let currentUser = this.$store.getters.currentUser
-      if (!currentUser) return [];
+      if (!currentUser) return []
       this.postsData = db.collection('posts').where('author', '==', db.doc('users/o12AZhxuozOcITzzpYMu0R7j7Ip1')).orderBy('createdAt').get().then((data) => {
         console.log(data)
-          this.postsData = data.docs.map((doc) => doc.data())
+        this.postsData = data.docs.map((doc) => doc.data())
       })
     }
-  },
-  mounted: function() {
-    this.getPostsData()
-    }
+  }
 }
 
 </script>

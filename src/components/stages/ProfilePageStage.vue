@@ -7,7 +7,7 @@
           class="profile-picture">
         <section class="box">
           <p><strong>Namn : </strong>
-          {{ userData.username }}</p>
+            {{ userData.username }}</p>
           <p><strong>Title : </strong>{{ userData.title }}</p>
           <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
@@ -57,12 +57,12 @@
 const json = require('../../assets/json/profiles.json')
 
 export default {
+  props: ['userData'],
   data () {
     return {
       profiles: json.profiles
     }
-  },
-  props: ['userData']
+  }
 }
 </script>
 

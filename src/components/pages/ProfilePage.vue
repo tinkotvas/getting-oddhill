@@ -1,12 +1,16 @@
 <template>
   <div id="App">
-    <div class="section"  v-if="userData">
+    <div
+      class="section"
+      v-if="userData">
       <div class="container">
         <profile-page-stage
-        :user-data="currentUser.profileData"/>
+          :user-data="currentUser.profileData"/>
       </div>
     </div>
-    <div class="section" v-if="userData">
+    <div
+      class="section"
+      v-if="userData">
       <div class="container">
         <profile-post-puff :posts="userData.posts"/>
       </div>
