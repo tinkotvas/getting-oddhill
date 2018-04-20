@@ -26,10 +26,13 @@
 </template>
 
 <script>
+import { db } from '../../main.js'
 
 export default {
   data () {
-    return {postsData: []}
+    return {
+      postsData: []
+      }
   },
   filters: {
     truncate: function (value) {
@@ -43,19 +46,17 @@ export default {
       return date.locale('sv').format('dddd, MMMM Do YYYY')
     },
     getPostsData () {
-      return this.posts.get().then((docs) => {
-        docs.forEach((doc) => {this.postsData.push(doc)})
-        console.log(docs)
+      let currentUser = this.$store.getters.currentUser
+      if (!currentUser) return [];
+      this.postsData = db.collection('posts').where('author', '==', db.doc('users/o12AZhxuozOcITzzpYMu0R7j7Ip1')).orderBy('createdAt').get().then((data) => {
+        console.log(data)
+          this.postsData = data.docs.map((doc) => doc.data())
       })
     }
   },
-  watch: {
-    posts: function () {
-      this.getPostsData()
-      console.log(this.posts)
+  mounted: function() {
+    this.getPostsData()
     }
-  },
-  mounted: function() {console.log(this.posts)}
 }
 
 </script>
