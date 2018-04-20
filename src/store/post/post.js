@@ -22,31 +22,13 @@ export default {
       state.posts.splice(index, 1)
     },
     setRealtimeRef (state, payload) {
-      state.realtimeRef = payload.onSnapshot(snapshot => {
-        // IF we're getting multiple posts
-        if (snapshot.docs) {
-          let posts = []
-          snapshot.forEach(doc => {
-            let tmp = doc.data()
-            tmp.id = doc.id
-            posts.push(tmp)
-          })
-          state.posts = posts
-        } else {
-          let post = snapshot.data()
-          post.id = snapshot.id
-          state.post = post
-        }
-      })
+      state.realtimeRef = payload
     },
     unsubRealtimeRef (state, payload) {
       state.realtimeRef()
     }
   },
   actions: {
-    forgetPost ({ commit }, payload) {
-      commit('setPost', [])
-    },
     getPost ({ commit }, payload) {
       db.collection('posts').doc(payload.id).get()
         .then(snapshot => {
@@ -94,14 +76,26 @@ export default {
         })
     },
     getPostRealtime ({ commit }, payload) {
-      commit('setRealtimeRef', db.collection('posts').doc(payload.id))
+      commit('setRealtimeRef', db.collection('posts').doc(payload.id).onSnapshot(snapshot => {
+        let post = snapshot.data()
+        post.id = snapshot.id
+        commit('setPost', post)
+      }))
     },
     getPostsRealtime ({ commit }, payload = {}) {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
       if (!payload.limit) { payload.limit = 10 }
 
-      commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit))
+      commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).onSnapshot(snapshot => {
+        let posts = []
+        snapshot.forEach(doc => {
+          let tmp = doc.data()
+          tmp.id = doc.id
+          posts.push(tmp)
+        })
+        commit('setPosts', posts)
+      }))
     },
     deletePost ({ commit }, payload) {
       db.collection('posts').doc(payload.id).delete().then(

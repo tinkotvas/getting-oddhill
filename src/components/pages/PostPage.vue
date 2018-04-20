@@ -7,9 +7,7 @@
           ref="section">
           <div class="column is-12-tablet is-8-desktop">
             <!-- alternative to forgetting post when exiting page -->
-            <post-view-stage
-              v-if="this.$route.params.id === post.id"
-              :post="post"/>
+            <post-view-stage :post="post"/>
           </div>
         </div>
       </div>
