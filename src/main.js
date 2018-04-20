@@ -12,10 +12,6 @@ import 'firebase/storage'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-Vue.use(Buefy)
-Vue.use(VueRouter)
-Vue.use(VueFire)
-
 import store from './store/store'
 // import base app vue component
 import App from './App'
@@ -28,6 +24,15 @@ import StoragePage from './components/pages/StoragePage'
 import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
+
+import VueMoment from 'vue-moment'
+import 'moment/locale/sv'
+import 'moment/locale/en-gb'
+
+Vue.use(Buefy)
+Vue.use(VueRouter)
+Vue.use(VueFire)
+Vue.use(VueMoment)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyBU9mexyTAMLNCuRDRGpWk-OHLplQWHqf8',
@@ -49,7 +54,7 @@ export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
-  { path: '/posts/:id', component: PostPage },
+  { path: '/profile/:id', component: ProfilePage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }
