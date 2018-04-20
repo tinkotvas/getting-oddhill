@@ -1,8 +1,8 @@
 <template>
   <!-- Since vue-markdown -->
   <vue-markdown
-    v-if="$route.params.id === post.id"
-    class="content">{{ post.message }}</vue-markdown>
+    :source="post.message"
+    class="content"/>
 </template>
 
 <script>

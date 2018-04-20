@@ -86,7 +86,6 @@ export default {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
       if (!payload.limit) { payload.limit = 10 }
-
       commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).onSnapshot(snapshot => {
         let posts = []
         snapshot.forEach(doc => {
@@ -96,6 +95,12 @@ export default {
         })
         commit('setPosts', posts)
       }))
+    },
+    addPost ({ commit }, payload) {
+      db.collection('posts').add({ author: payload.author, createdAt: payload.createdAt, heading: payload.heading, message: payload.message, topics: payload.topics, promoted: payload.promoted }).then((re) => {
+        payload.vm.$router.push(`/posts/${re.id}`)
+      }
+      )
     },
     deletePost ({ commit }, payload) {
       db.collection('posts').doc(payload.id).delete().then(
