@@ -9,9 +9,9 @@ export default {
     setUser (state, payload) {
       state.currentUser = payload
     },
-    setUserData (state, payload) {
+    setProfileData (state, payload) {
       if (state.currentUser) {
-        state.currentUser.userData = payload
+        state.currentUser.profileData = payload
       }
     }
   },
@@ -64,7 +64,7 @@ export default {
       })
       db.collection('users').doc(payload.uid).get().then((doc) => {
         if (doc.exists) {
-          commit('setUserData', doc)
+          commit('setProfileData', doc)
         }
       })
     },
