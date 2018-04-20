@@ -68,9 +68,11 @@ export default {
   methods: {
     addPost (author, heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      db.collection('posts').add({ author, createdAt, heading, message, topics, promoted })
-      let url = promoted ? '/' : '/posts'
-      this.$router.push(url)
+      db.collection('posts').add({ author, createdAt, heading, message, topics, promoted }).then(() => {
+        let url = promoted ? '/' : '/posts'
+        this.$router.push(url)
+      }
+      )
     },
     boom () {
       console.log(this.editor.getValue())

@@ -1,6 +1,8 @@
 <template>
-  <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
-  <vue-markdown class="content">{{ post.message }}</vue-markdown>
+  <!-- Since vue-markdown -->
+  <vue-markdown
+    v-if="$route.params.id === post.id"
+    class="content">{{ post.message }}</vue-markdown>
 </template>
 
 <script>
