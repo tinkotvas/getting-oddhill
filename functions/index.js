@@ -12,7 +12,8 @@ exports.onPostNew = functions.firestore
     .document('posts/{postID}')
     .onCreate((snap, context) => {
         // example change/set value
-      return  snap.ref.set({
-          functionWorking: true
-      }, { merge: true })
+        let newValues = {
+            createdAt: new Date()
+        }
+      return  snap.ref.set(newValues, { merge: true })
     });
