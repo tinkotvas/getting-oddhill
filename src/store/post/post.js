@@ -49,6 +49,7 @@ export default {
             let tmp = doc.data()
             tmp.id = doc.id
             posts.push(tmp)
+            console.log(tmp)
           })
           commit('setPosts', posts)
           commit('setLastDoc', snapshot.docs.slice(-1)[0])
