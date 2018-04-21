@@ -8,7 +8,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.createPost = functions.firestore
+exports.onPostNew = functions.firestore
     .document('posts/{postID}')
     .onCreate((snap, context) => {
         // example change/set value
