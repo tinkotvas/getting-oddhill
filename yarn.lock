@@ -122,9 +122,9 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.3.0.tgz#9df0af784145c568c6d306eda1dd25198b5a2b50"
 
-"@firebase/firestore@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.4.0.tgz#474cb295fb09b0f0dbc71acb061a4ebd5986fe93"
+"@firebase/firestore@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.4.1.tgz#c42e0c7aebab96eecec5e8ac4a3fe944d573458f"
   dependencies:
     "@firebase/firestore-types" "0.3.0"
     "@firebase/logger" "0.1.1"
@@ -2827,14 +2827,14 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@^4.12.1:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.13.0.tgz#bd62685bb7354972ef45d6465216687caa4cee88"
+firebase@^4.13.1:
+  version "4.13.1"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.13.1.tgz#87ab64bbb7f707244fb878f2a28235b0e3aed3ec"
   dependencies:
     "@firebase/app" "0.2.0"
     "@firebase/auth" "0.4.2"
     "@firebase/database" "0.2.2"
-    "@firebase/firestore" "0.4.0"
+    "@firebase/firestore" "0.4.1"
     "@firebase/functions" "0.1.1"
     "@firebase/messaging" "0.2.4"
     "@firebase/polyfill" "0.3.1"
@@ -5508,9 +5508,9 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-"raphael@git+https://github.com/nhnent/raphael.git#2.2.0-c":
+"raphael@https://github.com/nhnent/raphael.git#2.2.0-c":
   version "2.2.0-c"
-  resolved "git+https://github.com/nhnent/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
+  resolved "https://github.com/nhnent/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
   dependencies:
     eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
 
@@ -6968,7 +6968,7 @@ vue@^2.5.2:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
 
-vuefire@^2.0.0-alpha.7:
+vuefire@^2.0.0-alpha.9:
   version "2.0.0-alpha.9"
   resolved "https://registry.yarnpkg.com/vuefire/-/vuefire-2.0.0-alpha.9.tgz#fcd2c2ebf216ba193b40aada817efb6ced0fb802"
 
@@ -6976,7 +6976,7 @@ vuex@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
 
-vuexfire@^3.0.0-alpha.2:
+vuexfire@^3.0.0-alpha.3:
   version "3.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/vuexfire/-/vuexfire-3.0.0-alpha.3.tgz#7b8993c6860f1327df71de494a49fe40002a2cb3"
 
