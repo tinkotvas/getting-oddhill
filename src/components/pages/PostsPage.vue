@@ -72,7 +72,7 @@
         :key="key">
         <!--Left content like img-->
         <!--Main content -->
-        <div class="no-overflow">
+        <div class="media-content no-overflow">
           <div class="content">
             <p><strong>{{ post.heading }}</strong><br>
               {{ (post.message).substring(0,155) }}...</p>
@@ -213,8 +213,12 @@ export default {
 </script>
 
 <style>
-/* .view-btn {
+.view-btn {
   float: right;
-} */
+}
+
+.no-overflow {
+  overflow: hidden;
+}
 </style>
 
