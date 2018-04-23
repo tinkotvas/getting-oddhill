@@ -10,7 +10,10 @@ export default {
   },
   mutations: {
     setPosts (state, payload) {
-      state.posts = payload
+      Promise.all(payload.map(async (post) => {
+        post.author = typeof post.author === 'object' ? (await post.author.get()).data() : {username: post.author}
+        return post
+      })).then((payload) => {state.posts = payload})
     },
     setPost (state, payload) {
       state.post = payload
