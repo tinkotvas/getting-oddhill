@@ -4,7 +4,7 @@
       <div class="container">
         <div class="columns">
           <div
-            id="stages"
+            id="pages"
             class="box"
             style="color: red">
             <slot/>

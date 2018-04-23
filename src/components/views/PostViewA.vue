@@ -2,25 +2,35 @@
   <div class="posts">
     <section class="section">
       <div class="container">
-        <!-- <div class="column">
+         <div class="container">
           <div
-            id="stages"
-            class="column">
-
-            <slot/>
-          </div> -->
-          <keep-alive>
+            class="view-btn field is-grouped"
+            align="right">
+            <p class="control">
+              <a
+                class="button is-primary"
+                @click="postsView='post-view-a'">View A</a>
+              <a
+                class="button is-primary"
+                @click="postsView='post-view-b'">View B</a>
+              <a
+                class="button is-primary"
+                @click="postsView='post-view-c'">View C</a>
+            </p>
+          </div>
+        </div>
+        <keep-alive>
           <component :is="postsPage">
             <div class="columns">
               <div
-                id="stages"
+                id="pages"
                 class="column">
                 <posts-page/>
               </div>
             </div>
           </component>
         </keep-alive>
-        </div>
+      </div>
     </section>
   </div>
 </template>

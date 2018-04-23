@@ -38,22 +38,30 @@
 <template>
   <section class="section">
     <div class="container">
-      <div
-        class="view-btn field is-grouped"
-        align="right">
-        <p class="control">
-          <a
-            class="button is-primary"
-            @click="postsView='post-view-a'">View A</a>
-          <a
-            class="button is-primary"
-            @click="postsView='post-view-b'">View B</a>
-          <a
-            class="button is-primary"
-            @click="postsView='post-view-c'">View C</a>
-        </p>
+      <div class="level">
+        <div class="level-left"/>
+        <div class="view-btn level-right">
+          <div class="container">
+            <div
+              class="view-btn field is-grouped"
+              align="right">
+              <p class="control">
+                <a
+                  class="button is-primary"
+                  @click="postsView='post-view-a'">View A</a>
+                <a
+                  class="button is-primary"
+                  @click="postsView='post-view-b'">View B</a>
+                <a
+                  class="button is-primary"
+                  @click="postsView='post-view-c'">View C</a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     <div
       :closable="false"
       ref="postsstage"
@@ -64,7 +72,7 @@
         :key="key">
         <!--Left content like img-->
         <!--Main content -->
-        <div class="media-content no-overflow">
+        <div class="no-overflow">
           <div class="content">
             <p><strong>{{ post.heading }}</strong><br>
               {{ (post.message).substring(0,155) }}...</p>
@@ -91,6 +99,7 @@
           @click="deletePost(key, post.id)"/> -->
       </article>
     </div>
+
     <div class="level">
       <div class="level-item">
         <button
@@ -100,6 +109,7 @@
           @click="getData()">Get more..</button>
       </div>
     </div>
+
   </section>
 </template>
 
@@ -203,8 +213,8 @@ export default {
 </script>
 
 <style>
-.view-btn {
+/* .view-btn {
   float: right;
-}
+} */
 </style>
 
