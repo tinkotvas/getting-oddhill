@@ -7,14 +7,15 @@
         ref="ProfilePostPuff">
         <h3><strong>Inlägg av Batman</strong></h3>
         <div class="columns is-multiline">
-          <div  class="column is-6"
-            :v-if="userData.posts"
-            v-for="(post, key) in userData.posts"
+          <div
+            class="column is-6"
+            v-if="postsData.length > 0"
+            v-for="(post, key) in postsData"
             :key="key">
             <div class="box">
               <span v-if="post.message">
                 <strong>{{ post.heading }}</strong>
-                <br><span>{{ localTimeSv(post.createdAt) }}</span>
+                <br><span>{{ localTimeSv(post.createdAt.toDate()) }}</span>
                 <br>{{ post.message | truncate }}
               </span>
             </div>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import { db } from '../../main.js'
 
 export default {
   filters: {
@@ -33,11 +35,27 @@ export default {
       return value.substring(0, 300) + '...'
     }
   },
-  props: ['userData'],
+  props: ['posts'],
+  data () {
+    return {
+      postsData: []
+    }
+  },
+  mounted: function () {
+    this.getPostsData()
+  },
   methods: {
     localTimeSv: function (value) {
       let date = this.$moment(value)
       return date.locale('sv').format('dddd, MMMM Do YYYY')
+    },
+    getPostsData () {
+      let currentUser = this.$store.getters.currentUser
+      if (!currentUser) return []
+      this.postsData = db.collection('posts').where('author', '==', db.doc('users/' + currentUser.id)).orderBy('createdAt').get().then((data) => {
+        console.log(data)
+        this.postsData = data.docs.map((doc) => doc.data())
+      })
     }
   }
 }

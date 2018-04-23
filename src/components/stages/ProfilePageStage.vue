@@ -6,16 +6,17 @@
           :src="require('@/assets/avatar/1.jpg')"
           class="profile-picture">
         <section class="box">
-          <p><strong>Namn : </strong>Batman</p>
-          <p><strong>Title : </strong>Webbdesigner</p>
-          <p><strong>Språk : </strong>JavaScript, PHP</p>
+          <p><strong>Namn : </strong>
+            {{ userData.username }}</p>
+          <p><strong>Title : </strong>{{ userData.title }}</p>
+          <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
           <p><strong>Framework : </strong>...</p>
         </section>
       </div>
       <div class="column is-5">
         <h4>Om Batman</h4>
-        <p>Breathe in your fears. Face them. To conquer fear, you must become fear. You must bask in the fear of other men. And men fear most what they cannot see. You have to become a terrible thought. A wraith. You have to become an idea! Feel terror cloud your senses. Feel its power to distort. To control. And know that this power can be yours. Embrace your worst fear. Become one with the darkness.</p>
+        <p>{{ userData.bio }}</p>
       </div>
       <div class="column is-1">
         <b-field
@@ -56,6 +57,7 @@
 const json = require('../../assets/json/profiles.json')
 
 export default {
+  props: ['userData'],
   data () {
     return {
       profiles: json.profiles
