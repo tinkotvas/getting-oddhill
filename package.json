@@ -16,15 +16,17 @@
   "dependencies": {
     "buefy": "^0.6.5",
     "bulmaswatch": "^0.6.2",
-    "firebase": "^4.12.1",
+    "firebase": "^4.13.1",
     "mdi": "^2.2.43",
+    "moment": "^2.22.1",
     "tui-editor": "^1.1.0",
     "vue": "^2.5.2",
     "vue-markdown": "^2.2.4",
+    "vue-moment": "^3.2.0",
     "vue-router": "^3.0.1",
-    "vuefire": "^2.0.0-alpha.7",
+    "vuefire": "^2.0.0-alpha.9",
     "vuex": "^3.0.1",
-    "vuexfire": "^3.0.0-alpha.2"
+    "vuexfire": "^3.0.0-alpha.3"
   },
   "devDependencies": {
     "@firebase/app-types": "^0.1.2",
