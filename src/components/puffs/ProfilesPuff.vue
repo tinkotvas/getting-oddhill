@@ -3,7 +3,7 @@
     class="column"
     :style="{ 'min-height': '200px' }">
     <h1>ProfilePuff</h1>
-    <div class="scaling" :style="{ 'position': 'relative', 'right': '20px' ,'padding-top': '30px'}">
+    <div class="scaling" :style="{ 'position': 'relative', 'right': '43px' ,'padding-top': '30px'}">
       <div
         :style="{ 'display': 'inline' }"
         v-for="(profile, index) of profiles"

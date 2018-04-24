@@ -39,6 +39,14 @@
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
+    },
+    "6":{
+      "name": "Catwoman",
+      "picture": "6.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     }
   }
 }
