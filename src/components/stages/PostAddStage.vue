@@ -30,9 +30,6 @@
         Promoted
       </b-switch>
     </p>
-    <button
-      class="button"
-      @click="boom()">BRUR</button>
   </section>
 </template>
 
