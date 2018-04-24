@@ -17,7 +17,7 @@
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <small>{{ post.author.username }}</small>
+            <small v-if="post.author && post.author.username">{{ post.author.username }}</small>
           </div>
           <div class="level-right">
             <b-taglist>
