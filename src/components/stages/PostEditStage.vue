@@ -93,6 +93,7 @@ export default {
       }
       if (Object.keys(payload).length > 0) {
         this.$store.dispatch('editPost', { author, editedAt, heading, message, topics, promoted, id: this.$route.params.id })
+        this.$router.push(`/post/${this.$route.params.id}`)
       }
     },
     initEditor () {
