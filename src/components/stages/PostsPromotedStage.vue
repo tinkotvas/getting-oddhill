@@ -8,7 +8,7 @@
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p><strong>{{ post.heading }}</strong><br>
+          <p><strong><router-link :to="'/posts/'+post.id">{{ post.heading }}</router-link></strong><br>
             {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
