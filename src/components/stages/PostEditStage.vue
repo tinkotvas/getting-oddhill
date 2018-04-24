@@ -53,7 +53,6 @@ export default {
     return {
       promoted: false,
       editor: {},
-      counter: 0,
       initialValues: {}
     }
   },
@@ -64,23 +63,27 @@ export default {
   },
   watch: {
     post: function () {
-      this.editor.setValue(this.post.message)
-      if (this.counter === 0) {
-        this.initialValues = Object.assign({}, this.post)
-        this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
-      }
-      this.counter++
+      this.setInitialValues()
     }
   },
   mounted () {
-    this.getPost()
     this.initEditor()
+    this.getPost()
   },
   methods: {
     getPost: function () {
-      this.$store.dispatch('getPostRealtime', {
-        id: this.$route.params.id
-      })
+      if(this.$store.getters.post.id == this.$route.params.id){
+        this.setInitialValues()
+      } else {
+        this.$store.dispatch('getPostRealtime', {
+          id: this.$route.params.id
+        })
+      }
+    },
+    setInitialValues(){
+        this.editor.setValue(this.post.message)
+        this.initialValues = Object.assign({}, this.post)
+        this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },
     editPost (author, heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
@@ -110,7 +113,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
