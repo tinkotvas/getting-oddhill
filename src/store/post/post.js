@@ -86,7 +86,13 @@ export default {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
       if (!payload.limit) { payload.limit = 1000 }
-      commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).onSnapshot(snapshot => {
+      let ref = {}
+      if (payload.where) {
+        ref = db.collection('posts').where(payload.where.value, '==', payload.where.equals).orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
+      } else {
+        ref = db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
+      }
+      commit('setRealtimeRef', ref.onSnapshot(snapshot => {
         let posts = []
         snapshot.forEach(doc => {
           let tmp = doc.data()
