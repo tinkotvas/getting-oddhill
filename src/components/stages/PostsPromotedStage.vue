@@ -9,7 +9,7 @@
       <div class="media-content no-overflow">
         <div class="content">
           <p><strong><router-link :to="'/posts/'+post.id">{{ post.heading }}</router-link></strong><br>
-            <vue-markdown :source="post.message"/></p>
+          <vue-markdown :source="post.message"/></p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left"/>
@@ -65,7 +65,7 @@ export default {
    overflow: initial
  }
  .content{
-   max-height: 10em;
-   overflow: hidden;
- }
+   max-height: 8em;
+   overflow:hidden;
+}
 </style>

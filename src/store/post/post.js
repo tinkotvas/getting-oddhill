@@ -41,7 +41,7 @@ export default {
     getPosts ({ commit }, payload = {}) {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
+      if (!payload.limit) { payload.limit = 1000 }
       db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).get()
         .then(snapshot => {
           let posts = []
@@ -59,7 +59,7 @@ export default {
     getMorePosts ({ commit }, payload = {}) {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
+      if (!payload.limit) { payload.limit = 1000 }
       db.collection('posts').orderBy(payload.orderBy, payload.orderIn).startAfter(this.getters.lastDoc).limit(payload.limit).get()
         .then(snapshot => {
           if (snapshot.docs.length === 0) { return }
@@ -85,7 +85,7 @@ export default {
     getPostsRealtime ({ commit }, payload = {}) {
       if (!payload.orderBy) { payload.orderBy = 'createdAt' }
       if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
+      if (!payload.limit) { payload.limit = 1000 }
       commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).onSnapshot(snapshot => {
         let posts = []
         snapshot.forEach(doc => {
@@ -102,7 +102,7 @@ export default {
       }
       )
     },
-    updatePost ({ commit }, payload) {
+    editPost ({ commit }, payload) {
       let id = payload.id
       delete payload.id
       db.collection('posts').doc(id).update(payload)
