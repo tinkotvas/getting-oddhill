@@ -10,7 +10,7 @@
         :key = "index">
         <img
           :src="require('@/assets/avatar/' + profile.picture)"
-          :style="{ left:index * 30 + 'px'}"
+          :style="{ left:index * 40 + 'px'}"
           alt="Avatar"
           class="profile-img">
       </div>
@@ -35,9 +35,17 @@ export default {
 <style>
   .profile-img {
     width: 70px;
+    height: 70px;
     border: 1px solid #ccc;
     border-radius: 50%;
     position: absolute;
     z-index: auto;
   }
+
+  .profile-img:hover {
+    position: relative;
+    transform: scale(1.3);
+    z-index: 1000;
+    transition: all 0.2s ease-in-out;
+}
 </style>

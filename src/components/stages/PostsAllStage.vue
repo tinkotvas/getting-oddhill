@@ -6,18 +6,18 @@
   >
     <article
       class="media is-loading"
-      v-for="(post, key) of promotedPosts"
+      v-for="(post, key) of posts"
       :key="key">
       <!--Left content like img-->
       <!--Main content -->
      <!-- <div class="media-content no-overflow">
         <div class="content">
-          <p><strong>{{ post.heading }}</strong><br>
+          <p><strong><router-link :to="'/posts/'+post.id">{{ post.heading }}</router-link></strong><br>
             {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <small>{{ post.author }}</small>
+            <small v-if="post.author && post.author.username">{{ post.author.username }}</small>
           </div>
           <div class="level-right">
             <b-taglist>
@@ -43,7 +43,7 @@
           id="getMoreBtn"
           class="button"
           v-if="showMoreButton"
-          @click="getData()">Get more..</button>
+          @click="getMorePosts()">Get more..</button>
       </div>
     </div>
   </b-notification>
@@ -56,78 +56,33 @@ export default {
   data () {
     return {
       isLoading: false,
-      postRef: db.collection('posts'),
-      promotedPosts: [],
-      newPostChecker: null,
-      newPostCheckerBound: false,
-      showMoreButton: false
+      showMoreButton: true
     }
   },
-  watch: {
-    newPostChecker: function (d) {
-      if (this.newPostCheckerBound) { console.log('boom', d) }
+  computed: {
+    posts () {
+      return this.$store.getters.posts
     }
   },
   mounted () {
-    this.getData()
-    // watcher
-    this.$bind('newPostChecker', this.postRef.orderBy('createdAt', 'desc').limit(1)).then((doc) => {
-      this.newPostCheckerBound = true
-    })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
+    this.getPosts()
   },
   methods: {
     deletePost (key, id) {
-      this.$delete(this.promotedPosts, key)
-      this.postRef.doc(id).delete()
+      this.$store.dispatch('deletePost', { index: key, id})
     },
     initLoading () {
       this.loadingComponent = this.$loading.open({
         container: this.$refs.postsstage.$el
       })
     },
-    getData () {
-      let limit = 2
-      if (this.isLoading === true) { return }
-
-      this.initLoading()
-      this.isLoading = true;
-      (this.lastDocument ? this.postRef.orderBy('createdAt', 'desc').startAfter(this.lastDocument).limit(limit) : this.postRef.orderBy('createdAt', 'desc').limit(limit)).get()
-        .then(snapshot => {
-          this.isLoading = false
-          this.loadingComponent.close()
-          this.showMoreButton = !(snapshot.docs.length < limit)
-          // continue only if we have any documents
-          if (snapshot.docs.length == 0) {
-            return
-          }
-          snapshot.forEach(doc => {
-            console.log('doc', doc)
-            let tmp = doc.data()
-            tmp.id = doc.id
-            this.promotedPosts.push(tmp)
-          })
-          this.lastDocument = snapshot.docs[snapshot.docs.length - 1]
-        }).catch(err => {
-          console.log('Error getting documents', err)
-        })
+    getPosts () {
+      this.$store.dispatch('getPosts')
+    },
+    getMorePosts () {
+      this.$store.dispatch('getMorePosts')
     }
   }
-  // ,
-  // firestore () {
-  //   return {
-  //     promotedPosts: db.collection('posts').orderBy('createdAt')
-  //     }
-  //   }
-  // this.$bind('promotedPosts', this.postRef.orderBy('createdAt', 'desc'))
-  //       .then((doc) => {
-  //         loadingComponent.close()
-  //       })
-  //       .catch((error) => {
-  //         console.log('error in loading: ', error)
-  //       })
 }
 
 </script>

@@ -1,5 +1,35 @@
 <template>
   <div id="storage">
+    <b-field>
+      <b-upload
+        v-model="dropFiles"
+        multiple
+        drag-drop>
+        <section class="section">
+          <div class="content has-text-centered">
+            <p>
+              <b-icon
+                icon="upload"
+                size="is-large"/>
+            </p>
+            <p>Drop your files here or click to upload</p>
+          </div>
+        </section>
+      </b-upload>
+    </b-field>
+
+    <div class="tags">
+      <span
+        v-for="(file, index) in dropFiles"
+        :key="index"
+        class="tag is-primary" >
+        {{ file.name }}
+        <button
+          class="delete is-small"
+          type="button"
+          @click="deleteDropFile(index)"/>
+      </span>
+    </div>
     <div
       v-for="(image, key) in allPageImages"
       :key="key"
@@ -11,15 +41,27 @@
 </template>
 
 <script>
-import { storage } from '../../main.js'
+import { db, storage } from '../../main.js'
 
 export default {
   data () {
     return {
+      storageRef: storage.ref(),
       allPageImages: {
         'img1': { filenameOnServer: 'dejan.png', url: null },
         'img2': { filenameOnServer: 'tin.jpeg', url: null }
-      }
+      },
+      dropFiles: []
+    }
+  },
+  watch: {
+    dropFiles: function (file) {
+      console.log('Dropped file')
+      this.storageRef.child('images/' + file[0].name)
+        .put(file[0])
+        .then(function (snapshot) {
+          console.log('FIle uploaded')
+        })
     }
   },
   mounted () {
@@ -32,6 +74,9 @@ export default {
           this.allPageImages[key].url = url
         })
       })
+    },
+    deleteDropFile (index) {
+      this.dropFiles.splice(index, 1)
     }
   }
 }

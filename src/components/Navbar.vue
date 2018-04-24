@@ -28,6 +28,12 @@
         <router-link
           class="navbar-item"
           to="/posts">Posts</router-link>
+        <router-link
+          class="navbar-item"
+          to="/profiles">Profiles</router-link>
+        <router-link
+          class="navbar-item"
+          to="/profile">Profile</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a
             target="_blank"
@@ -134,23 +140,32 @@
         </div>
       </div>
 
-      <div class="navbar-end">
+      <div
+        v-if="authReady"
+        class="navbar-end">
         <super-navigator/>
-        <b-dropdown position="is-bottom-left">
+        <a
+          v-if="currentUser"
+          @click.prevent="onSignOut"
+          class="navbar-item">Log out</a>
+        <b-dropdown
+          v-if="!currentUser"
+          position="is-bottom-left">
           <a
             class="navbar-item"
             slot="trigger">
-            <span>Login</span>
+            <span>Log in</span>
           </a>
           <b-dropdown-item
             custom
-            style="min-width:300px">
+            style="min-width:350px">
             <form action="">
               <b-field label="Email">
                 <b-input
                   type="email"
                   placeholder="Your email"
-                  required/>
+                  required
+                  v-model="email"/>
               </b-field>
 
               <b-field label="Password">
@@ -158,7 +173,8 @@
                   type="password"
                   password-reveal
                   placeholder="Your password"
-                  required/>
+                  required
+                  v-model="password"/>
               </b-field>
 
               <nav class="level is-mobile">
@@ -166,19 +182,24 @@
                   <b-checkbox>Remember me</b-checkbox>
                 </div>
                 <div class="level-right">
-                  <button class="button is-primary is-bottom-right">Login</button>
+                  <button
+                    class="button is-primary is-bottom-right"
+                    @click.prevent="onSignIn">Log in</button>
+                  <button
+                    class="button is-primary is-bottom-left"
+                    @click.prevent="onSignUp">Register</button>
                 </div>
               </nav>
             </form>
           </b-dropdown-item>
         </b-dropdown>
-
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import SuperNavigator from './SuperNavigator'
 
 export default {
@@ -187,8 +208,16 @@ export default {
   },
   data () {
     return {
-      navActive: false
+      navActive: false,
+      email: '',
+      password: ''
     }
+  },
+  computed: {
+    currentUser () {
+      return this.$store.getters.currentUser
+    },
+    ...mapState({authReady: state => state.user.authReady})
   },
   methods: {
     toggleDropdown (event) {
@@ -196,6 +225,21 @@ export default {
     },
     toggleMenu () {
       this.navActive = !this.navActive
+    },
+    onSignUp () {
+      this.$store.dispatch('signUp', {
+        email: this.email,
+        password: this.password
+      })
+    },
+    onSignIn () {
+      this.$store.dispatch('signIn', {
+        email: this.email,
+        password: this.password
+      })
+    },
+    onSignOut () {
+      this.$store.dispatch('signOut')
     }
   }
 }
@@ -208,7 +252,11 @@ $navactive: #1abc9c;
 }
 
 .navbar.is-transparent a.navbar-item:hover,
-.navbar.is-transparent a.navbar-link:hover, {
+.navbar.is-transparent a.navbar-link:hover {
   color: transparentize($navactive, 0.1) !important;
+}
+
+.dropdown .dropdown-menu .dropdown-content .level .button {
+  margin-left: 6px;
 }
 </style>
