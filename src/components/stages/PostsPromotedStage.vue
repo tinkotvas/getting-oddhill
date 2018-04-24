@@ -9,7 +9,7 @@
       <div class="media-content no-overflow">
         <div class="content">
           <p><strong><router-link :to="'/posts/'+post.id">{{ post.heading }}</router-link></strong><br>
-            {{ (post.message).substring(0,155) }}...</p>
+            <vue-markdown :source="post.message"/></p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left"/>
@@ -32,8 +32,12 @@
 
 <script>
 import { db } from '../../main.js'
+import VueMarkdown from 'vue-markdown'
 
 export default {
+  components: {
+    VueMarkdown
+  },
   computed: {
     promotedPosts () {
       return this.$store.getters.posts
@@ -59,5 +63,9 @@ export default {
 <style scoped>
  .no-overflow {
    overflow: initial
+ }
+ .content{
+   max-height: 10em;
+   overflow: hidden;
  }
 </style>
