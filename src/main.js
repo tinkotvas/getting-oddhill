@@ -49,9 +49,9 @@ Vue.config.productionTip = false
 export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
-  { path: '/posts/add', component: PostsAddPage },
-  { path: '/posts/edit/:id', component: PostEditPage },
-  { path: '/posts/:id', component: PostPage },
+  { path: '/post/add', component: PostsAddPage },
+  { path: '/post/edit/:id', component: PostEditPage },
+  { path: '/post/:id', component: PostPage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }

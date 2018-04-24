@@ -65,11 +65,11 @@ export default {
   watch: {
     post: function () {
       this.editor.setValue(this.post.message)
-      if(this.counter === 0){
-          this.initialValues = Object.assign({},this.post)
-          this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
+      if (this.counter === 0) {
+        this.initialValues = Object.assign({}, this.post)
+        this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
       }
-      this.counter++;
+      this.counter++
     }
   },
   mounted () {
@@ -83,17 +83,17 @@ export default {
       })
     },
     editPost (author, heading, message, topics, promoted) { // <-- and here
-        const editedAt = new Date()
-        let payload = {author, heading, message, topics, promoted}
-        
-        for(let attr in payload){
-            if(payload[attr] === this.initialValues[attr]){
-                delete payload[attr]
-            }
+      const editedAt = new Date()
+      let payload = {author, heading, message, topics, promoted}
+
+      for (let attr in payload) {
+        if (payload[attr] === this.initialValues[attr]) {
+          delete payload[attr]
         }
-        if(Object.keys(payload).length > 0){
-            this.$store.dispatch('editPost', { author, editedAt, heading, message, topics, promoted, id: this.$route.params.id })
-        }
+      }
+      if (Object.keys(payload).length > 0) {
+        this.$store.dispatch('editPost', { author, editedAt, heading, message, topics, promoted, id: this.$route.params.id })
+      }
     },
     initEditor () {
       this.editor = new Editor({
