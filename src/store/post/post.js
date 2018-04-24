@@ -102,6 +102,11 @@ export default {
       }
       )
     },
+    updatePost ({ commit }, payload) {
+      let id = payload.id
+      delete payload.id
+      db.collection('posts').doc(id).update(payload)
+    },
     deletePost ({ commit }, payload) {
       db.collection('posts').doc(payload.id).delete().then(
         commit('deletePost', payload.index)
