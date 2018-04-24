@@ -1,6 +1,8 @@
 <template>
-  <!-- {{ this.$parent.$options.methods.initLoading(this) }} -->
-  <vue-markdown class="content">{{ post.message }}</vue-markdown>
+  <!-- Since vue-markdown -->
+  <vue-markdown
+    :source="post.message"
+    class="content"/>
 </template>
 
 <script>
