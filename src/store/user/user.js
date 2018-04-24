@@ -4,7 +4,8 @@ import { db } from '../../main.js'
 export default {
   state: {
     currentUser: null,
-    authReady: false
+    authReady: false,
+    profileData: null
   },
   mutations: {
     setUser (state, payload) {
@@ -13,6 +14,7 @@ export default {
     setProfileData (state, payload) {
       if (state.currentUser) {
         state.currentUser.profileData = payload
+        state.profileData = payload
       }
     },
     setAuthReady (state, payload) {
@@ -80,6 +82,9 @@ export default {
   getters: {
     currentUser (state) {
       return state.currentUser
+    },
+    profileData (state) {
+      return state.profileData
     }
   }
 }
