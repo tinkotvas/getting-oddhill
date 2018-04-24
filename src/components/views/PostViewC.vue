@@ -2,7 +2,7 @@
   <div class="posts">
     <section class="section">
       <div class="container">
-        <div class="columns">
+        <div class="column">
           <div
             id="stages"
             class="column"

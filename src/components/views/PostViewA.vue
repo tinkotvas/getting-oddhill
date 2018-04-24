@@ -2,6 +2,34 @@
   <div class="posts">
     <section class="section">
       <div class="container">
+        <div class="column">
+          <div
+            id="pages"
+            class="column">
+            <slot/>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+// Stages
+import PostsPage from '../pages/PostsPage'
+
+export default {
+  components: {
+    PostsPage
+  }
+}
+</script>
+
+<!--<template>
+  <div class="posts">
+    <section class="section">
+      <div class="container">
          <div class="container">
           <div
             class="view-btn field is-grouped"
@@ -23,7 +51,7 @@
           <component :is="postsPage">
             <div class="columns">
               <div
-                id="pages"
+                id="posts"
                 class="column">
                 <posts-page/>
               </div>
@@ -33,15 +61,17 @@
       </div>
     </section>
   </div>
-</template>
+</template> -->
 
-<script>
-// Stages
-import PostsPage from '../pages/PostsPage'
+<!-- <script>
+// // Stages
+// import PostsPage from '../pages/PostsPage'
 
-export default {
-  components: {
-    PostsPage
-  }
-}
-</script>
+// export default {
+//   components: {
+//     PostsPage
+//   }
+// }
+// </script>
+
+

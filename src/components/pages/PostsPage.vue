@@ -36,99 +36,103 @@
   </div>
 </template> -->
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="level">
-        <div class="level-left"/>
-        <div class="view-btn level-right">
-          <div class="container">
-            <div
-              class="view-btn field is-grouped"
-              align="right">
-              <p class="control">
-                <a
-                  class="button is-primary"
-                  @click="postsView='post-view-a'">View A</a>
-                <a
-                  class="button is-primary"
-                  @click="postsView='post-view-b'">View B</a>
-                <a
-                  class="button is-primary"
-                  @click="postsView='post-view-c'">View C</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
+  <div class="posts">
+    <b-notification
+    class="content"
       :closable="false"
       ref="postsstage"
       id="posts-stage">
-      <article
-        class="media is-loading"
-        v-for="(post, key) of promotedPosts"
-        :key="key">
-        <!--Left content like img-->
-        <!--Main content -->
-        <div class="media-content no-overflow">
-          <div class="content">
-            <p><strong>{{ post.heading }}</strong><br>
-              {{ (post.message).substring(0,155) }}...</p>
+      <section class="section">
+        <div class="container">
+          <div class="level">
+            <div class="level-left"/>
+            <div class="view-btn level-right">
+              <div class="container">
+                <div
+                  class="view-btn field is-grouped"
+                  align="right">
+                  <p class="control">
+                    <a
+                      class="button is-primary"
+                      @click="postsView='post-view-a'">View A</a>
+                    <a
+                      class="button is-primary"
+                      @click="postsView='post-view-b'">View B</a>
+                    <a
+                      class="button is-primary"
+                      @click="postsView='post-view-c'">View C</a>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <!-- <small>{{ post.author }}</small> -->
-            </div>
-            <div class="level-right">
-              <b-taglist>
-                <router-link
-                  v-for="(topic,key) of post.topics"
-                  :key="key"
-                  class="is-info is-small tag"
-                  :to="'topic?'+topic">
-                  {{ topic }}
-                </router-link>
-              </b-taglist>
-            </div>
-          </nav>
         </div>
-        <!-- <button
-          class="delete"
-          @click="deletePost(key, post.id)"/> -->
-      </article>
-    </div>
+        <keep-alive>
+          <component :is="postsView">
+            <div id="posts">
+              <article
+                class="media is-loading"
+                v-for="(post, key) of promotedPosts"
+                :key="key">
+                <!--Left content like img-->
+                <!--Main content -->
+                <div class="media-content no-overflow">
+                  <div class="content">
+                    <p><strong>{{ post.heading }}</strong><br>
+                      {{ (post.message).substring(0,155) }}...</p>
+                  </div>
+                  <nav class="level is-mobile">
+                    <div class="level-left"/>
+                    <div class="level-right">
+                      <b-taglist>
+                        <router-link
+                          v-for="(topic,key) of post.topics"
+                          :key="key"
+                          class="is-info is-small tag"
+                          :to="'topic?'+topic">
+                          {{ topic }}
+                        </router-link>
+                      </b-taglist>
+                    </div>
+                  </nav>
+                </div>
+              </article>
+            </div>
+          </component>
+        </keep-alive>
 
-    <div class="level">
-      <div class="level-item">
-        <button
-          id="getMoreBtn"
-          class="button"
-          v-if="showMoreButton"
-          @click="getData()">Get more..</button>
-      </div>
-    </div>
+        <div class="level">
+          <div class="level-item">
+            <button
+              id="getMoreBtn"
+              class="button"
+              v-if="showMoreButton"
+              @click="getData()">Get more..</button>
+          </div>
+        </div>
 
-  </section>
+      </section>
+    </b-notification>
+  </div>
 </template>
+
+
+
 
 <script>
 import { db } from '../../main.js'
 // Stages
-import PostsPage from '../pages/PostsPage'
 import PostViewA from '../views/PostViewA'
 import PostViewB from '../views/PostViewB'
 import PostViewC from '../views/PostViewC'
 
 export default {
   components: {
-    PostsPage,
     PostViewA,
     PostViewB,
     PostViewC
   },
-  data() {
+  data () {
     return {
       view: 0,
       allPosts: null,
@@ -142,13 +146,13 @@ export default {
     }
   },
   watch: {
-    newPostChecker: function(d) {
+    newPostChecker: function (d) {
       if (this.newPostCheckerBound) {
         console.log('boom', d)
       }
     }
   },
-  mounted() {
+  mounted () {
     this.getData()
     // watcher
     this.$bind(
@@ -163,16 +167,16 @@ export default {
       })
   },
   methods: {
-    deletePost(key, id) {
+    deletePost (key, id) {
       this.$delete(this.promotedPosts, key)
       this.postRef.doc(id).delete()
     },
-    initLoading() {
+    initLoading () {
       this.loadingComponent = this.$loading.open({
         container: this.$refs.postsstage.$el
       })
     },
-    getData() {
+    getData () {
       let limit = 6
       if (this.isLoading === true) {
         return
@@ -221,4 +225,3 @@ export default {
   overflow: hidden;
 }
 </style>
-
