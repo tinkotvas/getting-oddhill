@@ -14,7 +14,9 @@ export default {
         payload.map(async (post) => {
           post.author =
             typeof post.author === 'object'
-              ? (await post.author.get()).data()
+              ? 'firestore' in post.author
+                ? (await post.author.get()).data()
+                : post.author
               : { username: post.author }
           return post
         })
@@ -68,14 +70,24 @@ export default {
         .limit(payload.limit)
         .get()
         .then((snapshot) => {
-          let posts = []
-          snapshot.forEach((doc) => {
-            let tmp = doc.data()
-            tmp.id = doc.id
-            posts.push(tmp)
+          // let posts = []
+          Promise.all(
+            snapshot.docs.map(async (doc) => {
+              let tmp = doc.data()
+              tmp.id = doc.id
+              // posts.push(tmp)
+              tmp.author =
+                typeof tmp.author === 'object'
+                  ? 'firestore' in tmp.author
+                    ? (await tmp.author.get()).data()
+                    : tmp.author
+                  : { username: tmp.author }
+              return tmp
+            })
+          ).then((posts) => {
+            commit('setPosts', posts)
+            commit('setLastDoc', snapshot.docs.slice(-1)[0])
           })
-          commit('setPosts', posts)
-          commit('setLastDoc', snapshot.docs.slice(-1)[0])
         })
         .catch((err) => {
           console.log('Error getting documents', err)
