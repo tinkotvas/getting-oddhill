@@ -1,8 +1,5 @@
 <template>
   <section>
-    <b-field label="author">
-      <b-input v-model="author"/>
-    </b-field>
 
     <b-field label="heading">
       <b-input v-model="heading"/>
@@ -25,14 +22,11 @@
     <p class="level">
       <button
         class="button"
-        @click="addPost(author, heading, (editor.getValue()), topics, promoted)">Add New Post</button>
+        @click="addPost(heading, (editor.getValue()), topics, promoted)">Add New Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
     </p>
-    <button
-      class="button"
-      @click="boom()">BRUR</button>
   </section>
 </template>
 
@@ -55,7 +49,6 @@ require('tui-editor/dist/tui-editor-extScrollSync.js')
 export default {
   data () {
     return {
-      author: '',
       heading: '',
       message: '',
       topics: [],
@@ -76,9 +69,9 @@ export default {
     })
   },
   methods: {
-    addPost (author, heading, message, topics, promoted) { // <-- and here
+    addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      this.$store.dispatch('addPost', { author, createdAt, heading, message, topics, promoted, vm: this })
+      this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     }
   }
 }

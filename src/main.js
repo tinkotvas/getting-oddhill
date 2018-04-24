@@ -55,6 +55,7 @@ export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
   { path: '/posts/add', component: PostsAddPage },
+  { path: '/posts/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },

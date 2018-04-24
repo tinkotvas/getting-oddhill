@@ -10,10 +10,17 @@ export default {
   },
   mutations: {
     setPosts (state, payload) {
-      Promise.all(payload.map(async (post) => {
-        post.author = typeof post.author === 'object' ? (await post.author.get()).data() : {username: post.author}
-        return post
-      })).then((payload) => {state.posts = payload})
+      Promise.all(
+        payload.map(async (post) => {
+          post.author =
+            typeof post.author === 'object'
+              ? (await post.author.get()).data()
+              : { username: post.author }
+          return post
+        })
+      ).then((payload) => {
+        state.posts = payload
+      })
     },
     setPost (state, payload) {
       state.post = payload
@@ -33,82 +40,145 @@ export default {
   },
   actions: {
     getPost ({ commit }, payload) {
-      db.collection('posts').doc(payload.id).get()
-        .then(snapshot => {
+      db
+        .collection('posts')
+        .doc(payload.id)
+        .get()
+        .then((snapshot) => {
           commit('setPost', snapshot.data())
           commit('setLastDoc', snapshot.doc)
-        }).catch(err => {
+        })
+        .catch((err) => {
           console.log('Error getting documents', err)
         })
     },
     getPosts ({ commit }, payload = {}) {
-      if (!payload.orderBy) { payload.orderBy = 'createdAt' }
-      if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
-      db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).get()
-        .then(snapshot => {
+      if (!payload.orderBy) {
+        payload.orderBy = 'createdAt'
+      }
+      if (!payload.orderIn) {
+        payload.orderIn = 'desc'
+      }
+      if (!payload.limit) {
+        payload.limit = 10
+      }
+      db
+        .collection('posts')
+        .orderBy(payload.orderBy, payload.orderIn)
+        .limit(payload.limit)
+        .get()
+        .then((snapshot) => {
           let posts = []
-          snapshot.forEach(doc => {
+          snapshot.forEach((doc) => {
             let tmp = doc.data()
             tmp.id = doc.id
             posts.push(tmp)
           })
           commit('setPosts', posts)
           commit('setLastDoc', snapshot.docs.slice(-1)[0])
-        }).catch(err => {
+        })
+        .catch((err) => {
           console.log('Error getting documents', err)
         })
     },
     getMorePosts ({ commit }, payload = {}) {
-      if (!payload.orderBy) { payload.orderBy = 'createdAt' }
-      if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
-      db.collection('posts').orderBy(payload.orderBy, payload.orderIn).startAfter(this.getters.lastDoc).limit(payload.limit).get()
-        .then(snapshot => {
-          if (snapshot.docs.length === 0) { return }
+      if (!payload.orderBy) {
+        payload.orderBy = 'createdAt'
+      }
+      if (!payload.orderIn) {
+        payload.orderIn = 'desc'
+      }
+      if (!payload.limit) {
+        payload.limit = 10
+      }
+      db
+        .collection('posts')
+        .orderBy(payload.orderBy, payload.orderIn)
+        .startAfter(this.getters.lastDoc)
+        .limit(payload.limit)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.docs.length === 0) {
+            return
+          }
           let posts = this.getters.posts
-          snapshot.forEach(doc => {
+          snapshot.forEach((doc) => {
             let tmp = doc.data()
             tmp.id = doc.id
             posts.push(tmp)
           })
           commit('setPosts', posts)
           commit('setLastDoc', snapshot.docs.slice(-1)[0])
-        }).catch(err => {
+        })
+        .catch((err) => {
           console.log('Error getting documents', err)
         })
     },
     getPostRealtime ({ commit }, payload) {
-      commit('setRealtimeRef', db.collection('posts').doc(payload.id).onSnapshot(snapshot => {
-        let post = snapshot.data()
-        post.id = snapshot.id
-        commit('setPost', post)
-      }))
+      commit(
+        'setRealtimeRef',
+        db
+          .collection('posts')
+          .doc(payload.id)
+          .onSnapshot((snapshot) => {
+            let post = snapshot.data()
+            post.id = snapshot.id
+            commit('setPost', post)
+          })
+      )
     },
     getPostsRealtime ({ commit }, payload = {}) {
-      if (!payload.orderBy) { payload.orderBy = 'createdAt' }
-      if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 10 }
-      commit('setRealtimeRef', db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit).onSnapshot(snapshot => {
-        let posts = []
-        snapshot.forEach(doc => {
-          let tmp = doc.data()
-          tmp.id = doc.id
-          posts.push(tmp)
-        })
-        commit('setPosts', posts)
-      }))
-    },
-    addPost ({ commit }, payload) {
-      db.collection('posts').add({ author: payload.author, createdAt: payload.createdAt, heading: payload.heading, message: payload.message, topics: payload.topics, promoted: payload.promoted }).then((re) => {
-        payload.vm.$router.push(`/posts/${re.id}`)
+      if (!payload.orderBy) {
+        payload.orderBy = 'createdAt'
       }
+      if (!payload.orderIn) {
+        payload.orderIn = 'desc'
+      }
+      if (!payload.limit) {
+        payload.limit = 10
+      }
+      commit(
+        'setRealtimeRef',
+        db
+          .collection('posts')
+          .orderBy(payload.orderBy, payload.orderIn)
+          .limit(payload.limit)
+          .onSnapshot((snapshot) => {
+            let posts = []
+            snapshot.forEach((doc) => {
+              let tmp = doc.data()
+              tmp.id = doc.id
+              posts.push(tmp)
+            })
+            commit('setPosts', posts)
+          })
       )
+    },
+    addPost ({ commit, state, rootState }, payload) {
+      if (rootState.user.currentUser) {
+        db
+          .collection('posts')
+          .add({
+            author: db.doc('users/' + rootState.user.currentUser),
+            createdAt: payload.createdAt,
+            heading: payload.heading,
+            message: payload.message,
+            topics: payload.topics,
+            promoted: payload.promoted
+          })
+          .then((re) => {
+            payload.vm.$router.push(`/posts/${re.id}`)
+          })
+      } else {
+        console.log('Not logged in!')
+      }
     },
     deletePost ({ commit }, payload) {
-      db.collection('posts').doc(payload.id).delete().then(
-        commit('deletePost', payload.index)
-      )
+      db
+        .collection('posts')
+        .doc(payload.id)
+        .delete()
+        .then(commit('deletePost', payload.index))
     },
     unsubRealtime ({ commit }, payload) {
       commit('unsubRealtimeRef', payload)
