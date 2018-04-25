@@ -188,7 +188,7 @@ export default {
             promoted: payload.promoted
           })
           .then((re) => {
-            payload.vm.$router.push(`/posts/${re.id}`)
+            payload.vm.$router.push(`/post/${re.id}`)
           })
       } else {
         console.log('Not logged in!')
