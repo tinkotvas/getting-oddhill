@@ -26,21 +26,21 @@
             <b-taglist attached>
               <b-tag type="is-dark">Github</b-tag>
               <b-tag type="is-info"><b-icon
-                icon="github-circle"/></b-tag>
+                icon="github-face"/></b-tag>
             </b-taglist>
           </div>
           <div class="control">
             <b-taglist attached>
               <b-tag type="is-dark">Twitter</b-tag>
               <b-tag type="is-info"><b-icon
-                icon="twitter-circle"/></b-tag>
+                icon="twitter"/></b-tag>
             </b-taglist>
           </div>
           <div class="control">
             <b-taglist attached>
               <b-tag type="is-dark">LinkedIn</b-tag>
               <b-tag type="is-info"><b-icon
-                icon="linkedin-box"/></b-tag>
+                icon="linkedin"/></b-tag>
             </b-taglist>
           </div>
 
