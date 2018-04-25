@@ -158,14 +158,6 @@ export default {
         })
         commit('setPosts', posts)
       }))
-    },
-      }
-      if (!payload.orderIn) {
-        payload.orderIn = 'desc'
-      }
-      if (!payload.limit) {
-        payload.limit = 10
-      }
       commit(
         'setRealtimeRef',
         db
