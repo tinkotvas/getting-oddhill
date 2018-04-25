@@ -65,7 +65,7 @@ export default {
       minHeight: '300px',
       height: 'auto',
       exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-      useCommandShortcut: true,
+      useCommandShortcut: true
     })
   },
   methods: {
