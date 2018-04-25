@@ -22,23 +22,23 @@ import { db } from '../../main.js'
 export default {
   data () {
     return {
-      isLoading: false,
-      postRef: db.collection('posts'),
-      latestPosts: []
+      isLoading: false
+    }
+  },
+  computed: {
+    latestPosts: function() {
+      return (this.$store.getters.posts).slice(0,5)
+    }
+  },
+  watch: {
+    latestPosts: function(){
+      this.loadingComponent.close()
     }
   },
   mounted () {
-    const loadingComponent = this.$loading.open({
+    this.loadingComponent = this.$loading.open({
       container: this.isFullPage ? null : this.$refs.latestpuff.$el
     })
-
-    this.$bind('latestPosts', this.postRef.orderBy('createdAt', 'desc').limit(5))
-      .then((doc) => {
-        loadingComponent.close()
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
   }
 }
 </script>
