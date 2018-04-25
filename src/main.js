@@ -26,9 +26,14 @@ import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
 import PostEditPage from './components/pages/PostEditPage'
 
+import VueMoment from 'vue-moment'
+import 'moment/locale/sv'
+import 'moment/locale/en-gb'
+
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueFire)
+Vue.use(VueMoment)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyBU9mexyTAMLNCuRDRGpWk-OHLplQWHqf8',
@@ -41,6 +46,7 @@ firebase.initializeApp({
 })
 
 export const db = firebase.firestore()
+db.settings({timestampsInSnapshots: true})
 export const storage = firebase.storage()
 export const auth = firebase.auth()
 
@@ -52,6 +58,7 @@ export const routes = [
   { path: '/post/add', component: PostsAddPage },
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
+  { path: '/profile/:id', component: ProfilePage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }
