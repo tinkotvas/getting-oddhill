@@ -1,19 +1,12 @@
 <template>
-  <b-notification
+  <div
     class="content"
-    :closable="false"
     ref="latestpuff">
     <h3>LatestPuff</h3>
-
-    <p
-      v-for="(post, key) of latestPosts"
-      :key="key">
-
-      <a href="#">{{ post.heading }}</a>
-
+    <p v-for="(post, key) of latestPosts" :key="key">
+      <router-link :to="`/post/${post.id}`">{{ post.heading }}</router-link>
     </p>
-
-  </b-notification>
+  </div>
 </template>
 
 <script>
@@ -37,7 +30,7 @@ export default {
   },
   mounted () {
     this.loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.latestpuff.$el
+      container: this.isFullPage ? null : this.$refs.latestpuff
     })
   }
 }

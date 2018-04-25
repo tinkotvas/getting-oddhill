@@ -158,22 +158,6 @@ export default {
         })
         commit('setPosts', posts)
       }))
-      commit(
-        'setRealtimeRef',
-        db
-          .collection('posts')
-          .orderBy(payload.orderBy, payload.orderIn)
-          .limit(payload.limit)
-          .onSnapshot((snapshot) => {
-            let posts = []
-            snapshot.forEach((doc) => {
-              let tmp = doc.data()
-              tmp.id = doc.id
-              posts.push(tmp)
-            })
-            commit('setPosts', posts)
-          })
-      )
     },
     addPost ({ commit, state, rootState }, payload) {
       if (rootState.user.currentUser) {
