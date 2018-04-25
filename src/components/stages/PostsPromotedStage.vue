@@ -54,7 +54,7 @@ export default {
       return this.promotedPosts[index].promoted
     },
     getPosts () {
-      this.$store.dispatch('getPostsRealtime', { where:{ value: "promoted", equals: true }})
+      this.$store.dispatch('getPostsRealtime', { where: { value: 'promoted', equals: true }})
     }
   }
 }

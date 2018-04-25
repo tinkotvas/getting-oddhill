@@ -26,12 +26,12 @@ export default {
     }
   },
   computed: {
-    latestPosts: function() {
-      return (this.$store.getters.posts).slice(0,5)
+    latestPosts: function () {
+      return this.$store.getters.posts
     }
   },
   watch: {
-    latestPosts: function(){
+    latestPosts: function () {
       this.loadingComponent.close()
     }
   },
