@@ -16,11 +16,10 @@
             :style="{ left:index * 45 + 'px'}"
             alt="Avatar"
             class="profile-img">
-          <div class="img-tooltip">
-            <span
-              class="tooltip-text"
-              :style="{ left: -25 + index * 45 + 'px'}">{{ profile.name }}</span>
-          </div>
+            <div class="img-tooltip">
+              <span class="tooltip-text"
+              :style="{ left: -5 + index * 45 + 'px'}">{{ profile.name }}</span>
+            </div>
         </div>
       </div>
       <!-- <a href="#">{{ profile.name }}</a> -->
@@ -60,7 +59,7 @@ export default {
 
   .img-tooltip .tooltip-text {
     visibility: hidden;
-    width: 120px;
+    width: 80px;
     background-color: black;
     color: #fff;
     text-align: center;
