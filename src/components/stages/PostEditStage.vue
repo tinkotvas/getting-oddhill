@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-field label="Author">
-      <b-input v-model="post.author"/>
+      <b-input v-model="post.author.username"/>
     </b-field>
 
     <b-field label="Heading">
