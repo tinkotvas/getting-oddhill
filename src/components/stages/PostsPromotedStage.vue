@@ -9,7 +9,8 @@
       <div class="media-content no-overflow">
         <div class="content">
           <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-          <vue-markdown :source="post.message"/></p>
+            <vue-markdown :source="post.message | truncate"/>
+          </p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left"/>
@@ -35,6 +36,11 @@ import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
 
 export default {
+  filters: {
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
+    }
+  },
   components: {
     VueMarkdown
   },
