@@ -1,47 +1,10 @@
-<!--<template>
-  <div id="posts">
-    <section class="section">
-      <div class="container">
-        <div
-          class="view-btn field is-grouped"
-          align="right">
-          <p class="control">
-            <a
-              class="button is-primary"
-              @click="postsView='post-view-a'">View A</a>
-            <a
-              class="button is-primary"
-              @click="postsView='post-view-b'">View B</a>
-            <a
-              class="button is-primary"
-              @click="postsView='post-view-c'">View C</a>
-          </p>
-        </div>
-        <keep-alive>
-          <component :is="postsView">
-            <div class="columns">
-              <div
-                id="stages"
-                class="column">
-                <posts-page/>
-              </div>
-            </div>
-          </component>
-        </keep-alive>
-        <div
-          v-for="(post, key) of allPosts"
-          :key="key"/>
-      </div>
-    </section>
-  </div>
-</template> -->
 <template>
   <div class="posts">
-    <b-notification
+    <div
       class="content"
-      :closable="false"
       ref="postsstage"
       id="posts-stage">
+
       <section class="section">
         <div class="container">
           <div class="level">
@@ -67,23 +30,33 @@
             </div>
           </div>
         </div>
-        <keep-alive>
-         <component :is="postsView" :posts="posts" v-bind="{getMorePosts}"/>
-        </keep-alive>
+      </section>
 
-
-        <div class="level">
-          <div class="level-item">
-            <button
-              id="getMoreBtn"
-              class="button"
-              v-if="showMoreButton"
-              @click="getMorePosts()">Get more..</button>
+      <div class="columns">
+        <div class="column is-10 is-offset-1">
+          <div class="box">
+            <h3><strong>Posts</strong></h3>
+            <keep-alive>
+              <component
+                :is="postsView"
+                :posts="posts"
+                v-bind="{getMorePosts}"/>
+            </keep-alive>
           </div>
         </div>
+      </div>
 
-      </section>
-    </b-notification>
+      <div class="level">
+        <div class="level-item">
+          <button
+            id="getMoreBtn"
+            class="button"
+            v-if="showMoreButton"
+            @click="getMorePosts()">Get more..</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
