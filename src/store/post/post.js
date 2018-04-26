@@ -12,12 +12,7 @@ export default {
     setPosts (state, payload) {
       Promise.all(
         payload.map(async (post) => {
-          post.author =
-            typeof post.author === 'object'
-              ? 'firestore' in post.author
-                ? (await post.author.get()).data()
-                : post.author
-              : { username: post.author }
+          post.author = await getAuthorData(post.author)
           return post
         })
       ).then((payload) => {
@@ -46,9 +41,11 @@ export default {
         .collection('posts')
         .doc(payload.id)
         .get()
-        .then((snapshot) => {
-          commit('setPost', snapshot.data())
-          commit('setLastDoc', snapshot.doc)
+        .then(async (snapshot) => {
+          let post = snapshot.data()
+          post.author = await getAuthorData(post.author)
+          commit('setPost', post)
+          commit('setLastDoc', snapshot)
         })
         .catch((err) => {
           console.log('Error getting documents', err)
@@ -76,12 +73,7 @@ export default {
               let tmp = doc.data()
               tmp.id = doc.id
               // posts.push(tmp)
-              tmp.author =
-                typeof tmp.author === 'object'
-                  ? 'firestore' in tmp.author
-                    ? (await tmp.author.get()).data()
-                    : tmp.author
-                  : { username: tmp.author }
+              tmp.author = await getAuthorData(tmp.author)
               return tmp
             })
           ).then((posts) => {
@@ -205,4 +197,12 @@ export default {
       return state.lastDoc
     }
   }
+}
+
+async function getAuthorData (author) {
+  return typeof author === 'object'
+  ? 'firestore' in author
+    ? (await author.get()).data()
+    : author
+  : { username: author }
 }
