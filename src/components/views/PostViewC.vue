@@ -1,37 +1,46 @@
 <template>
-  <div class="posts">
-    <div
-      id="stages"
-      class="column"
-      style="color: blue">
-      <div id="posts">
+  <div class="columns">
+    <div class="column is-10 is-offset-1">
+      <div class="box">
 
 
-        <article
-          class="media is-loading"
-          v-for="(post, key) of posts"
-          :key="key">
-          <div class="media-content no-overflow">
-            <div class="content">
-              <p><strong>{{ post.heading }}</strong><br>
-                {{ (post.message).substring(0,155) }}...</p>
+        <div class="posts">
+          <div
+            id="pages"
+            class="column">
+            <div id="posts">
+
+
+              <article
+                class="media is-loading"
+                v-for="(post, key) of posts"
+                :key="key">
+              <div class="media-content no-overflow">
+                  <div class="content">
+                      <p><strong>{{ post.heading }}</strong>
+                        {{ (post.message).substring(0,155) }}...</p>
+                    <nav class="level is-mobile">
+                      <div class="level-left"/>
+                      <div class="level-right">
+                        <b-taglist>
+                          <router-link
+                            v-for="(topic,key) of post.topics"
+                            :key="key"
+                            class="is-info is-small tag"
+                            :to="'topic?'+topic">
+                            {{ topic }}
+                          </router-link>
+                        </b-taglist>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+              </article>
+
+
             </div>
-            <nav class="level is-mobile">
-              <div class="level-left"/>
-              <div class="level-right">
-                <b-taglist>
-                  <router-link
-                    v-for="(topic,key) of post.topics"
-                    :key="key"
-                    class="is-info is-small tag"
-                    :to="'topic?'+topic">
-                    {{ topic }}
-                  </router-link>
-                </b-taglist>
-              </div>
-            </nav>
           </div>
-        </article>
+        </div>
 
 
       </div>
@@ -52,6 +61,6 @@ export default {
       type: Array,
       default: () => []
     }
-  },
+  }
 }
 </script>
