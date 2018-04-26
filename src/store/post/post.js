@@ -124,9 +124,10 @@ export default {
         db
           .collection('posts')
           .doc(payload.id)
-          .onSnapshot((snapshot) => {
+          .onSnapshot(async (snapshot) => {
             let post = snapshot.data()
             post.id = snapshot.id
+            post.author = await getAuthorData(post.author)
             commit('setPost', post)
           })
       )
