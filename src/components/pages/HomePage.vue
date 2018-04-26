@@ -3,16 +3,24 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div ref="promoted" class="container">
+          <div
+            ref="promoted"
+            class="container">
             <div class="column">
-              <posts-promoted-stage :posts="posts" class="box"/>
+              <posts-promoted-stage
+                :posts="posts"
+                class="box"/>
             </div>
           </div>
           <div class="column is-3">
             <profiles-puff class="box"/>
             <topics-puff class="box"/>
-            <div ref="puff" class="container">
-              <latest-puff :posts="posts" class="box"/>
+            <div
+              ref="puff"
+              class="container">
+              <latest-puff
+                :posts="posts"
+                class="box"/>
             </div>
           </div>
         </div>
@@ -41,22 +49,22 @@ export default {
       return this.$store.getters.posts
     }
   },
-  mounted: function () {
-    this.getPosts()
-    this.initLoadingOverlay()
-  },
-  watch:{
-    posts:function(){
+  watch: {
+    posts: function () {
       this.load.forEach(el => {
         el.close()
       })
     }
   },
+  mounted: function () {
+    this.getPosts()
+    this.initLoadingOverlay()
+  },
   methods: {
     getPosts () {
       this.$store.dispatch('getPostsRealtime')
     },
-    initLoadingOverlay(){
+    initLoadingOverlay () {
       this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.puff])
     }
   }
@@ -67,6 +75,5 @@ export default {
 .posts-promoted-stage{
   min-height:100px;
 }
-
 
 </style>
