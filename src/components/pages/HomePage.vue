@@ -3,17 +3,17 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div
-            id="stages"
-            class="column">
-            <posts-promoted-stage class="box"/>
+          <div ref="promoted" class="container">
+            <div class="column">
+              <posts-promoted-stage :posts="posts" class="box"/>
+            </div>
           </div>
-          <div
-            id="puffs"
-            class="column is-3">
+          <div class="column is-3">
             <profiles-puff class="box"/>
             <topics-puff class="box"/>
-            <latest-puff class="box"/>
+            <div ref="puff" class="container">
+              <latest-puff :posts="posts" class="box"/>
+            </div>
           </div>
         </div>
       </div>
@@ -35,10 +35,38 @@ export default {
     ProfilesPuff,
     TopicsPuff,
     LatestPuff
+  },
+  computed: {
+    posts () {
+      return this.$store.getters.posts
+    }
+  },
+  mounted: function () {
+    this.getPosts()
+    this.initLoadingOverlay()
+  },
+  watch:{
+    posts:function(){
+      this.load.forEach(el => {
+        el.close()
+      })
+    }
+  },
+  methods: {
+    getPosts () {
+      this.$store.dispatch('getPostsRealtime')
+    },
+    initLoadingOverlay(){
+      this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.puff])
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+.posts-promoted-stage{
+  min-height:100px;
+}
+
 
 </style>

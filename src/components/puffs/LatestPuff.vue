@@ -17,23 +17,11 @@
 import { db } from '../../main.js'
 
 export default {
-  data () {
-    return {
-      isLoading: false
-    }
-  },
+  props:['posts'],
   computed: {
-    latestPosts: function () {
-      return this.$store.getters.posts
+    latestPosts () {
+      return this.posts.slice(0,5)
     }
-  },
-  watch: {
-    latestPosts: function () {
-      this.load.close()
-    }
-  },
-  mounted () {
-    this.load = this.$x.load(this, this.$refs.latestpuff)
   }
 }
 </script>

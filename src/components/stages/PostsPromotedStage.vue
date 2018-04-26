@@ -1,9 +1,9 @@
 <template>
   <div id="promoted-stage">
     <article
-      v-if="isPromoted(key) && promotedPosts"
+      v-if="isPromoted(key) && posts"
       class="media"
-      v-for="(post, key) of promotedPosts"
+      v-for="(post, key) of posts"
       :key="key">
       <!--Main content -->
       <div class="media-content no-overflow">
@@ -44,23 +44,10 @@ export default {
   components: {
     VueMarkdown
   },
-  computed: {
-    promotedPosts () {
-      return this.$store.getters.posts
-    }
-  },
-  mounted: function () {
-    this.getPosts()
-  },
-  destroyed () {
-    this.$store.dispatch('unsubRealtime')
-  },
+  props: ['posts'],
   methods: {
     isPromoted: function (index) {
-      return this.promotedPosts[index].promoted
-    },
-    getPosts () {
-      this.$store.dispatch('getPostsRealtime', { where: { value: 'promoted', equals: true }})
+      return this.posts[index].promoted
     }
   }
 }
