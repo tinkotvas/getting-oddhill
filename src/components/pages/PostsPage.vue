@@ -8,7 +8,10 @@
       <section class="section">
         <div class="container">
           <div class="level">
-            <div class="level-left"/>
+
+            <div class="level-left">
+            </div>
+
             <div class="view-btn level-right">
               <div class="container">
                 <div
@@ -17,34 +20,38 @@
                   <p class="control">
                     <a
                       class="button is-primary"
-                      @click="postsView='post-view-a'">View A</a>
+                      @click="postsView='post-view-a'">A</a>
                     <a
                       class="button is-primary"
-                      @click="postsView='post-view-b'">View B</a>
+                      @click="postsView='post-view-b'">B</a>
                     <a
                       class="button is-primary"
-                      @click="postsView='post-view-c'">View C</a>
+                      @click="postsView='post-view-c'">C</a>
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="field">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Post...">
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <div class="columns">
-        <div class="column is-10 is-offset-1">
-          <div class="box">
-            <h3><strong>Posts</strong></h3>
             <keep-alive>
               <component
                 :is="postsView"
                 :posts="posts"
                 v-bind="{getMorePosts}"/>
             </keep-alive>
-          </div>
-        </div>
-      </div>
+
 
       <div class="level">
         <div class="level-item">
