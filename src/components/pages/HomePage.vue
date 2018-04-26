@@ -1,31 +1,19 @@
 <template>
-  <div id="home">
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div
-            ref="promoted"
-            class="container">
-            <div class="column">
-              <posts-promoted-stage
-                :posts="posts"
-                class="box"/>
-            </div>
-          </div>
-          <div class="column is-3">
-            <profiles-puff class="box"/>
-            <topics-puff class="box"/>
-            <div
-              ref="puff"
-              class="container">
-              <latest-puff
-                :posts="posts"
-                class="box"/>
-            </div>
+  <div id="home" class="section">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div ref="promoted" class="load-overlay">
+          <posts-promoted-stage :posts="posts"/>
+      </div>
+      </div>
+        <div class="column is-3">
+          <profiles-puff class="box"/>
+          <topics-puff class="box"/>
+          <div ref="latestpuff" class="load-overlay box">
+            <latest-puff :posts="posts"/>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
   </div>
 </template>
 
@@ -65,14 +53,15 @@ export default {
       this.$store.dispatch('getPostsRealtime')
     },
     initLoadingOverlay () {
-      this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.puff])
+      this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.latestpuff])
     }
   }
 }
 </script>
 
 <style lang="scss">
-.posts-promoted-stage{
+.load-overlay{
+  position: relative;
   min-height:100px;
 }
 
