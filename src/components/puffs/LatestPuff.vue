@@ -27,13 +27,11 @@ export default {
   },
   watch: {
     latestPosts: function () {
-      this.loadingComponent.close()
+      this.load.close()
     }
   },
   mounted () {
-    this.loadingComponent = this.$loading.open({
-      container: this.$refs.latestpuff
-    })
+    this.load = this.$x.load(this, this.$refs.latestpuff)
   }
 }
 </script>
