@@ -3,7 +3,7 @@
     class="container"
     ref="latestpuff">
     <div class="content">
-    <h3>Latest posts</h3>
+    <h3 ref="latestpuff2">Latest posts</h3>
     <p
       v-for="(post, key) of latestPosts"
       :key="key">

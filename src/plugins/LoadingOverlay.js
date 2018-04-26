@@ -4,10 +4,17 @@ const LoadingOverlay = {
   install: Vue => {
     // We call Vue.mixin() here to inject functionality into all components.
     Vue.prototype.$x = {
-      load (vm, el) {
-        return vm.$loading.open({
-          container: el
-        })
+      load (vm, eles) {
+        let loadingElements = []
+        Array.isArray(eles) ? null : eles = [eles] // eslint-disable-line
+        for (let ele of eles) {
+          loadingElements.push(
+            vm.$loading.open({
+              container: ele
+            })
+          )
+        }
+        return loadingElements.length > 1 ? loadingElements : loadingElements[0]
       }
     }
   }
