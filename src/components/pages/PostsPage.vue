@@ -12,7 +12,7 @@
             <div class="level-left">
             </div>
 
-            <div class="view-btn level-right">
+            <div class="level-right">
               <div class="container">
                 <div
                   class="view-btn field is-grouped"
@@ -25,7 +25,7 @@
                       class="button is-primary"
                       @click="postsView='post-view-b'">B</a>
                     <a
-                      class="button is-primary"
+                      class="rounded button is-primary"
                       @click="postsView='post-view-c'">C</a>
                   </p>
                 </div>
@@ -38,20 +38,24 @@
               <input
                 class="input"
                 type="text"
-                placeholder="Post...">
+                placeholder="Post here...">
+              <router-link
+                class="input-dropdown-btn"
+                to="/post/add">
+                <b-icon
+                  icon="plus-circle"/></router-link>
             </div>
           </div>
 
         </div>
       </section>
 
-            <keep-alive>
-              <component
-                :is="postsView"
-                :posts="posts"
-                v-bind="{getMorePosts}"/>
-            </keep-alive>
-
+      <keep-alive>
+        <component
+          :is="postsView"
+          :posts="posts"
+          v-bind="{getMorePosts}"/>
+      </keep-alive>
 
       <div class="level">
         <div class="level-item">
@@ -115,11 +119,15 @@ export default {
 </script>
 
 <style>
-.view-btn {
+.view-btn{
   float: right;
 }
 
 .no-overflow {
   overflow: hidden;
 }
+.input{
+  width: 800px;
+}
+
 </style>
