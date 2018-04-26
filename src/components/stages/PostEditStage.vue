@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     getPost: function () {
-      if(this.$store.getters.post.id == this.$route.params.id){
+      if (this.$store.getters.post.id == this.$route.params.id) {
         this.setInitialValues()
       } else {
         this.$store.dispatch('getPostRealtime', {
@@ -80,10 +80,10 @@ export default {
         })
       }
     },
-    setInitialValues(){
-        this.editor.setValue(this.post.message)
-        this.initialValues = Object.assign({}, this.post)
-        this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
+    setInitialValues () {
+      this.editor.setValue(this.post.message)
+      this.initialValues = Object.assign({}, this.post)
+      this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },
     editPost (author, heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()

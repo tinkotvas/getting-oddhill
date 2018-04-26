@@ -3,7 +3,9 @@
     class="column"
     :style="{ 'min-height': '200px' }">
     <h1>ProfilePuff</h1>
-    <div class="scaling" :style="{ 'position': 'relative', 'right': '43px' ,'padding-top': '30px'}">
+    <div
+      class="scaling"
+      :style="{ 'position': 'relative', 'right': '43px' ,'padding-top': '30px'}">
       <div
         :style="{ 'display': 'inline' }"
         v-for="(profile, index) of profiles"
@@ -16,7 +18,7 @@
             class="profile-img">
             <div class="img-tooltip">
               <span class="tooltip-text"
-              :style="{ left: -25 + index * 45 + 'px'}">{{ profile.name }}</span>
+              :style="{ left: -5 + index * 45 + 'px'}">{{ profile.name }}</span>
             </div>
         </div>
       </div>
@@ -57,7 +59,7 @@ export default {
 
   .img-tooltip .tooltip-text {
     visibility: hidden;
-    width: 120px;
+    width: 80px;
     background-color: black;
     color: #fff;
     text-align: center;

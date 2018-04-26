@@ -6,7 +6,6 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
-import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -32,7 +31,6 @@ import 'moment/locale/en-gb'
 
 Vue.use(Buefy)
 Vue.use(VueRouter)
-Vue.use(VueFire)
 Vue.use(VueMoment)
 
 firebase.initializeApp({
