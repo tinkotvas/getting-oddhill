@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <b-field label="Author">
+  <section v-if="post">
+    <b-field v-if="post.author" label="Author">
       <b-input v-model="post.author.username"/>
     </b-field>
 
