@@ -13,7 +13,7 @@
             class="column is-3">
             <profiles-puff class="box"/>
             <topics-puff class="box"/>
-            <latest-puff class="box"/>
+            <latest-puff class="box" ref="profilesPuff"/>
           </div>
         </div>
       </div>

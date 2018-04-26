@@ -4,8 +4,7 @@
     :style="{ 'min-height': '200px' }">
     <h1>ProfilePuff</h1>
     <div
-      class="scaling"
-      :style="{ 'position': 'relative', 'right': '43px' ,'padding-top': '30px'}">
+      :style="{ 'position': 'relative', 'right': '43px' ,'padding-top': '30px', 'transform': `scale(${this.scale}`}">
       <div
         :style="{ 'display': 'inline' }"
         v-for="(profile, index) of profiles"
@@ -16,10 +15,11 @@
             :style="{ left:index * 45 + 'px'}"
             alt="Avatar"
             class="profile-img">
-            <div class="img-tooltip">
-              <span class="tooltip-text"
+          <div class="img-tooltip">
+            <span
+              class="tooltip-text"
               :style="{ left: -5 + index * 45 + 'px'}">{{ profile.name }}</span>
-            </div>
+          </div>
         </div>
       </div>
       <!-- <a href="#">{{ profile.name }}</a> -->
@@ -34,7 +34,21 @@ const json = require('@/assets/json/profiles.json')
 export default {
   data () {
     return {
-      profiles: json.profiles
+      profiles: json.profiles,
+      scale: 1
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.resizeAvatars)
+      this.resizeAvatars()
+    })
+  },
+  methods: {
+    resizeAvatars () {
+      let scale = this.$parent.$refs.profilesPuff.$el.clientWidth / 300
+      // console.log(scale)
+      this.scale = scale
     }
   }
 }
@@ -80,10 +94,5 @@ export default {
     visibility: visible;
     top: 120px;
   }
-
-  /* .scaling {
-    transform: scale(0.5);
-
-  } */
 
 </style>
