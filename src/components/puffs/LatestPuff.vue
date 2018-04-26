@@ -1,6 +1,6 @@
 <template>
   <div
-    class="content"
+    class="container"
     ref="latestpuff">
     <h3>LatestPuff</h3>
     <p
@@ -32,7 +32,7 @@ export default {
   },
   mounted () {
     this.loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.latestpuff
+      container: this.$refs.latestpuff
     })
   }
 }
