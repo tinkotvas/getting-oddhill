@@ -1,7 +1,11 @@
 <template>
   <section v-if="post">
-    <b-field v-if="post.author" label="Author">
-      <b-input disabled v-model="post.author.username"/>
+    <b-field
+      v-if="post.author"
+      label="Author">
+      <b-input
+        disabled
+        v-model="post.author.username"/>
     </b-field>
 
     <b-field label="Heading">
@@ -75,7 +79,7 @@ export default {
       if (this.$store.getters.post.id == this.$route.params.id) {
         this.setInitialValues()
       } else {
-        this.$store.dispatch('getPostRealtime', {
+        this.$store.dispatch('getPost', {
           id: this.$route.params.id
         })
       }
