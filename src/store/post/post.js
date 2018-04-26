@@ -101,7 +101,7 @@ export default {
         payload.orderIn = 'desc'
       }
       if (!payload.limit) {
-        payload.limit = 10
+        payload.limit = 1000
       }
       db
         .collection('posts')
@@ -140,31 +140,24 @@ export default {
       )
     },
     getPostsRealtime ({ commit }, payload = {}) {
-      if (!payload.orderBy) {
-        payload.orderBy = 'createdAt'
+      if (!payload.orderBy) { payload.orderBy = 'createdAt' }
+      if (!payload.orderIn) { payload.orderIn = 'desc' }
+      if (!payload.limit) { payload.limit = 1000 }
+      let ref = {}
+      if (payload.where) {
+        ref = db.collection('posts').where(payload.where.value, '==', payload.where.equals).orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
+      } else {
+        ref = db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
       }
-      if (!payload.orderIn) {
-        payload.orderIn = 'desc'
-      }
-      if (!payload.limit) {
-        payload.limit = 10
-      }
-      commit(
-        'setRealtimeRef',
-        db
-          .collection('posts')
-          .orderBy(payload.orderBy, payload.orderIn)
-          .limit(payload.limit)
-          .onSnapshot((snapshot) => {
-            let posts = []
-            snapshot.forEach((doc) => {
-              let tmp = doc.data()
-              tmp.id = doc.id
-              posts.push(tmp)
-            })
-            commit('setPosts', posts)
-          })
-      )
+      commit('setRealtimeRef', ref.onSnapshot(snapshot => {
+        let posts = []
+        snapshot.forEach(doc => {
+          let tmp = doc.data()
+          tmp.id = doc.id
+          posts.push(tmp)
+        })
+        commit('setPosts', posts)
+      }))
     },
     addPost ({ commit, state, rootState }, payload) {
       if (rootState.user.currentUser) {
@@ -179,11 +172,16 @@ export default {
             promoted: payload.promoted
           })
           .then((re) => {
-            payload.vm.$router.push(`/posts/${re.id}`)
+            payload.vm.$router.push(`/post/${re.id}`)
           })
       } else {
         console.log('Not logged in!')
       }
+    },
+    editPost ({ commit }, payload) {
+      let id = payload.id
+      delete payload.id
+      db.collection('posts').doc(id).update(payload)
     },
     deletePost ({ commit }, payload) {
       db

@@ -6,7 +6,6 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
-import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -24,6 +23,7 @@ import StoragePage from './components/pages/StoragePage'
 import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
+import PostEditPage from './components/pages/PostEditPage'
 
 import VueMoment from 'vue-moment'
 import 'moment/locale/sv'
@@ -31,7 +31,6 @@ import 'moment/locale/en-gb'
 
 Vue.use(Buefy)
 Vue.use(VueRouter)
-Vue.use(VueFire)
 Vue.use(VueMoment)
 
 firebase.initializeApp({
@@ -54,8 +53,9 @@ Vue.config.productionTip = false
 export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
-  { path: '/posts/add', component: PostsAddPage },
-  { path: '/posts/:id', component: PostPage },
+  { path: '/post/add', component: PostsAddPage },
+  { path: '/post/edit/:id', component: PostEditPage },
+  { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
   { path: '/profile', component: ProfilePage },
   { path: '/profiles', component: ProfilesPage },

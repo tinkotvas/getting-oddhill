@@ -8,8 +8,9 @@
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p><strong>{{ post.heading }}</strong><br>
-            {{ (post.message).substring(0,155) }}...</p>
+          <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
+            <vue-markdown :source="post.message | truncate"/>
+          </p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left"/>
@@ -32,8 +33,17 @@
 
 <script>
 import { db } from '../../main.js'
+import VueMarkdown from 'vue-markdown'
 
 export default {
+  filters: {
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
+    }
+  },
+  components: {
+    VueMarkdown
+  },
   computed: {
     promotedPosts () {
       return this.$store.getters.posts
@@ -50,7 +60,7 @@ export default {
       return this.promotedPosts[index].promoted
     },
     getPosts () {
-      this.$store.dispatch('getPostsRealtime')
+      this.$store.dispatch('getPostsRealtime', { where: { value: 'promoted', equals: true }})
     }
   }
 }
@@ -60,4 +70,8 @@ export default {
  .no-overflow {
    overflow: initial
  }
+ .content{
+   max-height: 8em;
+   overflow:hidden;
+}
 </style>
