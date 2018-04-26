@@ -2,12 +2,14 @@
   <div
     class="container"
     ref="latestpuff">
-    <h3>LatestPuff</h3>
+    <div class="content">
+    <h3>Latest posts</h3>
     <p
       v-for="(post, key) of latestPosts"
       :key="key">
       <router-link :to="`/post/${post.id}`">{{ post.heading }}</router-link>
     </p>
+    </div>
   </div>
 </template>
 
