@@ -1,8 +1,5 @@
 <template>
   <section>
-    <b-field label="author">
-      <b-input v-model="author"/>
-    </b-field>
 
     <b-field label="heading">
       <b-input v-model="heading"/>
@@ -25,14 +22,11 @@
     <p class="level">
       <button
         class="button"
-        @click="addPost(author, heading, (editor.getValue()), topics, promoted)">Add New Post</button>
+        @click="addPost(heading, (editor.getValue()), topics, promoted)">Add New Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
     </p>
-    <button
-      class="button"
-      @click="boom()">BRUR</button>
   </section>
 </template>
 
@@ -42,14 +36,19 @@ import { db } from '../../main.js'
 require('codemirror/lib/codemirror.css') // codemirror
 require('tui-editor/dist/tui-editor.css') // editor ui
 require('tui-editor/dist/tui-editor-contents.css') // editor content
+require('tui-color-picker/dist/tui-color-picker.css') // color picker
+require('tui-chart/dist/tui-chart.css') // chart
 require('highlight.js/styles/github.css') // code block highlight
-
 var Editor = require('tui-editor')
+require('tui-editor/dist/tui-editor-extUML.js') // extensions
+require('tui-editor/dist/tui-editor-extChart.js')
+require('tui-editor/dist/tui-editor-extTable.js')
+require('tui-editor/dist/tui-editor-extColorSyntax.js')
+require('tui-editor/dist/tui-editor-extScrollSync.js')
 
 export default {
   data () {
     return {
-      author: '',
       heading: '',
       message: '',
       topics: [],
@@ -62,22 +61,17 @@ export default {
       el: document.querySelector('#editSection'),
       initialEditType: 'wysiwyg',
       previewStyle: 'vertical',
-      usageStatistics: 'false'
+      usageStatistics: 'false',
+      minHeight: '300px',
+      height: 'auto',
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+      useCommandShortcut: true
     })
   },
   methods: {
-    addPost (author, heading, message, topics, promoted) { // <-- and here
+    addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      this.$store.dispatch('addPost', { author, createdAt, heading, message, topics, promoted, vm: this })
-      //
-      // db.collection('posts').add({ author, createdAt, heading, message, topics, promoted }).then(() => {
-      //   let url = promoted ? '/' : '/posts'
-      //   this.$router.push(url)
-      // }
-      // )
-    },
-    boom () {
-      console.log(this.editor.getValue())
+      this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     }
   }
 }

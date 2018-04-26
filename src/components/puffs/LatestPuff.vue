@@ -1,19 +1,14 @@
 <template>
-  <b-notification
+  <div
     class="content"
-    :closable="false"
     ref="latestpuff">
     <h3>LatestPuff</h3>
-
     <p
       v-for="(post, key) of latestPosts"
       :key="key">
-
-      <a href="#">{{ post.heading }}</a>
-
+      <router-link :to="`/post/${post.id}`">{{ post.heading }}</router-link>
     </p>
-
-  </b-notification>
+  </div>
 </template>
 
 <script>
@@ -22,23 +17,23 @@ import { db } from '../../main.js'
 export default {
   data () {
     return {
-      isLoading: false,
-      postRef: db.collection('posts'),
-      latestPosts: []
+      isLoading: false
+    }
+  },
+  computed: {
+    latestPosts: function () {
+      return this.$store.getters.posts
+    }
+  },
+  watch: {
+    latestPosts: function () {
+      this.loadingComponent.close()
     }
   },
   mounted () {
-    const loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.latestpuff.$el
+    this.loadingComponent = this.$loading.open({
+      container: this.isFullPage ? null : this.$refs.latestpuff
     })
-
-    this.$bind('latestPosts', this.postRef.orderBy('createdAt', 'desc').limit(5))
-      .then((doc) => {
-        loadingComponent.close()
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
   }
 }
 </script>

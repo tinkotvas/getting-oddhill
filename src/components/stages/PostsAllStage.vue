@@ -12,12 +12,12 @@
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p><strong><router-link :to="'/posts/'+post.id">{{ post.heading }}</router-link></strong><br>
+          <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
             {{ (post.message).substring(0,155) }}...</p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <small>{{ post.author }}</small>
+            <small v-if="post.author && post.author.username">{{ post.author.username }}</small>
           </div>
           <div class="level-right">
             <b-taglist>
