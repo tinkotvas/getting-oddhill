@@ -1,7 +1,11 @@
 <template>
-  <section>
-    <b-field label="Author">
-      <b-input v-model="post.author.username"/>
+  <section v-if="post">
+    <b-field
+      v-if="post.author"
+      label="Author">
+      <b-input
+        disabled
+        v-model="post.author.username"/>
     </b-field>
 
     <b-field label="Heading">
@@ -24,7 +28,7 @@
     <p class="level">
       <button
         class="button"
-        @click="editPost(post.author, post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
+        @click="editPost(post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
       <b-switch v-model="post.promoted">
         Promoted
       </b-switch>
@@ -72,22 +76,22 @@ export default {
   },
   methods: {
     getPost: function () {
-      if(this.$store.getters.post.id == this.$route.params.id){
+      if (this.$store.getters.post.id == this.$route.params.id) {
         this.setInitialValues()
       } else {
-        this.$store.dispatch('getPostRealtime', {
+        this.$store.dispatch('getPost', {
           id: this.$route.params.id
         })
       }
     },
-    setInitialValues(){
-        this.editor.setValue(this.post.message)
-        this.initialValues = Object.assign({}, this.post)
-        this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
+    setInitialValues () {
+      this.editor.setValue(this.post.message)
+      this.initialValues = Object.assign({}, this.post)
+      this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },
-    editPost (author, heading, message, topics, promoted) { // <-- and here
+    editPost (heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
-      let payload = {author, heading, message, topics, promoted}
+      let payload = {heading, message, topics, promoted}
 
       for (let attr in payload) {
         if (payload[attr] === this.initialValues[attr]) {
@@ -95,7 +99,7 @@ export default {
         }
       }
       if (Object.keys(payload).length > 0) {
-        this.$store.dispatch('editPost', { author, editedAt, heading, message, topics, promoted, id: this.$route.params.id })
+        this.$store.dispatch('editPost', { editedAt, heading, message, topics, promoted, id: this.$route.params.id })
         this.$router.push(`/post/${this.$route.params.id}`)
       }
     },

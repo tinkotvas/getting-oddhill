@@ -1,9 +1,9 @@
 <template>
-  <div
-    class="content"
-    ref="latestpuff">
-    <h3>LatestPuff</h3>
-    <p v-for="(post, key) of latestPosts" :key="key">
+  <div class="content">
+    <h3>Latest posts</h3>
+    <p
+      v-for="(post, key) of latestPosts"
+      :key="key">
       <router-link :to="`/post/${post.id}`">{{ post.heading }}</router-link>
     </p>
   </div>
@@ -13,25 +13,11 @@
 import { db } from '../../main.js'
 
 export default {
-  data () {
-    return {
-      isLoading: false,
-      postRef: db.collection('posts'),
-      latestPosts: []
+  props: ['posts'],
+  computed: {
+    latestPosts () {
+      return this.posts.slice(0, 5)
     }
-  },
-  mounted () {
-    this.loadingComponent = this.$loading.open({
-      container: this.isFullPage ? null : this.$refs.latestpuff
-    })
-
-    this.$bind('latestPosts', this.postRef.orderBy('createdAt', 'desc').limit(5))
-      .then((doc) => {
-        loadingComponent.close()
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
-      })
   }
 }
 </script>

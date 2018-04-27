@@ -6,7 +6,6 @@ import Buefy from 'buefy'
 import Vuex from 'vuex'
 import 'mdi/css/materialdesignicons.css'
 
-import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -29,10 +28,11 @@ import PostEditPage from './components/pages/PostEditPage'
 import VueMoment from 'vue-moment'
 import 'moment/locale/sv'
 import 'moment/locale/en-gb'
+import LoadingOverlay from './plugins/LoadingOverlay.js'
 
+Vue.use(LoadingOverlay)
 Vue.use(Buefy)
 Vue.use(VueRouter)
-Vue.use(VueFire)
 Vue.use(VueMoment)
 
 firebase.initializeApp({
