@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <b-notification
     :closable="false"
     ref="postsstage"
@@ -10,7 +10,7 @@
       :key="key">
       <!--Left content like img-->
       <!--Main content -->
-      <div class="media-content no-overflow">
+     <!-- <div class="media-content no-overflow">
         <div class="content">
           <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
             {{ (post.message).substring(0,155) }}...</p>
@@ -47,9 +47,9 @@
       </div>
     </div>
   </b-notification>
-</template>
+</template> -->
 
-<script>
+<!--<script>
 import { db } from '../../main.js'
 
 export default {
@@ -86,7 +86,8 @@ export default {
 }
 
 </script>
-
+-->
+<!--
 <style scoped lang="scss">
 
 .notification{
