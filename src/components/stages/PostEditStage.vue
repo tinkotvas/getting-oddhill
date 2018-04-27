@@ -29,10 +29,22 @@
       <button
         class="button"
         @click="editPost(post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
+       
       <b-switch v-model="post.promoted">
         Promoted
       </b-switch>
     </p>
+    <nav class="level">
+      <div class="level-item has-text-centered"/>
+      <b-message v-if="saveStatus === 'saved'" class="level-item" type="is-success" has-icon>
+        Changes we're saved!
+          <router-link  :to="`/post/${this.$route.params.id}`">Go to post</router-link>
+      </b-message>
+      <b-message v-if="saveStatus === 'nochange'" class="level-item" type="is-warning" has-icon>
+          No changes were made
+      </b-message>
+      <div class="level-item has-text-centered"/>
+      </nav>
   </section>
 </template>
 
@@ -54,8 +66,10 @@ export default {
   props: ['post'],
   data () {
     return {
+      isTrue: true,
       editor: {},
-      initialValues: {}
+      initialValues: {},
+      saveStatus: false
     }
   },
   watch: {
@@ -84,7 +98,9 @@ export default {
       }
       if (Object.keys(payload).length > 0) {
         this.$store.dispatch('editPost', { editedAt, heading, message, topics, promoted, id: this.$route.params.id })
-        this.$router.push(`/post/${this.$route.params.id}`)
+        this.saveStatus = 'saved'
+      }else{
+        this.saveStatus = 'nochange'
       }
     },
     initEditor () {
@@ -105,5 +121,8 @@ export default {
 </script>
 
 <style scoped>
+.message{
+  max-width:400px;
+}
 
 </style>
