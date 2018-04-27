@@ -79,7 +79,5 @@ export default {
 </script>
 
 <style scoped>
-.no-overflow {
-  overflow: initial;
-}
+
 </style>

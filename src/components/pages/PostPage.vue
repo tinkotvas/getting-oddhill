@@ -7,7 +7,7 @@
           ref="section">
           <div class="column is-12-tablet is-8-desktop">
             <!-- alternative to forgetting post when exiting page -->
-            <post-view-stage :post="post"/>
+            <post-stage :post="post"/>
           </div>
         </div>
       </div>
@@ -18,12 +18,12 @@
 <script>
 import { db } from '../../main.js'
 // Stages
-import PostViewStage from '../stages/PostViewStage'
+import PostStage from '../stages/PostStage'
 // Puffs
 
 export default {
   components: {
-    PostViewStage
+    PostStage
   },
   computed: {
     post () {
@@ -36,8 +36,10 @@ export default {
     }
   },
   mounted () {
-    this.getPost()
-    this.initLoading()
+    if (this.$route.params.id != this.post.id) {
+      this.getPost()
+      this.initLoading()
+    }
   },
   destroyed () {
     this.$store.dispatch('unsubRealtime')
