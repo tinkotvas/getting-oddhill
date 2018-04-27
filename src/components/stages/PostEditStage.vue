@@ -67,6 +67,8 @@ require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
+import { storage } from '../../main.js'
+
 export default {
   props: ['post'],
   data () {
@@ -123,6 +125,13 @@ export default {
         this.saveStatus = 'nochange'
       }
     },
+    uploadImage(file,callback){
+      storage.ref().child('images/' + file.name)
+        .put(file)
+        .then((snapshot) => {
+          callback(snapshot.downloadURL, '')
+        })
+    },
     initEditor () {
       this.editor = new Editor({
         el: document.querySelector('#editSection'),
@@ -133,7 +142,12 @@ export default {
         height: 'auto',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
         useCommandShortcut: true,
-        initialValue: this.post.message
+        initialValue: this.post.message,
+        hooks: {
+          'addImageBlobHook': (file, callback) => {
+              var uploadedImageURL = this.uploadImage(file, callback);
+            }
+        }
       })
     }
   }
