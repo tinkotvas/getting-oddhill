@@ -8,7 +8,7 @@ export default {
   mutations: {
     setPostsView (state, payload) {
       state.postsView = payload
-    },
+    }
   },
   actions: {
     savePostsView ({commit}, payload) {

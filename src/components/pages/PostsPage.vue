@@ -19,13 +19,13 @@
                   <p class="control">
                     <a
                       class="button is-primary"
-                      @click="postsView='post-view-a'">A</a>
+                      @click="savePostsView('post-view-a')">A</a>
                     <a
                       class="button is-primary"
-                      @click="postsView='post-view-b'">B</a>
+                      @click="savePostsView('post-view-b')">B</a>
                     <a
                       class="rounded button is-primary"
-                      @click="postsView='post-view-c'">C</a>
+                      @click="savePostsView('post-view-c')">C</a>
                   </p>
                 </div>
               </div>
@@ -86,7 +86,6 @@ export default {
   },
   data () {
     return {
-      postsView: 'post-view-a',
       isLoading: false,
       showMoreButton: true
     }
@@ -94,6 +93,10 @@ export default {
   computed: {
     posts () {
       return this.$store.getters.posts
+    },
+
+    postsView () {
+      return this.$store.getters.postsView
     }
   },
   mounted () {
@@ -113,6 +116,9 @@ export default {
     },
     getMorePosts () {
       this.$store.dispatch('getMorePosts')
+    },
+    savePostsView (value) {
+      this.$store.dispatch('savePostsView', value)
     }
   }
 }
