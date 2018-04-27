@@ -37,7 +37,7 @@
     <nav class="level">
       <div class="level-item has-text-centered"/>
       <b-message v-if="saveStatus === 'saved'" class="level-item" type="is-success" has-icon>
-        Changes we're saved!
+        Changes were saved!
           <router-link  :to="`/post/${this.$route.params.id}`">Go to post</router-link>
       </b-message>
       <b-message v-if="saveStatus === 'nochange'" class="level-item" type="is-warning" has-icon>
