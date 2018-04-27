@@ -54,9 +54,6 @@ export default {
 </script>
 
 <style scoped>
- .no-overflow {
-   overflow: initial
- }
  .content{
    max-height: 8em;
    overflow:hidden;

@@ -59,16 +59,12 @@ export default {
       this.$store.dispatch('getPostsRealtime')
     },
     initLoadingOverlay () {
-      this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.latestpuff])
+      this.load = this.$plugins.load(this, [this.$refs.promoted, this.$refs.latestpuff])
     }
   }
 }
 </script>
 
 <style lang="scss">
-.load-overlay{
-  position: relative;
-  min-height:100px;
-}
 
 </style>
