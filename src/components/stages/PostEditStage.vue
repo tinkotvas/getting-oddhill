@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import { db } from '../../main.js'
-
 require('codemirror/lib/codemirror.css') // codemirror
 require('tui-editor/dist/tui-editor.css') // editor ui
 require('tui-editor/dist/tui-editor-contents.css') // editor content
@@ -55,44 +53,30 @@ require('tui-editor/dist/tui-editor-extScrollSync.js')
 export default {
   data () {
     return {
-      promoted: false,
       editor: {},
       initialValues: {}
     }
   },
-  computed: {
-    post () {
-      return this.$store.getters.post
-    }
-  },
+  props: ['post'],
   watch: {
     post: function () {
+      this.editor.setValue(this.post.message)
       this.setInitialValues()
     }
   },
   mounted () {
     this.initEditor()
-    this.getPost()
+    this.setInitialValues()
   },
   methods: {
-    getPost: function () {
-      if (this.$store.getters.post.id == this.$route.params.id) {
-        this.setInitialValues()
-      } else {
-        this.$store.dispatch('getPost', {
-          id: this.$route.params.id
-        })
-      }
-    },
     setInitialValues () {
-      this.editor.setValue(this.post.message)
+      if(Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
       this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },
     editPost (heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
       let payload = {heading, message, topics, promoted}
-
       for (let attr in payload) {
         if (payload[attr] === this.initialValues[attr]) {
           delete payload[attr]
@@ -112,7 +96,8 @@ export default {
         minHeight: '300px',
         height: 'auto',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-        useCommandShortcut: true
+        useCommandShortcut: true,
+        initialValue: this.post.message
       })
     }
   }
@@ -120,7 +105,5 @@ export default {
 </script>
 
 <style scoped>
-.no-overflow {
-  overflow: initial;
-}
+
 </style>
