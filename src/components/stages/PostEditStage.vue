@@ -118,8 +118,10 @@ export default {
           delete payload[attr]
         }
       }
+      
       if (Object.keys(payload).length > 0) {
-        this.$store.dispatch('editPost', { editedAt, heading, message, topics, promoted, id: this.$route.params.id })
+        Object.assign(payload, { editedAt , id: this.$route.params.id })
+        this.$store.dispatch('editPost', payload)
         this.saveStatus = 'saved'
       }else{
         this.saveStatus = 'nochange'

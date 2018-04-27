@@ -195,6 +195,7 @@ export default {
     editPost ({ commit }, payload) {
       let id = payload.id
       delete payload.id
+      console.log("updagint with",payload)
       db.collection('posts').doc(id).update(payload).then(() => {
         commit('editPost', payload)
       })
