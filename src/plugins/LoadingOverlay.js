@@ -1,6 +1,6 @@
 const LoadingOverlay = {
-  install: Vue => {
-    Vue.prototype.$plugins = {
+  install: (Vue) => {
+    let plugin = {
       load (vm, eles) {
         let loadingElements = []
         let temp = Array.isArray(eles) ? eles : [eles] // eslint-disable-line
@@ -13,6 +13,11 @@ const LoadingOverlay = {
         }
         return Array.isArray(eles) ? loadingElements : loadingElements[0]
       }
+    }
+    if (!Vue.prototype.$plugins) {
+      Vue.prototype.$plugins = plugin
+    } else {
+      Object.assign(Vue.prototype.$plugins, plugin)
     }
   }
 }
