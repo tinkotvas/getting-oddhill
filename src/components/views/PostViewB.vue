@@ -15,22 +15,22 @@
                   v-for="(post, key) of posts"
                   :key="key">
                   <router-link :to="'/post/'+post.id">
-                  <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-                    {{ (post.message).substring(0,155) }}...</p>
-                  <nav class="level is-mobile">
-                    <div class="level-left"/>
-                    <div class="level-right">
-                      <b-taglist>
-                        <router-link
-                          v-for="(topic,key) of post.topics"
-                          :key="key"
-                          class="is-info is-small tag"
-                          :to="'topic?'+topic">
-                          {{ topic }}
-                        </router-link>
-                      </b-taglist>
-                    </div>
-                  </nav>
+                    <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
+                      {{ (post.message).substring(0,155) }}...</p>
+                    <nav class="level is-mobile">
+                      <div class="level-left"/>
+                      <div class="level-right">
+                        <b-taglist>
+                          <router-link
+                            v-for="(topic,key) of post.topics"
+                            :key="key"
+                            class="is-info is-small tag"
+                            :to="'topic?'+topic">
+                            {{ topic }}
+                          </router-link>
+                        </b-taglist>
+                      </div>
+                    </nav>
                   </router-link>
                 </article>
               </div>

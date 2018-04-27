@@ -9,8 +9,7 @@
         <div class="container">
           <div class="level">
 
-            <div class="level-left">
-            </div>
+            <div class="level-left"/>
 
             <div class="level-right">
               <div class="container">
@@ -43,6 +42,7 @@
                 class="input-dropdown-btn"
                 to="/post/add">
                 <b-icon
+                  size="is-medium"
                   icon="plus-circle"/></router-link>
             </div>
           </div>
@@ -128,6 +128,9 @@ export default {
 }
 .input{
   width: 800px;
+}
+b-icon{
+  margin-top: 2px;
 }
 
 </style>
