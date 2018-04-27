@@ -1,7 +1,11 @@
 <template>
   <section v-if="post">
-    <b-field v-if="post.author" label="Author">
-      <b-input disabled v-model="post.author.username"/>
+    <b-field
+      v-if="post.author"
+      label="Author">
+      <b-input
+        disabled
+        v-model="post.author.username"/>
     </b-field>
 
     <b-field label="Heading">
@@ -25,16 +29,26 @@
       <button
         class="button"
         @click="editPost(post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
+       
       <b-switch v-model="post.promoted">
         Promoted
       </b-switch>
     </p>
+    <nav class="level">
+      <div class="level-item has-text-centered"/>
+      <b-message v-if="saveStatus === 'saved'" class="level-item" type="is-success" has-icon>
+        Changes were saved!
+          <router-link  :to="`/post/${this.$route.params.id}`">Go to post</router-link>
+      </b-message>
+      <b-message v-if="saveStatus === 'nochange'" class="level-item" type="is-warning" has-icon>
+          No changes were made
+      </b-message>
+      <div class="level-item has-text-centered"/>
+      </nav>
   </section>
 </template>
 
 <script>
-import { db } from '../../main.js'
-
 require('codemirror/lib/codemirror.css') // codemirror
 require('tui-editor/dist/tui-editor.css') // editor ui
 require('tui-editor/dist/tui-editor-contents.css') // editor content
@@ -49,46 +63,34 @@ require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
 export default {
+  props: ['post'],
   data () {
     return {
-      promoted: false,
+      isTrue: true,
       editor: {},
-      initialValues: {}
-    }
-  },
-  computed: {
-    post () {
-      return this.$store.getters.post
+      initialValues: {},
+      saveStatus: false
     }
   },
   watch: {
     post: function () {
+      this.editor.setValue(this.post.message)
       this.setInitialValues()
     }
   },
   mounted () {
     this.initEditor()
-    this.getPost()
+    this.setInitialValues()
   },
   methods: {
-    getPost: function () {
-      if (this.$store.getters.post.id == this.$route.params.id) {
-        this.setInitialValues()
-      } else {
-        this.$store.dispatch('getPostRealtime', {
-          id: this.$route.params.id
-        })
-      }
-    },
     setInitialValues () {
-      this.editor.setValue(this.post.message)
+      if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
       this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },
     editPost (heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
       let payload = {heading, message, topics, promoted}
-
       for (let attr in payload) {
         if (payload[attr] === this.initialValues[attr]) {
           delete payload[attr]
@@ -96,7 +98,9 @@ export default {
       }
       if (Object.keys(payload).length > 0) {
         this.$store.dispatch('editPost', { editedAt, heading, message, topics, promoted, id: this.$route.params.id })
-        this.$router.push(`/post/${this.$route.params.id}`)
+        this.saveStatus = 'saved'
+      }else{
+        this.saveStatus = 'nochange'
       }
     },
     initEditor () {
@@ -108,7 +112,8 @@ export default {
         minHeight: '300px',
         height: 'auto',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-        useCommandShortcut: true
+        useCommandShortcut: true,
+        initialValue: this.post.message
       })
     }
   }
@@ -116,7 +121,8 @@ export default {
 </script>
 
 <style scoped>
-.no-overflow {
-  overflow: initial;
+.message{
+  max-width:400px;
 }
+
 </style>

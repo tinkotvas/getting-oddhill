@@ -2,7 +2,7 @@
   "profiles":{
     "1":{
       "name": "Batman",
-      "picture": "1.jpg",
+      "picture": "batman.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
@@ -10,7 +10,7 @@
     },
     "2":{
       "name": "Superman",
-      "picture": "2.jpg",
+      "picture": "superman.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
@@ -18,7 +18,7 @@
     },
     "3":{
       "name": "Deadpool",
-      "picture": "3.jpg",
+      "picture": "deadpool.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
@@ -26,7 +26,7 @@
     },
     "4":{
       "name": "Spiderman",
-      "picture": "4.jpg",
+      "picture": "spiderman.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
@@ -34,15 +34,15 @@
     },
     "5":{
       "name": "Thor",
-      "picture": "5.jpg",
+      "picture": "thor.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "6":{
-      "name": "Catwoman",
-      "picture": "6.jpg",
+      "name": "Hulk",
+      "picture": "hulk.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",

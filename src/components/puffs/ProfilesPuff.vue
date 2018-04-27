@@ -16,10 +16,11 @@
             :style="{ left:index * 45 + 'px'}"
             alt="Avatar"
             class="profile-img">
-            <div class="img-tooltip">
-              <span class="tooltip-text"
+          <div class="img-tooltip">
+            <span
+              class="tooltip-text"
               :style="{ left: -5 + index * 45 + 'px'}">{{ profile.name }}</span>
-            </div>
+          </div>
         </div>
       </div>
       <!-- <a href="#">{{ profile.name }}</a> -->

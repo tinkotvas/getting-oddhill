@@ -1,23 +1,25 @@
 <template>
-  <div id="home">
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div
-            id="stages"
-            class="column">
-            <posts-promoted-stage class="box"/>
-          </div>
-          <div
-            id="puffs"
-            class="column is-3">
-            <profiles-puff class="box"/>
-            <topics-puff class="box"/>
-            <latest-puff class="box"/>
-          </div>
+  <div
+    id="home"
+    class="section">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div
+          ref="promoted"
+          class="load-overlay">
+          <posts-promoted-stage :posts="posts"/>
         </div>
       </div>
-    </section>
+      <div class="column is-3">
+        <profiles-puff class="box"/>
+        <topics-puff class="box"/>
+        <div
+          ref="latestpuff"
+          class="load-overlay box">
+          <latest-puff :posts="posts"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,10 +37,34 @@ export default {
     ProfilesPuff,
     TopicsPuff,
     LatestPuff
+  },
+  computed: {
+    posts () {
+      return this.$store.getters.posts
+    }
+  },
+  watch: {
+    posts: function () {
+      this.load.forEach(el => {
+        el.close()
+      })
+    }
+  },
+  mounted: function () {
+    this.getPosts()
+    this.initLoadingOverlay()
+  },
+  methods: {
+    getPosts () {
+      this.$store.dispatch('getPostsRealtime')
+    },
+    initLoadingOverlay () {
+      this.load = this.$plugins.load(this, [this.$refs.promoted, this.$refs.latestpuff])
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

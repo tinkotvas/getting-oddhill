@@ -22,6 +22,9 @@ export default {
     setPost (state, payload) {
       state.post = payload
     },
+    editPost (state, payload) {
+      Object.assign(state.post, payload)
+    },
     setLastDoc (state, payload) {
       state.lastDoc = payload
     },
@@ -174,7 +177,9 @@ export default {
     editPost ({ commit }, payload) {
       let id = payload.id
       delete payload.id
-      db.collection('posts').doc(id).update(payload)
+      db.collection('posts').doc(id).update(payload).then(() => {
+        commit('editPost', payload)
+      })
     },
     deletePost ({ commit }, payload) {
       db
@@ -202,8 +207,8 @@ export default {
 
 async function getAuthorData (author) {
   return typeof author === 'object'
-  ? 'firestore' in author
-    ? (await author.get()).data()
-    : author
-  : { username: author }
+    ? 'firestore' in author
+      ? (await author.get()).data()
+      : author
+    : { username: author }
 }

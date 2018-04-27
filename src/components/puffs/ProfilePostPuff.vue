@@ -3,7 +3,6 @@
     <div class="column is-8">
       <div
         class="content"
-        :closable="false"
         ref="ProfilePostPuff">
         <h3><strong>Inlägg av Batman</strong></h3>
         <div class="columns is-multiline">
