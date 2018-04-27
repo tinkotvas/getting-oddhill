@@ -51,13 +51,13 @@ require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
 export default {
+  props: ['post'],
   data () {
     return {
       editor: {},
       initialValues: {}
     }
   },
-  props: ['post'],
   watch: {
     post: function () {
       this.editor.setValue(this.post.message)
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     setInitialValues () {
-      if(Object.keys(this.post).length === 0) return
+      if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
       this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
     },

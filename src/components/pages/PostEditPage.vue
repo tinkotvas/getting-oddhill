@@ -7,7 +7,9 @@
             id="stages"
             ref="editstage"
             class="column load-overlay">
-            <post-edit-stage :post="post" class="box"/>
+            <post-edit-stage
+              :post="post"
+              class="box"/>
           </div>
         </div>
       </div>
@@ -24,14 +26,14 @@ export default {
   components: {
     PostEditStage
   },
-  methods: {
-    getPost: function () {
-        this.$store.dispatch('getPost', {
-          id: this.$route.params.id
-        })
-    },
-    initLoadingOverlay () {
-      this.load = this.$plugins.load(this, this.$refs.editstage)
+  computed: {
+    post () {
+      return this.$store.getters.post
+    }
+  },
+  watch: {
+    post: function () {
+      this.load.close()
     }
   },
   mounted () {
@@ -40,14 +42,14 @@ export default {
       this.getPost()
     }
   },
-  computed: {
-    post () {
-      return this.$store.getters.post
-    }
-  },
-  watch: {
-    post:function(){
-      this.load.close()
+  methods: {
+    getPost: function () {
+      this.$store.dispatch('getPost', {
+        id: this.$route.params.id
+      })
+    },
+    initLoadingOverlay () {
+      this.load = this.$plugins.load(this, this.$refs.editstage)
     }
   }
 }

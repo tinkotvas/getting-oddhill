@@ -202,8 +202,8 @@ export default {
 
 async function getAuthorData (author) {
   return typeof author === 'object'
-  ? 'firestore' in author
-    ? (await author.get()).data()
-    : author
-  : { username: author }
+    ? 'firestore' in author
+      ? (await author.get()).data()
+      : author
+    : { username: author }
 }
