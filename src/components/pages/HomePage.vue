@@ -66,9 +66,5 @@ export default {
 </script>
 
 <style lang="scss">
-.load-overlay{
-  position: relative;
-  min-height:100px;
-}
 
 </style>

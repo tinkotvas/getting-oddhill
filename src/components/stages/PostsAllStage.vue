@@ -88,9 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.no-overflow {
-  overflow: hidden;
-}
+
 .notification{
   padding:1.25rem;
   min-height:100px;
