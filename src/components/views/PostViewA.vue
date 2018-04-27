@@ -16,9 +16,9 @@
                 v-for="(post, key) of posts"
                 :key="key">
                 <div class="media-content no-overflow">
-                  <div class="content">
-                      <p><strong>{{ post.heading }}</strong><br>
-                        {{ (post.message).substring(0,200) }}...</p>
+                  <div class="content"><router-link :to="'/post/'+post.id">
+                    <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
+                      {{ (post.message).substring(0,200) }}...</p>
                     <nav class="level is-mobile">
                       <div class="level-left"/>
                       <div class="level-right">
@@ -33,6 +33,7 @@
                         </b-taglist>
                       </div>
                     </nav>
+                  </router-link>
                   </div>
                 </div>
               </article>
