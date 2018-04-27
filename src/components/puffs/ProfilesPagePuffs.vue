@@ -2,41 +2,25 @@
   <div class="columns is-centered">
     <div class="column is-8">
       <div class="columns is-multiline">
-
-        <div class="media">
-
-          <div class="column is-3"
-            v-for="(profile, index) of profiles" :key="index">
-              <div>
-                <figure class="media-top">
-
-
-                      <span class="image is-64*64">
-                        <img
-                        :src="require('@/assets/avatar/' + profile.picture)"
-
-                        class="profile-picture">
-                      </span>
-
-                </figure>
-
-                <div class="media-content">
-                  <div class="content">
-                    <span>{{ profile.name }}</span>
-                  </div>
-                </div>
-
+        <div class="column is-3"
+          v-for="(profile, index) of profiles" :key="index">
+          <div>
+            <div class="box">
+              <div class="image">
+                <img
+                :src="require('@/assets/avatar/' + profile.picture)"
+                class="profile-picture">
               </div>
+              <div class="media-content">
+                <div class="content">
+                  <p class="has-text-centered top-space"><strong>{{ profile.name }}</strong></p>
+                  <p class="has-text-centered"><small>{{ profile.title }}</small></p>
+                </div>
+              </div>
+            </div>
           </div>
-
         </div>
-
-
-
-
-
       </div>
-
     </div>
   </div>
 </template>
@@ -45,7 +29,7 @@
 const json = require('../../assets/json/profiles.json')
 
 export default {
-  data () {
+  data() {
     return {
       profiles: json.profiles
     }
@@ -54,5 +38,13 @@ export default {
 </script>
 
 <style>
+.image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 
+.top-space {
+  padding-top: 10px;
+}
 </style>
