@@ -54,4 +54,12 @@ $link-focus-border: $primary;
 @import '~buefy/src/scss/buefy';
 @import "~bulmaswatch/flatly/overrides";
 // @import '~bulmaswatch/darkly/overrides';
+
+.load-overlay{
+  position: relative;
+  min-height:100px;
+}
+.no-overflow {
+  overflow: initial;
+}
 </style>

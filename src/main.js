@@ -28,7 +28,9 @@ import PostEditPage from './components/pages/PostEditPage'
 import VueMoment from 'vue-moment'
 import 'moment/locale/sv'
 import 'moment/locale/en-gb'
+import LoadingOverlay from './plugins/LoadingOverlay.js'
 
+Vue.use(LoadingOverlay)
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueMoment)
