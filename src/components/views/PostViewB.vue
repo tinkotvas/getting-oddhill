@@ -3,7 +3,6 @@
     <div class="column is-10 is-offset-1">
       <div class="box">
 
-
         <div class="posts">
           <div
             id="pages"
@@ -15,7 +14,8 @@
                   class="column is-6"
                   v-for="(post, key) of posts"
                   :key="key">
-                  <p><strong>{{ post.heading }}</strong><br>
+                  <router-link :to="'/post/'+post.id">
+                  <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
                     {{ (post.message).substring(0,155) }}...</p>
                   <nav class="level is-mobile">
                     <div class="level-left"/>
@@ -31,9 +31,9 @@
                       </b-taglist>
                     </div>
                   </nav>
+                  </router-link>
                 </article>
               </div>
-
 
             </div>
           </div>
