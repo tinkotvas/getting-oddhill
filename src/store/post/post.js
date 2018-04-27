@@ -6,9 +6,13 @@ export default {
     posts: [],
     post: {},
     realtimeRef: {},
-    lastDoc: {}
+    lastDoc: {},
+    topics: []
   },
   mutations: {
+    setTopics (state, payload) {
+      state.topics = payload
+    },
     setPosts (state, payload) {
       Promise.all(
         payload.map(async (post) => {
@@ -39,6 +43,20 @@ export default {
     }
   },
   actions: {
+    getTopics ({ commit }, payload) {
+      db
+        .collection('topics')
+        .get()
+        .then(async (snapshot) => {
+          Promise.all(
+            snapshot.docs.map(async (doc) => {
+              return doc.data().topic
+            })
+          ).then((topics) => {
+            commit('setTopics', topics)
+          })
+        })
+    },
     getPost ({ commit }, payload) {
       db
         .collection('posts')
@@ -201,6 +219,9 @@ export default {
     },
     lastDoc (state) {
       return state.lastDoc
+    },
+    topics (state) {
+      return state.topics
     }
   }
 }

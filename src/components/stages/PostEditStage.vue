@@ -13,10 +13,15 @@
     </b-field>
 
     <b-field label="Topics">
-      <b-taginput
-        v-model="post.topics"
-        icon="label"
-        placeholder="Add a topic"/>
+    <b-taginput
+            v-model="post.topics"
+            :data="filteredTopics"
+            autocomplete
+            field="user.first_name"
+            icon="label"
+            placeholder="Add a topic"
+            @typing="getFilteredTopics">
+        </b-taginput>
     </b-field>
 
     <b-field label="Message">
@@ -66,6 +71,7 @@ export default {
   props: ['post'],
   data () {
     return {
+      filteredTopics: [],
       isTrue: true,
       editor: {},
       initialValues: {},
@@ -78,11 +84,25 @@ export default {
       this.setInitialValues()
     }
   },
+  computed: {
+    topics: function(){
+      return this.$store.getters.topics
+    }
+  },
   mounted () {
+    this.$store.dispatch('getTopics')
     this.initEditor()
     this.setInitialValues()
   },
   methods: {
+    getFilteredTopics(text) {
+      this.filteredTopics = this.topics.filter((option) => {
+          return option
+              .toString()
+              .toLowerCase()
+              .indexOf(text.toLowerCase()) >= 0
+      })
+    },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
