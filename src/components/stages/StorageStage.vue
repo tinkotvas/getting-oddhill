@@ -56,11 +56,10 @@ export default {
   },
   watch: {
     dropFiles: function (file) {
-      console.log('Dropped file')
       this.storageRefstorage.ref().child('images/' + file[0].name)
         .put(file[0])
         .then(function (snapshot) {
-          console.log('FIle uploaded')
+          console.log('File uploaded')
         })
     }
   },
