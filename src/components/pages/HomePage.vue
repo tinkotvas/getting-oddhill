@@ -59,7 +59,7 @@ export default {
       this.$store.dispatch('getPostsRealtime')
     },
     initLoadingOverlay () {
-      this.load = this.$x.load(this, [this.$refs.promoted, this.$refs.latestpuff])
+      this.load = this.$plugins.load(this, [this.$refs.promoted, this.$refs.latestpuff])
     }
   }
 }
