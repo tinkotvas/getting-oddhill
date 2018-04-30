@@ -13,10 +13,15 @@
     </b-field>
 
     <b-field label="Topics">
-      <b-taginput
-        v-model="post.topics"
-        icon="label"
-        placeholder="Add a topic"/>
+    <b-taginput
+            v-model="post.topics"
+            :data="filteredTopics"
+            autocomplete
+            field="user.first_name"
+            icon="label"
+            placeholder="Add a topic"
+            @typing="getFilteredTopics">
+        </b-taginput>
     </b-field>
 
     <b-field label="Message">
@@ -62,10 +67,13 @@ require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
+import { storage } from '../../main.js'
+
 export default {
   props: ['post'],
   data () {
     return {
+      filteredTopics: [],
       isTrue: true,
       editor: {},
       initialValues: {},
@@ -78,11 +86,25 @@ export default {
       this.setInitialValues()
     }
   },
+  computed: {
+    topics: function(){
+      return this.$store.getters.topics
+    }
+  },
   mounted () {
+    this.$store.dispatch('getTopics')
     this.initEditor()
     this.setInitialValues()
   },
   methods: {
+    getFilteredTopics(text) {
+      this.filteredTopics = this.topics.filter((option) => {
+          return option
+              .toString()
+              .toLowerCase()
+              .indexOf(text.toLowerCase()) >= 0
+      })
+    },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
@@ -96,12 +118,21 @@ export default {
           delete payload[attr]
         }
       }
+      
       if (Object.keys(payload).length > 0) {
-        this.$store.dispatch('editPost', { editedAt, heading, message, topics, promoted, id: this.$route.params.id })
+        Object.assign(payload, { editedAt , id: this.$route.params.id })
+        this.$store.dispatch('editPost', payload)
         this.saveStatus = 'saved'
       }else{
         this.saveStatus = 'nochange'
       }
+    },
+    uploadImage(file,callback){
+      storage.ref().child('images/' + file.name)
+        .put(file)
+        .then((snapshot) => {
+          callback(snapshot.downloadURL, '')
+        })
     },
     initEditor () {
       this.editor = new Editor({
@@ -113,7 +144,12 @@ export default {
         height: 'auto',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
         useCommandShortcut: true,
-        initialValue: this.post.message
+        initialValue: this.post.message,
+        hooks: {
+          'addImageBlobHook': (file, callback) => {
+              var uploadedImageURL = this.uploadImage(file, callback);
+            }
+        }
       })
     }
   }

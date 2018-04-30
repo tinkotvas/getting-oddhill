@@ -33,7 +33,8 @@ export default {
   },
   watch: {
     post: function () {
-      this.load.close()
+      if (this.$route.params.id != this.post.id)
+        this.load.close()
     }
   },
   mounted () {
