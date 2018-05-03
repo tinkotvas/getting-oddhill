@@ -5,7 +5,7 @@
         <div class="column is-3"
           v-for="(profile, index) of profiles" :key="index">
           <div>
-            <div class="box">
+            <div class="box profile-box">
               <div class="image">
                 <img
                 :src="require('@/assets/avatar/' + profile.picture)"
@@ -39,12 +39,19 @@ export default {
 
 <style>
 .image img {
-  width: 100px;
-  height: 100px;
+  min-width: 100px !important;
+  min-height: 100px;
   border-radius: 50%;
+  display: block;
+  /* display: inline-block;
+  vertical-align: center; */
 }
 
 .top-space {
   padding-top: 10px;
+}
+
+.profile-box {
+  background-color: rgba(152, 226, 248, 0.212);
 }
 </style>
