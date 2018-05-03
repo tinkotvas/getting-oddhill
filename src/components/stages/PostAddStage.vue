@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { db } from '../../main.js'
+import { db, storage } from '../../main.js'
 
 require('codemirror/lib/codemirror.css') // codemirror
 require('tui-editor/dist/tui-editor.css') // editor ui
@@ -57,22 +57,34 @@ export default {
     }
   },
   mounted () {
-    this.editor = new Editor({
-      el: document.querySelector('#editSection'),
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: 'false',
-      minHeight: '300px',
-      height: 'auto',
-      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-      useCommandShortcut: true
-    })
+      this.editor = new Editor({
+        el: document.querySelector('#editSection'),
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+        usageStatistics: 'false',
+        minHeight: '300px',
+        height: 'auto',
+        exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+        useCommandShortcut: true,
+        hooks: {
+          'addImageBlobHook': (file, callback) => {
+              var uploadedImageURL = this.uploadImage(file, callback);
+            }
+        }
+      })
   },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    }
+    },
+    uploadImage(file,callback){
+      storage.ref().child('images/' + file.name)
+        .put(file)
+        .then((snapshot) => {
+          callback(snapshot.downloadURL, '')
+        })
+    },
   }
 }
 
