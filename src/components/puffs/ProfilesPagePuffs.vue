@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-8">
+    <div class="column is-10-widescreen">
       <div class="columns is-multiline">
         <div class="column is-3"
           v-for="(profile, index) of profiles" :key="index">
@@ -39,10 +39,11 @@ export default {
 
 <style>
 .image img {
-  min-width: 100px !important;
-  min-height: 100px;
+/*   min-width: 100px !important;
+  min-height: 100px; */
   border-radius: 50%;
   display: block;
+
   /* display: inline-block;
   vertical-align: center; */
 }
