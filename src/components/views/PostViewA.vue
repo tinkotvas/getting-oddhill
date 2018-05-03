@@ -18,7 +18,7 @@
                 <div class="media-content no-overflow">
                   <div class="content"><router-link :to="'/post/'+post.id">
                     <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-                      {{ (post.message).substring(0,200) }}...</p>
+                    <vue-markdown :source="post.message | truncate"/></p>
                     <nav class="level is-mobile">
                       <div class="level-left"/>
                       <div class="level-right">
@@ -52,10 +52,19 @@
 <script>
 // Stages
 import PostsPage from '../pages/PostsPage'
+import VueMarkdown from 'vue-markdown'
+
 
 export default {
   components: {
-    PostsPage
+    PostsPage,
+    VueMarkdown
+  },
+
+  filters:{
+    truncate: function (value) {
+      return value.substring(0,200) + '...'
+    }
   },
   props: {
     posts: {
