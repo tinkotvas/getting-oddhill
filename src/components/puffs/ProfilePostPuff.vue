@@ -15,7 +15,8 @@
               <span v-if="post.message">
                 <strong>{{ post.heading }}</strong>
                 <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                <br>{{ post.message | truncate }}
+                <br>
+                <vue-markdown :source= "post.message | truncate"/>
               </span>
             </div>
           </div>
@@ -27,8 +28,12 @@
 
 <script>
 import { db } from '../../main.js'
+import VueMarkdown from 'vue-markdown'
 
 export default {
+  components: {
+    VueMarkdown
+  },
   filters: {
     truncate: function (value) {
       return value.substring(0, 300) + '...'
