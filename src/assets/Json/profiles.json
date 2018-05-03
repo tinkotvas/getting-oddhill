@@ -1,48 +1,48 @@
 {
   "profiles":{
     "1":{
-      "name": "Batman",
-      "picture": "batman.jpg",
+      "name": "Queenofpain",
+      "picture": "queen.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "2":{
-      "name": "Superman",
-      "picture": "superman.jpg",
+      "name": "Crystalmaiden",
+      "picture": "crystal.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "3":{
-      "name": "Deadpool",
-      "picture": "deadpool.jpg",
+      "name": "Axe",
+      "picture": "axe.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "4":{
-      "name": "Spiderman",
-      "picture": "spiderman.jpg",
+      "name": "Windrunner",
+      "picture": "wind.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "5":{
-      "name": "Thor",
-      "picture": "thor.jpg",
+      "name": "Drowranger",
+      "picture": "drow.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "6":{
-      "name": "Hulk",
-      "picture": "hulk.jpg",
+      "name": "Sven",
+      "picture": "sven.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",

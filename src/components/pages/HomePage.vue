@@ -11,11 +11,11 @@
         </div>
       </div>
       <div class="column is-3">
-        <profiles-puff class="box"/>
-        <topics-puff class="box"/>
+        <profiles-puff class="box profile-box"/>
+        <topics-puff class="box profile-box"/>
         <div
           ref="latestpuff"
-          class="load-overlay box">
+          class="load-overlay box profile-box">
           <latest-puff :posts="posts"/>
         </div>
       </div>
@@ -66,5 +66,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.profile-box {
+  background-color: rgba(152, 226, 248, 0.212);
+}
 </style>
