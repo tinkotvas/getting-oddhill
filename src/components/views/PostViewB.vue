@@ -1,22 +1,22 @@
 <template>
-  <div class="columns">
-    <div class="column is-10 is-offset-1">
-      <div class="box">
+  <div class="columns is-centered">
+    <div class="column is-10">
 
         <div class="posts">
           <div
-            id="pages"
-            class="column">
-            <div id="posts">
+            id="pages">
+            <div
+              id="posts">
 
               <div class="columns is-multiline">
                 <article
                   class="column is-6"
                   v-for="(post, key) of posts"
                   :key="key">
+                  <div class="box">
                   <router-link :to="'/post/'+post.id">
                     <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-                    <vue-markdown :source="post.message | truncate"/></p>
+                      <vue-markdown :source="post.message | truncate"/></p>
                     <nav class="level is-mobile">
                       <div class="level-left"/>
                       <div class="level-right">
@@ -32,6 +32,7 @@
                       </div>
                     </nav>
                   </router-link>
+                  </div>
                 </article>
               </div>
 
@@ -39,8 +40,6 @@
           </div>
         </div>
 
-
-      </div>
     </div>
   </div>
 </template>
@@ -50,18 +49,18 @@
 import PostsPage from '../pages/PostsPage'
 import VueMarkdown from 'vue-markdown'
 
-
 export default {
   components: {
     PostsPage,
     VueMarkdown
   },
 
-  filter: {
-    truncate: function(value) {
-      return value.substring(0,155) + '...'
+  filters:{
+    truncate: function (value) {
+      return value.substring(0, 150) + '...'
     }
   },
+
   props: {
     posts: {
       type: Array,

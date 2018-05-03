@@ -63,7 +63,7 @@ export default {
 
   filters:{
     truncate: function (value) {
-      return value.substring(0,200) + '...'
+      return value.substring(0,300) + '...'
     }
   },
   props: {
