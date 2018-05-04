@@ -59,7 +59,15 @@ export const routes = [
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
-  { path: '/profile', component: ProfilePage },
+  { path: '/profile',
+    component: ProfilePage,
+    beforeEnter: (to, from, next) => {
+      if (store.getters.currentUser) {
+        next()
+      } else {
+        next('/')
+      }
+    } },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage }
 ]

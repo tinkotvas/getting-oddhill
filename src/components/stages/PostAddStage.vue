@@ -46,6 +46,9 @@ require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
+const uuidv1 = require('uuid/v1')
+const fileRegex = /\.[^.\s]+$/i
+
 export default {
   data () {
     return {
@@ -79,7 +82,8 @@ export default {
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     },
     uploadImage(file,callback){
-      storage.ref().child('images/' + file.name)
+      let fileEnding = fileRegex.exec(file.name)
+      storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
         .put(file)
         .then((snapshot) => {
           callback(snapshot.downloadURL, '')
