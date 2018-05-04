@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="columns is-centered content">
-      <div class="column is-2 box">
+      <div class="column is-2 box profile-box">
         <img
-          :src="require('@/assets/avatar/1.jpg')"
+          :src="require('@/assets/avatar/wind.jpg')"
           class="profile-picture">
-        <section class="box">
+        <section class="">
           <p><strong>Namn : </strong>
             {{ userData.username }}</p>
           <p><strong>Title : </strong>{{ userData.title }}</p>
@@ -15,7 +15,7 @@
         </section>
       </div>
       <div class="column is-5">
-        <h4>Om Batman</h4>
+        <h4>Om {{ userData.username }}</h4>
         <p>{{ userData.bio }}</p>
       </div>
       <div class="column is-1">
@@ -69,6 +69,10 @@ export default {
 <style>
   .profile-picture {
     width: 200px;
-    border: 1px solid #000;
+    border-radius: 50%;
+  }
+
+  .profile-box {
+  background-color: rgba(152, 226, 248, 0.212);
   }
 </style>
