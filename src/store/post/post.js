@@ -229,7 +229,7 @@ export default {
       return state.posts.map((post) => {
         let imageUrl = imageRegex.exec(post.message)
         let text = removeMd(post.message).substring(0, maxCharacters)
-        return Object.assign(post, {message: text, imageUrl: imageUrl})
+        return Object.assign(post, {message: text, imageUrl: (imageUrl && imageUrl[1]) ? imageUrl[1] : null})
       })
     }
   }
