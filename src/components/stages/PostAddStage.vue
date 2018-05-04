@@ -45,6 +45,7 @@ require('tui-editor/dist/tui-editor-extChart.js')
 require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
+var _ = require('lodash')
 
 const uuidv1 = require('uuid/v1')
 const fileRegex = /\.[^.\s]+$/i
@@ -56,7 +57,8 @@ export default {
       message: '',
       topics: [],
       promoted: false,
-      editor: {}
+      editor: {},
+      temp: {}
     }
   },
   mounted () {
@@ -71,23 +73,38 @@ export default {
       useCommandShortcut: true,
       hooks: {
         'addImageBlobHook': (file, callback) => {
+          console.log(file)
           var uploadedImageURL = this.uploadImage(file, callback)
         }
       }
     })
+    Object.assign(this.temp, this.editor)
   },
   methods: {
+    difference (object, base) {
+      function changes (object, base) {
+        return _.transform(object, function (result, value, key) {
+          if (!_.isEqual(value, base[key])) {
+            result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value
+          }
+        })
+      }
+      return changes(object, base)
+    },
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     },
     uploadImage (file, callback) {
-      let fileEnding = fileRegex.exec(file.name)
-      storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
-        .put(file)
-        .then((snapshot) => {
-          callback(snapshot.downloadURL, '')
-        })
+      this.$store.dispatch('addImageToCache', { file, callback })
+      console.log(this.difference(this.editor, this.temp))
+
+      // let fileEnding = fileRegex.exec(file.name)
+      // storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
+      //   .put(file)
+      //   .then((snapshot) => {
+      //     callback(snapshot.downloadURL, '')
+      //   })
     }
   }
 }
