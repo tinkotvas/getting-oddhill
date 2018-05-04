@@ -13,15 +13,14 @@
     </b-field>
 
     <b-field label="Topics">
-    <b-taginput
-            v-model="post.topics"
-            :data="filteredTopics"
-            autocomplete
-            field="user.first_name"
-            icon="label"
-            placeholder="Add a topic"
-            @typing="getFilteredTopics">
-        </b-taginput>
+      <b-taginput
+        v-model="post.topics"
+        :data="filteredTopics"
+        autocomplete
+        field="user.first_name"
+        icon="label"
+        placeholder="Add a topic"
+        @typing="getFilteredTopics"/>
     </b-field>
 
     <b-field label="Message">
@@ -34,22 +33,30 @@
       <button
         class="button"
         @click="editPost(post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
-       
+
       <b-switch v-model="post.promoted">
         Promoted
       </b-switch>
     </p>
     <nav class="level">
       <div class="level-item has-text-centered"/>
-      <b-message v-if="saveStatus === 'saved'" class="level-item" type="is-success" has-icon>
+      <b-message
+        v-if="saveStatus === 'saved'"
+        class="level-item"
+        type="is-success"
+        has-icon>
         Changes were saved!
-          <router-link  :to="`/post/${this.$route.params.id}`">Go to post</router-link>
+        <router-link :to="`/post/${this.$route.params.id}`">Go to post</router-link>
       </b-message>
-      <b-message v-if="saveStatus === 'nochange'" class="level-item" type="is-warning" has-icon>
-          No changes were made
+      <b-message
+        v-if="saveStatus === 'nochange'"
+        class="level-item"
+        type="is-warning"
+        has-icon>
+        No changes were made
       </b-message>
       <div class="level-item has-text-centered"/>
-      </nav>
+    </nav>
   </section>
 </template>
 
@@ -80,15 +87,15 @@ export default {
       saveStatus: false
     }
   },
+  computed: {
+    topics: function () {
+      return this.$store.getters.topics
+    }
+  },
   watch: {
     post: function () {
       this.editor.setValue(this.post.message)
       this.setInitialValues()
-    }
-  },
-  computed: {
-    topics: function(){
-      return this.$store.getters.topics
     }
   },
   mounted () {
@@ -97,12 +104,12 @@ export default {
     this.setInitialValues()
   },
   methods: {
-    getFilteredTopics(text) {
+    getFilteredTopics (text) {
       this.filteredTopics = this.topics.filter((option) => {
-          return option
-              .toString()
-              .toLowerCase()
-              .indexOf(text.toLowerCase()) >= 0
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(text.toLowerCase()) >= 0
       })
     },
     setInitialValues () {
@@ -118,16 +125,16 @@ export default {
           delete payload[attr]
         }
       }
-      
+
       if (Object.keys(payload).length > 0) {
-        Object.assign(payload, { editedAt , id: this.$route.params.id })
+        Object.assign(payload, { editedAt, id: this.$route.params.id })
         this.$store.dispatch('editPost', payload)
         this.saveStatus = 'saved'
-      }else{
+      } else {
         this.saveStatus = 'nochange'
       }
     },
-    uploadImage(file,callback){
+    uploadImage (file, callback) {
       storage.ref().child('images/' + file.name)
         .put(file)
         .then((snapshot) => {
@@ -147,8 +154,8 @@ export default {
         initialValue: this.post.message,
         hooks: {
           'addImageBlobHook': (file, callback) => {
-              var uploadedImageURL = this.uploadImage(file, callback);
-            }
+            var uploadedImageURL = this.uploadImage(file, callback)
+          }
         }
       })
     }

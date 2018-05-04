@@ -64,7 +64,7 @@ export default {
     }
   },
   mounted () {
-    //this.getFileUrls()
+    // this.getFileUrls()
   },
   methods: {
     getFileUrls () {

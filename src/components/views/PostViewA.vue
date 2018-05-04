@@ -3,13 +3,11 @@
     <div class="column is-10 is-offset-1">
       <div class="box">
 
-
         <div class="posts">
           <div
             id="pages"
             class="column">
             <div id="posts">
-
 
               <article
                 class="media is-loading"
@@ -38,11 +36,9 @@
                 </div>
               </article>
 
-
             </div>
           </div>
         </div>
-
 
       </div>
     </div>

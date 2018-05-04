@@ -60,35 +60,35 @@ export default {
     }
   },
   mounted () {
-      this.editor = new Editor({
-        el: document.querySelector('#editSection'),
-        initialEditType: 'wysiwyg',
-        previewStyle: 'vertical',
-        usageStatistics: 'false',
-        minHeight: '300px',
-        height: 'auto',
-        exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-        useCommandShortcut: true,
-        hooks: {
-          'addImageBlobHook': (file, callback) => {
-              var uploadedImageURL = this.uploadImage(file, callback);
-            }
+    this.editor = new Editor({
+      el: document.querySelector('#editSection'),
+      initialEditType: 'wysiwyg',
+      previewStyle: 'vertical',
+      usageStatistics: 'false',
+      minHeight: '300px',
+      height: 'auto',
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+      useCommandShortcut: true,
+      hooks: {
+        'addImageBlobHook': (file, callback) => {
+          var uploadedImageURL = this.uploadImage(file, callback)
         }
-      })
+      }
+    })
   },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     },
-    uploadImage(file,callback){
+    uploadImage (file, callback) {
       let fileEnding = fileRegex.exec(file.name)
       storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
         .put(file)
         .then((snapshot) => {
           callback(snapshot.downloadURL, '')
         })
-    },
+    }
   }
 }
 
