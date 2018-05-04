@@ -38,13 +38,13 @@ import VueMarkdown from 'vue-markdown'
 export default {
   filters: {
     truncate: function (value) {
-      return value.substring(0, 300) + '...'
+      return value.length > 300 ? (value.substring(0, 300) + '...') : value
     }
   },
   components: {
     VueMarkdown
   },
-  props: ['posts', 'summaries'],
+  props: ['posts'],
   methods: {
     isPromoted: function (index) {
       return this.posts[index].promoted

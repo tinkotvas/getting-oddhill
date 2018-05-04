@@ -7,7 +7,7 @@
         <div
           ref="promoted"
           class="load-overlay">
-          <posts-promoted-stage :posts="posts" :summaries="summaries"/>
+          <posts-promoted-stage :posts="summaries"/>
         </div>
       </div>
       <div class="column is-3">
