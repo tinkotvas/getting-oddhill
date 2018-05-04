@@ -15,7 +15,7 @@
                 <div class="box">
                   <h4><strong><router-link
                     :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
-                  <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>Paulina HT</small></span></h4>
+                  <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>{{post.author.username || Anonym}}</small></span></h4>
                   <router-link :to="'/post/'+post.id">
                     <p><vue-markdown :source="post.message | truncate"/></p>
                   </router-link>

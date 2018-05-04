@@ -17,7 +17,7 @@
                   <div class="content">
                     <router-link :to="'/post/'+post.id">
                       <h4><strong>{{ post.heading }}</strong>
-                      <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>Paulina HT</small></span></h4>
+                      <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
                       <p> {{ (post.message).substring(0,155) }}...</p>
                     </router-link>
 
