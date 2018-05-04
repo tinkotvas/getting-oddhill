@@ -61,7 +61,13 @@ export default {
       temp: {}
     }
   },
+  computed: {
+    imageCache: function () {
+      return this.$store.getters.imageCache
+    }
+  },
   mounted () {
+    console.log(this)
     this.editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'wysiwyg',
@@ -73,7 +79,6 @@ export default {
       useCommandShortcut: true,
       hooks: {
         'addImageBlobHook': (file, callback) => {
-          console.log(file)
           var uploadedImageURL = this.uploadImage(file, callback)
         }
       }
@@ -81,36 +86,29 @@ export default {
     Object.assign(this.temp, this.editor)
   },
   methods: {
-    difference (object, base) {
-      function changes (object, base) {
-        return _.transform(object, function (result, value, key) {
-          if (!_.isEqual(value, base[key])) {
-            result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value
-          }
-        })
-      }
-      return changes(object, base)
-    },
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     },
-    uploadImage (file, callback) {
-      this.$store.dispatch('addImageToCache', { file, callback })
-      console.log(this.difference(this.editor, this.temp))
-
-      // let fileEnding = fileRegex.exec(file.name)
-      // storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
-      //   .put(file)
-      //   .then((snapshot) => {
-      //     callback(snapshot.downloadURL, '')
-      //   })
+    uploadImage (file, callback, replacePath = this.replacePath) {
+      this.$store.dispatch('addImageToCache', { file, callback, replacePath })
+    },
+    replacePath (blobPath, storagePath) {
+      let replaced = this.editor.getMarkdown().replace(blobPath, storagePath)
+      this.editor.setMarkdown(replaced)
     }
   }
 }
 
 </script>
 
-<style scoped>
+<style lang="scss">
+
+.tui-editor-contents img {
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
 
 </style>
