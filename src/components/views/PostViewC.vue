@@ -3,25 +3,29 @@
     <div class="column is-10 is-offset-1">
       <div class="box">
 
-
         <div class="posts">
           <div
             id="pages"
             class="column">
             <div id="posts">
 
-
               <article
                 class="media is-loading"
                 v-for="(post, key) of posts"
                 :key="key">
                 <div class="media-content no-overflow">
-                  <div class="content"><router-link :to="'/post/'+post.id">
-                    <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
-                    <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                      {{ (post.message).substring(0,155) }}...</p>
+                  <div class="content">
+                    <router-link :to="'/post/'+post.id">
+                      <h4><strong>{{ post.heading }}</strong>
+                      <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>Paulina HT</small></span></h4>
+                      <p> {{ (post.message).substring(0,155) }}...</p>
+                    </router-link>
+
+
                     <nav class="level is-mobile">
-                      <div class="level-left"/>
+                      <div class="level-left">
+                        <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
+                      </div>
                       <div class="level-right">
                         <b-taglist>
                           <router-link

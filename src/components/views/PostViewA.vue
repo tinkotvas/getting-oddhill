@@ -10,21 +10,23 @@
             class="column">
             <div id="posts">
 
-
               <article
                 class="media is-loading"
                 v-for="(post, key) of posts"
                 :key="key">
                 <div class="media-content no-overflow">
                   <div class="content">
+                    <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong>
+                    <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                    <span><small>Paulina HT</small></span></h4>
                     <router-link :to="'/post/'+post.id">
-                      <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-                       <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                      <vue-markdown :source="post.message | truncate"/></p>
+                      <p><vue-markdown :source="post.message | truncate"/></p>
                     </router-link>
-                    <nav class="level is-mobile">
+                    <nav
+                      class="level is-mobile"
+                      style="margin-top:30px">
                       <div class="level-left">
-
+                        <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
                       </div>
                       <div class="level-right">
                         <b-taglist>
