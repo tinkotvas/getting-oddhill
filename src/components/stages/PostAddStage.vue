@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { db } from '../../main.js'
+import { db, storage } from '../../main.js'
 
 require('codemirror/lib/codemirror.css') // codemirror
 require('tui-editor/dist/tui-editor.css') // editor ui
@@ -46,6 +46,9 @@ require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
 
+const uuidv1 = require('uuid/v1')
+const fileRegex = /\.[^.\s]+$/i
+
 export default {
   data () {
     return {
@@ -57,22 +60,35 @@ export default {
     }
   },
   mounted () {
-    this.editor = new Editor({
-      el: document.querySelector('#editSection'),
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: 'false',
-      minHeight: '300px',
-      height: 'auto',
-      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-      useCommandShortcut: true
-    })
+      this.editor = new Editor({
+        el: document.querySelector('#editSection'),
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+        usageStatistics: 'false',
+        minHeight: '300px',
+        height: 'auto',
+        exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+        useCommandShortcut: true,
+        hooks: {
+          'addImageBlobHook': (file, callback) => {
+              var uploadedImageURL = this.uploadImage(file, callback);
+            }
+        }
+      })
   },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    }
+    },
+    uploadImage(file,callback){
+      let fileEnding = fileRegex.exec(file.name)
+      storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
+        .put(file)
+        .then((snapshot) => {
+          callback(snapshot.downloadURL, '')
+        })
+    },
   }
 }
 
