@@ -47,7 +47,6 @@ export default {
   methods: {
     resizeAvatars () {
       let scale = this.$parent.$refs.profilesPuff.$el.clientWidth / 300
-      // console.log(scale)
       this.scale = scale
     }
   }

@@ -2,7 +2,7 @@
   <nav class="navbar is-transparent">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <h1>Getting Oddhill</h1>
+        <router-link to="/" active-class="" exact-active-class="">Getting Oddhill</router-link>
       </span>
       <div
         class="navbar-burger burger"
