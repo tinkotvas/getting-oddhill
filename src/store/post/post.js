@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 import { db } from '../../main.js'
+import * as removeMd from 'remove-markdown'
 
 export default {
   state: {
@@ -222,6 +223,14 @@ export default {
     },
     topics (state) {
       return state.topics
+    },
+    summaries: state => (maxCharacters = 300) => {
+      const imageRegex = /!\[.*\]\((.+)\)/
+      return state.posts.map((post) => {
+        let imageUrl = imageRegex.exec(post.message)
+        let text = removeMd(post.message.substring(0, maxCharacters))
+        return Object.assign(post, {message: text, imageUrl: imageUrl})
+      })
     }
   }
 }
