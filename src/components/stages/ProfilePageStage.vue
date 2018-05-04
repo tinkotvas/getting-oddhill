@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="columns is-centered content">
-      <div class="column is-2 box profile-box">
-        <img
-          :src="require('@/assets/avatar/wind.jpg')"
-          class="profile-picture">
+      <div class="column is-3 box profile-box is-2-widescreen">
+        <div class="image">
+          <img
+            :src="require('@/assets/avatar/wind.jpg')"
+            class="profile-picture">
+        </div>
         <section class="">
           <p><strong>Namn : </strong>
             {{ userData.username }}</p>
@@ -14,7 +16,7 @@
           <p><strong>Framework : </strong>...</p>
         </section>
       </div>
-      <div class="column is-5">
+      <div class="column is-7">
         <h4>Om {{ userData.username }}</h4>
         <p>{{ userData.bio }}</p>
       </div>
