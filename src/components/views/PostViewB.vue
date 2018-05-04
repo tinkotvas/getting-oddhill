@@ -3,20 +3,22 @@
     <div class="column is-10">
 
         <div class="posts">
-          <div
-            id="pages">
-            <div
-              id="posts">
+          <div id="pages">
+            <div id="posts">
 
               <div class="columns is-multiline">
                 <article
-                  class="column is-6"
+                  class="column is-3-desktop is-6-tablet is-12-mobile"
                   v-for="(post, key) of posts"
                   :key="key">
                   <div class="box">
-                  <router-link :to="'/post/'+post.id">
-                    <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-                      <vue-markdown :source="post.message | truncate"/></p>
+                  <router-link
+                    :to="'/post/'+post.id">
+                    <p><strong><router-link
+                      :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
+                    <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                    <vue-markdown :source="post.message | truncate"/></p>
+                  </router-link>
                     <nav class="level is-mobile">
                       <div class="level-left"/>
                       <div class="level-right">
@@ -31,7 +33,6 @@
                         </b-taglist>
                       </div>
                     </nav>
-                  </router-link>
                   </div>
                 </article>
               </div>
@@ -57,7 +58,7 @@ export default {
 
   filters:{
     truncate: function (value) {
-      return value.substring(0, 150) + '...'
+      return value.substring(0, 300)
     }
   },
 
@@ -66,6 +67,16 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    localTimeSv: function (value) {
+      let date = this.$moment(value)
+      return date.locale('sv').format('dddd Do MMMM YYYY')
+    }
   }
 }
 </script>
+
+<style>
+
+</style>

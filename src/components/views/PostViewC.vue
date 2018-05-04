@@ -18,6 +18,7 @@
                 <div class="media-content no-overflow">
                   <div class="content"><router-link :to="'/post/'+post.id">
                     <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
+                    <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                       {{ (post.message).substring(0,155) }}...</p>
                     <nav class="level is-mobile">
                       <div class="level-left"/>
@@ -61,6 +62,12 @@ export default {
     posts: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    localTimeSv: function (value) {
+      let date = this.$moment(value)
+      return date.locale('sv').format('dddd Do MMMM YYYY')
     }
   }
 }
