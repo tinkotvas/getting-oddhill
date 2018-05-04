@@ -44,7 +44,7 @@ export default {
   components: {
     VueMarkdown
   },
-  props: ['posts'],
+  props: ['posts', 'summaries'],
   methods: {
     isPromoted: function (index) {
       return this.posts[index].promoted

@@ -7,7 +7,7 @@
         <div
           ref="promoted"
           class="load-overlay">
-          <posts-promoted-stage :posts="posts"/>
+          <posts-promoted-stage :posts="posts" :summaries="summaries"/>
         </div>
       </div>
       <div class="column is-3">
@@ -41,6 +41,9 @@ export default {
   computed: {
     posts () {
       return this.$store.getters.posts
+    },
+    summaries () {
+      return this.$store.getters.summaries()
     }
   },
   watch: {
