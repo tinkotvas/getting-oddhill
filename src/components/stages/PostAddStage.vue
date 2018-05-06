@@ -67,7 +67,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this)
     this.editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'wysiwyg',
@@ -79,7 +78,7 @@ export default {
       useCommandShortcut: true,
       hooks: {
         'addImageBlobHook': (file, callback) => {
-          var uploadedImageURL = this.uploadImage(file, callback)
+          this.$store.dispatch('addImageToCache', { file, callback })
         }
       }
     })
@@ -88,10 +87,10 @@ export default {
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
+      for(let image in this.$store.getters.imageCache){
+        message.replace(images[image].blobPath, images[image].storagePath)
+      }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    },
-    uploadImage (file, callback, replacePath = this.replacePath) {
-      this.$store.dispatch('addImageToCache', { file, callback, replacePath })
     },
     replacePath (blobPath, storagePath) {
       let replaced = this.editor.getMarkdown().replace(blobPath, storagePath)

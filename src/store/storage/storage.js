@@ -10,7 +10,6 @@ export default {
   mutations: {
     addToImageCache (state, payload) {
       state.imageCache[payload.name] = payload
-      console.log(state.imageCache)
     },
     setStoragePath (state, payload) {
       state.imageCache[payload.name].storagePath = payload.storagePath
@@ -23,7 +22,6 @@ export default {
       commit('addToImageCache', { name, blobPath })
       if (payload.callback) {
         payload.callback(blobPath, '')
-        console.log("blob path done")
       }
       this.dispatch('uploadToStorage', payload)
     },
@@ -35,7 +33,6 @@ export default {
         .put(payload.file)
         .then((snapshot) => {
           commit('setStoragePath', { name: file.name, storagePath: snapshot.downloadURL })
-          payload.replacePath(this.getters.imageCache[file.name].blobPath, snapshot.downloadURL)
         })
     }
   },
