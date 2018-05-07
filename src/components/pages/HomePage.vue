@@ -43,7 +43,7 @@ export default {
       return this.$store.getters.posts
     },
     summaries () {
-      return this.$store.getters.summaries()
+      return this.$store.getters.summaries(250)
     }
   },
   watch: {
