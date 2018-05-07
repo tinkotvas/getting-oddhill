@@ -1,8 +1,8 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-8">
-      <div class="columns is-multiline">
-        <div class="column is-3"
+    <div class="column is-10-widescreen">
+      <div class="columns is-multiline is-mobile">
+        <div class="column is-12-mobile is-6-tablet is-3-desktop"
           v-for="(profile, index) of profiles" :key="index">
           <div>
             <div class="box profile-box">
@@ -37,14 +37,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .image img {
-  min-width: 100px !important;
-  min-height: 100px;
   border-radius: 50%;
   display: block;
-  /* display: inline-block;
-  vertical-align: center; */
 }
 
 .top-space {
