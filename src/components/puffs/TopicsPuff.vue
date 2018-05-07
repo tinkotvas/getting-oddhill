@@ -8,7 +8,7 @@
       :key="index">
       <router-link
         class="button is-primary is-rounded"
-        :to="'topic?'+ tag.tag"> {{ tag.tag | uppercase }}
+        :to="'/topic/'+ tag.tag"> {{ tag.tag | uppercase }}
       </router-link>
     </div>
 
