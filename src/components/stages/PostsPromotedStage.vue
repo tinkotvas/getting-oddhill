@@ -38,7 +38,11 @@ import VueMarkdown from 'vue-markdown'
 export default {
   filters: {
     truncate: function (value) {
-      return value.length > 300 ? (value.substring(0, 300) + '...') : value
+      let truncated = value.length > 250 ? value.substring(0, 250) : value
+      if (truncated.length >= 250) {
+        truncated = truncated + '...'
+      }
+      return truncated
     }
   },
   components: {
