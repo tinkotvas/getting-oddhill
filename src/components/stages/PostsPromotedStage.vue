@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
  .content{
-   max-height: 8em;
+   max-height: 16em;
    overflow:hidden;
 }
 </style>
