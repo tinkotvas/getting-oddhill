@@ -12,6 +12,17 @@
             <vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
+
+      </div>
+      <div class="media-right"> <div class="level">
+        <div class="level-left"/>
+          <div class="level-right">
+            <figure class="image is-128x128">
+              <img v-if="post.imageUrl" :src="post.imageUrl">
+            </figure>
+          </div>
+        </div>
+
         <nav class="level is-mobile">
           <div class="level-left"/>
           <div class="level-right">
