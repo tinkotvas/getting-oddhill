@@ -12,6 +12,19 @@
             <vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
+
+      </div>
+      <div class="media-right"> <div class="level">
+        <div class="level-left"/>
+          <div class="level-right">
+            <router-link :to="'/post/'+post.id">
+            <figure  class="image is-128x128">
+              <img v-if="post.imageUrl" :src="post.imageUrl">
+            </figure>
+            </router-link>
+          </div>
+        </div>
+
         <nav class="level is-mobile">
           <div class="level-left"/>
           <div class="level-right">
@@ -38,7 +51,11 @@ import VueMarkdown from 'vue-markdown'
 export default {
   filters: {
     truncate: function (value) {
-      return value.substring(0, 300) + '...'
+      let truncated = value.length > 250 ? value.substring(0, 250) : value
+      if (truncated.length >= 250) {
+        truncated = truncated + '...'
+      }
+      return truncated
     }
   },
   components: {
@@ -55,7 +72,12 @@ export default {
 
 <style scoped>
  .content{
-   max-height: 8em;
+   max-height: 16em;
    overflow:hidden;
 }
+  .image img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 </style>

@@ -7,11 +7,11 @@
         <div
           ref="promoted"
           class="load-overlay">
-          <posts-promoted-stage :posts="posts"/>
+          <posts-promoted-stage :posts="summaries"/>
         </div>
       </div>
       <div class="column is-3">
-        <profiles-puff class="box profile-box"/>
+        <profiles-puff ref="profilesPuff" class="box profile-box"/>
         <topics-puff class="box profile-box"/>
         <div
           ref="latestpuff"
@@ -41,6 +41,9 @@ export default {
   computed: {
     posts () {
       return this.$store.getters.posts
+    },
+    summaries () {
+      return this.$store.getters.summaries(250)
     }
   },
   watch: {
