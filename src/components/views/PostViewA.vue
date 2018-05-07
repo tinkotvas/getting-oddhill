@@ -1,7 +1,7 @@
 <template>
   <div class="columns">
     <div class="column is-10 is-offset-1">
-      <div class="box">
+      <div class="box profile-box">
 
 
         <div class="posts">
@@ -86,3 +86,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.profile-box {
+ background-color: rgba(152, 226, 248, 0.212);
+}
+img {
+  height: 200px;
+  width: auto;
+  float: right;
+}
+</style>

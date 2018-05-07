@@ -12,7 +12,7 @@
                 class="column is-3-desktop is-6-tablet is-12-mobile"
                 v-for="(post, key) of posts"
                 :key="key">
-                <div class="box">
+                <div class="box profile-box">
                   <h4><strong><router-link
                     :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
                   <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <span><small>{{post.author.username || Anonym}}</small></span></h4>
@@ -85,6 +85,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ .profile-box {
+ background-color: rgba(152, 226, 248, 0.212);
+}
 
+img{
+  height: 200px;
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
 </style>
