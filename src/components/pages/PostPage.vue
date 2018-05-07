@@ -6,12 +6,12 @@
           class="columns is-centered"
           ref="section">
           <div class="column is-12-tablet is-8-desktop">
-            <!-- alternative to forgetting post when exiting page -->
             <post-stage :post="post"/>
           </div>
+        </div>
+        <div class="columns is-centered">
           <div class="column">
-            <!-- alternative to forgetting post when exiting page -->
-            <post-comments-stage :comments="post.comments"/>
+            <post-comments-stage :comments="comments"/>
           </div>
         </div>
       </div>
@@ -30,6 +30,11 @@ export default {
   components: {
     PostStage,
     PostCommentsStage
+  },
+  data () {
+    return {
+      comments: []
+    }
   },
   computed: {
     post () {
