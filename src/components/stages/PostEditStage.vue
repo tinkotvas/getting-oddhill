@@ -135,7 +135,7 @@ export default {
             console.log("All images not yet uploaded PLACEHOLDER")
             return
           }
-          message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
+          payload.message = payload.message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
         }
         Object.assign(payload, { editedAt, id: this.$route.params.id })
         this.$store.dispatch('editPost', payload)

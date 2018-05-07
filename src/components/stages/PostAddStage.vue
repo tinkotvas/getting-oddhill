@@ -92,7 +92,7 @@ export default {
           console.log("All images not yet uploaded PLACEHOLDER")
           return
         }
-        message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
+        payload.message = payload.message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
       }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     }
