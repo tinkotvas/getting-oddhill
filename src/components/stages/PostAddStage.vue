@@ -88,11 +88,11 @@ export default {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
       for(let image in this.imageCache){
-        if(this.imageCache[image].storagePath) {
+        if(!this.imageCache[image].storagePath) {
           console.log("All images not yet uploaded PLACEHOLDER")
           return
         }
-        message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
+        payload.message = payload.message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
       }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     }
