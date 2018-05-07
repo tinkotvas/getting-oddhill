@@ -9,6 +9,10 @@
             <!-- alternative to forgetting post when exiting page -->
             <post-stage :post="post"/>
           </div>
+          <div class="column">
+            <!-- alternative to forgetting post when exiting page -->
+            <post-comments-stage :comments="post.comments"/>
+          </div>
         </div>
       </div>
     </section>
@@ -19,11 +23,13 @@
 import { db } from '../../main.js'
 // Stages
 import PostStage from '../stages/PostStage'
+import PostCommentsStage from '../stages/PostCommentsStage'
 // Puffs
 
 export default {
   components: {
-    PostStage
+    PostStage,
+    PostCommentsStage
   },
   computed: {
     post () {

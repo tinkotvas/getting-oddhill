@@ -66,6 +66,7 @@ export default {
         .then(async (snapshot) => {
           let post = snapshot.data()
           post.author = await getAuthorData(post.author)
+          post.comments = await getComments(post.comments)
           commit('setPost', post)
           commit('setLastDoc', snapshot)
         })
@@ -150,6 +151,7 @@ export default {
             let post = snapshot.data()
             post.id = snapshot.id
             post.author = await getAuthorData(post.author)
+            post.comments = await getComments(post.comments)
             commit('setPost', post)
           })
       )
@@ -241,4 +243,8 @@ async function getAuthorData (author) {
       ? (await author.get()).data()
       : author
     : { username: author }
+}
+
+async function getComments (comments) {
+  return (await comments.get()).data()
 }
