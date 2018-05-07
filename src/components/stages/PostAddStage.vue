@@ -87,27 +87,23 @@ export default {
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      for(let image in this.$store.getters.imageCache){
-        message.replace(images[image].blobPath, images[image].storagePath)
+      for(let image in this.imageCache){
+        if(this.imageCache[image].storagePath) {
+          console.log("All images not yet uploaded PLACEHOLDER")
+          return
+        }
+        message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
       }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    },
-    replacePath (blobPath, storagePath) {
-      let replaced = this.editor.getMarkdown().replace(blobPath, storagePath)
-      this.editor.setMarkdown(replaced)
     }
-  }
+  },
+  destroyed () {
+    this.$store.dispatch('clearImageCache')
+  } 
 }
 
 </script>
 
 <style lang="scss">
-
-.tui-editor-contents img {
-  -webkit-transition: all 2s ease-in-out;
-  -moz-transition: all 2s ease-in-out;
-  -o-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
-}
 
 </style>

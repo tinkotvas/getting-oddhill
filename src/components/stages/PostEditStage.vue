@@ -90,6 +90,9 @@ export default {
   computed: {
     topics: function () {
       return this.$store.getters.topics
+    },
+    imageCache: function () {
+      return this.$store.getters.imageCache
     }
   },
   watch: {
@@ -127,6 +130,9 @@ export default {
       }
 
       if (Object.keys(payload).length > 0) {
+        for(let image in this.imageCache){
+          message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
+        }
         Object.assign(payload, { editedAt, id: this.$route.params.id })
         this.$store.dispatch('editPost', payload)
         this.saveStatus = 'saved'
@@ -154,11 +160,14 @@ export default {
         initialValue: this.post.message,
         hooks: {
           'addImageBlobHook': (file, callback) => {
-            var uploadedImageURL = this.uploadImage(file, callback)
+            this.$store.dispatch('addImageToCache', { file, callback })
           }
         }
       })
     }
+  },
+  destroyed () {
+    this.$store.dispatch('clearImageCache')
   }
 }
 </script>

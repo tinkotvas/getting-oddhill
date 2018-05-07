@@ -13,6 +13,9 @@ export default {
     },
     setStoragePath (state, payload) {
       state.imageCache[payload.name].storagePath = payload.storagePath
+    },
+    clearImageCache (state, payload) {
+      state.imageCache = {}
     }
   },
   actions: {
@@ -34,6 +37,9 @@ export default {
         .then((snapshot) => {
           commit('setStoragePath', { name: file.name, storagePath: snapshot.downloadURL })
         })
+    },
+    clearImageCache ({ commit }, payload) {
+      commit('clearImageCache')
     }
   },
   getters: {
