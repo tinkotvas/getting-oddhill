@@ -131,6 +131,10 @@ export default {
 
       if (Object.keys(payload).length > 0) {
         for(let image in this.imageCache){
+          if(this.imageCache[image].storagePath) {
+            console.log("All images not yet uploaded PLACEHOLDER")
+            return
+          }
           message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
         }
         Object.assign(payload, { editedAt, id: this.$route.params.id })
