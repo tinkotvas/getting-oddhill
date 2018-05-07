@@ -73,4 +73,9 @@ export default {
    max-height: 16em;
    overflow:hidden;
 }
+  .image img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 </style>
