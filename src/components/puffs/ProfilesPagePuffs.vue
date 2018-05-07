@@ -8,8 +8,8 @@
             <div class="box profile-box">
               <div class="image">
                 <img
-                :src="require('@/assets/avatar/' + profile.picture)"
-                class="profile-picture">
+                  :src="require('@/assets/avatar/' + profile.picture)"
+                  class="profile-picture">
               </div>
               <div class="media-content">
                 <div class="content">
@@ -29,7 +29,7 @@
 const json = require('../../assets/json/profiles.json')
 
 export default {
-  data() {
+  data () {
     return {
       profiles: json.profiles
     }
