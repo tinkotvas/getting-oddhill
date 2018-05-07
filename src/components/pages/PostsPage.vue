@@ -32,8 +32,8 @@
             </div>
           </div>
 
-          <div class="field">
-            <div class="control">
+          <div class="columns">
+            <div class="column is-offset-1">
               <input
                 class="input"
                 type="text"
