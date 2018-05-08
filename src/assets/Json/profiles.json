@@ -1,48 +1,40 @@
 {
   "profiles":{
     "1":{
-      "name": "Queenofpain",
-      "picture": "queen.jpg",
+      "name": "Eva",
+      "picture": "eva.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "2":{
-      "name": "Crystalmaiden",
-      "picture": "crystal.jpg",
+      "name": "Adam",
+      "picture": "adam.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "3":{
-      "name": "Axe",
-      "picture": "axe.jpg",
+      "name": "Tina",
+      "picture": "tina.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "4":{
-      "name": "Windrunner",
-      "picture": "wind.jpg",
+      "name": "Harry",
+      "picture": "harry.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
       "Framework": "Vue"
     },
     "5":{
-      "name": "Drowranger",
-      "picture": "drow.jpg",
-      "title":  "Webbutvecklare",
-      "Language": "JavaScript",
-      "Tool": "GIT",
-      "Framework": "Vue"
-    },
-    "6":{
-      "name": "Sven",
-      "picture": "sven.jpg",
+      "name": "Justin",
+      "picture": "justin.jpg",
       "title":  "Webbutvecklare",
       "Language": "JavaScript",
       "Tool": "GIT",
