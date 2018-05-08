@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .profile-img {
     width: 70px;
     height: 70px;
@@ -78,8 +78,7 @@ export default {
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
+    /* Position the tooltip text! */
     position: absolute;
     z-index: 1;
   }
