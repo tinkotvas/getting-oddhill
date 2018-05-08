@@ -45,6 +45,7 @@ require('tui-editor/dist/tui-editor-extChart.js')
 require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
+var _ = require('lodash')
 
 const uuidv1 = require('uuid/v1')
 const fileRegex = /\.[^.\s]+$/i
@@ -56,44 +57,53 @@ export default {
       message: '',
       topics: [],
       promoted: false,
-      editor: {}
+      editor: {},
+      temp: {}
+    }
+  },
+  computed: {
+    imageCache: function () {
+      return this.$store.getters.imageCache
     }
   },
   mounted () {
-      this.editor = new Editor({
-        el: document.querySelector('#editSection'),
-        initialEditType: 'wysiwyg',
-        previewStyle: 'vertical',
-        usageStatistics: 'false',
-        minHeight: '300px',
-        height: 'auto',
-        exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-        useCommandShortcut: true,
-        hooks: {
-          'addImageBlobHook': (file, callback) => {
-              var uploadedImageURL = this.uploadImage(file, callback);
-            }
+    this.editor = new Editor({
+      el: document.querySelector('#editSection'),
+      initialEditType: 'wysiwyg',
+      previewStyle: 'vertical',
+      usageStatistics: 'false',
+      minHeight: '300px',
+      height: 'auto',
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+      useCommandShortcut: true,
+      hooks: {
+        'addImageBlobHook': (file, callback) => {
+          this.$store.dispatch('addImageToCache', { file, callback })
         }
-      })
+      }
+    })
+    Object.assign(this.temp, this.editor)
   },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
+      for(let image in this.imageCache){
+        if(!this.imageCache[image].storagePath) {
+          console.log("All images not yet uploaded PLACEHOLDER")
+          return
+        }
+        message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
+      }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    },
-    uploadImage(file,callback){
-      let fileEnding = fileRegex.exec(file.name)
-      storage.ref().child('images/' + this.$store.getters.currentUser.id + '/' + uuidv1() + ((fileEnding && fileEnding[0]) ? fileEnding[0] : ''))
-        .put(file)
-        .then((snapshot) => {
-          callback(snapshot.downloadURL, '')
-        })
-    },
-  }
+    }
+  },
+  destroyed () {
+    this.$store.dispatch('clearImageCache')
+  } 
 }
 
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>
