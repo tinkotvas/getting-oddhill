@@ -3,7 +3,7 @@ service cloud.firestore {
     match /posts/{post} {
     	allow read;
       allow create: if request.auth.uid != null;
-      allow update, delete: if resource.data.author == '/users/' + request.auth.uid
+      allow update, delete: if get(resource.data.author).id == request.auth.uid
     }
     match /users/{document=**} {
       allow read;
