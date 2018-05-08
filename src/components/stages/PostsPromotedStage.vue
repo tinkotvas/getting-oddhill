@@ -17,9 +17,11 @@
       <div class="media-right"> <div class="level">
         <div class="level-left"/>
           <div class="level-right">
-            <figure class="image is-128x128">
+            <router-link :to="'/post/'+post.id">
+            <figure  class="image is-128x128">
               <img v-if="post.imageUrl" :src="post.imageUrl">
             </figure>
+            </router-link>
           </div>
         </div>
 
@@ -73,4 +75,9 @@ export default {
    max-height: 16em;
    overflow:hidden;
 }
+  .image img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 </style>

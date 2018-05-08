@@ -1,15 +1,15 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-8">
-      <div class="columns is-multiline">
-        <div class="column is-3"
+    <div class="column is-10-widescreen">
+      <div class="columns is-multiline is-mobile">
+        <div class="column is-12-mobile is-6-tablet is-3-desktop"
           v-for="(profile, index) of profiles" :key="index">
           <div>
             <div class="box profile-box">
               <div class="image">
                 <img
-                :src="require('@/assets/avatar/' + profile.picture)"
-                class="profile-picture">
+                  :src="require('@/assets/avatar/' + profile.picture)"
+                  class="profile-picture">
               </div>
               <div class="media-content">
                 <div class="content">
@@ -29,7 +29,7 @@
 const json = require('../../assets/json/profiles.json')
 
 export default {
-  data() {
+  data () {
     return {
       profiles: json.profiles
     }
@@ -37,14 +37,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .image img {
-  min-width: 100px !important;
-  min-height: 100px;
   border-radius: 50%;
   display: block;
-  /* display: inline-block;
-  vertical-align: center; */
 }
 
 .top-space {

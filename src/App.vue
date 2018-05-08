@@ -48,6 +48,8 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+$tablet: 768px;
+
 /* --- End custom variables --- */
 
 @import '~bulma';
