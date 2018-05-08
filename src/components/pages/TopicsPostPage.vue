@@ -1,9 +1,30 @@
 <template>
-  <div class="section">
-    <div class="container">
+  <div class="topics">
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <input
+              class="input"
+              type="text"
+              placeholder="Sök...">
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <h1>TOPIC POSTS</h1>
+    hej
+    <div class="media-content no-overflow">
+      <div class="content">
+        <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
+          <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+        <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
+        <router-link :to="'/post/'+post.id">
+          <p> {{ post.message | truncate }}</p>
+        </router-link>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -11,7 +32,38 @@
 import { db } from '../../main.js'
 // Stages
 export default {
-
+  filters: {
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
+    }
+  },
+  computed: {
+    posts () {
+      return this.$store.getters.summaries(250)
+    },
+    summaries () {
+      return this.$store.getters.summaries(250)
+    }
+  },
+  methods: {
+    localTimeSv: function (value) {
+      let date = this.$moment(value)
+      return date.locale('sv').format('dddd Do MMMM YYYY')
+    },
+    getPosts () {
+      this.$store.dispatch('getPosts')
+    },
+    getMorePosts () {
+      this.$store.dispatch('getMorePosts')
+    },
+    savePostsView (value) {
+      this.$store.dispatch('savePostsView', value)
+    }
+  }
 }
-
 </script>
+
+<style>
+
+</style>
+
