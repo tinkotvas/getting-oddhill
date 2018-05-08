@@ -11,7 +11,7 @@
         </div>
         <div class="columns is-centered">
           <div class="column">
-            <post-comments-stage :comments="comments"/>
+            <post-comments-stage :comments="comments" :postid="post"/>
           </div>
         </div>
       </div>
@@ -31,14 +31,12 @@ export default {
     PostStage,
     PostCommentsStage
   },
-  data () {
-    return {
-      comments: []
-    }
-  },
   computed: {
     post () {
       return this.$store.getters.post
+    },
+    comments () {
+      return this.$store.getters.comments
     }
   },
   watch: {
@@ -50,6 +48,7 @@ export default {
     if (this.$route.params.id != this.post.id) {
       this.getPost()
       this.initLoading()
+      this.loadComments()
     }
   },
   destroyed () {
@@ -66,6 +65,9 @@ export default {
       this.loadingComponent = this.$loading.open({
         container: this.$refs.section
       })
+    },
+    loadComments () {
+      this.$store.dispatch('getComments', { postid: this.$route.params.id } )
     }
   }
 }

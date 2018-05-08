@@ -34,7 +34,27 @@
 
 <script>
 export default {
-  props: ['comments']
+  props: ['comments'],
+  computed: {
+    //   sortedComments () {
+    //       return this.comments.sort(function(a, b){
+    //           return a[createdAt] - b[createdAt] || a[parent] - a[parent]
+    //       })
+    //   }
+  },
+  watch: {
+    //   sortedComments (){
+    //       console.log(this.sortedComments)
+    //   }
+  },
+  methods: {
+      addComment(){
+
+
+          //this.$store.dispatch('addComment', { createdAt: new Date(), })
+
+      }
+  }
 }
 
 </script>
