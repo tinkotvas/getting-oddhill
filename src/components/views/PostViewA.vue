@@ -6,7 +6,7 @@
           <div
             id="pages"
             class="column">
-            <slot/>
+            <div id="posts">
 
               <article
                 class="level media is-loading"
@@ -63,13 +63,15 @@
         </div>
 
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
 // Stages
 import PostsPage from '../pages/PostsPage'
+import VueMarkdown from 'vue-markdown'
+
 
 export default {
   components: {

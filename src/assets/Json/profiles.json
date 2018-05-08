@@ -1,24 +1,44 @@
 {
   "profiles":{
     "1":{
-      "name": "Adam",
-      "picture": "1.jpg"
+      "name": "Eva",
+      "picture": "eva.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "2":{
-      "name": "Anna",
-      "picture": "2.jpg"
+      "name": "Adam",
+      "picture": "adam.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "3":{
-      "name": "Calle",
-      "picture": "3.jpg"
+      "name": "Tina",
+      "picture": "tina.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "4":{
-      "name": "Daniel",
-      "picture": "4.jpg"
+      "name": "Harry",
+      "picture": "harry.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     },
     "5":{
-      "name": "Sussan",
-      "picture": "5.jpg"
+      "name": "Justin",
+      "picture": "justin.jpg",
+      "title":  "Webbutvecklare",
+      "Language": "JavaScript",
+      "Tool": "GIT",
+      "Framework": "Vue"
     }
   }
 }
