@@ -72,7 +72,6 @@
 import PostsPage from '../pages/PostsPage'
 import VueMarkdown from 'vue-markdown'
 
-
 export default {
   components: {
     PostsPage,
@@ -160,3 +159,21 @@ img {
 // </script>
 
 
+
+<style scoped>
+
+.profile-box {
+ background-color: rgba(152, 226, 248, 0.212);
+}
+img {
+  height: 200px;
+  width: auto;
+  float: right;
+}
+
+.level-item{
+  align-self: flex-end;
+  justify-content: flex-start;
+
+}
+</style>
