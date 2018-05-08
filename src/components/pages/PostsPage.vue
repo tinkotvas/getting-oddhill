@@ -92,7 +92,7 @@ export default {
   },
   computed: {
     posts () {
-      return this.$store.getters.posts
+      return this.$store.getters.summaries(250)
     },
 
     postsView () {
