@@ -6,8 +6,10 @@
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "deploy-functions": "firebase deploy --only functions",
+    "deploy-rules": "firebase deploy --only firestore:rules"
+
   },
   "dependencies": {
     "firebase-admin": "~5.12.0",

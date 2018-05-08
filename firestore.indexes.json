@@ -1,0 +1,30 @@
+{
+  "indexes": [
+    {
+      "collectionId": "posts",
+      "fields": [
+        {
+          "fieldPath": "promoted",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "mode": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        {
+          "fieldPath": "author",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "mode": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
