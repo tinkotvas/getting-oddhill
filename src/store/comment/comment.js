@@ -7,6 +7,9 @@ export default {
   mutations: {
     setComments (state, payload) {
       state.comments = payload
+    },
+    addComment (state, payload) {
+      state.comments.push(payload)
     }
   },
   actions: {
@@ -16,31 +19,40 @@ export default {
         .collection('comments')
         .where('post', '==', db.doc('posts/' + payload.postid))
         .get()
-        .then(async (snapshot) => {
+        .then(async snapshot => {
           Promise.all(
-            snapshot.docs.map(async (doc) => {
+            snapshot.docs.map(async doc => {
               let tmp = doc.data()
               tmp.post = tmp.post.id
               tmp.author = tmp.author.id
               tmp.parent = tmp.parent ? tmp.parent.id : delete tmp.parent
               return tmp
             })
-          ).then((comments) => {
+          ).then(comments => {
             commit('setComments', comments)
           })
         })
     },
-    addComment ({ commit }, payload) {
+    addComment ({ commit, rootState }, payload) {
       db
-        .collection('posts')
+        .collection('comments')
         .add({
-          author: db.doc('post/' + payload.postid),
+          author: db.doc('users/' + rootState.user.currentUser.id),
           createdAt: payload.createdAt,
           body: payload.body,
-          topics: payload.topics
+          parent: payload.parent
+            ? db.doc('comments/' + payload.parentId)
+            : null,
+          post: db.doc('posts/' + payload.postid)
         })
-        .then((re) => {
-          payload.vm.$router.push(`/post/${re.id}`)
+        .then(re => {
+          re.get().then(doc =>{
+            let tmp = doc.data()
+            tmp.post = tmp.post.id
+            tmp.author = tmp.author.id
+            tmp.parent = tmp.parent ? tmp.parent.id : delete tmp.parent
+            commit('addComment', tmp)
+          })
         })
     }
   },

@@ -1,39 +1,38 @@
 <template>
     <div>
         <article class="media">
-
             <div class="media-content">
                 <div class="field">
                     <p class="control">
-                        <textarea class="textarea" placeholder="Add a comment..."></textarea>
+                        <textarea v-model="comment.body" class="textarea" placeholder="Add a comment..."></textarea>
                     </p>
                 </div>
                 <nav class="level">
                     <div class="level-left">
                         <div class="level-item">
-                            <a class="button is-info">Submit</a>
+                            <a class="button is-info" @click="addComment(this)">Submit</a>
                         </div>
                     </div>
                     <div class="level-right">
                     <div class="level-item">
-                        <label class="checkbox">
-                        <input type="checkbox"> Press enter to submit
-                        </label>
                     </div>
                     </div>
                 </nav>
             </div>
         </article>
         <article v-if="comments" v-for="(comment, key) of comments" :key="key">
-            {{comment}}
+            placeholder{{key+1}}body: {{comment.body}}
         </article>
-
     </div>
-
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      comment: {}
+    }
+  },
   props: ['comments'],
   computed: {
     //   sortedComments () {
@@ -48,11 +47,13 @@ export default {
     //   }
   },
   methods: {
-      addComment(){
-
-
-          //this.$store.dispatch('addComment', { createdAt: new Date(), })
-
+      addComment(d){
+          this.$store.dispatch('addComment', { 
+              createdAt: new Date(),
+              body: this.comment.body,
+              parent: this.comment.parent,
+              postid: this.$route.params.id
+            })
       }
   }
 }
