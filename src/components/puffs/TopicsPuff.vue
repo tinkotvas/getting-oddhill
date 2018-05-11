@@ -6,9 +6,10 @@
       id="tags"
       v-for="(tag, index) of sortArray"
       :key="index">
-      <button
+      <router-link
         class="button is-primary is-rounded"
-        href="#"> {{ tag.tag | uppercase }} </button>
+        :to="'/topic/'+ tag.tag"> {{ tag.tag | uppercase }}
+      </router-link>
     </div>
 
   </div>
@@ -52,7 +53,7 @@ export default {
     display: inline;
   }
 
-  button.button{
+  .button{
     margin-right: 5px;
     margin-top: 10px;
   }
