@@ -31,23 +31,25 @@
               </div>
             </div>
           </div>
-
+          <div class="columns">
           <div class="column">
             <router-link
               to="/post/add">
                 <a class="button post-btn is-medium" type="submit">_New Post</a>
             </router-link>
           </div>
+          </div>
 
         </div>
       </section>
-
-      <keep-alive>
-        <component
-          :is="postsView"
-          :posts="posts"
-          v-bind="{getMorePosts}"/>
-      </keep-alive>
+      <section class="section">
+        <keep-alive>
+          <component
+            :is="postsView"
+            :posts="posts"
+            v-bind="{getMorePosts}"/>
+        </keep-alive>
+      </section>
 
       <div class="level">
         <div class="level-item">
@@ -145,6 +147,7 @@ b-icon{
     padding-bottom: 40px;
     text-decoration: none;
     cursor: pointer;
+    justify-content: center;
     }
   .post-btn:hover{
       color: #fff;
