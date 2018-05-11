@@ -183,7 +183,7 @@ export default {
             createdAt: payload.createdAt,
             heading: payload.heading,
             message: payload.message,
-            topics: payload.topics,
+            topics: payload.topics.reduce((acc, topic) => Object.assign(acc, {topic:true}, {})),
             promoted: payload.promoted
           })
           .then((re) => {
@@ -209,6 +209,27 @@ export default {
     },
     unsubRealtime ({ commit }, payload) {
       commit('unsubRealtimeRef', payload)
+    },
+
+    getTopicPosts({ commit }, payload){
+      db.collection('posts').where('topics.' + payload.topic, '==', true).get().then((snapshot) => {
+        // let posts = []
+        Promise.all(
+          snapshot.docs.map(async (doc) => {
+            let tmp = doc.data()
+            tmp.id = doc.id
+            // posts.push(tmp)
+            tmp.author = await getAuthorData(tmp.author)
+            return tmp
+          })
+        ).then((posts) => {
+          commit('setPosts', posts)
+          commit('setLastDoc', snapshot.docs.slice(-1)[0])
+        })
+      })
+      .catch((err) => {
+        console.log('Error getting documents', err)
+      })
     }
   },
   getters: {

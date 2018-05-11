@@ -1,7 +1,7 @@
 <template>
-  <div class="columns">
-    <div class="column is-10 is-offset-1">
-      <div class="box profile-box">
+<div class="section">
+  <div class="columns is-centered">
+    <div class="column is-8">
         <div class="posts">
           <div
             id="pages"
@@ -9,52 +9,61 @@
             <div id="posts">
 
               <article
-                class="level media is-loading"
+                class="media"
                 v-for="(post, key) of posts"
                 :key="key">
 
                 <div class="media-content no-overflow">
-                    <div class="content">
-                      <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
-                        <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                      <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
-                      <router-link :to="'/post/'+post.id">
-                        <p> {{ post.message | truncate }}</p>
-                      </router-link>
-                    </div>
+                  <div class="content">
+                    <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
+                      <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                    <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
+                    <router-link :to="'/post/'+post.id">
+                      <p> {{ post.message | truncate }}</p>
+                    </router-link>
                   </div>
-                  <div class="media-right">
-                    <div class="level">
-                      <div class="level-left"/>
-                      <div class="level-right">
-                        <figure class="img is-128x128">
+
+                  <!-- <div>
+                    <div class="level is-mobile">
+                      <div class="level-left">
+                        <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small>
+                        </router-link>
+                      </div>
+                      <div class="level-right"/>
+                    </div>
+                  </div> -->
+
+                </div>
+                <div class="media-right">
+                  <div class="level">
+
+                    <div class="level-left"/>
+                    <div class="level-right">
+                      <router-link :to="'/post/'+post.id">
+                        <figure class="image is-128x128">
                           <img
                             :src="post.imageUrl"
                             v-if="post.imageUrl">
                         </figure>
-                      </div>
+                      </router-link>
                     </div>
                   </div>
-                  <div class="level-item">
-                   <nav
-                      class="level is-mobile"
-                      style="margin-top:30px">
-                      <!-- <div class="level-left">
-                        <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
-                      </div> -->
-                      <div class="level-right">
+                  <nav
+                    class="level is-mobile">
+                    <div class="level-left"/>
+                    <div class="level-right">
                       <b-taglist>
                         <router-link
                           v-for="(topic,key) of post.topics"
                           :key="key"
                           class="is-info is-small tag"
-                          :to="'topic?'+topic">
+                          :to="'/topic/'+ post.topics">
                           {{ topic }}
                         </router-link>
-                       </b-taglist>
-                      </div>
-                    </nav>
-                  </div>
+                      </b-taglist>
+                    </div>
+                  </nav>
+                </div>
               </article>
 
 
@@ -103,15 +112,9 @@ export default {
 .profile-box {
  background-color: rgba(152, 226, 248, 0.212);
 }
-img {
-  height: 200px;
-  width: auto;
-  float: right;
-}
-
-.level-item{
-  align-self: flex-end;
-  justify-content: flex-start;
-
+.image img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>

@@ -13,7 +13,9 @@
       </div>
     </section>
 
-    hej
+<article
+  v-if="posts"
+  v-for="(post, key) of posts" :key="key">
     <div class="media-content no-overflow">
       <div class="content">
         <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
@@ -24,6 +26,7 @@
         </router-link>
       </div>
     </div>
+  </article>
 
   </div>
 </template>
@@ -39,23 +42,21 @@ export default {
   },
   computed: {
     posts () {
-      return this.$store.getters.summaries(250)
+      return this.$store.getters.posts
     },
     summaries () {
       return this.$store.getters.summaries(250)
     }
+  },
+  mounted: function () {
+    this.$store.dispatch('getTopicPosts', {topic:'Oddhill'})
   },
   methods: {
     localTimeSv: function (value) {
       let date = this.$moment(value)
       return date.locale('sv').format('dddd Do MMMM YYYY')
     },
-    getPosts () {
-      this.$store.dispatch('getPosts')
-    },
-    getMorePosts () {
-      this.$store.dispatch('getMorePosts')
-    },
+
     savePostsView (value) {
       this.$store.dispatch('savePostsView', value)
     }
