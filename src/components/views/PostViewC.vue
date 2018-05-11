@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column is-10 is-offset-1">
+    <div class="column is-9 is-offset-1">
       <div class="box profile-box">
 
         <div class="posts">
@@ -22,10 +22,9 @@
                     </router-link>
 
 
+
                     <nav class="level is-mobile">
-                      <div class="level-left">
-                        <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
-                      </div>
+                      <div class="level-left"/>
                       <div class="level-right">
                         <b-taglist>
                           <router-link

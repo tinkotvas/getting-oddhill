@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-10">
+    <div class="column is-9">
 
       <div class="posts">
         <div id="pages">
@@ -9,7 +9,7 @@
             <div class="columns is-multiline">
 
               <article
-                class="column is-3-desktop is-6-tablet is-12-mobile"
+                class="column is-4-desktop is-6-tablet is-12-mobile"
                 v-for="(post, key) of posts"
                 :key="key">
                 <div class="box profile-box">
@@ -20,8 +20,7 @@
                     <p><vue-markdown :source="post.message | truncate"/></p>
                   </router-link>
                   <nav
-                    class="level is-mobile"
-                    style="margin-top:30px">
+                    class="level is-mobile">
                     <div class="level-left"/>
                     <div class="level-right">
                       <b-taglist>
@@ -29,18 +28,18 @@
                           v-for="(topic,key) of post.topics"
                           :key="key"
                           class="is-info is-small tag"
-                          :to="'topic?'+topic">
+                          :to="'/topic/'+ post.topics">
                           {{ topic }}
                         </router-link>
                       </b-taglist>
                     </div>
                   </nav>
-                  <nav class="level is-mobile">
+                  <!-- <nav class="level is-mobile">
                     <div class="level-left">
                       <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
                     </div>
                     <div class="level-right"/>
-                  </nav>
+                  </nav> -->
                 </div>
               </article>
             </div>
@@ -88,6 +87,7 @@ export default {
 <style scoped>
  .profile-box {
  background-color: rgba(152, 226, 248, 0.212);
+ height: 250px;
 }
 
 img{

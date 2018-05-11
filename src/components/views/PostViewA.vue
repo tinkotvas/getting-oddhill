@@ -1,7 +1,7 @@
 <template>
-  <div class="columns">
-    <div class="column is-10 is-offset-1">
-      <div class="box profile-box">
+<div class="section">
+  <div class="columns is-centered">
+    <div class="column is-9">
         <div class="posts">
           <div
             id="pages"
