@@ -4,16 +4,33 @@
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-admin.initializeApp();
+const request = require('request')
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
+admin.initializeApp()
+const db = admin.firestore()
 
 exports.onPostNew = functions.firestore
-    .document('posts/{postID}')
-    .onCreate((snap, context) => {
-        // example change/set value
-        let newValues = {
-            createdAt: new Date()
-        }
-      return  snap.ref.set(newValues, { merge: true })
-    });
+  .document('posts/{postID}')
+  .onCreate((snap, context) => {
+    let newValues = {
+      createdAt: new Date()
+    }
+    snap.data().author.get()
+      .then((author) => {
+        return request.post(
+          'https://hooks.slack.com/services/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',
+          {
+            json: {
+              text:
+                'New post: ' +
+                snap.data().heading +
+                ', by: ' +
+                author.data().username + '.'
+            }
+          }
+        )
+      }).catch()
+
+    return snap.ref.set(newValues, { merge: true })
+  })
