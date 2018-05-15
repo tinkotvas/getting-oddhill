@@ -70,7 +70,9 @@ export default {
       })
       db.collection('users').doc(payload.uid).get().then((doc) => {
         if (doc.exists) {
-          commit('setProfileData', doc.data())
+          let tmp = doc.data()
+          tmp.id = doc.id
+          commit('setProfileData', tmp)
         }
       })
     },

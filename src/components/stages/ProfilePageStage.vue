@@ -4,7 +4,7 @@
       <div class="column is-2 box profile-box is-2-widescreen">
         <div class="image overlay">
           <img
-            :src="require('@/assets/avatar/wind.jpg')"
+            :src="require('@/assets/avatar/harry.jpg')"
             class="profile-picture">
         </div>
         <section class="info">
@@ -40,6 +40,10 @@
             </b-taglist>
           </div>
         </b-field>
+        <router-link
+          class="button is-primary"
+          :to="'/profile/edit/' + userData.id">Edit profile
+        </router-link>
       </div>
       <div class="column is-7">
         <div class="column is-6 is-centered">
@@ -67,6 +71,7 @@
 <script>
 const json = require('../../assets/json/profiles.json')
 
+//Puffs
 import LatestPuff from '../puffs/LatestPuff'
 import TopicsPuff from '../puffs/TopicsPuff'
 
@@ -118,7 +123,7 @@ export default {
   }
 
   .profile-box {
-  background-color: rgba(152, 226, 248, 0.212);
+    background-color: rgba(152, 226, 248, 0.212);
   }
 
   .top-space{
