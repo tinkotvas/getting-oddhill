@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="columns is-centered content">
-      <div class="column is-2 box profile-box is-2-widescreen">
-        <div class="image overlay">
+    <div class="columns content">
+      <div class="column is-2 is-2-widescreen">
+        <div class="image">
           <img
             :src="require('@/assets/avatar/harry.jpg')"
             class="profile-picture">
@@ -116,7 +116,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   .profile-picture {
     width: 200px;
     border-radius: 50%;
