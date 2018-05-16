@@ -57,8 +57,7 @@ export default {
       message: '',
       topics: [],
       promoted: false,
-      editor: {},
-      temp: {}
+      editor: {}
     }
   },
   computed: {
@@ -82,7 +81,6 @@ export default {
         }
       }
     })
-    Object.assign(this.temp, this.editor)
   },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
