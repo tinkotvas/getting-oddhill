@@ -45,7 +45,22 @@ require('tui-editor/dist/tui-editor-extChart.js')
 require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
+
 var _ = require('lodash')
+
+Editor.defineExtension('youtube', function() {
+    Editor.codeBlockManager.setReplacer('swagger', function(youtubeId) {
+        var wrapperId = 'yt' + Math.random().toString(36).substr(2, 10);
+        setTimeout(renderYoutube.bind(null, wrapperId, youtubeId), 0);
+        return '<div id="' + wrapperId + '"></div>';
+    });
+});
+
+function renderYoutube(wrapperId, youtubeId) {
+    var el = document.querySelector('#' + wrapperId);
+    console.log("wrapperid", el)
+    el.innerHTML = '<iframe width="420" height="315" src="https://www.youtube.com/embed/' + youtubeId + '"></iframe>';
+}
 
 const uuidv1 = require('uuid/v1')
 const fileRegex = /\.[^.\s]+$/i
@@ -73,7 +88,7 @@ export default {
       usageStatistics: 'false',
       minHeight: '300px',
       height: 'auto',
-      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter','youtube'],
       useCommandShortcut: true,
       hooks: {
         'addImageBlobHook': (file, callback) => {
