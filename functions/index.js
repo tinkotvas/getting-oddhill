@@ -34,3 +34,12 @@ exports.onPostNew = functions.firestore
 
     return snap.ref.set(newValues, { merge: true })
   })
+
+exports.commandPublish = functions.https.onRequest((request, response) => {
+  console.log(request, response)
+  console.log(request.body)
+  db.collection('posts').add({
+    author: request.body.user_name,
+    message: request.body.text
+  })
+})
