@@ -21,7 +21,7 @@
             </div>
         </article>
         <article v-if="comments" v-for="(comment, key) of comments" :key="key">
-            placeholder{{key+1}}body: {{comment.body}}
+            {{comment.body}}
         </article>
     </div>
 </template>
