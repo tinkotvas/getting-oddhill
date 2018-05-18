@@ -2,11 +2,15 @@
   <section>
     <div class="columns content">
       <div class="column is-2 is-2-widescreen">
-        <div class="image">
+        <div id="profile-pic-puff">
+            <profile-picture-puff/>
+        </div>
+
+        <!-- <div class="image">
           <img :src="require('@/assets/avatar/harry.jpg')"
           alt="Profile picture"
           class="profile-picture">
-        </div>
+        </div> -->
         <section class="">
           <b-field lable="Namn">
             <b-input/>
@@ -33,7 +37,13 @@
 <script>
 import { db } from '../../main.js'
 
+//Puffs
+import ProfilePicturePuff from '../puffs/ProfilePicturePuff'
+
 export default {
+  components: {
+    ProfilePicturePuff
+  },
   computed: {
     currentUser () {
       return this.$store.getters.currentUser
@@ -46,8 +56,8 @@ export default {
 </script>
 
 <style>
-.profile-picture {
+/* .profile-picture {
     width: 200px;
     border-radius: 50%;
-  }
+  } */
 </style>
