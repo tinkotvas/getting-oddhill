@@ -32,12 +32,14 @@
             </div>
           </div>
           <div class="columns">
-          <div class="column">
-            <router-link
-              to="/post/add">
-                <a class="button post-btn is-medium" type="submit">_New Post</a>
-            </router-link>
-          </div>
+            <div class="column">
+              <button
+                class="button post-btn is-medium"
+                @click="showEditor()">New Post</button>
+              <div v-if="editorVisible">
+                <content-editor />
+              </div>
+            </div>
           </div>
 
         </div>
@@ -71,17 +73,20 @@ import { db } from '../../main.js'
 import PostViewA from '../views/PostViewA'
 import PostViewB from '../views/PostViewB'
 import PostViewC from '../views/PostViewC'
+import ContentEditor from '../stages/ContentEditor'
 
 export default {
   components: {
     PostViewA,
     PostViewB,
-    PostViewC
+    PostViewC,
+    ContentEditor
   },
   data () {
     return {
       isLoading: false,
-      showMoreButton: true
+      showMoreButton: true,
+      editorVisible: false
     }
   },
   computed: {
@@ -97,6 +102,9 @@ export default {
     this.getPosts()
   },
   methods: {
+    showEditor () {
+      this.editorVisible = !this.editorVisible
+    },
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
