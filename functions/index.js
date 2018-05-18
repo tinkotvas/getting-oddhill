@@ -47,6 +47,7 @@ exports.commandPublish = functions.https.onRequest((request, response) => {
   console.log(request.body)
   db.collection('posts').add({
     author: request.body.user_name,
-    message: request.body.text
+    message: request.body.text,
+    heading: 'Posted via Slack'
   })
 })
