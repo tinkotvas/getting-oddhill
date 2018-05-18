@@ -47,7 +47,7 @@ firebase.initializeApp({
 })
 
 export const db = firebase.firestore()
-db.settings({timestampsInSnapshots: true})
+db.settings({ timestampsInSnapshots: true })
 export const storage = firebase.storage()
 export const auth = firebase.auth()
 
@@ -60,15 +60,30 @@ export const routes = [
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
-  { path: '/profile',
+  {
+    path: '/profile',
     component: ProfilePage,
     beforeEnter: (to, from, next) => {
       if (store.getters.currentUser) {
         next()
       } else {
-        next('/')
+        let unWatch = store.watch(
+          (state) => {
+            return state.user.authReady
+          },
+          () => {
+            unWatch()
+            if (store.getters.currentUser) {
+              next()
+            } else {
+              next('/')
+            }
+          }
+        )
+        // next('/')
       }
-    } },
+    }
+  },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage },
   { path: '/topic/:topics', component: TopicPostPage }
@@ -88,10 +103,12 @@ new Vue({
   store,
   created () {
     firebase.auth().onAuthStateChanged((user) => {
-      this.$store.commit('setAuthReady', true)
       if (user) {
         this.$store.dispatch('updateUserInfo', user)
+      } else {
+        this.$store.dispatch('signOut')
       }
+      this.$store.commit('setAuthReady', true)
     })
   },
 

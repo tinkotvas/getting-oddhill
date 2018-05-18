@@ -1,11 +1,10 @@
 <template>
-  <section>
-
-    <b-field label="heading">
+  <div class="column">
+    <b-field label="Heading">
       <b-input v-model="heading"/>
     </b-field>
 
-    <b-field label="topics">
+    <b-field label="Topics">
       <b-taginput
         v-model="topics"
         icon="label"
@@ -14,14 +13,15 @@
 
     <b-field
       v-if="!wysiwyg"
-      label="message">
+      label="Body">
       <b-input
         v-model="message"
         maxlength="5000"
         type="textarea"/>
     </b-field>
 
-    <b-field v-if="wysiwyg">
+    <b-field v-if="wysiwyg"
+      label="Body">
       <wysiwyg-editor
         :message="message"
         ref="editorMessage"/>
@@ -35,10 +35,10 @@
         Promoted
       </b-switch>
       <b-switch v-model="wysiwyg">
-        wysiwyg
+          Rich Editor
       </b-switch>
     </p>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -74,6 +74,8 @@ export default {
 
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+.column{
+  max-width: 1000px;
+}
 </style>
