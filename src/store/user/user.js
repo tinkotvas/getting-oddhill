@@ -3,7 +3,7 @@ import { db } from '../../main.js'
 
 export default {
   state: {
-    currentUser: null,
+    currentUser: undefined,
     authReady: false,
     profileData: null
   },
