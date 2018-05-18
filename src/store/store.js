@@ -15,7 +15,8 @@ const store = new Vuex.Store({
     user: user,
     post: post,
     shared: shared,
-    storage: storage
+    storage: storage,
+    profile: profile
   }
 })
 

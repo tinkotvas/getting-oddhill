@@ -39,11 +39,9 @@ export default {
   },
   methods: {
     onChange (image) {
-      console.log(this.$refs.pictureInput.file);
       console.log('New picture selected!')
       if (image) {
-
-        this.$store.dispatch('uploadToStorage',{file:this.$refs.pictureInput.file})
+        this.$store.dispatch('uploadToStorage',{file:this.$refs.pictureInput.file, profile: true})
         console.log('Picture loaded.')
         this.image = image
       } else {
