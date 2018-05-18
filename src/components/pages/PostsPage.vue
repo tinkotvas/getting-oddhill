@@ -31,17 +31,22 @@
               </div>
             </div>
           </div>
-          <div class="columns">
+                        
+          <div class="columns is-centered">
             <div class="column">
-              <button
-                class="button post-btn is-medium"
-                @click="showEditor()">New Post</button>
-              <div v-if="editorVisible">
-                <content-editor />
-              </div>
+              <nav class="level is-mobile">
+                <div class="level-item had-text-centered">
+                  <span
+                    class="button post-btn is-medium"
+                    @click="showEditor()">New Post
+                  </span>
+                </div>
+              </nav>
             </div>
           </div>
-
+          <div class="columns is-centered">
+              <content-editor v-if="editorVisible"/>
+          </div>
         </div>
       </section>
       <section class="section">
@@ -134,9 +139,7 @@ export default {
 .no-overflow {
   overflow: hidden;
 }
-.input{
-  width: 800px;
-}
+
 b-icon{
   margin-top: 2px;
 }
