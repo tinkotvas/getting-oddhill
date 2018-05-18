@@ -20,8 +20,21 @@
                 </nav>
             </div>
         </article>
-        <article v-if="comments" v-for="(comment, key) of comments" :key="key">
-            {{comment.body}}
+        <article v-if="comments" v-for="(comment, key) of comments" :key="key" class="media">
+              <figure class="media-left">
+                <p class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                </p>
+              </figure>
+              <div class="media-content">
+                  <div class="content">
+                      <p>
+                    {{comment.body}}
+                    <br>
+                    <!--<small><a>Reply</a></small>-->
+                      </p>
+                  </div>
+              </div>
         </article>
     </div>
 </template>
@@ -34,18 +47,6 @@ export default {
     }
   },
   props: ['comments'],
-  computed: {
-    //   sortedComments () {
-    //       return this.comments.sort(function(a, b){
-    //           return a[createdAt] - b[createdAt] || a[parent] - a[parent]
-    //       })
-    //   }
-  },
-  watch: {
-    //   sortedComments (){
-    //       console.log(this.sortedComments)
-    //   }
-  },
   methods: {
       addComment(d){
           this.$store.dispatch('addComment', { 
