@@ -10,7 +10,7 @@
                 <nav class="level">
                     <div class="level-left">
                         <div class="level-item">
-                            <a class="button is-info" @click="addComment(this)">Submit</a>
+                            <a class="button" @click="addComment(this)">Post comment</a>
                         </div>
                     </div>
                     <div class="level-right">
