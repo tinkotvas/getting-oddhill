@@ -1,4 +1,6 @@
 /* This code proxies the Slack commands via glitch.com for faster responses to avoid the 3000ms timeout problem */
+// URL:
+// https://handsome-shirt.glitch.me/commandPublish
 
 // import axios from 'axios'
 const axios = require('axios')
