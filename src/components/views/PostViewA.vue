@@ -1,7 +1,6 @@
 <template>
   <div class="columns is-centered">
     <div class="column is-10-desktop">
-
       <article
         class="media"
         v-for="(post, key) of posts"
@@ -15,43 +14,46 @@
               <p> {{ post.message | truncate }}</p>
             </div>
           </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <div class="level-item">
+                <span>
+                  <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
+                </span>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <span>
+                  <b-taglist>
+                    <router-link
+                      v-for="(topic,key) of post.topics"
+                      :key="key"
+                      class="is-light is-small tag"
+                      :to="'/topic/'+ post.topics">
+                      {{ topic }}
+                    </router-link>
+                  </b-taglist>
+                </span>
+              </div>
+            </div>
+          </nav>
         </div>
         <div class="media-right">
           <div class="level">
             <div class="level-left"/>
-            <div class="level-right">
-              <figure class="image is-128x128 img">
-              <img
-                :src="post.imageUrl"
-                v-if="post.imageUrl">
-              </figure>
+              <div class="level-right">
+                <div class="level-item">
+                <figure class="image is-128x128 img">
+                <img
+                  :src="post.imageUrl"
+                  v-if="post.imageUrl">
+                </figure>
+              </div>
             </div>
           </div>
         </div>
-
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
-            </div>
-          </div>
-          <div class="level-right">
-            <div class="level-item">
-              <b-taglist>
-                <router-link
-                  v-for="(topic,key) of post.topics"
-                  :key="key"
-                  class="is-light is-small tag"
-                  :to="'/topic/'+ post.topics">
-                  {{ topic }}
-                </router-link>
-              </b-taglist>
-            </div>
-          </div>
-        </nav>
-
       </article>
-
     </div>
   </div>
 </template>
