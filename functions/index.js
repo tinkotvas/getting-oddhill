@@ -20,6 +20,7 @@ exports.onPostNew = functions.firestore
     let newValues = {
       createdAt: new Date()
     }
+    snap.ref.set(newValues, { merge: true })
     let authorRef = snap.data().author
     if (typeof authorRef === 'object') {
       authorRef
@@ -36,10 +37,9 @@ exports.onPostNew = functions.firestore
         .catch()
     } else if (typeof authorRef === 'string') {
       let text = 'New post: ' + snap.data().heading + ', by: ' + authorRef + '.'
-      return webhook.send(text)
+      webhook.send(text)
     }
-
-    return snap.ref.set(newValues, { merge: true })
+    return true
   })
 
 exports.commandPublish = functions.https.onRequest((request, response) => {
