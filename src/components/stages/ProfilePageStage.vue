@@ -4,16 +4,16 @@
       <div class="column is-2 is-2-widescreen">
         <div class="image">
           <img
-            :src="require('@/assets/avatar/harry.jpg')"
+            :src="userData.profilePhoto"
             class="profile-picture">
         </div>
         <section class="info">
           <p><strong>Namn : </strong>
             {{ userData.username }}</p>
           <p><strong>Title : </strong>{{ userData.title }}</p>
-          <p><strong>Språk : </strong>..</p>
+          <!-- <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
-          <p><strong>Framework : </strong>...</p>
+          <p><strong>Framework : </strong>...</p> -->
         </section>
         <b-field class="top-space"
           grouped

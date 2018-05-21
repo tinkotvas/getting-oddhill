@@ -16,7 +16,6 @@ export default {
         state.imageCache[payload.name] = {}
       }
       state.imageCache[payload.name].storagePath = payload.storagePath
-
     },
     clearImageCache (state, payload) {
       state.imageCache = {}
