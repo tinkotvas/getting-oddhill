@@ -4,6 +4,7 @@ import post from './post/post'
 import shared from './shared/shared'
 import storage from './storage/storage'
 import profile from './profile/profile'
+import comment from './comment/comment'
 
 import Vue from 'vue'
 
@@ -16,7 +17,8 @@ const store = new Vuex.Store({
     post: post,
     shared: shared,
     storage: storage,
-    profile: profile
+    profile: profile,
+    comment
   }
 })
 

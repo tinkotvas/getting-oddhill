@@ -1,32 +1,6 @@
 <template>
   <section>
-
-    <b-field label="heading">
-      <b-input v-model="heading"/>
-    </b-field>
-
-    <b-field label="topics">
-      <b-taginput
-        v-model="topics"
-        icon="label"
-        placeholder="Add a topic"/>
-    </b-field>
-
-    <b-field label="message">
-      <!-- <b-input
-        v-model="message"
-        maxlength="5000"
-        type="textarea"/> -->
-      <div id="editSection"/>
-    </b-field>
-    <p class="level">
-      <button
-        class="button"
-        @click="addPost(heading, (editor.getValue()), topics, promoted)">Add New Post</button>
-      <b-switch v-model="promoted">
-        Promoted
-      </b-switch>
-    </p>
+    <div id="editSection"/>
   </section>
 </template>
 
@@ -51,13 +25,12 @@ const uuidv1 = require('uuid/v1')
 const fileRegex = /\.[^.\s]+$/i
 
 export default {
+  props: ['message'],
   data () {
     return {
-      heading: '',
-      message: '',
-      topics: [],
-      promoted: false,
-      editor: {}
+      editor: {},
+      temp: {},
+      wysiwyg: false
     }
   },
   computed: {
@@ -69,6 +42,7 @@ export default {
     this.editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'wysiwyg',
+      initialValue: this.message,
       previewStyle: 'vertical',
       usageStatistics: 'false',
       minHeight: '300px',
@@ -81,23 +55,11 @@ export default {
         }
       }
     })
-  },
-  methods: {
-    addPost (heading, message, topics, promoted) { // <-- and here
-      const createdAt = new Date()
-      for(let image in this.imageCache){
-        if(!this.imageCache[image].storagePath) {
-          console.log("All images not yet uploaded PLACEHOLDER")
-          return
-        }
-        message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
-      }
-      this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
-    }
+    Object.assign(this.temp, this.editor)
   },
   destroyed () {
     this.$store.dispatch('clearImageCache')
-  } 
+  }
 }
 
 </script>

@@ -15,7 +15,8 @@
           <p><strong>Verktyg : </strong>...</p>
           <p><strong>Framework : </strong>...</p> -->
         </section>
-        <b-field class="top-space"
+        <b-field
+          class="top-space"
           grouped
           group-multiline>
           <div class="control">

@@ -33,7 +33,7 @@
                 v-for="(topic,key) of post.topics"
                 :key="key"
                 class="is-info is-small tag"
-                :to="'topic?'+topic">
+                :to="'/topic/'+ post.topics">
                 {{ topic }}
               </router-link>
             </b-taglist>
