@@ -16,6 +16,11 @@
                     {{ post.author.username || Anonym }}</small></span></h4>
                 <router-link :to="'/post/'+post.id">
                   <p><vue-markdown :source="post.message | truncate"/></p>
+                  <figure class="image is-128x128 img">
+                    <img
+                      :src="post.imageUrl"
+                      v-if="post.imageUrl">
+                  </figure>
                 </router-link>
               </div>
 
@@ -110,5 +115,6 @@ img{
 .time-author{
   color: rgba(58,58,58);
 }
+
 
 </style>

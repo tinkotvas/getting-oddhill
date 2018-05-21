@@ -6,40 +6,41 @@
       id="posts-stage">
 
       <section class="section">
-        <div class="container">
-          <div class="level">
+        <div class="columns is-centered">
+          <div class="column is-10">
+              <div class="level">
+                <div class="level-left">
+                  <div class="content">
+                    <router-link
+                      to="/post/add">
+                      <a class="button post-btn is-medium" type="submit">New Post</a>
+                    </router-link>
+                  </div>
+                </div>
 
-            <div class="level-left"/>
-
-            <div class="level-right">
-              <div class="container">
-                <div
-                  class="view-btns field is-grouped is-invisible-mobile"
-                  align="right">
-                  <p class="control">
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-a')">_A</a>
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-b')">_B</a>
-                    <a
-                      class="rounded view-btn button"
-                      @click="savePostsView('post-view-c')">_C</a>
-                  </p>
+                <div class="level-right">
+                  <!-- <div class="container"> -->
+                    <div
+                      class="view-btns field is-grouped is-invisible-mobile"
+                      align="right">
+                      <p class="control">
+                        <a
+                          class="button view-btn"
+                          @click="savePostsView('post-view-a')">A</a>
+                        <a
+                          class="button view-btn"
+                          @click="savePostsView('post-view-b')">B</a>
+                        <a
+                          class="rounded view-btn button"
+                          @click="savePostsView('post-view-c')">C</a>
+                      </p>
+                    </div>
+                  <!-- </div> -->
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="columns">
-          <div class="column">
-            <router-link
-              to="/post/add">
-                <a class="button post-btn is-medium" type="submit">_New Post</a>
-            </router-link>
-          </div>
-          </div>
 
+
+          </div>
         </div>
       </section>
       <section class="section">
@@ -51,15 +52,17 @@
         </keep-alive>
       </section>
 
-      <div class="level">
-        <div class="level-item">
-          <button
-            id="getMoreBtn"
-            class="button"
-            v-if="showMoreButton"
-            @click="getMorePosts()">Get more..</button>
+      <section class="section">
+        <div class="level">
+          <div class="level-item">
+            <button
+              id="getMoreBtn"
+              class="button"
+              v-if="showMoreButton"
+              @click="getMorePosts()">Get more..</button>
+          </div>
         </div>
-      </div>
+      </section>
 
     </div>
   </div>
@@ -134,13 +137,13 @@ b-icon{
 }
 
 .post-btn{
-    font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
+    font: Helvetica,Arial,sans-serif;
     color: #fff;
     display: inline-block;
-    background: #3e30ed;
+    background: #272457;
     border-radius: 30px;
     font-weight: 500;
-    min-width: 214px;
+    min-width: 150px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -157,7 +160,7 @@ b-icon{
   font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
   color: #fff;
   font-weight: 500;
-  background: #3e30ed;
+  background: #272457;
   border-radius: 30px;
   padding: 20px;
   text-decoration: none;

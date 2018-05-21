@@ -1,34 +1,38 @@
 <template>
-  <div class="topics">
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <input
-              class="input"
-              type="text"
-              placeholder="Sök...">
-          </div>
+  <section class="section">
+    <div class="columns is-centered">
+      <div class="columns">
+        <div class="column">
+          <input
+            class="input"
+            id="search-input"
+            type="text"
+            placeholder="Sök...">
         </div>
       </div>
-    </section>
-
-<article
-  v-if="posts"
-  v-for="(post, key) of posts" :key="key">
-    <div class="media-content no-overflow">
-      <div class="content">
-        <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
-          <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-        <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
-        <router-link :to="'/post/'+post.id">
-          <p> {{ post.message | truncate }}</p>
-        </router-link>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-10-desktop">
+        <article
+          class="media"
+          v-if="posts"
+          v-for="(post, key) of posts"
+          :key="key">
+          <div class="media-content no-overflow">
+            <div class="content">
+              <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
+                <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+              <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
+              <router-link :to="'/post/'+post.id">
+                <p> {{ post.message | truncate }}</p>
+              </router-link>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
-  </article>
 
-  </div>
+  </section>
 </template>
 
 <script>
