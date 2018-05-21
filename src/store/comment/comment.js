@@ -26,7 +26,7 @@ export default {
               let tmp = doc.data()
               tmp.post = tmp.post.id
               tmp.author = tmp.author.id
-              tmp.parent = tmp.parent ? tmp.parent.id : delete tmp.parent
+              if (tmp.parent) tmp.parent = tmp.parent.id
               return tmp
             })
           ).then(comments => {
