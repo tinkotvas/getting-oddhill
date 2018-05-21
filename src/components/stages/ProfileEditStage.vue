@@ -12,19 +12,10 @@
           class="profile-picture">
         </div> -->
         <section class="">
-          <b-field lable="Namn">
+          <b-field label="Namn">
             <b-input/>
           </b-field>
-          <b-field lable="Title">
-            <b-input/>
-          </b-field>
-          <b-field lable="Språk">
-            <b-input/>
-          </b-field>
-          <b-field lable="Verktyg">
-            <b-input/>
-          </b-field>
-          <b-field lable="Framework">
+          <b-field label="Title">
             <b-input/>
           </b-field>
         </section>
