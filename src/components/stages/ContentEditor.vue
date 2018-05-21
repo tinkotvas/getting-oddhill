@@ -57,6 +57,13 @@ export default {
       wysiwyg: false
     }
   },
+  watch: {
+    wysiwyg:function(){
+      if(!this.wysiwyg){
+        this.message = this.$refs.editorMessage.editor.getValue()
+      }
+    }
+  },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
