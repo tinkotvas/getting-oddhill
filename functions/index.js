@@ -43,15 +43,15 @@ exports.onPostNew = functions.firestore
   })
 
 exports.commandPublish = functions.https.onRequest((request, response) => {
-  response
+/*   response
     .contentType('json')
     .status(200)
     .send({
       response_type: 'ephemeral',
       text: 'Publishing...'
-    })
-  console.log(request, response)
-  console.log(request.body)
+    }) */
+  // console.log(request, response)
+  // console.log(request.body)
   db.collection('posts').add({
     author: request.body.user_name,
     message: request.body.text,
