@@ -43,6 +43,13 @@ exports.onPostNew = functions.firestore
   })
 
 exports.commandPublish = functions.https.onRequest((request, response) => {
+  response
+    .contentType('json')
+    .status(200)
+    .send({
+      response_type: 'ephemeral',
+      text: 'Publishing...'
+    })
   console.log(request, response)
   console.log(request.body)
   db.collection('posts').add({
@@ -50,4 +57,5 @@ exports.commandPublish = functions.https.onRequest((request, response) => {
     message: request.body.text,
     heading: 'Posted via Slack'
   })
+  return true
 })
