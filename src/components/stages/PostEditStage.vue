@@ -16,7 +16,6 @@
       <b-taginput
         v-model="post.topics"
         :data="filteredTopics"
-        autocomplete
         field="user.first_name"
         icon="label"
         placeholder="Add a topic"
@@ -118,16 +117,21 @@ export default {
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
-      this.initialValues = Object.assign(this.initialValues, {message: this.editor.getValue()})
+      this.initialValues = Object.assign(this.initialValues, { message: this.editor.getValue(), topics: this.post.topics.slice() })
     },
     editPost (heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
       let payload = {heading, message, topics, promoted}
+      console.log(this.post.topics)
+      console.log(this.initialValues.topics)
+
       for (let attr in payload) {
         if (payload[attr] === this.initialValues[attr]) {
           delete payload[attr]
         }
       }
+
+      console.log(payload)
 
       if (Object.keys(payload).length > 0) {
         for(let image in this.imageCache){
