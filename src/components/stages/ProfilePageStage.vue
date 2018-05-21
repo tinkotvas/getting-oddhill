@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div class="columns is-centered content">
-      <div class="column is-2 box profile-box is-2-widescreen">
-        <div class="image overlay">
+    <div class="columns content">
+      <div class="column is-2 is-2-widescreen">
+        <div class="image">
           <img
-            :src="require('@/assets/avatar/wind.jpg')"
+            :src="userData.profilePhoto"
             class="profile-picture">
         </div>
         <section class="info">
           <p><strong>Namn : </strong>
             {{ userData.username }}</p>
           <p><strong>Title : </strong>{{ userData.title }}</p>
-          <p><strong>Språk : </strong>..</p>
+          <!-- <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
-          <p><strong>Framework : </strong>...</p>
+          <p><strong>Framework : </strong>...</p> -->
         </section>
         <b-field
           class="top-space"
@@ -41,6 +41,10 @@
             </b-taglist>
           </div>
         </b-field>
+        <router-link
+          class="button is-primary"
+          :to="'/profile/edit/' + userData.id">Edit profile
+        </router-link>
       </div>
       <div class="column is-7">
         <div class="column is-6 is-centered">
@@ -68,6 +72,7 @@
 <script>
 const json = require('../../assets/json/profiles.json')
 
+//Puffs
 import LatestPuff from '../puffs/LatestPuff'
 import TopicsPuff from '../puffs/TopicsPuff'
 
@@ -112,14 +117,14 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   .profile-picture {
     width: 200px;
     border-radius: 50%;
   }
 
   .profile-box {
-  background-color: rgba(152, 226, 248, 0.212);
+    background-color: rgba(152, 226, 248, 0.212);
   }
 
   .top-space{
