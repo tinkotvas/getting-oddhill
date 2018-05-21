@@ -47,7 +47,7 @@ app.post('/commandPublish', (request, response) => {
     .status(200)
     .send({
       response_type: 'ephemeral',
-      text: 'Publishing...'
+      text: 'Publishing, your message will be posted momentarily...'
     })
   axios.post(target, body)
 })
