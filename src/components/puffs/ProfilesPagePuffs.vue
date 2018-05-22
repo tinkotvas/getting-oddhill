@@ -15,6 +15,11 @@
                 <div class="content">
                   <p class="has-text-centered top-space"><strong>{{ profile.name }}</strong></p>
                   <p class="has-text-centered"><small>{{ profile.title }}</small></p>
+                  <div class="block icons has-text-centered">
+                    <b-icon icon="github-circle"></b-icon>
+                    <b-icon icon="twitter-circle"></b-icon>
+                    <b-icon icon="linkedin"></b-icon>
+                </div>
                 </div>
               </div>
             </div>
@@ -39,6 +44,7 @@ export default {
 
 <style scoped>
 .image img {
+  border: 5px solid rgba(247, 247, 247, 0.856);
   border-radius: 50%;
   display: block;
 }
@@ -48,6 +54,6 @@ export default {
 }
 
 .profile-box {
-  background-color: rgba(152, 226, 248, 0.212);
+  background-color: #fff;
 }
 </style>
