@@ -6,9 +6,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "request": "^2.87.0"
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
