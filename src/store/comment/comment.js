@@ -9,7 +9,7 @@ export default {
       state.comments = payload
     },
     addComment (state, payload) {
-      state.comments.push(payload)
+      state.comments.unshift(payload)
     }
   },
   actions: {
@@ -18,6 +18,7 @@ export default {
       db
         .collection('comments')
         .where('post', '==', db.doc('posts/' + payload.postid))
+        .orderBy('createdAt', 'desc')
         .get()
         .then(async snapshot => {
           Promise.all(

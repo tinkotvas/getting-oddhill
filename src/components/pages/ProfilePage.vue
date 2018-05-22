@@ -39,17 +39,6 @@ export default {
       return this.$store.getters.profileData
     }
   }
-  // methods: {
-  //   bindPost: function () {
-  //     this.$bind('userData', db.collection('users').doc(this.$route.params.id))
-  //       .then((doc) => {
-  //         console.log(this.userData)
-  //       })
-  //       .catch((error) => {
-  //         console.log('error', error)
-  //       })
-  //   }
-  // }
 }
 
 </script>

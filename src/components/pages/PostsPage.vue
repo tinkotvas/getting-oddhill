@@ -31,17 +31,24 @@
               </div>
             </div>
           </div>
-          <div class="columns">
+                        
+          <div class="columns is-centered">
             <div class="column">
-              <button
-                class="button post-btn is-medium"
-                @click="showEditor()">New Post</button>
-              <div v-if="editorVisible">
-                <content-editor />
-              </div>
+              <nav class="level is-mobile">
+                <div class="level-item had-text-centered">
+                  <span
+                    class="button post-btn is-medium"
+                    @click="showEditor()">New Post
+                  </span>
+                </div>
+              </nav>
             </div>
           </div>
-
+          <div class="columns is-centered">
+            <transition name="slide-fade" :duration="{ enter: 500, leave: 800 }">
+              <content-editor v-if="editorVisible"/>
+            </transition>
+          </div>
         </div>
       </section>
       <section class="section">
@@ -134,9 +141,7 @@ export default {
 .no-overflow {
   overflow: hidden;
 }
-.input{
-  width: 800px;
-}
+
 b-icon{
   margin-top: 2px;
 }
@@ -173,6 +178,25 @@ b-icon{
 }
 .view-btn:hover {
   color:#fff;
+}
+
+.button{
+  z-index: 2;
+}
+
+.slider-fade{
+  z-index: 1;
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
 }
 
 </style>
