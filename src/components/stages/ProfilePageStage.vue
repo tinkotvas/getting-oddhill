@@ -8,48 +8,27 @@
             class="profile-picture">
         </div>
         <section class="info">
-          <p><strong>Namn : </strong>
+          <p><strong><small>Namn : </small></strong>
             {{ userData.username }}</p>
-          <p><strong>Title : </strong>{{ userData.title }}</p>
+          <p><strong><small>Title : </small></strong>{{ userData.title }}</p>
           <!-- <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
           <p><strong>Framework : </strong>...</p> -->
         </section>
-        <b-field
-          class="top-space"
-          grouped
-          group-multiline>
-          <div class="control">
-            <b-taglist attached>
-              <b-tag type="is-dark">Github</b-tag>
-              <b-tag type="is-info"><b-icon
-                icon="github-face"/></b-tag>
-            </b-taglist>
-          </div>
-          <div class="control">
-            <b-taglist attached>
-              <b-tag type="is-dark">Twitter</b-tag>
-              <b-tag type="is-info"><b-icon
-                icon="twitter"/></b-tag>
-            </b-taglist>
-          </div>
-          <div class="control">
-            <b-taglist attached>
-              <b-tag type="is-dark">LinkedIn</b-tag>
-              <b-tag type="is-info"><b-icon
-                icon="linkedin"/></b-tag>
-            </b-taglist>
-          </div>
-        </b-field>
+        <div class="block icons">
+            <b-icon icon="github-circle"></b-icon>
+            <b-icon icon="linkedin"></b-icon>
+            <b-icon icon="twitter-circle"></b-icon>
+        </div>
         <router-link
-          class="button is-primary"
+          class="button is-small is-outlined is-primary"
           :to="'/profile/edit/' + userData.id">Edit profile
         </router-link>
       </div>
-      <div class="column is-7">
+      <div class="column is-7 bio-box">
         <div class="column is-6 is-centered">
           <h4>Om {{ userData.username }}</h4>
-          <p>{{ userData.bio }}</p>
+          <p class="bio-box">{{ userData.bio }}</p>
         </div>
 
       </div>
@@ -124,7 +103,7 @@ export default {
   }
 
   .profile-box {
-    background-color: rgba(152, 226, 248, 0.212);
+    background-color: #fff;
   }
 
   .top-space{
@@ -133,5 +112,14 @@ export default {
 
   .info {
     margin-top: 10px;
+
+  }
+
+  .bio-box {
+
+  }
+
+  .icons {
+    margin-top: 20px;
   }
 </style>
