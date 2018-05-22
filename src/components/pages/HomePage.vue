@@ -2,10 +2,10 @@
   <div
     id="home"
     class="section">
-    <div class="columns is-centered">
       <div class="image">
         <img :src="require('@/assets/portal.png')" alt="">
       </div>
+    <div class="columns is-centered">
       <div class="column is-7">
         <div
           ref="promoted"
@@ -71,8 +71,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .profile-box {
-  background-color: rgba(152, 226, 248, 0.212);
+  background-color: #fff;
+}
+
+.image img {
+  width: 50%;
+  margin: 0 auto;
 }
 </style>
