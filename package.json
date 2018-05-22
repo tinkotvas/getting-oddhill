@@ -12,7 +12,8 @@
     "build": "node build/build.js",
     "linta": "eslint --fix --ext .js,.vue src",
     "fix": "eslint --fix --ext .js,.vue",
-    "deploy-rules": "firebase deploy --only firestore:rules"
+    "deploy-rules": "firebase deploy --only firestore:rules",
+    "deploy-hosting": "firebase deploy --only hosting"
   },
   "dependencies": {
     "buefy": "^0.6.5",
