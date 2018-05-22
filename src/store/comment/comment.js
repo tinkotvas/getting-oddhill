@@ -37,7 +37,7 @@ export default {
       db
         .collection('comments')
         .add({
-          author: db.doc('users/' + rootState.user.currentUser.id),
+          author: db.doc('profiles/' + rootState.user.currentUser.id),
           createdAt: payload.createdAt,
           body: payload.body,
           parent: payload.parent

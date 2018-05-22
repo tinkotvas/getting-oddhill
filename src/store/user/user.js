@@ -68,7 +68,7 @@ export default {
         email: payload.email,
         photoUrl: payload.photoURL
       })
-      db.collection('users').doc(payload.uid).get().then((doc) => {
+      db.collection('profiles').doc(payload.uid).get().then((doc) => {
         if (doc.exists) {
           commit('setProfileData', doc.data())
         }

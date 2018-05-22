@@ -56,7 +56,7 @@ export default {
     getPostsData () {
       let currentUser = this.$store.getters.currentUser
       if (!currentUser) return []
-      this.postsData = db.collection('posts').where('author', '==', db.doc('users/' + currentUser.id)).orderBy('createdAt').get().then((data) => {
+      this.postsData = db.collection('posts').where('author', '==', db.doc('profiles/' + currentUser.id)).orderBy('createdAt').get().then((data) => {
         this.postsData = data.docs.map((doc) => doc.data())
       })
     }

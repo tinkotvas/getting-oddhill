@@ -179,7 +179,7 @@ export default {
         db
           .collection('posts')
           .add({
-            author: db.doc('users/' + rootState.user.currentUser.id),
+            author: db.doc('profiles/' + rootState.user.currentUser.id),
             createdAt: payload.createdAt,
             heading: payload.heading,
             message: payload.message,

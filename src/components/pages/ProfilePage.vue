@@ -41,7 +41,7 @@ export default {
   }
   // methods: {
   //   bindPost: function () {
-  //     this.$bind('userData', db.collection('users').doc(this.$route.params.id))
+  //     this.$bind('userData', db.collection('profiles').doc(this.$route.params.id))
   //       .then((doc) => {
   //         console.log(this.userData)
   //       })
