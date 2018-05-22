@@ -1,6 +1,6 @@
 /* This code proxies the Slack commands via glitch.com for faster responses to avoid the 3000ms timeout problem */
 // URL:
-// https://handsome-shirt.glitch.me/commandPublish
+// https://handsome-shirt.glitch.me/publishProxy
 
 // import axios from 'axios'
 const axios = require('axios')
@@ -37,7 +37,7 @@ app.post('/dreams', (request, response) => {
   response.sendStatus(200)
 })
 
-app.post('/commandPublish', (request, response) => {
+app.post('/publishProxy', (request, response) => {
   const target =
     'https://us-central1-getting-oddhill.cloudfunctions.net/commandPublish'
   let body = request.body
