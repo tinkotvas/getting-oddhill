@@ -8,8 +8,8 @@
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong><br>
-            <vue-markdown :source="post.message | truncate"/>
+          <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p><br>
+            <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
 
@@ -79,5 +79,13 @@ export default {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  .post-header {
+    font-size: 20px;
+  }
+
+  .post-content {
+    padding: 0 50px;;
   }
 </style>
