@@ -3,11 +3,15 @@
 
 export default {
   state: {
-    postsView: 'post-view-a'
+    postsView: 'post-view-a',
+    theme: 'light'
   },
   mutations: {
     setPostsView (state, payload) {
       state.postsView = payload
+    },
+    switchTheme (state, payload) {
+      state.theme = payload ? payload : state.theme === 'light' ? 'dark' : 'light'
     }
   },
   actions: {
