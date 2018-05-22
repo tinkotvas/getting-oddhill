@@ -143,6 +143,9 @@
       <div
         v-if="authReady"
         class="navbar-end">
+        <b-switch v-model="currentTheme" true-value="dark"
+                false-value="light">
+        </b-switch>
         <super-navigator/>
         <a
           v-if="currentUser"
@@ -210,16 +213,29 @@ export default {
     return {
       navActive: false,
       email: '',
-      password: ''
+      password: '',
+      currentTheme: 'light'
     }
   },
   computed: {
     currentUser () {
       return this.$store.getters.currentUser
     },
-    ...mapState({authReady: state => state.user.authReady})
+    ...mapState({
+      authReady: state => state.user.authReady,
+      theme: state => state.shared.theme
+    })
+  },
+  watch: {
+    currentTheme: function () {
+      this.switchTheme()
+    }
   },
   methods: {
+    switchTheme () {
+      console.log('!')
+      this.$store.commit('switchTheme')
+    },
     toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')
     },
