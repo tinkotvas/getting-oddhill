@@ -3,6 +3,9 @@
     id="home"
     class="section">
     <div class="columns is-centered">
+      <div class="image">
+        <img :src="require('@/assets/portal.png')" alt="">
+      </div>
       <div class="column is-7">
         <div
           ref="promoted"
