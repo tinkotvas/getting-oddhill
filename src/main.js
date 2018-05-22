@@ -24,6 +24,7 @@ import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
 import PostEditPage from './components/pages/PostEditPage'
+import ProfileEditPage from './components/pages/ProfileEditPage'
 import TopicPostPage from './components/pages/TopicsPostPage'
 
 import VueMoment from 'vue-moment'
@@ -60,8 +61,8 @@ export const routes = [
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
-  {
-    path: '/profile',
+  { path: '/profile/edit/:id', component: ProfileEditPage },
+  { path: '/profile',
     component: ProfilePage,
     beforeEnter: (to, from, next) => {
       if (store.getters.currentUser) {

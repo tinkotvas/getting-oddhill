@@ -2,22 +2,54 @@
   <div class="columns is-centered">
     <div class="column is-12">
       <div
-        class="content"
         ref="ProfilePostPuff">
         <h3><strong>Inlägg av Batman</strong></h3>
         <div class="columns is-multiline">
           <div
-            class="column is-4 no-overflow"
+            class="media column is-4 no-overflow"
             v-if="postsData.length > 0"
             v-for="(post, key) in postsData"
             :key="key">
-            <div class="box">
-              <span v-if="post.message">
-                <strong>{{ post.heading }}</strong>
-                <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                <br>
-                <vue-markdown :source= "post.message | truncate"/>
-              </span>
+            <div class="media-content">
+              <div class="content">
+                <span v-if="post.message">
+                  <strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
+                  <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span><br>
+                  <vue-markdown :source="post.message | truncate"/>
+                  <!-- <strong>{{ post.heading }}</strong>
+                  <br><span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                  <br>
+                  <vue-markdown :source= "post.message | truncate"/> -->
+                </span>
+              </div>
+
+              <div class="media-right"> <div class="level">
+                <div class="level-left"/>
+                  <div class="level-right">
+                    <router-link :to="'/post/'+post.id">
+                    <figure  class="image is-128x128">
+                      <img v-if="post.imageUrl" :src="post.imageUrl">
+                    </figure>
+                    </router-link>
+                  </div>
+                </div>
+
+                <nav class="level is-mobile">
+                  <div class="level-left"/>
+                  <div class="level-right">
+                    <b-taglist>
+                      <router-link
+                        v-for="(topic,key) of post.topics"
+                        :key="key"
+                        class="is-info is-small tag"
+                        :to="'topic?'+topic">
+                        {{ topic }}
+                      </router-link>
+                    </b-taglist>
+                  </div>
+                </nav>
+              </div>
+
             </div>
           </div>
         </div>
@@ -36,7 +68,11 @@ export default {
   },
   filters: {
     truncate: function (value) {
-      return value.substring(0, 300) + '...'
+      let truncated = value.length > 300 ? value.substring(0, 300) : value
+      if (truncated.length >= 300) {
+        truncated = truncated + '...'
+      }
+      return truncated
     }
   },
   props: ['posts'],
@@ -65,6 +101,14 @@ export default {
 
 </script>
 
-<style>
-
+<style scoped>
+.content{
+   max-height: 16em;
+   overflow:hidden;
+}
+  .image img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 </style>
