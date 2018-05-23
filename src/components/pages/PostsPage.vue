@@ -6,40 +6,30 @@
       id="posts-stage">
 
       <section class="section">
-        <div class="columns is-centered">
-          <div class="column is-10">
-              <div class="level">
-                <div class="level-left">
-                  <div class="content">
-                    <router-link
-                      to="/post/add">
-                      <a class="button post-btn is-medium" type="submit">New Post</a>
-                    </router-link>
-                  </div>
-                </div>
+        <div class="container">
+          <div class="level">
 
-                <div class="level-right">
-                  <!-- <div class="container"> -->
-                    <div
-                      class="view-btns field is-grouped is-invisible-mobile"
-                      align="right">
-                      <p class="control">
-                        <a
-                          class="button view-btn"
-                          @click="savePostsView('post-view-a')">A</a>
-                        <a
-                          class="button view-btn"
-                          @click="savePostsView('post-view-b')">B</a>
-                        <a
-                          class="rounded view-btn button"
-                          @click="savePostsView('post-view-c')">C</a>
-                      </p>
-                    </div>
-                  <!-- </div> -->
+            <div class="level-left"/>
+
+            <div class="level-right">
+              <div class="container">
+                <div
+                  class="view-btns field is-grouped is-invisible-mobile"
+                  align="right">
+                  <p class="control">
+                    <a
+                      class="button view-btn"
+                      @click="savePostsView('post-view-a')">A</a>
+                    <a
+                      class="button view-btn"
+                      @click="savePostsView('post-view-b')">B</a>
+                    <a
+                      class="rounded view-btn button"
+                      @click="savePostsView('post-view-c')">C</a>
+                  </p>
                 </div>
               </div>
-
-
+            </div>
           </div>
 
           <div class="columns is-centered">
