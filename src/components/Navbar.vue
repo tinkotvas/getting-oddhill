@@ -145,6 +145,7 @@
         class="navbar-end">
         <b-switch v-model="currentTheme" true-value="dark"
                 false-value="light">
+                {{currentTheme}}
         </b-switch>
         <super-navigator/>
         <a
@@ -214,7 +215,7 @@ export default {
       navActive: false,
       email: '',
       password: '',
-      currentTheme: 'light'
+      currentTheme: this.$store.state.shared.theme
     }
   },
   computed: {
@@ -227,14 +228,13 @@ export default {
     })
   },
   watch: {
-    currentTheme: function () {
-      this.switchTheme()
+    currentTheme: function (theme) {
+      this.switchTheme(theme)
     }
   },
   methods: {
-    switchTheme () {
-      console.log('!')
-      this.$store.commit('switchTheme')
+    switchTheme (theme) {
+      this.$store.commit('switchTheme', theme)
     },
     toggleDropdown (event) {
       event.currentTarget.classList.toggle('is-active')

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <component :is="theme">
+      </component>
     <navbar/>
     <!-- the router outlet, where all matched components would ber viewed -->
     <router-view/>
-      </component>
   </div>
 </template>
 
