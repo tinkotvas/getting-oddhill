@@ -25,7 +25,7 @@ import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
 import PostEditPage from './components/pages/PostEditPage'
 import ProfileEditPage from './components/pages/ProfileEditPage'
-import TopicPostPage from './components/pages/TopicsPostPage'
+import TopicsPostPage from './components/pages/TopicsPostPage'
 
 import VueMoment from 'vue-moment'
 import 'moment/locale/sv'
@@ -87,7 +87,7 @@ export const routes = [
   },
   { path: '/profiles', component: ProfilesPage },
   { path: '/storage', component: StoragePage },
-  { path: '/topic/:topics', component: TopicPostPage }
+  { path: '/topic/:topics', component: TopicsPostPage }
 ]
 
 /* eslint-disable no-new */

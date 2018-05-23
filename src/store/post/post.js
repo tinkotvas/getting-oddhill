@@ -15,14 +15,7 @@ export default {
       state.topics = payload
     },
     setPosts (state, payload) {
-      Promise.all(
-        payload.map(async (post) => {
-          post.author = await getAuthorData(post.author)
-          return post
-        })
-      ).then((payload) => {
         state.posts = payload
-      })
     },
     setPost (state, payload) {
       state.post = payload
@@ -123,7 +116,7 @@ export default {
         .startAfter(this.getters.lastDoc)
         .limit(payload.limit)
         .get()
-        .then((snapshot) => {
+        .then(async (snapshot) => {
           if (snapshot.docs.length === 0) {
             return
           }
@@ -133,6 +126,12 @@ export default {
             tmp.id = doc.id
             posts.push(tmp)
           })
+          posts = await Promise.all(
+            posts.map(async (post) => {
+              post.author = await getAuthorData(post.author)
+              return post
+            })
+          )
           commit('setPosts', posts)
           commit('setLastDoc', snapshot.docs.slice(-1)[0])
         })
@@ -155,24 +154,46 @@ export default {
       )
     },
     getPostsRealtime ({ commit }, payload = {}) {
-      if (!payload.orderBy) { payload.orderBy = 'createdAt' }
-      if (!payload.orderIn) { payload.orderIn = 'desc' }
-      if (!payload.limit) { payload.limit = 1000 }
+      if (!payload.orderBy) {
+        payload.orderBy = 'createdAt'
+      }
+      if (!payload.orderIn) {
+        payload.orderIn = 'desc'
+      }
+      if (!payload.limit) {
+        payload.limit = 1000
+      }
       let ref = {}
       if (payload.where) {
-        ref = db.collection('posts').where(payload.where.value, '==', payload.where.equals).orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
+        ref = db
+          .collection('posts')
+          .where(payload.where.value, '==', payload.where.equals)
+          .orderBy(payload.orderBy, payload.orderIn)
+          .limit(payload.limit)
       } else {
-        ref = db.collection('posts').orderBy(payload.orderBy, payload.orderIn).limit(payload.limit)
+        ref = db
+          .collection('posts')
+          .orderBy(payload.orderBy, payload.orderIn)
+          .limit(payload.limit)
       }
-      commit('setRealtimeRef', ref.onSnapshot(snapshot => {
-        let posts = []
-        snapshot.forEach(doc => {
-          let tmp = doc.data()
-          tmp.id = doc.id
-          posts.push(tmp)
+      commit(
+        'setRealtimeRef',
+        ref.onSnapshot(async (snapshot) => {
+          let posts = []
+          snapshot.forEach((doc) => {
+            let tmp = doc.data()
+            tmp.id = doc.id
+            posts.push(tmp)
+          })
+          posts = await Promise.all(
+            posts.map(async (post) => {
+              post.author = await getAuthorData(post.author)
+              return post
+            })
+          )
+          commit('setPosts', posts)
         })
-        commit('setPosts', posts)
-      }))
+      )
     },
     addPost ({ commit, state, rootState }, payload) {
       if (rootState.user.currentUser) {
@@ -183,7 +204,9 @@ export default {
             createdAt: payload.createdAt,
             heading: payload.heading,
             message: payload.message,
-            topics: payload.topics,
+            topics: payload.topics.reduce((acc, topic) =>
+              Object.assign(acc, { topic: true }, {})
+            ),
             promoted: payload.promoted
           })
           .then((re) => {
@@ -196,9 +219,13 @@ export default {
     editPost ({ commit }, payload) {
       let id = payload.id
       delete payload.id
-      db.collection('posts').doc(id).update(payload).then(() => {
-        commit('editPost', payload)
-      })
+      db
+        .collection('posts')
+        .doc(id)
+        .update(payload)
+        .then(() => {
+          commit('editPost', payload)
+        })
     },
     deletePost ({ commit }, payload) {
       db
@@ -209,6 +236,31 @@ export default {
     },
     unsubRealtime ({ commit }, payload) {
       commit('unsubRealtimeRef', payload)
+    },
+
+    getTopicPosts ({ commit }, payload) {
+      db
+        .collection('posts')
+        .where('topics.' + payload.topic, '==', true)
+        .get()
+        .then((snapshot) => {
+          // let posts = []
+          Promise.all(
+            snapshot.docs.map(async (doc) => {
+              let tmp = doc.data()
+              tmp.id = doc.id
+              // posts.push(tmp)
+              tmp.author = await getAuthorData(tmp.author)
+              return tmp
+            })
+          ).then((posts) => {
+            commit('setPosts', posts)
+            commit('setLastDoc', snapshot.docs.slice(-1)[0])
+          })
+        })
+        .catch((err) => {
+          console.log('Error getting documents', err)
+        })
     }
   },
   getters: {
@@ -224,12 +276,15 @@ export default {
     topics (state) {
       return state.topics
     },
-    summaries: state => (maxCharacters = 300) => {
+    summaries: (state) => (maxCharacters = 300) => {
       const imageRegex = /!\[.*?\]\((.+?)\)/
       return state.posts.map((post) => {
         let imageUrl = imageRegex.exec(post.message)
         let text = removeMd(post.message).substring(0, maxCharacters)
-        return Object.assign(post, {message: text, imageUrl: (imageUrl && imageUrl[1]) ? imageUrl[1] : null})
+        return Object.assign({}, post, {
+          message: text,
+          imageUrl: imageUrl && imageUrl[1] ? imageUrl[1] : null
+        })
       })
     }
   }
