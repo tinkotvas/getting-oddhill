@@ -276,12 +276,15 @@ export default {
     topics (state) {
       return state.topics
     },
-    summaries: state => (maxCharacters = 300) => {
+    summaries: (state) => (maxCharacters = 300) => {
       const imageRegex = /!\[.*?\]\((.+?)\)/
       return state.posts.map((post) => {
         let imageUrl = imageRegex.exec(post.message)
         let text = removeMd(post.message).substring(0, maxCharacters)
-        return Object.assign(post, {message: text, imageUrl: (imageUrl && imageUrl[1]) ? imageUrl[1] : null})
+        return Object.assign({}, post, {
+          message: text,
+          imageUrl: imageUrl && imageUrl[1] ? imageUrl[1] : null
+        })
       })
     }
   }
