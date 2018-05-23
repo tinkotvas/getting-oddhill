@@ -98,6 +98,8 @@ export default {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  height: 120px;
+  width: auto;
 }
 
 /* .level-item{
