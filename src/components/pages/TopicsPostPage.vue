@@ -22,10 +22,16 @@
             <div class="content">
               <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong><br>
                 <span><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-              <span><small>{{ post.author.username || 'Anonym' }}</small></span></h4>
+              <span><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span></h4>
               <router-link :to="'/post/'+post.id">
                 <p> {{ post.message | truncate }}</p>
+                <figure class="image is-128x128 img">
+                <img
+                  :src="post.imageUrl"
+                  v-if="post.imageUrl">
+                </figure>
               </router-link>
+
             </div>
           </div>
         </article>
@@ -46,9 +52,6 @@ export default {
   },
   computed: {
     posts () {
-      return this.$store.getters.posts
-    },
-    summaries () {
       return this.$store.getters.summaries(250)
     }
   },
