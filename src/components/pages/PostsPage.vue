@@ -41,24 +41,6 @@
 
 
           </div>
-                        
-          <div class="columns is-centered">
-            <div class="column">
-              <nav class="level is-mobile">
-                <div class="level-item had-text-centered">
-                  <span
-                    class="button post-btn is-medium"
-                    @click="showEditor()">New Post
-                  </span>
-                </div>
-              </nav>
-            </div>
-          </div>
-          <div class="columns is-centered">
-            <transition name="slide-fade" :duration="{ enter: 500, leave: 800 }">
-              <content-editor v-if="editorVisible"/>
-            </transition>
-          </div>
         </div>
       </section>
       <section class="section">
@@ -92,20 +74,17 @@ import { db } from '../../main.js'
 import PostViewA from '../views/PostViewA'
 import PostViewB from '../views/PostViewB'
 import PostViewC from '../views/PostViewC'
-import ContentEditor from '../stages/ContentEditor'
 
 export default {
   components: {
     PostViewA,
     PostViewB,
-    PostViewC,
-    ContentEditor
+    PostViewC
   },
   data () {
     return {
       isLoading: false,
-      showMoreButton: true,
-      editorVisible: false
+      showMoreButton: true
     }
   },
   computed: {
@@ -121,9 +100,6 @@ export default {
     this.getPosts()
   },
   methods: {
-    showEditor () {
-      this.editorVisible = !this.editorVisible
-    },
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
@@ -137,6 +113,7 @@ export default {
     },
     getMorePosts () {
       this.$store.dispatch('getMorePosts')
+      console.log('!')
     },
     savePostsView (value) {
       this.$store.dispatch('savePostsView', value)
@@ -153,7 +130,9 @@ export default {
 .no-overflow {
   overflow: hidden;
 }
-
+.input{
+  width: 800px;
+}
 b-icon{
   margin-top: 2px;
 }
@@ -190,25 +169,6 @@ b-icon{
 }
 .view-btn:hover {
   color:#fff;
-}
-
-.button{
-  z-index: 2;
-}
-
-.slider-fade{
-  z-index: 1;
-}
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-100px);
-  opacity: 0;
 }
 
 </style>
