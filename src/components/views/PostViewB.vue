@@ -44,7 +44,7 @@
               <nav class="level is-mobile">
                 <div class="level-left">
                   <a class="level-item">
-                    <router-link :to="'/post/'+ post.id"><small> {{ 4 }} kommentarer</small></router-link>
+                    <router-link :to="'/post/'+ post.id"><small> {{ post.numberOfComments }} kommentarer</small></router-link>
                   </a>
                 </div>
               </nav>

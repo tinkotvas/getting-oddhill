@@ -18,7 +18,7 @@
             <div class="level-left">
               <div class="level-item">
                 <span>
-                  <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
+                  <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
                 </span>
               </div>
             </div>
@@ -98,6 +98,8 @@ export default {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  height: 120px;
+  width: auto;
 }
 
 /* .level-item{
