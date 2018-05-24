@@ -65,11 +65,16 @@ export const routes = [
   { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
   { path: '/profile/edit/:id', component: ProfileEditPage },
-  { path: '/profile',
+  {
+    path: '/profile',
     component: ProfilePage,
     beforeEnter: (to, from, next) => {
       if (store.getters.currentUser) {
-        next()
+        if (!store.getters.currentUser.profileData) {
+          next('/profile/edit/' + store.getters.currentUser.id)
+        } else {
+          next()
+        }
       } else {
         let unWatch = store.watch(
           (state) => {
@@ -78,7 +83,11 @@ export const routes = [
           () => {
             unWatch()
             if (store.getters.currentUser) {
-              next()
+              if (!store.getters.currentUser.profileData) {
+                next('/profile/edit/' + store.getters.currentUser.id)
+              } else {
+                next()
+              }
             } else {
               next('/')
             }
