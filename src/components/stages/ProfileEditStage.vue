@@ -3,7 +3,7 @@
     <div class="columns content">
       <div class="column is-2 is-2-widescreen">
         <div id="profile-pic-puff">
-            <profile-picture-puff/>
+          <profile-picture-puff/>
         </div>
 
         <!-- <div class="image">
@@ -28,7 +28,7 @@
 <script>
 import { db } from '../../main.js'
 
-//Puffs
+// Puffs
 import ProfilePicturePuff from '../puffs/ProfilePicturePuff'
 
 export default {

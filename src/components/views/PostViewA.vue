@@ -8,8 +8,8 @@
         <div class="media-content no-overflow">
           <div class="content">
             <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong></h4><br>
-              <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}<small>av</small>
-            {{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+            <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}<small>av</small>
+              {{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
             <router-link :to="'/post/'+post.id">
               <p> {{ post.message | truncate }}</p>
             </router-link>
@@ -42,12 +42,12 @@
         <div class="media-right">
           <div class="level">
             <div class="level-left"/>
-              <div class="level-right">
-                <div class="level-item">
+            <div class="level-right">
+              <div class="level-item">
                 <figure class="image is-128x128 img">
-                <img
-                  :src="post.imageUrl"
-                  v-if="post.imageUrl">
+                  <img
+                    :src="post.imageUrl"
+                    v-if="post.imageUrl">
                 </figure>
               </div>
             </div>

@@ -10,21 +10,23 @@
       <div class="media-content no-overflow">
         <div class="content">
           <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p><br>
-            <p class="post-content"><vue-markdown :source="post.message | truncate"/>
+          <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
 
       </div>
       <div class="media-right"> <div class="level">
         <div class="level-left"/>
-          <div class="level-right">
-            <router-link :to="'/post/'+post.id">
-            <figure  class="image is-128x128">
-              <img v-if="post.imageUrl" :src="post.imageUrl">
+        <div class="level-right">
+          <router-link :to="'/post/'+post.id">
+            <figure class="image is-128x128">
+              <img
+                v-if="post.imageUrl"
+                :src="post.imageUrl">
             </figure>
-            </router-link>
-          </div>
+          </router-link>
         </div>
+      </div>
 
         <nav class="level is-mobile">
           <div class="level-left"/>

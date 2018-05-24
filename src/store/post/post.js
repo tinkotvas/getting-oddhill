@@ -15,7 +15,7 @@ export default {
       state.topics = payload
     },
     setPosts (state, payload) {
-        state.posts = payload
+      state.posts = payload
     },
     setPost (state, payload) {
       state.post = payload

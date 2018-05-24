@@ -13,7 +13,9 @@
         </div>
       </div>
       <div class="column is-3">
-        <profiles-puff ref="profilesPuff" class="box profile-box"/>
+        <profiles-puff
+          ref="profilesPuff"
+          class="box profile-box"/>
 
         <div
           ref="latestpuff"
@@ -76,6 +78,5 @@ export default {
 .profile-box {
   background-color: #fff;
 }
-
 
 </style>

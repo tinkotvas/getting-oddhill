@@ -1,5 +1,7 @@
 <template>
-  <div class="profile-picture" id="">
+  <div
+    class="profile-picture"
+    id="">
     <picture-input
 
       ref="pictureInput"
@@ -8,14 +10,12 @@
       height="200"
       :removable="true"
       accept="image/jpeg, image/png, image/gif"
-      buttonClass="ui button primary"
-      :customStrings="{
+      button-class="ui button primary"
+      :custom-strings="{
         upload: '<h1>Bummer!</h1>',
-        drag: 'Drag a photo, 😺 GIF or GTFO'}">
+        drag: 'Drag a photo, 😺 GIF or GTFO'}"/>
 
-    </picture-input>
-
-    <!-- <button @click="attemptUpload" v-bind:class="{disabled: !image}">
+        <!-- <button @click="attemptUpload" v-bind:class="{disabled: !image}">
       Upload
     </button> -->
 
@@ -29,19 +29,19 @@ import PictureInput from 'vue-picture-input'
 // import { log } from 'util';
 
 export default {
-  name: 'app',
+  name: 'App',
+  components: {
+    PictureInput
+  },
   data () {
     return {
     }
-  },
-  components: {
-    PictureInput
   },
   methods: {
     onChange (image) {
       console.log('New picture selected!')
       if (image) {
-        this.$store.dispatch('uploadToStorage',{file:this.$refs.pictureInput.file, profile: true})
+        this.$store.dispatch('uploadToStorage', {file: this.$refs.pictureInput.file, profile: true})
         console.log('Picture loaded.')
         this.image = image
       } else {

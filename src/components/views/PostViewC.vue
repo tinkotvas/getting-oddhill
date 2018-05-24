@@ -8,7 +8,7 @@
         <div class="media-content no-overflow">
           <div class="content">
             <router-link :to="'/post/'+post.id">
-              <span class="time-author"><small>{{  (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+              <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p><span>{{ (post.message).substring(0,80) }}...</span></p> </router-link>
 
@@ -77,4 +77,3 @@ export default {
   justify-content: flex-start;
 }
 </style>
-
