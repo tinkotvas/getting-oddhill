@@ -1,5 +1,6 @@
 <template>
   <div id="promoted-stage">
+    <div class="promoted-title"><strong>Promoted posts</strong></div>
     <article
       v-if="isPromoted(key) && posts"
       class="media"
@@ -85,7 +86,11 @@ export default {
     font-size: 20px;
   }
 
-  .post-content {
+  /* .post-content {
     padding: 0 50px;;
+  } */
+
+  .promoted-title {
+    font-size: 22px;
   }
 </style>
