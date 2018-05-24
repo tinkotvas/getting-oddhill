@@ -10,10 +10,10 @@
           <div class="box profile-box">
             <div class="media-content">
               <div class="content">
-                <h4><strong><router-link
-                  :to="'/post/'+post.id">{{ post.heading }}</router-link></strong>
-                  <br><span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <small class="time-author">av</small> <span class="time-author"><small>
-                    {{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span></h4>
+                <!-- <h4><strong><router-link
+                  :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
+                <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+                <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <router-link :to="'/post/'+post.id">
                   <p><vue-markdown :source="post.message | truncate"/></p>
                   <figure class="image is-128x128 img">
@@ -23,8 +23,6 @@
                   </figure>
                 </router-link>
               </div>
-
-
               <nav class="level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
@@ -85,12 +83,15 @@ export default {
       return date.locale('sv').format('dddd Do MMMM YYYY')
     }
   }
+
 }
 </script>
 
 <style scoped>
-
-
+.profile-box{
+  background-color: #fff;
+  border: 1px solid #000;
+}
 img{
   height: 200px;
   width: auto;
@@ -102,6 +103,10 @@ img{
 
 .time-author{
   color: rgba(58,58,58);
+}
+
+figure:empty{
+  display: none;
 }
 
 </style>
