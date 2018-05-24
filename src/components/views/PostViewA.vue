@@ -10,9 +10,9 @@
             <h4><strong><router-link :to="'/post/'+ post.id">{{ post.heading }}</router-link></strong></h4><br>
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}<small>av</small>
             {{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
-            <div :to="'/post/'+post.id">
+            <router-link :to="'/post/'+post.id">
               <p> {{ post.message | truncate }}</p>
-            </div>
+            </router-link>
           </div>
           <nav class="level is-mobile">
             <div class="level-left">

@@ -89,9 +89,7 @@ export default {
 </script>
 
 <style scoped>
- .profile-box {
- background-color: rgba(152, 226, 248, 0.212);
-}
+
 
 img{
   height: 200px;
