@@ -13,7 +13,7 @@
     "linta": "eslint --fix --ext .js,.vue src",
     "fix": "eslint --fix --ext .js,.vue",
     "deploy-rules": "firebase deploy --only firestore:rules",
-    "deploy-hosting": "firebase deploy --only hosting"
+    "deploy-hosting": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "buefy": "^0.6.5",
@@ -21,6 +21,7 @@
     "lodash": "^4.17.10",
     "mdi": "^2.2.43",
     "moment": "^2.22.1",
+    "npm": "^6.0.1",
     "remove-markdown": "^0.2.2",
     "tui-editor": "^1.1.0",
     "uuid": "^3.2.1",

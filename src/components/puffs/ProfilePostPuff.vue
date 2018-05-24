@@ -3,7 +3,7 @@
     <div class="column is-12">
       <div
         ref="ProfilePostPuff">
-        <h3><strong>Inlägg av Batman</strong></h3>
+        <h3><strong>Inlägg</strong></h3>
         <div class="columns is-multiline">
           <div
             class="media column is-4 no-overflow"

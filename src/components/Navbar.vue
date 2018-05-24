@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar is-transparent">
+  <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <router-link to="/" active-class="" exact-active-class="">Getting Oddhill</router-link>
+        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill</strong></router-link>
       </span>
       <div
         class="navbar-burger burger"
@@ -19,12 +19,12 @@
       id="navbarExampleTransparentExample"
       class="navbar-menu"
       :class="{'is-active': navActive}">
-      <div class="navbar-start">
-        <router-link
-          class="navbar-item"
-          to="/">
-          <b-icon
-          icon="home"/> Home</router-link>
+      <div class="navbar-start"></div>
+
+      <div
+        v-if="authReady"
+        class="navbar-end">
+        <super-navigator/>
         <router-link
           class="navbar-item"
           to="/posts">Posts</router-link>
@@ -34,116 +34,6 @@
         <router-link
           class="navbar-item"
           to="/profile">Profile</router-link>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a
-            target="_blank"
-            class="navbar-link"
-            href="https://bulma.io/documentation/overview/start/">
-            Bulma Docs
-          </a>
-          <div class="navbar-dropdown is-boxed">
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/overview/start/">
-              Overview
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/modifiers/syntax/">
-              Modifiers
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/columns/basics/">
-              Columns
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/layout/container/">
-              Layout
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/form/general/">
-              Form
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a
-            target="_blank"
-            class="navbar-link"
-            href="https://buefy.github.io/#/documentation/start/">
-            Buefy Docs
-          </a>
-          <div class="navbar-dropdown is-boxed">
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/layout">
-              Layout & elements
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/dropdown">
-              Dropdowns
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/autocomplete">
-              Autocomplete
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/field">
-              Field
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/input">
-              Input
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/message">
-              Message
-            </a>
-            <a
-              target="_blank"
-              class="navbar-item"
-              href="https://buefy.github.io/#/documentation/snackbar">
-              Snackbar
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div
-        v-if="authReady"
-        class="navbar-end">
-        <super-navigator/>
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
@@ -258,5 +148,10 @@ $navactive: #1abc9c;
 
 .dropdown .dropdown-menu .dropdown-content .level .button {
   margin-left: 6px;
+}
+
+.logo {
+  font-size: 22px;
+  color: #005f85;
 }
 </style>

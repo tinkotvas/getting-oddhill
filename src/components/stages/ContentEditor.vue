@@ -1,36 +1,36 @@
 <template>
   <div class="column">
-    <b-field label="Heading">
-      <b-input v-model="heading"/>
+    <b-field v-if="wysiwyg">
+      <b-input v-model="heading" placeholder="Add a heading"/>
     </b-field>
 
-    <b-field label="Topics">
+    <b-field
+      v-if="!wysiwyg">
+      <b-input
+        v-model="message"
+        maxlength="5000"
+        type="textarea"
+        :has-counter="false"
+        placeholder="Add content"/>
+    </b-field>
+
+    <b-field v-if="wysiwyg">
+      <wysiwyg-editor
+        :message="message"
+        ref="editorMessage"/>
+    </b-field>
+
+    <b-field>
       <b-taginput
         v-model="topics"
         icon="label"
         placeholder="Add a topic"/>
     </b-field>
 
-    <b-field
-      v-if="!wysiwyg"
-      label="Body">
-      <b-input
-        v-model="message"
-        maxlength="5000"
-        type="textarea"/>
-    </b-field>
-
-    <b-field v-if="wysiwyg"
-      label="Body">
-      <wysiwyg-editor
-        :message="message"
-        ref="editorMessage"/>
-    </b-field>
-
     <p class="level">
       <button
         class="button"
-        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add New Post</button>
+        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
@@ -57,6 +57,11 @@ export default {
       wysiwyg: false
     }
   },
+  computed: {
+    imageCache: function () {
+      return this.$store.getters.imageCache
+    }
+  },
   watch: {
     wysiwyg:function(){
       if(!this.wysiwyg){
@@ -65,7 +70,7 @@ export default {
     }
   },
   methods: {
-    addPost (heading, message, topics, promoted) { // <-- and here
+    addPost (heading, message, topics, promoted) {
       const createdAt = new Date()
       for (let image in this.imageCache) {
         if (!this.imageCache[image].storagePath) {
