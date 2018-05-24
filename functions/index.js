@@ -20,7 +20,12 @@ exports.onPostNew = functions.firestore
     let newValues = {
       createdAt: new Date()
     }
-    snap.ref.set(newValues, { merge: true })
+    snap.ref.get().then((snapshot) => {
+      if (snapshot.data().heading) {
+        snap.ref.set(newValues, { merge: true })
+      }
+      return
+    }).catch()
     let authorRef = snap.data().author
     if (typeof authorRef === 'object') {
       authorRef
@@ -43,7 +48,7 @@ exports.onPostNew = functions.firestore
   })
 
 exports.commandPublish = functions.https.onRequest((request, response) => {
-/*   response
+  /*   response
     .contentType('json')
     .status(200)
     .send({
