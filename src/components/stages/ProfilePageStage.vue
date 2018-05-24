@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="columns content">
+    <div class="container columns content is-centered">
       <div class="column is-2 is-2-widescreen">
         <div class="image">
           <img
@@ -25,14 +25,14 @@
           :to="'/profile/edit/' + userData.id">Edit profile
         </router-link>
       </div>
-      <div class="column is-7 bio-box">
-        <div class="column is-6 is-centered">
-          <h4>Om {{ userData.username }}</h4>
-          <p class="bio-box">{{ userData.bio }}</p>
-        </div>
-
+      <div class="column is-6 is-centered">
+        <h4>Om {{ userData.username }}</h4>
+        <div><p class="bio-box">{{ userData.bio }}</p></div>
       </div>
-      <div class="column is-3">
+
+
+
+      <!-- <div class="column is-3">
         <div
           ref="latestpuff"
           class="load-overlay box profile-box">
@@ -40,7 +40,7 @@
         </div>
         <topics-puff class="box profile-box"/>
 
-      </div>
+      </div> -->
     </div>
     <div class="columns is-centered">
       <div class="column"/>
