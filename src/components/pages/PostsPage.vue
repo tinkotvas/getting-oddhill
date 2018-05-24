@@ -24,7 +24,7 @@
                       class="button view-btn"
                       @click="savePostsView('post-view-b')"><b-icon icon="view-grid"></b-icon></a>
                     <a
-                      class="rounded view-btn button"
+                      class="button view-btn"
                       @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
                   </p>
                 </div>
@@ -38,8 +38,7 @@
                 <div class="level-item had-text-centered">
                   <span
                     class="button post-btn is-medium"
-                    @click="showEditor()">New Post
-                  </span>
+                    @click="showEditor()">New Post</span>
                 </div>
               </nav>
             </div>
