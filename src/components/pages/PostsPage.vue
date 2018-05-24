@@ -17,15 +17,15 @@
                   class="view-btns field is-grouped is-invisible-mobile"
                   align="right">
                   <p class="control">
+                    <!-- <a
+                      class="button view-btn"
+                      @click="savePostsView('post-view-a')">A</a> -->
                     <a
                       class="button view-btn"
-                      @click="savePostsView('post-view-a')">A</a>
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-b')">B</a>
+                      @click="savePostsView('post-view-b')"><b-icon icon="view-grid"></b-icon></a>
                     <a
                       class="rounded view-btn button"
-                      @click="savePostsView('post-view-c')">C</a>
+                      @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
                   </p>
                 </div>
               </div>
