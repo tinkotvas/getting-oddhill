@@ -1,23 +1,20 @@
 <template>
   <div class="column">
-    <!-- <b-field label="Heading">
-      <b-input v-model="heading"/>
-    </b-field> -->
-
-
+    <b-field v-if="wysiwyg">
+      <b-input v-model="heading" placeholder="Add a heading"/>
+    </b-field>
 
     <b-field
       v-if="!wysiwyg">
       <b-input
         v-model="message"
         maxlength="5000"
-        placeholder="Post here..."
-        type="textarea" has-counter="false"/>
-
+        type="textarea"
+        :has-counter="false"
+        placeholder="Add content"/>
     </b-field>
 
-    <b-field v-if="wysiwyg"
-      label="Body">
+    <b-field v-if="wysiwyg">
       <wysiwyg-editor
         :message="message"
         ref="editorMessage"/>
@@ -60,6 +57,11 @@ export default {
       wysiwyg: false
     }
   },
+  computed: {
+    imageCache: function () {
+      return this.$store.getters.imageCache
+    }
+  },
   watch: {
     wysiwyg:function(){
       if(!this.wysiwyg){
@@ -68,7 +70,7 @@ export default {
     }
   },
   methods: {
-    addPost (heading, message, topics, promoted) { // <-- and here
+    addPost (heading, message, topics, promoted) {
       const createdAt = new Date()
       for (let image in this.imageCache) {
         if (!this.imageCache[image].storagePath) {

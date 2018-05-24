@@ -45,7 +45,9 @@
             </div>
           </div>
           <div class="columns is-centered">
+            <transition name="slide-fade" :duration="{ enter: 500, leave: 800 }">
               <content-editor v-if="editorVisible"/>
+            </transition>
           </div>
         </div>
       </section>
@@ -176,6 +178,25 @@ b-icon{
 }
 .view-btn:hover {
   color:#fff;
+}
+
+.button{
+  z-index: 2;
+}
+
+.slider-fade{
+  z-index: 1;
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
 }
 
 </style>

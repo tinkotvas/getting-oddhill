@@ -19,6 +19,7 @@ export default {
 // Change to Darkly for dark theme and Flatly for light theme
 @import "~bulmaswatch/flatly/variables";
 // @import '~bulmaswatch/darkly/variables';
+$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 @import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
