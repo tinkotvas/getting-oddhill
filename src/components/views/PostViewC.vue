@@ -8,15 +8,15 @@
         <div class="media-content no-overflow">
           <div class="content">
             <router-link :to="'/post/'+post.id">
-              <p><strong>{{ post.heading }}</strong>
-               <span>{{ (post.message).substring(0,80) }}...</span>
-                <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span> <small class="time-author">av</small> <span class="time-author"><small>{{ post.author.username || 'Anonym' }}</small></span> </p></router-link>
+              <span class="time-author"><small>{{  (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+              <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+            <p><span>{{ (post.message).substring(0,80) }}...</span></p> </router-link>
 
             <nav
               class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <router-link :to="'/post/'+ post.id"><small><a> {{ 4 }} kommentarer</a></small></router-link>
+                  <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
                 </div>
               </div>
               <div class="level-left">
@@ -36,7 +36,6 @@
           </div>
         </div>
       </article>
-      </div>
     </div>
   </div>
 </template>
