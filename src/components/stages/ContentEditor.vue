@@ -1,30 +1,30 @@
 <template>
   <div class="column">
-    <b-field label="Heading">
-      <b-input v-model="heading"/>
+    <b-field v-if="wysiwyg">
+      <b-input v-model="heading" placeholder="Add a heading"/>
     </b-field>
 
-    <b-field label="Topics">
+    <b-field
+      v-if="!wysiwyg">
+      <b-input
+        v-model="message"
+        maxlength="5000"
+        type="textarea"
+        :has-counter="false"
+        placeholder="Add content"/>
+    </b-field>
+
+    <b-field v-if="wysiwyg">
+      <wysiwyg-editor
+        :message="message"
+        ref="editorMessage"/>
+    </b-field>
+
+    <b-field>
       <b-taginput
         v-model="topics"
         icon="label"
         placeholder="Add a topic"/>
-    </b-field>
-
-    <b-field
-      v-if="!wysiwyg"
-      label="Body">
-      <b-input
-        v-model="message"
-        maxlength="5000"
-        type="textarea"/>
-    </b-field>
-
-    <b-field v-if="wysiwyg"
-      label="Body">
-      <wysiwyg-editor
-        :message="message"
-        ref="editorMessage"/>
     </b-field>
 
     <p class="level">
