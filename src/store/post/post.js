@@ -207,7 +207,7 @@ export default {
             heading: payload.heading,
             message: payload.message,
             topics: payload.topics.reduce((acc, topic) =>
-              Object.assign(acc, { topic: true }, {})
+              Object.assign(acc, { [topic]: true }), {}
             ),
             promoted: payload.promoted
           })
