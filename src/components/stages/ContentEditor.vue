@@ -57,6 +57,11 @@ export default {
       wysiwyg: false
     }
   },
+  computed: {
+    imageCache: function () {
+      return this.$store.getters.imageCache
+    }
+  },
   watch: {
     wysiwyg:function(){
       if(!this.wysiwyg){
@@ -65,7 +70,7 @@ export default {
     }
   },
   methods: {
-    addPost (heading, message, topics, promoted) { // <-- and here
+    addPost (heading, message, topics, promoted) {
       const createdAt = new Date()
       for (let image in this.imageCache) {
         if (!this.imageCache[image].storagePath) {
