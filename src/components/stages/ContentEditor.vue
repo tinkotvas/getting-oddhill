@@ -67,6 +67,9 @@ export default {
       if(!this.wysiwyg){
         this.message = this.$refs.editorMessage.editor.getValue()
       }
+    },
+    topics: function(){
+      console.log(this.topics)
     }
   },
   methods: {

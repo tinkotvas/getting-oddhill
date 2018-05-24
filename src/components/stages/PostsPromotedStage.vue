@@ -35,7 +35,7 @@
                 :key="key"
                 class="is-primary is-small tag topic-btn"
                 :to="'/topic/'+ post.topics">
-                {{ topic }}
+                {{ key }}
               </router-link>
             </b-taglist>
           </div>

@@ -31,7 +31,7 @@
                       :key="key"
                       class="is-light is-small tag"
                       :to="'/topic/'+ post.topics">
-                      {{ topic }}
+                      {{ key }}
                     </router-link>
                   </b-taglist>
                 </span>
