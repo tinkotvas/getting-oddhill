@@ -33,7 +33,7 @@
               <router-link
                 v-for="(topic,key) of post.topics"
                 :key="key"
-                class="is-info is-small tag"
+                class="is-primary is-small tag topic-btn"
                 :to="'/topic/'+ post.topics">
                 {{ topic }}
               </router-link>
@@ -92,5 +92,9 @@ export default {
 
   .promoted-title {
     font-size: 22px;
+  }
+
+  .topic-btn {
+    padding:2px;
   }
 </style>
