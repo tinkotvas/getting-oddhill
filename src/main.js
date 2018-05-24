@@ -19,7 +19,6 @@ import App from './App'
 import HomePage from './components/pages/HomePage'
 import PostsPage from './components/pages/PostsPage'
 import PostsAddPage from './components/pages/PostsAddPage'
-import StoragePage from './components/pages/StoragePage'
 import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
@@ -98,7 +97,6 @@ export const routes = [
     }
   },
   { path: '/profiles', component: ProfilesPage },
-  { path: '/storage', component: StoragePage },
   { path: '/topic/:topics', component: TopicsPostPage }
 ]
 
