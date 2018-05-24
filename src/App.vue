@@ -15,11 +15,14 @@ export default {
 
 <!-- Universal styles -->
 <style lang="scss">
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 // Import theme variables first and overrides last, do not change the order
 // Change to Darkly for dark theme and Flatly for light theme
 @import "~bulmaswatch/flatly/variables";
 // @import '~bulmaswatch/darkly/variables';
-$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: 'Roboto Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
 @import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
