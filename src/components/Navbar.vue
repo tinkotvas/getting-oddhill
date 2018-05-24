@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-transparent">
+  <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
         <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill</strong></router-link>
@@ -19,7 +19,12 @@
       id="navbarExampleTransparentExample"
       class="navbar-menu"
       :class="{'is-active': navActive}">
-      <div class="navbar-start">
+      <div class="navbar-start"></div>
+
+      <div
+        v-if="authReady"
+        class="navbar-end">
+        <super-navigator/>
         <router-link
           class="navbar-item"
           to="/posts">Posts</router-link>
@@ -29,12 +34,6 @@
         <router-link
           class="navbar-item"
           to="/profile">Profile</router-link>
-      </div>
-
-      <div
-        v-if="authReady"
-        class="navbar-end">
-        <super-navigator/>
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
@@ -152,7 +151,7 @@ $navactive: #1abc9c;
 }
 
 .logo {
-  font-size: 25px;
+  font-size: 22px;
   color: #005f85;
 }
 </style>
