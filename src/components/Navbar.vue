@@ -151,6 +151,7 @@ $navactive: #1abc9c;
 }
 
 .logo {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 22px;
   color: #005f85;
 }
