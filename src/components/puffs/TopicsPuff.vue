@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <h3>Topics</h3>
+
 
     <div
       id="tags"

@@ -2,11 +2,10 @@
   <div
     id="home"
     class="section">
-      <div class="image">
-        <img :src="require('@/assets/portal.png')" alt="">
-      </div>
     <div class="columns is-centered">
       <div class="column is-7">
+
+        <topics-puff class=""/>
         <div
           ref="promoted"
           class="load-overlay">
@@ -15,11 +14,12 @@
       </div>
       <div class="column is-3">
         <profiles-puff ref="profilesPuff" class="box profile-box"/>
-        <topics-puff class="box profile-box"/>
+
         <div
           ref="latestpuff"
           class="load-overlay box profile-box">
-          <latest-puff :posts="posts"/>
+          <!-- <latest-puff :posts="posts"/> -->
+
         </div>
       </div>
     </div>
@@ -77,9 +77,5 @@ export default {
   background-color: #fff;
 }
 
-.image img {
-  width: 30%;
-  margin: 0 auto;
-}
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="promoted-stage">
-    <div class="promoted-title"><strong>Promoted posts</strong></div>
+    <div class="promoted-title"><strong>Posts</strong></div>
     <article
       v-if="isPromoted(key) && posts"
       class="media"
