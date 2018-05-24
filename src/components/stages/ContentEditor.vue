@@ -1,23 +1,19 @@
 <template>
   <div class="column">
-    <b-field label="Heading">
+    <!-- <b-field label="Heading">
       <b-input v-model="heading"/>
-    </b-field>
+    </b-field> -->
 
-    <b-field label="Topics">
-      <b-taginput
-        v-model="topics"
-        icon="label"
-        placeholder="Add a topic"/>
-    </b-field>
+
 
     <b-field
-      v-if="!wysiwyg"
-      label="Body">
+      v-if="!wysiwyg">
       <b-input
         v-model="message"
         maxlength="5000"
-        type="textarea"/>
+        placeholder="Post here..."
+        type="textarea" has-counter="false"/>
+
     </b-field>
 
     <b-field v-if="wysiwyg"
@@ -27,10 +23,17 @@
         ref="editorMessage"/>
     </b-field>
 
+    <b-field>
+      <b-taginput
+        v-model="topics"
+        icon="label"
+        placeholder="Add a topic"/>
+    </b-field>
+
     <p class="level">
       <button
         class="button"
-        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add New Post</button>
+        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
