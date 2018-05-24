@@ -1,7 +1,6 @@
 <template>
   <div class="content">
 
-
     <div
       id="tags"
       v-for="(tag, index) of sortArray"

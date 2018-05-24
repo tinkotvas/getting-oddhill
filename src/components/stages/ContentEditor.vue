@@ -1,7 +1,9 @@
 <template>
   <div class="column">
     <b-field v-if="wysiwyg">
-      <b-input v-model="heading" placeholder="Add a heading"/>
+      <b-input
+        v-model="heading"
+        placeholder="Add a heading"/>
     </b-field>
 
     <b-field
@@ -35,7 +37,7 @@
         Promoted
       </b-switch>
       <b-switch v-model="wysiwyg">
-          Rich Editor
+        Rich Editor
       </b-switch>
     </p>
   </div>
@@ -63,12 +65,12 @@ export default {
     }
   },
   watch: {
-    wysiwyg:function(){
-      if(!this.wysiwyg){
+    wysiwyg: function () {
+      if (!this.wysiwyg) {
         this.message = this.$refs.editorMessage.editor.getValue()
       }
     },
-    topics: function(){
+    topics: function () {
       console.log(this.topics)
     }
   },

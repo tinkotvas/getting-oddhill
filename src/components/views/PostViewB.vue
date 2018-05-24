@@ -66,7 +66,7 @@ export default {
     VueMarkdown
   },
 
-  filters:{
+  filters: {
     truncate: function (value) {
       return value.substring(0, 100)
     }

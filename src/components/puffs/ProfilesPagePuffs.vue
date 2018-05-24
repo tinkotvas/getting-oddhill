@@ -2,8 +2,10 @@
   <div class="columns is-centered">
     <div class="column is-10-widescreen">
       <div class="columns is-multiline is-mobile">
-        <div class="column is-12-mobile is-6-tablet is-3-desktop"
-          v-for="(profile, index) of profiles" :key="index">
+        <div
+          class="column is-12-mobile is-6-tablet is-3-desktop"
+          v-for="(profile, index) of profiles"
+          :key="index">
           <div>
             <div class="box profile-box">
               <div class="image">
@@ -16,10 +18,10 @@
                   <p class="has-text-centered top-space"><strong>{{ profile.name }}</strong></p>
                   <p class="has-text-centered"><small>{{ profile.title }}</small></p>
                   <div class="block icons has-text-centered">
-                    <b-icon icon="github-circle"></b-icon>
-                    <b-icon icon="twitter-circle"></b-icon>
-                    <b-icon icon="linkedin"></b-icon>
-                </div>
+                    <b-icon icon="github-circle"/>
+                    <b-icon icon="twitter-circle"/>
+                    <b-icon icon="linkedin"/>
+                  </div>
                 </div>
               </div>
             </div>

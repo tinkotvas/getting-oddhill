@@ -3,7 +3,9 @@
     <section>
       <div class="container">
         <div class="columns">
-          <div id="edit-stage" class="column">
+          <div
+            id="edit-stage"
+            class="column">
             <profile-edit-stage/>
           </div>
         </div>
@@ -15,10 +17,10 @@
 <script>
 import { db } from '../../main.js'
 
-//Stages
+// Stages
 import ProfileEditStage from '../stages/ProfileEditStage'
 
-//Puffs
+// Puffs
 
 export default {
   components: {
@@ -33,7 +35,6 @@ export default {
     }
   }
 }
-
 
 </script>
 

@@ -26,9 +26,9 @@
               <router-link :to="'/post/'+post.id">
                 <p> {{ post.message | truncate }}</p>
                 <figure class="image is-128x128 img">
-                <img
-                  :src="post.imageUrl"
-                  v-if="post.imageUrl">
+                  <img
+                    :src="post.imageUrl"
+                    v-if="post.imageUrl">
                 </figure>
               </router-link>
 
@@ -56,7 +56,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.dispatch('getTopicPosts', {topic:'Oddhill'})
+    this.$store.dispatch('getTopicPosts', {topic: 'Oddhill'})
   },
   methods: {
     localTimeSv: function (value) {
@@ -74,4 +74,3 @@ export default {
 <style>
 
 </style>
-

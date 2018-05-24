@@ -2,7 +2,11 @@
   <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill</strong></router-link>
+        <router-link
+          to="/"
+          active-class=""
+          exact-active-class=""
+          class="logo"><strong>Getting Oddhill</strong></router-link>
       </span>
       <div
         class="navbar-burger burger"
@@ -19,7 +23,7 @@
       id="navbarExampleTransparentExample"
       class="navbar-menu"
       :class="{'is-active': navActive}">
-      <div class="navbar-start"></div>
+      <div class="navbar-start"/>
 
       <div
         v-if="authReady"

@@ -105,6 +105,9 @@ export default {
     this.initEditor()
     this.setInitialValues()
   },
+  destroyed () {
+    this.$store.dispatch('clearImageCache')
+  },
   methods: {
     getFilteredTopics (text) {
       this.filteredTopics = this.topics.filter((option) => {
@@ -130,9 +133,9 @@ export default {
       }
 
       if (Object.keys(payload).length > 0) {
-        for(let image in this.imageCache){
-          if(!this.imageCache[image].storagePath) {
-            console.log("All images not yet uploaded PLACEHOLDER")
+        for (let image in this.imageCache) {
+          if (!this.imageCache[image].storagePath) {
+            console.log('All images not yet uploaded PLACEHOLDER')
             return
           }
           payload.message = payload.message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
@@ -169,9 +172,6 @@ export default {
         }
       })
     }
-  },
-  destroyed () {
-    this.$store.dispatch('clearImageCache')
   }
 }
 </script>

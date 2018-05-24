@@ -47,7 +47,7 @@ export default {
           post: db.doc('posts/' + payload.postid)
         })
         .then(re => {
-          re.get().then(doc =>{
+          re.get().then(doc => {
             let tmp = doc.data()
             tmp.post = tmp.post.id
             tmp.author = tmp.author.id

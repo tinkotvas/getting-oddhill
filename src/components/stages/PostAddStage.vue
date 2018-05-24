@@ -48,18 +48,18 @@ require('tui-editor/dist/tui-editor-extScrollSync.js')
 
 var _ = require('lodash')
 
-Editor.defineExtension('youtube', function() {
-    Editor.codeBlockManager.setReplacer('swagger', function(youtubeId) {
-        var wrapperId = 'yt' + Math.random().toString(36).substr(2, 10);
-        setTimeout(renderYoutube.bind(null, wrapperId, youtubeId), 0);
-        return '<div id="' + wrapperId + '"></div>';
-    });
-});
+Editor.defineExtension('youtube', function () {
+  Editor.codeBlockManager.setReplacer('swagger', function (youtubeId) {
+    var wrapperId = 'yt' + Math.random().toString(36).substr(2, 10)
+    setTimeout(renderYoutube.bind(null, wrapperId, youtubeId), 0)
+    return '<div id="' + wrapperId + '"></div>'
+  })
+})
 
-function renderYoutube(wrapperId, youtubeId) {
-    var el = document.querySelector('#' + wrapperId);
-    console.log("wrapperid", el)
-    el.innerHTML = '<iframe width="420" height="315" src="https://www.youtube.com/embed/' + youtubeId + '"></iframe>';
+function renderYoutube (wrapperId, youtubeId) {
+  var el = document.querySelector('#' + wrapperId)
+  console.log('wrapperid', el)
+  el.innerHTML = '<iframe width="420" height="315" src="https://www.youtube.com/embed/' + youtubeId + '"></iframe>'
 }
 
 const uuidv1 = require('uuid/v1')
@@ -88,7 +88,7 @@ export default {
       usageStatistics: 'false',
       minHeight: '300px',
       height: 'auto',
-      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter','youtube'],
+      exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter', 'youtube'],
       useCommandShortcut: true,
       hooks: {
         'addImageBlobHook': (file, callback) => {
@@ -97,22 +97,22 @@ export default {
       }
     })
   },
+  destroyed () {
+    this.$store.dispatch('clearImageCache')
+  },
   methods: {
     addPost (heading, message, topics, promoted) { // <-- and here
       const createdAt = new Date()
-      for(let image in this.imageCache){
-        if(!this.imageCache[image].storagePath) {
-          console.log("All images not yet uploaded PLACEHOLDER")
+      for (let image in this.imageCache) {
+        if (!this.imageCache[image].storagePath) {
+          console.log('All images not yet uploaded PLACEHOLDER')
           return
         }
         message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
       }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     }
-  },
-  destroyed () {
-    this.$store.dispatch('clearImageCache')
-  } 
+  }
 }
 
 </script>
