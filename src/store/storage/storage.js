@@ -12,6 +12,9 @@ export default {
       state.imageCache[payload.name] = payload
     },
     setStoragePath (state, payload) {
+      if (!state.imageCache[payload.name]) {
+        state.imageCache[payload.name] = {}
+      }
       state.imageCache[payload.name].storagePath = payload.storagePath
     },
     clearImageCache (state, payload) {
@@ -28,7 +31,7 @@ export default {
       }
       this.dispatch('uploadToStorage', payload)
     },
-    uploadToStorage ({ commit }, payload) {
+    uploadToStorage ({ commit, dispatch }, payload) {
       let file = payload.file
       let fileEnding = fileRegex.exec(file.name)
 
@@ -36,6 +39,9 @@ export default {
         .put(payload.file)
         .then((snapshot) => {
           commit('setStoragePath', { name: file.name, storagePath: snapshot.downloadURL })
+          if (payload.profile) {
+            dispatch('updateProfilePhoto', snapshot.downloadURL)
+          }
         })
     },
     clearImageCache ({ commit }, payload) {

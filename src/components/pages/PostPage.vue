@@ -6,8 +6,12 @@
           class="columns is-centered"
           ref="section">
           <div class="column is-12-tablet is-8-desktop">
-            <!-- alternative to forgetting post when exiting page -->
             <post-stage :post="post"/>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <post-comments-stage :comments="comments" :postid="post"/>
           </div>
         </div>
       </div>
@@ -19,15 +23,20 @@
 import { db } from '../../main.js'
 // Stages
 import PostStage from '../stages/PostStage'
+import PostCommentsStage from '../stages/PostCommentsStage'
 // Puffs
 
 export default {
   components: {
-    PostStage
+    PostStage,
+    PostCommentsStage
   },
   computed: {
     post () {
       return this.$store.getters.post
+    },
+    comments () {
+      return this.$store.getters.comments
     }
   },
   watch: {
@@ -39,6 +48,7 @@ export default {
     if (this.$route.params.id != this.post.id) {
       this.getPost()
       this.initLoading()
+      this.loadComments()
     }
   },
   destroyed () {
@@ -55,6 +65,9 @@ export default {
       this.loadingComponent = this.$loading.open({
         container: this.$refs.section
       })
+    },
+    loadComments () {
+      this.$store.dispatch('getComments', { postid: this.$route.params.id } )
     }
   }
 }

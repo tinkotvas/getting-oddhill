@@ -3,7 +3,7 @@ import { db } from '../../main.js'
 
 export default {
   state: {
-    currentUser: null,
+    currentUser: undefined,
     authReady: false,
     profileData: null
   },
@@ -19,6 +19,10 @@ export default {
     },
     setAuthReady (state, payload) {
       state.authReady = payload
+    },
+    setProfilePhoto (state, payload) {
+      state.profileData.profilePhoto = payload
+      state.currentUser.profilePhoto = payload
     }
   },
   actions: {
@@ -66,11 +70,13 @@ export default {
         id: payload.uid,
         name: payload.displayName,
         email: payload.email,
-        photoUrl: payload.photoURL
+        photoURL: payload.photoURL
       })
       db.collection('users').doc(payload.uid).get().then((doc) => {
         if (doc.exists) {
-          commit('setProfileData', doc.data())
+          let tmp = doc.data()
+          tmp.id = doc.id
+          commit('setProfileData', tmp)
         }
       })
     },

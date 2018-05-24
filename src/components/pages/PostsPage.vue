@@ -19,27 +19,36 @@
                   <p class="control">
                     <a
                       class="button view-btn"
-                      @click="savePostsView('post-view-a')">_A</a>
+                      @click="savePostsView('post-view-a')">A</a>
                     <a
                       class="button view-btn"
-                      @click="savePostsView('post-view-b')">_B</a>
+                      @click="savePostsView('post-view-b')">B</a>
                     <a
                       class="rounded view-btn button"
-                      @click="savePostsView('post-view-c')">_C</a>
+                      @click="savePostsView('post-view-c')">C</a>
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="columns">
-          <div class="column">
-            <router-link
-              to="/post/add">
-                <a class="button post-btn is-medium" type="submit">_New Post</a>
-            </router-link>
-          </div>
-          </div>
 
+          <div class="columns is-centered">
+            <div class="column">
+              <nav class="level is-mobile">
+                <div class="level-item had-text-centered">
+                  <span
+                    class="button post-btn is-medium"
+                    @click="showEditor()">New Post
+                  </span>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <transition name="slide-fade" :duration="{ enter: 500, leave: 800 }">
+              <content-editor v-if="editorVisible"/>
+            </transition>
+          </div>
         </div>
       </section>
       <section class="section">
@@ -51,15 +60,17 @@
         </keep-alive>
       </section>
 
-      <div class="level">
-        <div class="level-item">
-          <button
-            id="getMoreBtn"
-            class="button"
-            v-if="showMoreButton"
-            @click="getMorePosts()">Get more..</button>
+      <section class="section">
+        <div class="level">
+          <div class="level-item">
+            <button
+              id="getMoreBtn"
+              class="button"
+              v-if="showMoreButton"
+              @click="getMorePosts()">Get more..</button>
+          </div>
         </div>
-      </div>
+      </section>
 
     </div>
   </div>
@@ -71,17 +82,20 @@ import { db } from '../../main.js'
 import PostViewA from '../views/PostViewA'
 import PostViewB from '../views/PostViewB'
 import PostViewC from '../views/PostViewC'
+import ContentEditor from '../stages/ContentEditor'
 
 export default {
   components: {
     PostViewA,
     PostViewB,
-    PostViewC
+    PostViewC,
+    ContentEditor
   },
   data () {
     return {
       isLoading: false,
-      showMoreButton: true
+      showMoreButton: true,
+      editorVisible: false
     }
   },
   computed: {
@@ -97,6 +111,9 @@ export default {
     this.getPosts()
   },
   methods: {
+    showEditor () {
+      this.editorVisible = !this.editorVisible
+    },
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
@@ -126,21 +143,19 @@ export default {
 .no-overflow {
   overflow: hidden;
 }
-.input{
-  width: 800px;
-}
+
 b-icon{
   margin-top: 2px;
 }
 
 .post-btn{
-    font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
+    font: Helvetica,Arial,sans-serif;
     color: #fff;
     display: inline-block;
-    background: #3e30ed;
+    background: #272457;
     border-radius: 30px;
     font-weight: 500;
-    min-width: 214px;
+    min-width: 150px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -157,7 +172,7 @@ b-icon{
   font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
   color: #fff;
   font-weight: 500;
-  background: #3e30ed;
+  background: #272457;
   border-radius: 30px;
   padding: 20px;
   text-decoration: none;
@@ -165,6 +180,25 @@ b-icon{
 }
 .view-btn:hover {
   color:#fff;
+}
+
+.button{
+  z-index: 2;
+}
+
+.slider-fade{
+  z-index: 1;
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
 }
 
 </style>
