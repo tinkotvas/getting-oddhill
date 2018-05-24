@@ -76,7 +76,5 @@ export default {
 <style lang="scss">
 
 //for loader
-.columns{
-  min-height: 100px;
-}
+
 </style>
