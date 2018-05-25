@@ -51,7 +51,7 @@
           </div>
         </div>
       </section>
-      <section class="section">
+      <section ref="allPosts" class="section load-overlay">
         <keep-alive>
           <component
             :is="postsView"
@@ -107,8 +107,16 @@ export default {
       return this.$store.getters.postsView
     }
   },
+  watch: {
+    posts: function () {
+      this.load.forEach(el => {
+        el.close()
+      })
+    }
+  },
   mounted () {
     this.getPosts()
+    this.initLoadingOverlay()
   },
   methods: {
     showEditor () {
@@ -117,10 +125,8 @@ export default {
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
-    initLoading () {
-      this.loadingComponent = this.$loading.open({
-        container: this.$refs.postsstage.$el
-      })
+    initLoadingOverlay () {
+      this.load = this.$plugins.load(this, [this.$refs.allPosts])
     },
     getPosts () {
       this.$store.dispatch('getPosts')

@@ -16,7 +16,6 @@
       <b-taginput
         v-model="post.topics"
         :data="filteredTopics"
-        field="user.first_name"
         icon="label"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
