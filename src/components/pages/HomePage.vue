@@ -12,18 +12,15 @@
           <posts-promoted-stage :posts="summaries"/>
         </div>
       </div>
-      <div class="column is-3">
-        <profiles-puff
-          ref="profilesPuff"
-          class="box profile-box"/>
+      <!-- <div class="column is-3">
+        <profiles-puff ref="profilesPuff" class="box profile-box"/>
 
         <div
           ref="latestpuff"
           class="load-overlay box profile-box">
-          <!-- <latest-puff :posts="posts"/> -->
-
+          <latest-puff :posts="posts"/>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>

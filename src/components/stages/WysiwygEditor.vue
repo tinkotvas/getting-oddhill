@@ -19,17 +19,13 @@ require('tui-editor/dist/tui-editor-extChart.js')
 require('tui-editor/dist/tui-editor-extTable.js')
 require('tui-editor/dist/tui-editor-extColorSyntax.js')
 require('tui-editor/dist/tui-editor-extScrollSync.js')
-var _ = require('lodash')
 
-const uuidv1 = require('uuid/v1')
-const fileRegex = /\.[^.\s]+$/i
 
 export default {
   props: ['message'],
   data () {
     return {
       editor: {},
-      temp: {},
       wysiwyg: false
     }
   },
@@ -55,7 +51,6 @@ export default {
         }
       }
     })
-    Object.assign(this.temp, this.editor)
   },
   destroyed () {
     this.$store.dispatch('clearImageCache')
