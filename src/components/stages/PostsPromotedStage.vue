@@ -10,21 +10,23 @@
       <div class="media-content no-overflow">
         <div class="content">
           <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p><br>
-            <p class="post-content"><vue-markdown :source="post.message | truncate"/>
+          <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
 
       </div>
       <div class="media-right"> <div class="level">
         <div class="level-left"/>
-          <div class="level-right">
-            <router-link :to="'/post/'+post.id">
-            <figure  class="image is-128x128">
-              <img v-if="post.imageUrl" :src="post.imageUrl">
+        <div class="level-right">
+          <router-link :to="'/post/'+post.id">
+            <figure class="image is-128x128">
+              <img
+                v-if="post.imageUrl"
+                :src="post.imageUrl">
             </figure>
-            </router-link>
-          </div>
+          </router-link>
         </div>
+      </div>
 
         <nav class="level is-mobile">
           <div class="level-left"/>
@@ -35,7 +37,7 @@
                 :key="key"
                 class="is-primary is-small tag topic-btn"
                 :to="'/topic/'+ post.topics">
-                {{ topic }}
+                {{ key }}
               </router-link>
             </b-taglist>
           </div>
@@ -49,12 +51,22 @@
 import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
 
+const fadeChars = 35
+let truncateChars = 250
+
 export default {
   filters: {
     truncate: function (value) {
-      let truncated = value.length > 250 ? value.substring(0, 250) : value
-      if (truncated.length >= 250) {
-        truncated = truncated + '...'
+      let truncated = value.length > truncateChars ? value.substring(0, truncateChars) : value
+      if (truncated.length >= truncateChars) {
+        // truncated = truncated + '...'
+        // truncateChars = truncated.length
+        let faded = Array.prototype.map.call(truncated.substring(truncateChars - fadeChars, truncateChars), (char, index) => {
+          let x = (index / fadeChars)
+          let quickMaffs = (1 - 0.12 * x - 0.88 * (x ** 2))
+          return `<span style="opacity: ${quickMaffs};">${char}</span>`
+        })
+        truncated = truncated.substring(0, truncateChars - fadeChars) + faded.join('')
       }
       return truncated
     }

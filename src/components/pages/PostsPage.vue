@@ -22,9 +22,9 @@
                       @click="savePostsView('post-view-a')">A</a> -->
                     <a
                       class="button view-btn"
-                      @click="savePostsView('post-view-b')"><b-icon icon="view-grid"></b-icon></a>
+                      @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
                     <a
-                      class="rounded view-btn button"
+                      class="button view-btn"
                       @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
                   </p>
                 </div>
@@ -38,14 +38,15 @@
                 <div class="level-item had-text-centered">
                   <span
                     class="button post-btn is-medium"
-                    @click="showEditor()">New Post
-                  </span>
+                    @click="showEditor()">New Post</span>
                 </div>
               </nav>
             </div>
           </div>
           <div class="columns is-centered">
-            <transition name="slide-fade" :duration="{ enter: 500, leave: 800 }">
+            <transition
+              name="slide-fade"
+              :duration="{ enter: 500, leave: 800 }">
               <content-editor v-if="editorVisible"/>
             </transition>
           </div>

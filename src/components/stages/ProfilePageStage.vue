@@ -16,9 +16,9 @@
           <p><strong>Framework : </strong>...</p> -->
         </section>
         <div class="block icons">
-            <b-icon icon="github-circle"></b-icon>
-            <b-icon icon="linkedin"></b-icon>
-            <b-icon icon="twitter-circle"></b-icon>
+          <b-icon icon="github-circle"/>
+          <b-icon icon="linkedin"/>
+          <b-icon icon="twitter-circle"/>
         </div>
         <router-link
           class="button is-small is-outlined is-primary"
@@ -29,8 +29,6 @@
         <h4>Om {{ userData.username }}</h4>
         <div><p class="bio-box">{{ userData.bio }}</p></div>
       </div>
-
-
 
       <!-- <div class="column is-3">
         <div
@@ -51,7 +49,7 @@
 <script>
 const json = require('../../assets/json/profiles.json')
 
-//Puffs
+// Puffs
 import LatestPuff from '../puffs/LatestPuff'
 import TopicsPuff from '../puffs/TopicsPuff'
 

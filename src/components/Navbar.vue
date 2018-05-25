@@ -19,7 +19,7 @@
       id="navbarExampleTransparentExample"
       class="navbar-menu"
       :class="{'is-active': navActive}">
-      <div class="navbar-start"></div>
+      <div class="navbar-start"/>
 
       <div
         v-if="authReady"

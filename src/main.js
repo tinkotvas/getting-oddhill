@@ -18,8 +18,6 @@ import App from './App'
 // and then the differente page-comopnents
 import HomePage from './components/pages/HomePage'
 import PostsPage from './components/pages/PostsPage'
-import PostsAddPage from './components/pages/PostsAddPage'
-import StoragePage from './components/pages/StoragePage'
 import PostPage from './components/pages/PostPage'
 import ProfilePage from './components/pages/ProfilePage'
 import ProfilesPage from './components/pages/ProfilesPage'
@@ -60,7 +58,6 @@ Vue.config.productionTip = false
 export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
-  { path: '/post/add', component: PostsAddPage },
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
   { path: '/profile/:id', component: ProfilePage },
@@ -98,7 +95,6 @@ export const routes = [
     }
   },
   { path: '/profiles', component: ProfilesPage },
-  { path: '/storage', component: StoragePage },
   { path: '/topic/:topics', component: TopicsPostPage }
 ]
 

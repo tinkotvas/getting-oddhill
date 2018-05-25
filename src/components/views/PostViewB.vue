@@ -15,15 +15,16 @@
                 <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
                 <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <router-link :to="'/post/'+post.id">
-                  <p><vue-markdown :source="post.message | truncate"/></p>
-                  <figure class="image is-128x128 img">
+                   <figure class="image is-4by5 img">
                     <img
                       :src="post.imageUrl"
                       v-if="post.imageUrl">
                   </figure>
+                  <p><vue-markdown :source="post.message | truncate"/></p>
+
                 </router-link>
               </div>
-              <nav class="level is-mobile">
+              <nav class="topics level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
                     <b-taglist>
@@ -32,7 +33,7 @@
                         :key="key"
                         class="is-light is-small tag"
                         :to="'/topic/'+ post.topics">
-                        {{ topic }}
+                        {{ key }}
                       </router-link>
                     </b-taglist>
                   </div>
@@ -65,7 +66,7 @@ export default {
     VueMarkdown
   },
 
-  filters:{
+  filters: {
     truncate: function (value) {
       return value.substring(0, 100)
     }
@@ -92,13 +93,13 @@ export default {
   background-color: #fff;
   border: 1px solid #000;
 }
-img{
-  height: 200px;
-  width: auto;
-  display: block;
+figure{
+  height: auto;
+  width: 200px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  display: block;
+  margin-top: 20px;
 }
 
 .time-author{
@@ -107,6 +108,10 @@ img{
 
 figure:empty{
   display: none;
+}
+
+nav.topics{
+  word-wrap: break-word;
 }
 
 </style>
