@@ -2,7 +2,7 @@
   <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill</strong></router-link>
+        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill.</strong></router-link>
       </span>
       <div
         class="navbar-burger burger"
@@ -136,7 +136,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$navactive: #1abc9c;
+$navactive: #3e30ed;
 .is-active {
   color: $navactive !important;
 }
@@ -151,8 +151,12 @@ $navactive: #1abc9c;
 }
 
 .logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 22px;
-  color: #005f85;
+  font-family: Helvetica, sans-serif;
+  font-size: 23px;
+  color:#000;;
+}
+
+.navbar-item {
+  font-family: Helvetica, sans-serif;
 }
 </style>
