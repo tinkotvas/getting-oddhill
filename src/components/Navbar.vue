@@ -152,7 +152,7 @@ $navactive: #3e30ed;
 
 .logo {
   font-family: Helvetica, sans-serif;
-  font-size: 23px;
+  font-size: 20px;
   color:#000;;
 }
 

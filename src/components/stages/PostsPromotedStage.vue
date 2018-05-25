@@ -102,8 +102,9 @@ export default {
     padding: 0 50px;;
   } */
 
-  .promoted-title {
-    font-size: 22px;
+  .promoted-title strong{
+    font-size: 32px;
+    color: rgb(42, 41, 52);
   }
 
   .topic-btn {

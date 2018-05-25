@@ -153,7 +153,7 @@ b-icon{
     font-size: 12px;
     color: #fff;
     display: inline-block;
-    border-radius: 50px;
+    border-radius: 30px;
     font-weight: 500;
     min-width: 150px;
     padding-left: 40px;
