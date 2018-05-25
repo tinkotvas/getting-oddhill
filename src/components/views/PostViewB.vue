@@ -12,8 +12,8 @@
               <div class="content">
                 <!-- <h4><strong><router-link
                   :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
-                <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
-                <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
+                | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <router-link :to="'/post/'+post.id">
                    <figure
                    class="image is-4by5-dektop is-5by4-mobile img">

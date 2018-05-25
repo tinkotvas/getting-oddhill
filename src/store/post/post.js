@@ -11,9 +11,6 @@ export default {
     topics: []
   },
   mutations: {
-    setTopics (state, payload) {
-      state.topics = payload
-    },
     setPosts (state, payload) {
       state.posts = payload
     },
@@ -37,20 +34,6 @@ export default {
     }
   },
   actions: {
-    getTopics ({ commit }, payload) {
-      db
-        .collection('topics')
-        .get()
-        .then(async snapshot => {
-          Promise.all(
-            snapshot.docs.map(async doc => {
-              return doc.data().topic
-            })
-          ).then(topics => {
-            commit('setTopics', topics)
-          })
-        })
-    },
     getPost ({ commit }, payload) {
       db
         .collection('posts')
@@ -58,6 +41,7 @@ export default {
         .get()
         .then(async snapshot => {
           let post = snapshot.data()
+          post.topics = Object.keys(post.topics)
           post.author = await getAuthorData(post.author)
           commit('setPost', post)
           commit('setLastDoc', snapshot)
@@ -150,6 +134,7 @@ export default {
           .onSnapshot(async snapshot => {
             let post = snapshot.data()
             post.id = snapshot.id
+            post.topics = Object.keys(post.topics)
             post.author = await getAuthorData(post.author)
             commit('setPost', post)
           })
@@ -206,9 +191,7 @@ export default {
             createdAt: payload.createdAt,
             heading: payload.heading,
             message: payload.message,
-            topics: payload.topics.reduce((acc, topic) =>
-              Object.assign(acc, { [topic]: true }), {}
-            ),
+            topics: arrayToObject(payload.topics),
             promoted: payload.promoted
           })
           .then(re => {
@@ -306,4 +289,10 @@ async function addNumberOfComments (post) {
     .get()).docs
   post.numberOfComments = comments.length
   return post
+}
+
+function arrayToObject(array) {
+  return array.reduce((acc, topic) =>
+    Object.assign(acc, { [topic]: true }), {}
+  )
 }

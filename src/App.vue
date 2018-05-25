@@ -21,7 +21,16 @@ export default {
 // Change to Darkly for dark theme and Flatly for light theme
 @import "~bulmaswatch/flatly/variables";
 // @import '~bulmaswatch/darkly/variables';
+//Font
 $family-sans-serif: 'Roboto Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+p {
+  font-size: 12pt;
+}
+
+$button-background-color: #3e30ed;
+$button-color: #fff;
+$button-hover-color: none;
+
 
 @import '~bulma/sass/utilities/_all';
 
