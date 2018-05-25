@@ -78,12 +78,6 @@ export default {
     }
   },
   computed: {
-    topics: function () {
-      return this.$store.getters.topics
-    },
-    imageCache: function () {
-      return this.$store.getters.imageCache
-    },
     topicsArray: function () {
       return Object.keys(this.topics)
     }

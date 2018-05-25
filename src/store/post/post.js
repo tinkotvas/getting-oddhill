@@ -203,12 +203,15 @@ export default {
     },
     editPost ({ commit }, payload) {
       let id = payload.id
+      let topicsArray = payload.topics.slice()
+      payload.topics = arrayToObject(payload.topics)
       delete payload.id
       db
         .collection('posts')
         .doc(id)
         .update(payload)
         .then(() => {
+          payload.topics = topicsArray
           commit('editPost', payload)
         })
     },
@@ -291,7 +294,7 @@ async function addNumberOfComments (post) {
   return post
 }
 
-function arrayToObject(array) {
+function arrayToObject (array) {
   return array.reduce((acc, topic) =>
     Object.assign(acc, { [topic]: true }), {}
   )
