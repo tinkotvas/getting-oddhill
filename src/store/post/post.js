@@ -308,7 +308,9 @@ export default {
 
 async function getAuthorData (author) {
   return typeof author === 'object'
-    ? 'firestore' in author ? (await author.get()).data() : author
+    ? 'firestore' in author
+      ? (await author.get()).data()
+      : author
     : { username: author }
 }
 
@@ -322,8 +324,6 @@ async function addNumberOfComments (post) {
   return post
 }
 
-function arrayToObject(array) {
-  return array.reduce((acc, topic) =>
-    Object.assign(acc, { [topic]: true }), {}
-  )
+function arrayToObject (array) {
+  return array.reduce((acc, topic) => Object.assign(acc, { [topic]: true }), {})
 }
