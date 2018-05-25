@@ -11,6 +11,9 @@ export default {
     topics: []
   },
   mutations: {
+    setTopics (state, payload) {
+      state.topics = payload
+    },
     setPosts (state, payload) {
       state.posts = payload
     },
