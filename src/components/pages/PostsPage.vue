@@ -5,52 +5,39 @@
       ref="postsstage"
       id="posts-stage">
 
-      <section class="section">
-        <div class="container">
-          <div class="level level-invisible">
-
-            <div class="level-left"/>
-
-            <div class="level-right">
-              <div class="container">
-                <div
-                  class="view-btns field is-grouped"
-                  align="right">
-                  <p class="control">
-                    <!-- <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-a')">A</a> -->
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
-                  </p>
-                </div>
-              </div>
-            </div>
+      <div class="container">
+        <div class="level is-mobile">
+          <div class="level-item">
+            <span
+                class="button post-btn is-medium"
+                @click="showEditor()">New Post</span>
           </div>
-          <div class="container">
-            <div class="columns">
+          <div class="level-right">
               <div
-              class="column"
-              style="display:flex; justify-content:center;">
-                <span
-                  class="button post-btn is-medium"
-                  @click="showEditor()">New Post</span>
+                class="view-btns field is-grouped"
+                align="right">
+                <p class="control">
+                  <!-- <a
+                    class="button view-btn"
+                    @click="savePostsView('post-view-a')">A</a> -->
+                  <a
+                    class="button view-btn"
+                    @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
+                  <a
+                    class="button view-btn"
+                    @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
+                </p>
               </div>
-            </div>
-          </div>
-          <div class="columns is-centered">
-            <transition
-              name="slide-fade"
-              :duration="{ enter: 500, leave: 800 }">
-              <content-editor v-if="editorVisible"/>
-            </transition>
           </div>
         </div>
-      </section>
+        <div class="columns is-centered">
+          <transition
+            name="slide-fade"
+            :duration="{ enter: 500, leave: 800 }">
+            <content-editor v-if="editorVisible"/>
+          </transition>
+        </div>
+      </div>
       <section ref="allPosts" class="section load-overlay">
         <keep-alive>
           <component
