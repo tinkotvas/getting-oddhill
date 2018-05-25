@@ -13,7 +13,9 @@
           @click="deletePost($route.params.id)">Delete post</a>
       </p>
     </div>
+    <p class="post-header"><strong>{{ post.heading }}</strong></p>
     <vue-markdown
+
       :source="post.message"
       class="content"/>
 
@@ -36,8 +38,11 @@ export default {
   }
 }
 
-</script>
+</script scoped>
 
 <style scoped lang="scss">
-
+.post-header {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
 </style>
