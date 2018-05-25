@@ -23,15 +23,15 @@
     </b-field>
 
     <b-field label="Message">
-      <div
-        id="editSection"
-        type="textarea"/>
+      <wysiwyg-editor
+        :message="post.message"
+        ref="editorMessage"/>
 
     </b-field>
     <p class="level">
       <button
         class="button"
-        @click="editPost(post.heading, (editor.getValue()), post.topics, post.promoted)">Save changes</button>
+        @click="editPost(post.heading, ($refs.editorMessage.editor.getValue()), post.topics, post.promoted)">Save changes</button>
 
       <b-switch v-model="post.promoted">
         Promoted
@@ -60,28 +60,19 @@
 </template>
 
 <script>
-require('codemirror/lib/codemirror.css') // codemirror
-require('tui-editor/dist/tui-editor.css') // editor ui
-require('tui-editor/dist/tui-editor-contents.css') // editor content
-require('tui-color-picker/dist/tui-color-picker.css') // color picker
-require('tui-chart/dist/tui-chart.css') // chart
-require('highlight.js/styles/github.css') // code block highlight
-var Editor = require('tui-editor')
-require('tui-editor/dist/tui-editor-extUML.js') // extensions
-require('tui-editor/dist/tui-editor-extChart.js')
-require('tui-editor/dist/tui-editor-extTable.js')
-require('tui-editor/dist/tui-editor-extColorSyntax.js')
-require('tui-editor/dist/tui-editor-extScrollSync.js')
+import WysiwygEditor from './WysiwygEditor'
 
 import { storage } from '../../main.js'
 
 export default {
+  components: {
+    WysiwygEditor
+  },
   props: ['post'],
   data () {
     return {
       filteredTopics: [],
       isTrue: true,
-      editor: {},
       initialValues: {},
       saveStatus: false
     }
@@ -92,17 +83,18 @@ export default {
     },
     imageCache: function () {
       return this.$store.getters.imageCache
+    },
+    topicsArray: function () {
+      return Object.keys(this.topics)
     }
   },
   watch: {
     post: function () {
-      this.editor.setValue(this.post.message)
+      this.$refs.editorMessage.editor.setValue(this.post.message)
       this.setInitialValues()
     }
   },
   mounted () {
-    this.$store.dispatch('getTopics')
-    this.initEditor()
     this.setInitialValues()
   },
   destroyed () {
@@ -110,7 +102,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.topics.filter((option) => {
+      this.filteredTopics = this.post.topics.filter((option) => {
         return option
           .toString()
           .toLowerCase()
@@ -120,7 +112,7 @@ export default {
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
       this.initialValues = Object.assign({}, this.post)
-      this.initialValues = Object.assign(this.initialValues, { message: this.editor.getValue(), topics: this.post.topics.slice() })
+      this.initialValues = Object.assign(this.initialValues, { message: this.$refs.editorMessage.editor.getValue(), topics: this.post.topics.slice() })
     },
     editPost (heading, message, topics, promoted) { // <-- and here
       const editedAt = new Date()
@@ -146,31 +138,6 @@ export default {
       } else {
         this.saveStatus = 'nochange'
       }
-    },
-    uploadImage (file, callback) {
-      storage.ref().child('images/' + file.name)
-        .put(file)
-        .then((snapshot) => {
-          callback(snapshot.downloadURL, '')
-        })
-    },
-    initEditor () {
-      this.editor = new Editor({
-        el: document.querySelector('#editSection'),
-        initialEditType: 'wysiwyg',
-        previewStyle: 'vertical',
-        usageStatistics: 'false',
-        minHeight: '300px',
-        height: 'auto',
-        exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter'],
-        useCommandShortcut: true,
-        initialValue: this.post.message,
-        hooks: {
-          'addImageBlobHook': (file, callback) => {
-            this.$store.dispatch('addImageToCache', { file, callback })
-          }
-        }
-      })
     }
   }
 }
