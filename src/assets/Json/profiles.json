@@ -27,8 +27,8 @@
     "4":{
       "name": "Harry",
       "picture": "harry.jpg",
-      "title":  "Webbutvecklare",
-      "Language": "JavaScript",
+      "title":  "Pythonexpert",
+      "Language": "Python",
       "Tool": "GIT",
       "Framework": "Vue"
     },
