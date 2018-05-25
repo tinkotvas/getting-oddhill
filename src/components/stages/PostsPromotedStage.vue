@@ -8,7 +8,7 @@
       <!--Main content -->
       <div class="media-content no-overflow">
         <div class="content">
-          <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p><br>
+          <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p>
           <p class="post-content"><router-link :to="'/post/'+post.id"><vue-markdown :source="post.message | truncate"/></router-link>
           </p>
         </div>
