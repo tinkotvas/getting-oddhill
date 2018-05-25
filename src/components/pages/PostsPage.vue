@@ -212,9 +212,10 @@ b-icon{
   right: 0;
   margin: 0 auto;
 }
-
-.text-center {
-  text-align: center;
+@media (min-width: 500px) {
+  .text-center {
+    text-align: center;
+  }
 }
 
 </style>
