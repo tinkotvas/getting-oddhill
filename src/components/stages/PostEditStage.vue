@@ -104,7 +104,6 @@ export default {
           .toLowerCase()
           .indexOf(text.toLowerCase()) >= 0
       })
-      console.log(this.filteredTopics)
     },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
