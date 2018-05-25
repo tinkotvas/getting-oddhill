@@ -7,13 +7,13 @@
 
       <div class="container">
         <div class="level is-mobile">
-          <div class="level-left" style="width:100px"/>
-          <div class="level-item">
+          <div class="center-absolute text-center">
             <span
               class="button post-btn is-medium"
               @click="showEditor()">New Post</span>
           </div>
-          <div class="level-right" style="width:100px">
+          <div class="level-left"/>
+          <div class="level-right">
             <div
               class="view-btns field is-grouped"
               align="right">
@@ -199,6 +199,18 @@ b-icon{
 @media (max-width: 773px){
   .level-invisible{
     display: none;
+  }
+}
+
+.center-absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+@media (min-width: 500px) {
+  .text-center {
+    text-align: center;
   }
 }
 
