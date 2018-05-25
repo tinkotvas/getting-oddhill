@@ -11,6 +11,9 @@ export default {
     topics: []
   },
   mutations: {
+    setTopics (state, payload) {
+      state.topics = payload
+    },
     setPosts (state, payload) {
       state.posts = payload
     },
@@ -34,6 +37,34 @@ export default {
     }
   },
   actions: {
+    getTopics ({ commit }, payload) {
+      db
+        .collection('posts')
+        .get()
+        .then(async snapshot => {
+          let allTopics = []
+          snapshot.forEach(post => {
+            let topics = post.data().topics
+            let topicKeys = topics ? Object.keys(topics) : undefined
+            if (Array.isArray(topicKeys)) {
+              topicKeys.forEach(topic => {
+                let existingTopic = allTopics.find(t => {
+                  return topic === t.topic
+                })
+                if (existingTopic) {
+                  existingTopic.count += 1
+                } else {
+                  allTopics.push({
+                    topic: topic,
+                    count: 1
+                  })
+                }
+              })
+            }
+          })
+          commit('setTopics', allTopics)
+        })
+    },
     getPost ({ commit }, payload) {
       db
         .collection('posts')
@@ -280,7 +311,9 @@ export default {
 
 async function getAuthorData (author) {
   return typeof author === 'object'
-    ? 'firestore' in author ? (await author.get()).data() : author
+    ? 'firestore' in author
+      ? (await author.get()).data()
+      : author
     : { username: author }
 }
 
