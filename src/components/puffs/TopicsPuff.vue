@@ -7,7 +7,7 @@
       v-for="(tag, index) of sortArray"
       :key="index">
       <router-link
-        class="button is-small is-primary topic-btn"
+        class="button is-small topic-btn"
         :to="'/topic/'+ tag.tag"> <small>{{ tag.tag | uppercase }}</small>
       </router-link>
     </div>
@@ -59,6 +59,9 @@ export default {
   }
 
   .topic-btn {
-    padding: 0 0;
+    border: none;
+
+
+
   }
 </style>
