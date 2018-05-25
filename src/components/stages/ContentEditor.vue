@@ -29,7 +29,7 @@
         placeholder="Add a topic"/>
     </b-field>
 
-    <p class="level">
+    <p class="level is-mobile">
       <button
         class="button"
         @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
