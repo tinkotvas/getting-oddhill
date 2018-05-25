@@ -56,4 +56,8 @@ export default {
 .profile-box {
   background-color: #fff;
 }
+
+.media-content {
+  overflow: hidden;
+}
 </style>
