@@ -305,6 +305,14 @@ export default {
           imageUrl: imageUrl && imageUrl[1] ? imageUrl[1] : null
         })
       })
+    },
+    filteredTopics: state => (text) => {
+      return state.topics.filter((option) => {
+        return option.topic
+          .toString()
+          .toLowerCase()
+          .indexOf(text.toLowerCase()) >= 0
+      })
     }
   }
 }
