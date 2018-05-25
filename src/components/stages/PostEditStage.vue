@@ -14,8 +14,10 @@
 
     <b-field label="Topics">
       <b-taginput
+        autocomplete
         v-model="post.topics"
         :data="filteredTopics"
+        field="topic"
         icon="label"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
@@ -89,18 +91,20 @@ export default {
   },
   mounted () {
     this.setInitialValues()
+    this.$store.dispatch('getTopics')
   },
   destroyed () {
     this.$store.dispatch('clearImageCache')
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.post.topics.filter((option) => {
-        return option
+      this.filteredTopics = this.$store.state.post.topics.filter((option) => {
+        return option.topic
           .toString()
           .toLowerCase()
           .indexOf(text.toLowerCase()) >= 0
       })
+      console.log(this.filteredTopics)
     },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
