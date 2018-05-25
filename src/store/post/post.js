@@ -37,6 +37,34 @@ export default {
     }
   },
   actions: {
+    getTopics ({ commit }, payload) {
+      db
+        .collection('posts')
+        .get()
+        .then(async snapshot => {
+          let allTopics = []
+          snapshot.forEach(post => {
+            let topics = post.data().topics
+            let topicKeys = topics ? Object.keys(topics) : undefined
+            if (Array.isArray(topicKeys)) {
+              topicKeys.forEach(topic => {
+                let existingTopic = allTopics.find(t => {
+                  return topic === t.topic
+                })
+                if (existingTopic) {
+                  existingTopic.count += 1
+                } else {
+                  allTopics.push({
+                    topic: topic,
+                    count: 1
+                  })
+                }
+              })
+            }
+          })
+          commit('setTopics', allTopics)
+        })
+    },
     getPost ({ commit }, payload) {
       db
         .collection('posts')
