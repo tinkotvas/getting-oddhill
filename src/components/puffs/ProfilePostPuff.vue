@@ -3,7 +3,7 @@
     <div class="column is-12">
       <div
         ref="ProfilePostPuff">
-        <h3><strong>Inlägg av Batman</strong></h3>
+        <h3><strong>Inlägg</strong></h3>
         <div class="columns is-multiline">
           <div
             class="media column is-4 no-overflow"
@@ -25,14 +25,16 @@
 
               <div class="media-right"> <div class="level">
                 <div class="level-left"/>
-                  <div class="level-right">
-                    <router-link :to="'/post/'+post.id">
-                    <figure  class="image is-128x128">
-                      <img v-if="post.imageUrl" :src="post.imageUrl">
+                <div class="level-right">
+                  <router-link :to="'/post/'+post.id">
+                    <figure class="image is-128x128">
+                      <img
+                        v-if="post.imageUrl"
+                        :src="post.imageUrl">
                     </figure>
-                    </router-link>
-                  </div>
+                  </router-link>
                 </div>
+              </div>
 
                 <nav class="level is-mobile">
                   <div class="level-left"/>

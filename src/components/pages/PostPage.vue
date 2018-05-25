@@ -11,7 +11,9 @@
         </div>
         <div class="columns is-centered">
           <div class="column">
-            <post-comments-stage :comments="comments" :postid="post"/>
+            <post-comments-stage
+              :comments="comments"
+              :postid="post"/>
           </div>
         </div>
       </div>
@@ -67,7 +69,7 @@ export default {
       })
     },
     loadComments () {
-      this.$store.dispatch('getComments', { postid: this.$route.params.id } )
+      this.$store.dispatch('getComments', { postid: this.$route.params.id })
     }
   }
 }

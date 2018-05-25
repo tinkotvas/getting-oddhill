@@ -2,7 +2,7 @@
   <div id="app">
     <navbar/>
     <!-- the router outlet, where all matched components would ber viewed -->
-    <router-view/>
+    <router-view class="has-navbar-fixed-top"/>
   </div>
 </template>
 
@@ -15,11 +15,14 @@ export default {
 
 <!-- Universal styles -->
 <style lang="scss">
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 // Import theme variables first and overrides last, do not change the order
 // Change to Darkly for dark theme and Flatly for light theme
 @import "~bulmaswatch/flatly/variables";
 // @import '~bulmaswatch/darkly/variables';
-$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: 'Roboto Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
 @import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
@@ -49,7 +52,17 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
-$tablet: 768px;
+// $tablet: 768px;
+// The container horizontal gap, which acts as the offset for breakpoints
+$gap: 32px !default;
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$tablet: 600px !default;
+// 960px container + 4rem
+$desktop: 900px !default;
+// 1152px container + 4rem
+$widescreen: 1200px !default;
+// 1344px container + 4rem
+$fullhd: 1800px !default;
 
 /* --- End custom variables --- */
 
@@ -64,5 +77,9 @@ $tablet: 768px;
 }
 .no-overflow {
   overflow: initial;
+}
+
+.has-navbar-fixed-top {
+  padding: 6rem 1.5rem;
 }
 </style>

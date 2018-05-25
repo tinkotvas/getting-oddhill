@@ -1,7 +1,9 @@
 <template>
   <div class="column">
     <b-field v-if="wysiwyg">
-      <b-input v-model="heading" placeholder="Add a heading"/>
+      <b-input
+        v-model="heading"
+        placeholder="Add a heading"/>
     </b-field>
 
     <b-field
@@ -30,12 +32,12 @@
     <p class="level">
       <button
         class="button"
-        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add New Post</button>
+        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
       <b-switch v-model="promoted">
         Promoted
       </b-switch>
       <b-switch v-model="wysiwyg">
-          Rich Editor
+        Rich Editor
       </b-switch>
     </p>
   </div>
@@ -63,10 +65,13 @@ export default {
     }
   },
   watch: {
-    wysiwyg:function(){
-      if(!this.wysiwyg){
+    wysiwyg: function () {
+      if (!this.wysiwyg) {
         this.message = this.$refs.editorMessage.editor.getValue()
       }
+    },
+    topics: function () {
+      console.log(this.topics)
     }
   },
   methods: {

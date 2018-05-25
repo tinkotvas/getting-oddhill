@@ -1,14 +1,13 @@
 <template>
   <div class="content">
-    <h3>Topics</h3>
 
     <div
       id="tags"
       v-for="(tag, index) of sortArray"
       :key="index">
       <router-link
-        class="button is-primary is-rounded"
-        :to="'/topic/'+ tag.tag"> {{ tag.tag | uppercase }}
+        class="button is-small is-primary topic-btn"
+        :to="'/topic/'+ tag.tag"> <small>{{ tag.tag | uppercase }}</small>
       </router-link>
     </div>
 
@@ -56,5 +55,9 @@ export default {
   .button{
     margin-right: 5px;
     margin-top: 10px;
+  }
+
+  .topic-btn {
+    padding: 0 0;
   }
 </style>
