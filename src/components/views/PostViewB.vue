@@ -12,10 +12,11 @@
               <div class="content">
                 <!-- <h4><strong><router-link
                   :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
-                <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
-                <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+                <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
+                | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <router-link :to="'/post/'+post.id">
-                   <figure class="image is-4by5 img">
+                   <figure
+                   class="image is-4by5-dektop is-5by4-mobile img">
                     <img
                       :src="post.imageUrl"
                       v-if="post.imageUrl">
@@ -94,8 +95,8 @@ export default {
   border: 1px solid #000;
 }
 figure{
-  height: auto;
-  width: 200px;
+  /* height: auto;
+  width: 200px; */
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -110,8 +111,8 @@ figure:empty{
   display: none;
 }
 
-nav.topics{
+/* nav.topics{
   word-wrap: break-word;
-}
+} */
 
 </style>
