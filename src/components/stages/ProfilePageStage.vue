@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container columns content is-centered">
-      <div class="column is-2 is-2-widescreen">
+      <div class="column is-4">
         <div class="image">
           <img
             :src="userData.profilePhoto"
@@ -21,7 +21,7 @@
           <b-icon icon="twitter-circle"/>
         </div>
         <router-link
-          class="button is-small is-outlined is-primary"
+          class="button is-small"
           :to="'/profile/edit/' + userData.id">Edit profile
         </router-link>
       </div>
@@ -113,8 +113,21 @@ export default {
 
   }
 
-  .bio-box {
-
+  .button {
+    font: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: 500;
+    min-width: 150px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: center;
   }
 
   .icons {

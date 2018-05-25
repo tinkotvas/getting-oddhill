@@ -16,7 +16,6 @@
       <b-taginput
         v-model="post.topics"
         :data="filteredTopics"
-        field="user.first_name"
         icon="label"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
@@ -78,12 +77,6 @@ export default {
     }
   },
   computed: {
-    topics: function () {
-      return this.$store.getters.topics
-    },
-    imageCache: function () {
-      return this.$store.getters.imageCache
-    },
     topicsArray: function () {
       return Object.keys(this.topics)
     }

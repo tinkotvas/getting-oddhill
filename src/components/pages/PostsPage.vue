@@ -7,14 +7,14 @@
 
       <section class="section">
         <div class="container">
-          <div class="level">
+          <div class="level level-invisible">
 
             <div class="level-left"/>
 
             <div class="level-right">
               <div class="container">
                 <div
-                  class="view-btns field is-grouped is-invisible-mobile"
+                  class="view-btns field is-grouped"
                   align="right">
                   <p class="control">
                     <!-- <a
@@ -31,16 +31,15 @@
               </div>
             </div>
           </div>
-
-          <div class="columns is-centered">
-            <div class="column">
-              <nav class="level is-mobile">
-                <div class="level-item had-text-centered">
-                  <span
-                    class="button post-btn is-medium"
-                    @click="showEditor()">New Post</span>
-                </div>
-              </nav>
+          <div class="container">
+            <div class="columns">
+              <div
+              class="column"
+              style="display:flex; justify-content:center;">
+                <span
+                  class="button post-btn is-medium"
+                  @click="showEditor()">New Post</span>
+              </div>
             </div>
           </div>
           <div class="columns is-centered">
@@ -52,7 +51,7 @@
           </div>
         </div>
       </section>
-      <section class="section">
+      <section ref="allPosts" class="section load-overlay">
         <keep-alive>
           <component
             :is="postsView"
@@ -68,7 +67,7 @@
               id="getMoreBtn"
               class="button"
               v-if="showMoreButton"
-              @click="getMorePosts()">Get more..</button>
+              @click="getMorePosts()">Get more posts...</button>
           </div>
         </div>
       </section>
@@ -108,8 +107,16 @@ export default {
       return this.$store.getters.postsView
     }
   },
+  watch: {
+    posts: function () {
+      this.load.forEach(el => {
+        el.close()
+      })
+    }
+  },
   mounted () {
     this.getPosts()
+    this.initLoadingOverlay()
   },
   methods: {
     showEditor () {
@@ -118,10 +125,8 @@ export default {
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
-    initLoading () {
-      this.loadingComponent = this.$loading.open({
-        container: this.$refs.postsstage.$el
-      })
+    initLoadingOverlay () {
+      this.load = this.$plugins.load(this, [this.$refs.allPosts])
     },
     getPosts () {
       this.$store.dispatch('getPosts')
@@ -136,7 +141,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .view-btns{
   float: right;
 }
@@ -151,30 +156,29 @@ b-icon{
 
 .post-btn{
     font: Helvetica,Arial,sans-serif;
+    font-size: 12px;
     color: #fff;
     display: inline-block;
-    background: #272457;
-    border-radius: 30px;
+    border-radius: 50px;
     font-weight: 500;
     min-width: 150px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-top: 15px;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
     text-decoration: none;
     cursor: pointer;
     justify-content: center;
     }
-  .post-btn:hover{
-      color: #fff;
+.post-btn:hover{
+  color: #fff;
 }
 
 .view-btn{
   font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
   color: #fff;
   font-weight: 500;
-  background: #272457;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 20px;
   text-decoration: none;
   cursor: pointer;
@@ -200,6 +204,12 @@ b-icon{
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-100px);
   opacity: 0;
+}
+
+@media (max-width: 773px){
+  .level-invisible{
+    display: none;
+  }
 }
 
 </style>
