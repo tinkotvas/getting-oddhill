@@ -7,27 +7,32 @@
 
       <div class="container">
         <div class="level is-mobile">
-          <div class="level-item">
+          <div class="center-absolute text-center">
             <span
+              class="button post-btn is-medium"
+              @click="showEditor()">New Post</span>
+          </div>
+          <div class="level-item">
+            <!-- <span
                 class="button post-btn is-medium"
-                @click="showEditor()">New Post</span>
+                @click="showEditor()">New Post</span> -->
           </div>
           <div class="level-right">
-              <div
-                class="view-btns field is-grouped"
-                align="right">
-                <p class="control">
-                  <!-- <a
+            <div
+              class="view-btns field is-grouped"
+              align="right">
+              <p class="control">
+                <!-- <a
                     class="button view-btn"
                     @click="savePostsView('post-view-a')">A</a> -->
-                  <a
-                    class="button view-btn"
-                    @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
-                  <a
-                    class="button view-btn"
-                    @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
-                </p>
-              </div>
+                <a
+                  class="button view-btn"
+                  @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
+                <a
+                  class="button view-btn"
+                  @click="savePostsView('post-view-c')"><b-icon icon="view-headline"/></a>
+              </p>
+            </div>
           </div>
         </div>
         <div class="columns is-centered">
@@ -38,7 +43,9 @@
           </transition>
         </div>
       </div>
-      <section ref="allPosts" class="section load-overlay">
+      <section
+        ref="allPosts"
+        class="section load-overlay">
         <keep-alive>
           <component
             :is="postsView"
@@ -197,6 +204,17 @@ b-icon{
   .level-invisible{
     display: none;
   }
+}
+
+.center-absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
 }
 
 </style>
