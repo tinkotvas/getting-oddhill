@@ -2,7 +2,7 @@
   <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>Getting Oddhill.</strong></router-link>
+        <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>getting odd hill.</strong></router-link>
       </span>
       <div
         class="navbar-burger burger"
@@ -27,24 +27,24 @@
         <super-navigator/>
         <router-link
           class="navbar-item"
-          to="/posts">Posts</router-link>
+          to="/posts">posts</router-link>
         <router-link
           class="navbar-item"
-          to="/profiles">Profiles</router-link>
+          to="/profiles">profiles</router-link>
         <router-link
           class="navbar-item"
-          to="/profile">Profile</router-link>
+          to="/profile">profile</router-link>
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
-          class="navbar-item">Log out</a>
+          class="navbar-item">log out</a>
         <b-dropdown
           v-if="!currentUser"
           position="is-bottom-left">
           <a
             class="navbar-item"
             slot="trigger">
-            <span>Log in</span>
+            <span>log in</span>
           </a>
           <b-dropdown-item
             custom
@@ -69,7 +69,7 @@
 
               <nav class="level is-mobile">
                 <div class="level-left">
-                  <b-checkbox>Remember me</b-checkbox>
+                  <b-checkbox>remember me</b-checkbox>
                 </div>
                 <div class="level-right">
                   <button

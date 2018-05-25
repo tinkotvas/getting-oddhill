@@ -38,7 +38,7 @@
               style="display:flex; justify-content:center;">
                 <span
                   class="button post-btn is-medium"
-                  @click="showEditor()">New Post</span>
+                  @click="showEditor()">new post</span>
               </div>
             </div>
           </div>
