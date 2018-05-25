@@ -13,7 +13,7 @@
                   :src="require('@/assets/avatar/' + profile.picture)"
                   class="profile-picture">
               </div>
-              <div class="media-content">
+              <div class="media-content overflow-visible">
                 <div class="content">
                   <p class="has-text-centered top-space"><strong>{{ profile.name }}</strong></p>
                   <p class="has-text-centered"><small>{{ profile.title }}</small></p>
@@ -57,5 +57,9 @@ export default {
 
 .profile-box {
   background-color: #fff;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
 </style>
