@@ -7,14 +7,14 @@
 
       <section class="section">
         <div class="container">
-          <div class="level">
+          <div class="level level-invisible">
 
             <div class="level-left"/>
 
             <div class="level-right">
               <div class="container">
                 <div
-                  class="view-btns field is-grouped is-invisible-mobile"
+                  class="view-btns field is-grouped"
                   align="right">
                   <p class="control">
                     <!-- <a
@@ -31,16 +31,15 @@
               </div>
             </div>
           </div>
-
-          <div class="columns is-centered">
-            <div class="column">
-              <nav class="level is-mobile">
-                <div class="level-item had-text-centered">
-                  <span
-                    class="button post-btn is-medium"
-                    @click="showEditor()">New Post</span>
-                </div>
-              </nav>
+          <div class="container">
+            <div class="columns">
+              <div
+              class="column"
+              style="display:flex; justify-content:center;">
+                <span
+                  class="button post-btn is-medium"
+                  @click="showEditor()">New Post</span>
+              </div>
             </div>
           </div>
           <div class="columns is-centered">
@@ -68,7 +67,7 @@
               id="getMoreBtn"
               class="button"
               v-if="showMoreButton"
-              @click="getMorePosts()">Get more..</button>
+              @click="getMorePosts()">Get more posts...</button>
           </div>
         </div>
       </section>
@@ -200,6 +199,12 @@ b-icon{
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-100px);
   opacity: 0;
+}
+
+@media (max-width: 773px){
+  .level-invisible{
+    display: none;
+  }
 }
 
 </style>
