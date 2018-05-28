@@ -59,5 +59,6 @@ export default {
 
   .topic-btn {
     border: none;
+    font-family: Helvetica, sans-serif;
   }
 </style>
