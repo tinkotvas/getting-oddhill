@@ -8,8 +8,8 @@
 export default {
   filters: {
     truncate: function (value) {
-      const truncateChars = this.truncateChars
-      const fadeChars = this.fadeChars
+      const truncateChars = 250
+      const fadeChars = 25
       let truncated =
         value.length > truncateChars ? value.substring(0, truncateChars) : value
       if (truncated.length >= truncateChars) {
