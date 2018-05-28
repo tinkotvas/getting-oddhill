@@ -12,19 +12,15 @@
               class="button post-btn is-medium"
               @click="showEditor()">New Post</span>
           </div>
-          <div class="level-item">
-            <!-- <span
-                class="button post-btn is-medium"
-                @click="showEditor()">New Post</span> -->
-          </div>
+          <div class="level-left"/>
           <div class="level-right">
             <div
               class="view-btns field is-grouped"
               align="right">
               <p class="control">
                 <!-- <a
-                    class="button view-btn"
-                    @click="savePostsView('post-view-a')">A</a> -->
+                  class="button view-btn"
+                  @click="savePostsView('post-view-a')">A</a> -->
                 <a
                   class="button view-btn"
                   @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
@@ -43,7 +39,7 @@
           </transition>
         </div>
       </div>
-      <section
+      <div
         ref="allPosts"
         class="section load-overlay">
         <keep-alive>
@@ -52,7 +48,7 @@
             :posts="posts"
             v-bind="{getMorePosts}"/>
         </keep-alive>
-      </section>
+      </div>
 
       <section class="section">
         <div class="level">
@@ -153,7 +149,7 @@ b-icon{
     font-size: 12px;
     color: #fff;
     display: inline-block;
-    border-radius: 50px;
+    border-radius: 30px;
     font-weight: 500;
     min-width: 150px;
     padding-left: 40px;

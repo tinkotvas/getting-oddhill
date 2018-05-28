@@ -2,46 +2,52 @@
   <div id="promoted-stage">
     <article
       v-if="isPromoted(key) && posts"
-      class="media"
       v-for="(post, key) of posts"
       :key="key">
-      <!--Main content -->
-      <div class="media-content no-overflow">
-        <div class="content">
-          <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p>
-          <p class="post-content"><router-link :to="'/post/'+post.id"><vue-markdown :source="post.message | truncate"/></router-link>
-          </p>
-        </div>
-
-      </div>
-      <div class="media-right"> <div class="level">
-        <div class="level-left"/>
-        <div class="level-right">
-          <router-link :to="'/post/'+post.id">
-            <figure class="image is-128x128">
-              <img
-                v-if="post.imageUrl"
-                :src="post.imageUrl">
-            </figure>
-          </router-link>
-        </div>
-      </div>
-
-        <nav class="level is-mobile">
-          <div class="level-left"/>
-          <div class="level-right">
-            <b-taglist>
-              <router-link
-                v-for="(topic,key) of post.topics"
-                :key="key"
-                class="is-primary is-small tag topic-btn"
-                :to="'/topic/'+ post.topics">
-                {{ key }}
-              </router-link>
-            </b-taglist>
+      <div
+        class="media post"
+        @click="$router.push('/post/'+post.id)">
+        <!--Main content -->
+        <div class="media-content no-overflow">
+          <div class="content">
+            <p class="post-header"><strong>{{ post.heading }}</strong></p>
+            <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+            <p class="post-content"><vue-markdown :source="post.message | truncate"/>
+            </p>
           </div>
-        </nav>
+        </div>
+        <div class="media-right">
+          <div class="level">
+            <div class="level-left"/>
+            <div
+              v-if="post.imageUrl"
+              class="level-right">
+              <figure class="image is-128x128">
+                <img:src="post.imageUrl"/>
+              </figure>
+            </div>
+          </div>
+
+        </div>
       </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <div class="level-item">
+            <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+          </div>
+        </div>
+        <div class="level-right">
+          <b-taglist>
+            <router-link
+              v-for="(topic,key) of post.topics"
+              :key="key"
+              class="is-primary is-small tag topic-btn"
+              :to="'/topic/'+ key">
+              {{ key }}
+            </router-link>
+          </b-taglist>
+        </div>
+      </nav>
     </article>
   </div>
 </template>
@@ -55,17 +61,22 @@ let truncateChars = 250
 
 export default {
   filters: {
-    truncate: function (value) {
-      let truncated = value.length > truncateChars ? value.substring(0, truncateChars) : value
+    truncate: function(value) {
+      let truncated =
+        value.length > truncateChars ? value.substring(0, truncateChars) : value
       if (truncated.length >= truncateChars) {
         // truncated = truncated + '...'
         // truncateChars = truncated.length
-        let faded = Array.prototype.map.call(truncated.substring(truncateChars - fadeChars, truncateChars), (char, index) => {
-          let x = (index / fadeChars)
-          let quickMaffs = (1 - 0.12 * x - 0.88 * (x ** 2))
-          return `<span style="opacity: ${quickMaffs};">${char}</span>`
-        })
-        truncated = truncated.substring(0, truncateChars - fadeChars) + faded.join('')
+        let faded = Array.prototype.map.call(
+          truncated.substring(truncateChars - fadeChars, truncateChars),
+          (char, index) => {
+            let x = index / fadeChars
+            let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
+            return `<span style="opacity: ${quickMaffs};">${char}</span>`
+          }
+        )
+        truncated =
+          truncated.substring(0, truncateChars - fadeChars) + faded.join('')
       }
       return truncated
     }
@@ -75,37 +86,55 @@ export default {
   },
   props: ['posts'],
   methods: {
-    isPromoted: function (index) {
+    isPromoted: function(index) {
       return this.posts[index].promoted
+    },
+    localTimeSv: function(value) {
+      let date = this.$moment(value)
+      return date.locale('sv').format('dddd Do MMMM YYYY')
     }
   }
 }
 </script>
 
 <style scoped>
- .content{
-   max-height: 16em;
-   overflow:hidden;
+.content {
+  max-height: 16em;
+  overflow: hidden;
 }
-  .image img {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.image img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .post-header {
-    font-size: 20px;
-  }
+.post-header {
+  font-size: 20px;
+}
 
-  /* .post-content {
-    padding: 0 50px;;
-  } */
+/* .post-content {
+  padding: 0 50px;;
+} */
 
-  .promoted-title {
-    font-size: 22px;
-  }
+.promoted-title strong {
+  font-size: 32px;
+  color: rgb(42, 41, 52);
+}
 
-  .topic-btn {
-    padding:2px;
-  }
+.topic-btn {
+  padding: 2px;
+}
+
+.post {
+  cursor: pointer;
+}
+
+article {
+  margin-bottom: 10px;
+}
+
+.post-header {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
 </style>

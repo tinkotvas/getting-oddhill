@@ -27,9 +27,9 @@
         autocomplete
         v-model="topics"
         :data="filteredTopics"
-        field="topic"
         icon="label"
         placeholder="Add a topic"
+        :allow-new="true"
         @typing="getFilteredTopics"/>
     </b-field>
 
@@ -74,9 +74,6 @@ export default {
       if (!this.wysiwyg) {
         this.message = this.$refs.editorMessage.editor.getValue()
       }
-    },
-    topics: function () {
-      console.log(this.topics)
     }
   },
   mounted () {
@@ -84,7 +81,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.$store.getters.filteredTopics(text)
+      this.filteredTopics = this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })
     },
     addPost (heading, message, topics, promoted) {
       const createdAt = new Date()

@@ -17,8 +17,8 @@
         autocomplete
         v-model="post.topics"
         :data="filteredTopics"
-        field="topic"
         icon="label"
+        :allow-new="true"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
     </b-field>
@@ -98,12 +98,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.$store.state.post.topics.filter((option) => {
-        return option.topic
-          .toString()
-          .toLowerCase()
-          .indexOf(text.toLowerCase()) >= 0
-      })
+     this.filteredTopics = this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })
     },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
