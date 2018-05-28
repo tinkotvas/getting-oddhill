@@ -3,7 +3,7 @@
     id="home"
     class="section">
     <div class="columns is-centered">
-      <div class="column is-7">
+      <div class="column is-10">
 
         <topics-puff class=""/>
         <div
@@ -12,15 +12,6 @@
           <posts-promoted-stage :posts="summaries"/>
         </div>
       </div>
-      <!-- <div class="column is-3">
-        <profiles-puff ref="profilesPuff" class="box profile-box"/>
-
-        <div
-          ref="latestpuff"
-          class="load-overlay box profile-box">
-          <latest-puff :posts="posts"/>
-        </div>
-      </div> -->
     </div>
 
   </div>
