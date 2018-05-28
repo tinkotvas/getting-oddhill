@@ -5,60 +5,50 @@
       ref="postsstage"
       id="posts-stage">
 
-      <section class="section">
-        <div class="container">
-          <div class="level level-invisible">
-
-            <div class="level-left"/>
-
-            <div class="level-right">
-              <div class="container">
-                <div
-                  class="view-btns field is-grouped"
-                  align="right">
-                  <p class="control">
-                    <!-- <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-a')">A</a> -->
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
-                    <a
-                      class="button view-btn"
-                      @click="savePostsView('post-view-c')"><b-icon icon="view-headline"></b-icon></a>
-                  </p>
-                </div>
-              </div>
-            </div>
+      <div class="container">
+        <div class="level is-mobile">
+          <div class="center-absolute text-center">
+            <span
+              class="button post-btn is-medium"
+              @click="showEditor()">New Post</span>
           </div>
-          <div class="container">
-            <div class="columns">
-              <div
-              class="column"
-              style="display:flex; justify-content:center;">
-                <span
-                  class="button post-btn is-medium"
-                  @click="showEditor()">New Post</span>
-              </div>
+          <div class="level-left"/>
+          <div class="level-right">
+            <div
+              class="view-btns field is-grouped"
+              align="right">
+              <p class="control">
+                <!-- <a
+                  class="button view-btn"
+                  @click="savePostsView('post-view-a')">A</a> -->
+                <a
+                  class="button view-btn"
+                  @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
+                <a
+                  class="button view-btn"
+                  @click="savePostsView('post-view-c')"><b-icon icon="view-headline"/></a>
+              </p>
             </div>
-          </div>
-          <div class="columns is-centered">
-            <transition
-              name="slide-fade"
-              :duration="{ enter: 500, leave: 800 }">
-              <content-editor v-if="editorVisible"/>
-            </transition>
           </div>
         </div>
-      </section>
-      <section class="section">
+        <div class="columns is-centered">
+          <transition
+            name="slide-fade"
+            :duration="{ enter: 500, leave: 800 }">
+            <content-editor v-if="editorVisible"/>
+          </transition>
+        </div>
+      </div>
+      <div
+        ref="allPosts"
+        class="section load-overlay">
         <keep-alive>
           <component
             :is="postsView"
             :posts="posts"
             v-bind="{getMorePosts}"/>
         </keep-alive>
-      </section>
+      </div>
 
       <section class="section">
         <div class="level">
@@ -107,8 +97,16 @@ export default {
       return this.$store.getters.postsView
     }
   },
+  watch: {
+    posts: function () {
+      this.load.forEach(el => {
+        el.close()
+      })
+    }
+  },
   mounted () {
     this.getPosts()
+    this.initLoadingOverlay()
   },
   methods: {
     showEditor () {
@@ -117,10 +115,8 @@ export default {
     deletePost (key, id) {
       this.$store.dispatch('deletePost', { index: key, id })
     },
-    initLoading () {
-      this.loadingComponent = this.$loading.open({
-        container: this.$refs.postsstage.$el
-      })
+    initLoadingOverlay () {
+      this.load = this.$plugins.load(this, [this.$refs.allPosts])
     },
     getPosts () {
       this.$store.dispatch('getPosts')
@@ -135,7 +131,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .view-btns{
   float: right;
 }
@@ -150,30 +146,29 @@ b-icon{
 
 .post-btn{
     font: Helvetica,Arial,sans-serif;
+    font-size: 12px;
     color: #fff;
     display: inline-block;
-    background: #272457;
     border-radius: 30px;
     font-weight: 500;
     min-width: 150px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-top: 15px;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
     text-decoration: none;
     cursor: pointer;
     justify-content: center;
     }
-  .post-btn:hover{
-      color: #fff;
+.post-btn:hover{
+  color: #fff;
 }
 
 .view-btn{
   font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
   color: #fff;
   font-weight: 500;
-  background: #272457;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 20px;
   text-decoration: none;
   cursor: pointer;
@@ -204,6 +199,18 @@ b-icon{
 @media (max-width: 773px){
   .level-invisible{
     display: none;
+  }
+}
+
+.center-absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+@media (min-width: 500px) {
+  .text-center {
+    text-align: center;
   }
 }
 

@@ -14,7 +14,6 @@ export default {
   },
   actions: {
     getComments ({ commit }, payload) {
-      console.log('payload', payload)
       db
         .collection('comments')
         .where('post', '==', db.doc('posts/' + payload.postid))

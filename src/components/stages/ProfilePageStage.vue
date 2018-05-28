@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="container columns content is-centered">
-      <div class="column is-2 is-2-widescreen">
+      <div class="column is-4">
         <div class="image">
           <img
             :src="userData.profilePhoto"
             class="profile-picture">
         </div>
         <section class="info">
-          <p><strong><small>Namn : </small></strong>
+          <p><strong><small>namn : </small></strong>
             {{ userData.username }}</p>
-          <p><strong><small>Title : </small></strong>{{ userData.title }}</p>
+          <p><strong><small>title : </small></strong>{{ userData.title }}</p>
           <!-- <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
           <p><strong>Framework : </strong>...</p> -->
@@ -21,8 +21,8 @@
           <b-icon icon="twitter-circle"/>
         </div>
         <router-link
-          class="button is-small is-outlined is-primary"
-          :to="'/profile/edit/' + userData.id">Edit profile
+          class="button is-small"
+          :to="'/profile/edit/' + userData.id">edit profile
         </router-link>
       </div>
       <div class="column is-6 is-centered">
@@ -113,8 +113,21 @@ export default {
 
   }
 
-  .bio-box {
-
+  .button {
+    font: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: 500;
+    min-width: 150px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: center;
   }
 
   .icons {

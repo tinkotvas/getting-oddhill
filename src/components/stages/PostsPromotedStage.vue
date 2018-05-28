@@ -1,34 +1,35 @@
 <template>
   <div id="promoted-stage">
-    <div class="promoted-title"><strong>Posts</strong></div>
-    <article
-      v-if="isPromoted(key) && posts"
-      class="media"
+    <article 
+    v-if="isPromoted(key) && posts"
       v-for="(post, key) of posts"
       :key="key">
+    <div
+      class="media post"
+      @click="$router.push('/post/'+post.id)">
       <!--Main content -->
-      <div class="media-content no-overflow">
+      <div  class="media-content no-overflow">
         <div class="content">
-          <p class="post-header"><strong><router-link :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></p><br>
-          <p class="post-content"><router-link :to="'/post/'+post.id"><vue-markdown :source="post.message | truncate"/></router-link>
+          <p class="post-header"><strong>{{ post.heading }}</strong></p>
+          <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
 
       </div>
-      <div class="media-right"> <div class="level">
+      <div class="media-right">
+        <div class="level">
         <div class="level-left"/>
-        <div class="level-right">
-          <router-link :to="'/post/'+post.id">
+        <div v-if="post.imageUrl" class="level-right">
             <figure class="image is-128x128">
               <img
-                v-if="post.imageUrl"
-                :src="post.imageUrl">
+                :src="post.imageUrl"/>
             </figure>
-          </router-link>
         </div>
       </div>
 
-        <nav class="level is-mobile">
+      </div>
+    </div>
+    <nav class="level is-mobile">
           <div class="level-left"/>
           <div class="level-right">
             <b-taglist>
@@ -36,13 +37,12 @@
                 v-for="(topic,key) of post.topics"
                 :key="key"
                 class="is-primary is-small tag topic-btn"
-                :to="'/topic/'+ post.topics">
+                :to="'/topic/'+ key">
                 {{ key }}
               </router-link>
             </b-taglist>
           </div>
         </nav>
-      </div>
     </article>
   </div>
 </template>
@@ -84,29 +84,45 @@ export default {
 </script>
 
 <style scoped>
+
+
  .content{
    max-height: 16em;
    overflow:hidden;
 }
-  .image img {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.image img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .post-header {
-    font-size: 20px;
-  }
+.post-header {
+  font-size: 20px;
+}
 
-  /* .post-content {
-    padding: 0 50px;;
-  } */
+/* .post-content {
+  padding: 0 50px;;
+} */
 
-  .promoted-title {
-    font-size: 22px;
-  }
+.promoted-title strong{
+  font-size: 32px;
+  color: rgb(42, 41, 52);
+}
 
   .topic-btn {
     padding:2px;
   }
+
+  .post{
+    cursor: pointer;
+  }
+
+  article{
+    margin-bottom:10px;
+  }
+ 
+.post-header {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 24px;
+}
 </style>

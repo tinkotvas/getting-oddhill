@@ -23,13 +23,17 @@
     </b-field>
 
     <b-field>
-      <b-taginput
+       <b-taginput
+        autocomplete
         v-model="topics"
+        :data="filteredTopics"
+        field="topic"
         icon="label"
-        placeholder="Add a topic"/>
+        placeholder="Add a topic"
+        @typing="getFilteredTopics"/>
     </b-field>
 
-    <p class="level">
+    <p class="level is-mobile">
       <button
         class="button"
         @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
@@ -56,7 +60,8 @@ export default {
       message: '',
       topics: [],
       promoted: false,
-      wysiwyg: false
+      wysiwyg: false,
+      filteredTopics: []
     }
   },
   computed: {
@@ -69,12 +74,15 @@ export default {
       if (!this.wysiwyg) {
         this.message = this.$refs.editorMessage.editor.getValue()
       }
-    },
-    topics: function () {
-      console.log(this.topics)
     }
   },
+  mounted () {
+    this.$store.dispatch('getTopics')
+  },
   methods: {
+    getFilteredTopics (text) {
+      this.filteredTopics = this.$store.getters.filteredTopics(text)
+    },
     addPost (heading, message, topics, promoted) {
       const createdAt = new Date()
       for (let image in this.imageCache) {
