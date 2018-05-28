@@ -9,7 +9,9 @@
           :key="key">
           <div class="box profile-box">
             <div class="media-content">
-              <div class="content">
+              <div
+                class="post content"
+                @click="$router.push('/post/'+post.id)">
                 <!-- <h4><strong><router-link
                   :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
                 <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
@@ -130,4 +132,7 @@ figure:empty{
   word-wrap: break-word;
 } */
 
+.post{
+  cursor: pointer;
+}
 </style>

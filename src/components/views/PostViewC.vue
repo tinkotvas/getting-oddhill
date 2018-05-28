@@ -6,11 +6,12 @@
         v-for="(post, key) of posts"
         :key="key">
         <div class="media-content no-overflow">
-          <div class="content">
-            <router-link :to="'/post/'+post.id">
-              <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
-              <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p><span>{{ (post.message).substring(0,80) }}...</span></p> </router-link>
+          <div
+            class="post content"
+            @click="$router.push('/post/'+post.id)">
+            <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+            <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+            <p><span>{{ (post.message).substring(0,80) }}...</span></p>
 
             <nav
               class="level">
@@ -75,5 +76,9 @@ export default {
 .level-item{
   align-self: flex-end;
   justify-content: flex-start;
+}
+
+.post{
+  cursor: pointer;
 }
 </style>
