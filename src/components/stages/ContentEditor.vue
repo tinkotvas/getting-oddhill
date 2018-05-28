@@ -35,7 +35,7 @@
 
     <p class="level is-mobile">
       <button
-        class="button"
+        class="button add-post"
         @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
       <b-switch v-model="promoted">
         Promoted
@@ -102,5 +102,22 @@ export default {
 <style scoped lang="scss">
 .column{
   max-width: 1000px;
+}
+
+.add-post {
+  font: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 30px;
+    font-weight: 500;
+    min-width: 150px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: center;
 }
 </style>
