@@ -11,6 +11,9 @@ export default {
     topics: []
   },
   mutations: {
+    setTopics (state, payload) {
+      state.topics = payload
+    },
     setPosts (state, payload) {
       state.posts = payload
     },
@@ -34,6 +37,34 @@ export default {
     }
   },
   actions: {
+    getTopics ({ commit }, payload) {
+      db
+        .collection('posts')
+        .get()
+        .then(async snapshot => {
+          let allTopics = []
+          snapshot.forEach(post => {
+            let topics = post.data().topics
+            let topicKeys = topics ? Object.keys(topics) : undefined
+            if (Array.isArray(topicKeys)) {
+              topicKeys.forEach(topic => {
+                let existingTopic = allTopics.find(t => {
+                  return topic === t.topic
+                })
+                if (existingTopic) {
+                  existingTopic.count += 1
+                } else {
+                  allTopics.push({
+                    topic: topic,
+                    count: 1
+                  })
+                }
+              })
+            }
+          })
+          commit('setTopics', allTopics)
+        })
+    },
     getPost ({ commit }, payload) {
       db
         .collection('posts')
@@ -203,12 +234,15 @@ export default {
     },
     editPost ({ commit }, payload) {
       let id = payload.id
+      let topicsArray = payload.topics.slice()
+      payload.topics = arrayToObject(payload.topics)
       delete payload.id
       db
         .collection('posts')
         .doc(id)
         .update(payload)
         .then(() => {
+          payload.topics = topicsArray
           commit('editPost', payload)
         })
     },
@@ -271,13 +305,23 @@ export default {
           imageUrl: imageUrl && imageUrl[1] ? imageUrl[1] : null
         })
       })
+    },
+    filteredTopics: state => (text) => {
+      return state.topics.filter((option) => {
+        return option.topic
+          .toString()
+          .toLowerCase()
+          .indexOf(text.toLowerCase()) >= 0
+      })
     }
   }
 }
 
 async function getAuthorData (author) {
   return typeof author === 'object'
-    ? 'firestore' in author ? (await author.get()).data() : author
+    ? 'firestore' in author
+      ? (await author.get()).data()
+      : author
     : { username: author }
 }
 
@@ -291,7 +335,7 @@ async function addNumberOfComments (post) {
   return post
 }
 
-function arrayToObject(array) {
+function arrayToObject (array) {
   return array.reduce((acc, topic) =>
     Object.assign(acc, { [topic]: true }), {}
   )

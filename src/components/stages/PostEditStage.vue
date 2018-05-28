@@ -14,10 +14,12 @@
 
     <b-field label="Topics">
       <b-taginput
+        autocomplete
         v-model="post.topics"
         :data="filteredTopics"
-        field="user.first_name"
+        field="topic"
         icon="label"
+        :allowNew="true"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
     </b-field>
@@ -78,12 +80,6 @@ export default {
     }
   },
   computed: {
-    topics: function () {
-      return this.$store.getters.topics
-    },
-    imageCache: function () {
-      return this.$store.getters.imageCache
-    },
     topicsArray: function () {
       return Object.keys(this.topics)
     }
@@ -96,14 +92,15 @@ export default {
   },
   mounted () {
     this.setInitialValues()
+    this.$store.dispatch('getTopics')
   },
   destroyed () {
     this.$store.dispatch('clearImageCache')
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.post.topics.filter((option) => {
-        return option
+      this.filteredTopics = this.$store.state.post.topics.filter((option) => {
+        return option.topic
           .toString()
           .toLowerCase()
           .indexOf(text.toLowerCase()) >= 0

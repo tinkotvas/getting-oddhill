@@ -1,15 +1,16 @@
 <template>
   <div id="promoted-stage">
-    <div class="promoted-title"><strong>posts</strong></div>
-    <article
-      v-if="isPromoted(key) && posts"
-      class="media"
+    <article 
+    v-if="isPromoted(key) && posts"
       v-for="(post, key) of posts"
       :key="key">
+    <div
+      class="media post"
+      @click="$router.push('/post/'+post.id)">
       <!--Main content -->
       <div  class="media-content no-overflow">
         <div class="content">
-          <p class="post-header"><strong>{{ post.heading }}</strong></p><br>
+          <p class="post-header"><strong>{{ post.heading }}</strong></p>
           <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
@@ -18,16 +19,17 @@
       <div class="media-right">
         <div class="level">
         <div class="level-left"/>
-        <div class="level-right">
+        <div v-if="post.imageUrl" class="level-right">
             <figure class="image is-128x128">
               <img
-                v-if="post.imageUrl"
-                :src="post.imageUrl">
+                :src="post.imageUrl"/>
             </figure>
         </div>
       </div>
 
-        <nav class="level is-mobile">
+      </div>
+    </div>
+    <nav class="level is-mobile">
           <div class="level-left"/>
           <div class="level-right">
             <b-taglist>
@@ -41,7 +43,6 @@
             </b-taglist>
           </div>
         </nav>
-      </div>
     </article>
   </div>
 </template>
@@ -83,9 +84,11 @@ export default {
 </script>
 
 <style scoped>
-.content{
-  max-height: 16em;
-  overflow:hidden;
+
+
+ .content{
+   max-height: 16em;
+   overflow:hidden;
 }
 .image img {
   position: relative;
@@ -106,10 +109,18 @@ export default {
   color: rgb(42, 41, 52);
 }
 
-.topic-btn {
-  padding:2px;
-}
+  .topic-btn {
+    padding:2px;
+  }
 
+  .post{
+    cursor: pointer;
+  }
+
+  article{
+    margin-bottom:10px;
+  }
+ 
 .post-header {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 24px;
