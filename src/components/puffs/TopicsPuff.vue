@@ -59,8 +59,5 @@ export default {
 
   .topic-btn {
     border: none;
-
-
-
   }
 </style>

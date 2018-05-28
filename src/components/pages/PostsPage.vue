@@ -55,7 +55,7 @@
           <div class="level-item">
             <button
               id="getMoreBtn"
-              class="button"
+              class="button post-btn"
               v-if="showMoreButton"
               @click="getMorePosts()">Get more posts...</button>
           </div>

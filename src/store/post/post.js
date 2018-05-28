@@ -89,7 +89,7 @@ export default {
         payload.orderIn = 'desc'
       }
       if (!payload.limit) {
-        payload.limit = 10
+        payload.limit = 9
       }
       db
         .collection('posts')
