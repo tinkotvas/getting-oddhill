@@ -23,7 +23,7 @@
               v-if="post.imageUrl"
               class="level-right">
               <figure class="image is-128x128">
-                <img:src="post.imageUrl"/>
+                <img :src="post.imageUrl"/>
               </figure>
             </div>
           </div>
