@@ -11,7 +11,9 @@
             @click="$router.push('/post/'+post.id)">
               <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p><fadeout :text="post.message" :truncateChars="80" :fadeChars="15"/></p>
+            <p><fadeout :text="post.message"
+            :truncate-chars="80"
+            :fade-chars="20"/></p>
 
             <nav
               class="level">
