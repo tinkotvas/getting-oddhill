@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-fixed-top is-white container is-transparent">
+  <nav class="navbar is-fixed-top is-white container">
     <div class="navbar-brand">
       <span class="navbar-item">
         <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>getting odd hill.</strong></router-link>
@@ -141,9 +141,12 @@ $navactive: #3e30ed;
   color: $navactive !important;
 }
 
-.navbar.is-transparent a.navbar-item:hover,
-.navbar.is-transparent a.navbar-link:hover {
+.navbar.is-white a.navbar-item:hover,
+.navbar.is-white a.navbar-link:hover,
+.navbar.is-white a.navbar-link:focus,
+.navbar.is-white a.navbar-item.is-active {
   color: transparentize($navactive, 0.1) !important;
+  background-color: #fff;
 }
 
 .dropdown .dropdown-menu .dropdown-content .level .button {
