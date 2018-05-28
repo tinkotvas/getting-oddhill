@@ -12,20 +12,18 @@
               <div
                 class="post content"
                 @click="$router.push('/post/'+post.id)">
-                <!-- <h4><strong><router-link
-                  :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
+                <!-- <h4><strong>{{ post.heading }}</strong></h4> -->
                 <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
                 | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                <router-link :to="'/post/'+post.id">
-                   <figure
-                   class="image is-4by5-dektop is-5by4-mobile img">
-                    <img
-                      :src="post.imageUrl"
-                      v-if="post.imageUrl">
-                  </figure>
-                  <p><vue-markdown :source="post.message | truncate"/></p>
+                <figure
+                  class="image is-4by5-dektop is-5by4-mobile img">
+                  <img
+                    :src="post.imageUrl"
+                    v-if="post.imageUrl">
+                </figure>
+                <p><vue-markdown :source="post.message | truncate"/></p>
 
-                </router-link>
+
               </div>
               <div>
                 <nav class="topics level is-mobile">
@@ -131,8 +129,7 @@ figure:empty{
 /* nav.topics{
   word-wrap: break-word;
 } */
-
-.post{
+.post {
   cursor: pointer;
 }
 </style>
