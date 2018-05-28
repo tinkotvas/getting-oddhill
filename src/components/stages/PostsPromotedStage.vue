@@ -1,6 +1,6 @@
 <template>
   <div id="promoted-stage">
-    <article 
+    <article
     v-if="isPromoted(key) && posts"
       v-for="(post, key) of posts"
       :key="key">
@@ -11,6 +11,7 @@
       <div  class="media-content no-overflow">
         <div class="content">
           <p class="post-header"><strong>{{ post.heading }}</strong></p>
+           <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
           <p class="post-content"><vue-markdown :source="post.message | truncate"/>
           </p>
         </div>
@@ -78,6 +79,10 @@ export default {
   methods: {
     isPromoted: function (index) {
       return this.posts[index].promoted
+    },
+    localTimeSv: function (value) {
+      let date = this.$moment(value)
+      return date.locale('sv').format('dddd Do MMMM YYYY')
     }
   }
 }
@@ -120,7 +125,7 @@ export default {
   article{
     margin-bottom:10px;
   }
- 
+
 .post-header {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 24px;
