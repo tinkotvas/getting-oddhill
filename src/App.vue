@@ -32,6 +32,14 @@ $button-color: #fff;
 $button-hover-color: none;
 
 
+$blue-purple: #3e30ed;
+// Links
+$link: $blue-purple;
+$link-hover: darken($link, 10);
+$link-focus: darken($link, 10);
+$link-active: darken($link, 10);
+
+
 @import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
@@ -57,9 +65,12 @@ $colors: (
 );
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
+// $link: $primary;
+// $link-invert: $primary-invert;
+// $link-focus-border: $primary;
+
+
+
 
 // $tablet: 768px;
 // The container horizontal gap, which acts as the offset for breakpoints
