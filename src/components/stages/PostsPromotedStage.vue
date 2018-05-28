@@ -88,6 +88,10 @@ export default {
   methods: {
     isPromoted: function(index) {
       return this.posts[index].promoted
+    },
+    localTimeSv: function (value) {
+    let date = this.$moment(value)
+    return date.locale('sv').format('dddd Do MMMM YYYY')
     }
   }
 }
@@ -128,7 +132,7 @@ export default {
   article{
     margin-bottom:10px;
   }
- 
+
 .post-header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
