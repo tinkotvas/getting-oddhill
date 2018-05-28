@@ -16,12 +16,13 @@
                 <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
                 | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <figure
-                  class="image is-4by5-dektop is-5by4-mobile img">
+                  class="image img"
+                  style="margin-bottom: 10px;">
                   <img
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
                 </figure>
-                <p><vue-markdown :source="post.message | truncate"/></p>
+                <p><vue-markdown :source="post.message | truncateB"/></p>
 
 
               </div>
@@ -70,8 +71,8 @@ export default {
   },
 
   filters: {
-    truncate: function (value) {
-      return value.substring(0, 100)
+    truncateB: function (value) {
+      return value.substring(0, 200)
     }
   },
 
@@ -101,7 +102,7 @@ export default {
 }
 
 img{
-  max-height: 200px;
+  max-height: 250px;
   width: auto;
 }
 
@@ -116,6 +117,7 @@ figure{
   margin-right: auto;
   display: block;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .time-author{
