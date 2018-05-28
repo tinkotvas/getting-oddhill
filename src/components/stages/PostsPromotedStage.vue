@@ -10,9 +10,11 @@
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
-            <p class="post-header"><strong>{{ post.heading }}</strong></p>
+            <p class="post-header"
+            style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-content"><vue-markdown :source="post.message | truncate"/>
+            <p class="post-content"
+            style="margin-top: 5px;"><vue-markdown :source="post.message | truncate"/>
             </p>
           </div>
         </div>
@@ -30,14 +32,10 @@
 
         </div>
       </div>
-      <nav class="level is-mobile">
+      <nav class="level is-mobile"
+      style="padding-top: 10px;">
         <div class="level-left">
-          <div class="level-item">
-            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></small></router-link>
-          </div>
-        </div>
-        <div class="level-right">
-          <b-taglist>
+            <b-taglist>
             <router-link
               v-for="(topic,key) of post.topics"
               :key="key"
@@ -46,6 +44,11 @@
               {{ key }}
             </router-link>
           </b-taglist>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }}kommentarer</a></small></router-link>
+          </div>
         </div>
       </nav>
     </article>
