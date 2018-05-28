@@ -31,7 +31,7 @@
     </b-field>
     <p class="level">
       <button
-        class="button"
+        class="button save-btn"
         @click="editPost(post.heading, ($refs.editorMessage.editor.getValue()), post.topics, post.promoted)">Save changes</button>
 
       <b-switch v-model="post.promoted">
@@ -139,4 +139,20 @@ export default {
   max-width:400px;
 }
 
+.save-btn {
+  font: Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 30px;
+  font-weight: 500;
+  min-width: 150px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 35px;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
+}
 </style>

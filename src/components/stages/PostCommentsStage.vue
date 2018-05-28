@@ -14,8 +14,8 @@
           <div class="level-left">
             <div class="level-item">
               <a
-                class="button"
-                @click="addComment(this)">Post comment</a>
+                class="button post-btn"
+                @click="addComment(this)">post comment</a>
             </div>
           </div>
           <div class="level-right">
@@ -69,6 +69,21 @@ export default {
 
 </script>
 
-<style>
-
+<style scoped>
+.post-btn {
+  font: Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 30px;
+  font-weight: 500;
+  min-width: 150px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 35px;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
+}
 </style>

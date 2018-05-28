@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-fixed-top is-white container">
+  <nav class="navbar is-fixed-top is-white">
     <div class="navbar-brand">
       <span class="navbar-item">
         <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>getting odd hill.</strong></router-link>
@@ -52,6 +52,7 @@
             <form action="">
               <b-field label="Email">
                 <b-input
+                  class="email-text"
                   type="email"
                   placeholder="Your email"
                   required
@@ -60,6 +61,7 @@
 
               <b-field label="Password">
                 <b-input
+                  class="email-text"
                   type="password"
                   password-reveal
                   placeholder="Your password"
@@ -73,11 +75,11 @@
                 </div>
                 <div class="level-right">
                   <button
-                    class="button is-primary is-bottom-right"
-                    @click.prevent="onSignIn">Log in</button>
+                    class="button log-btn is-bottom-right"
+                    @click.prevent="onSignIn">log in</button>
                   <button
-                    class="button is-primary is-bottom-left"
-                    @click.prevent="onSignUp">Register</button>
+                    class="button log-btn is-bottom-left"
+                    @click.prevent="onSignUp">register</button>
                 </div>
               </nav>
             </form>
@@ -141,9 +143,12 @@ $navactive: #3e30ed;
   color: $navactive !important;
 }
 
-.navbar.is-transparent a.navbar-item:hover,
-.navbar.is-transparent a.navbar-link:hover {
+.navbar.is-white a.navbar-item:hover,
+.navbar.is-white a.navbar-link:hover,
+.navbar.is-white a.navbar-link:focus,
+.navbar.is-white a.navbar-item.is-active {
   color: transparentize($navactive, 0.1) !important;
+  background-color: #fff;
 }
 
 .dropdown .dropdown-menu .dropdown-content .level .button {
@@ -156,7 +161,25 @@ $navactive: #3e30ed;
   color:#000;;
 }
 
-.navbar-item {
+.navbar-item,
+.email-text {
   font-family: Helvetica, sans-serif;
+}
+
+.log-btn {
+  font-family: Helvetica,sans-serif;
+  font-size: 12px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 30px;
+  font-weight: 500;
+  min-width: 100  px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
 }
 </style>

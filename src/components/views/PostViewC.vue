@@ -11,17 +11,14 @@
             @click="$router.push('/post/'+post.id)">
               <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p><fadeout :text="post.message" :truncateChars="80" :fadeChars="15"/></p>
+            <p><fadeout :text="post.message"
+            :truncate-chars="80"
+            :fade-chars="20"/></p>
 
             <nav
               class="level">
               <div class="level-left">
-                <div class="level-item">
-                  <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
-                </div>
-              </div>
-              <div class="level-left">
-                <div class="level-item">
+               <div class="level-item">
                   <b-taglist>
                     <router-link
                       v-for="(topic,key) of post.topics"
@@ -31,6 +28,11 @@
                       {{ key }}
                     </router-link>
                   </b-taglist>
+                </div>
+              </div>
+              <div class="level-left">
+                 <div class="level-item">
+                  <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
                 </div>
               </div>
             </nav>
