@@ -206,6 +206,7 @@ export default {
           posts = await Promise.all(
             posts.map(async post => {
               post.author = await getAuthorData(post.author)
+              await addNumberOfComments(post)
               return post
             })
           )

@@ -4,50 +4,52 @@
       <div class="columns is-multiline">
 
         <article
-          class="column is-4-desktop is-6-tablet is-12-mobile"
+          class="column is-6-tablet is-4-desktop is-12-mobile"
           v-for="(post, key) of posts"
           :key="key">
           <div class="box profile-box">
             <div class="media-content">
-              <div class="content">
-                <!-- <h4><strong><router-link
-                  :to="'/post/'+post.id">{{ post.heading }}</router-link></strong></h4> -->
+              <div
+                class="post content"
+                @click="$router.push('/post/'+post.id)">
+                <!-- <h4><strong>{{ post.heading }}</strong></h4> -->
                 <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span>
                 | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-                <router-link :to="'/post/'+post.id">
-                   <figure
-                   class="image is-4by5-dektop is-5by4-mobile img">
-                    <img
-                      :src="post.imageUrl"
-                      v-if="post.imageUrl">
-                  </figure>
-                  <p><vue-markdown :source="post.message | truncate"/></p>
+                <figure
+                  class="image is-4by5-dektop is-5by4-mobile img">
+                  <img
+                    :src="post.imageUrl"
+                    v-if="post.imageUrl">
+                </figure>
+                <p><vue-markdown :source="post.message | truncate"/></p>
 
-                </router-link>
+
               </div>
-              <nav class="topics level is-mobile">
-                <div class="level-left">
-                  <div class="level-item">
-                    <b-taglist>
-                      <router-link
-                        v-for="(topic,key) of post.topics"
-                        :key="key"
-                        class="is-light is-small tag"
-                        :to="'/topic/'+ post.topics">
-                        {{ key }}
-                      </router-link>
-                    </b-taglist>
+              <div>
+                <nav class="topics level is-mobile">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <b-taglist>
+                        <router-link
+                          v-for="(topic,key) of post.topics"
+                          :key="key"
+                          class="is-light is-small tag"
+                          :to="'/topic/'+ post.topics">
+                          {{ key }}
+                        </router-link>
+                      </b-taglist>
+                    </div>
                   </div>
-                </div>
-                <div class="level-right"/>
-              </nav>
-              <nav class="level is-mobile">
-                <div class="level-left">
-                  <a class="level-item">
-                    <router-link :to="'/post/'+ post.id"><small> {{ post.numberOfComments }} kommentarer</small></router-link>
-                  </a>
-                </div>
-              </nav>
+                  <div class="level-right"/>
+                </nav>
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a class="level-item">
+                      <router-link :to="'/post/'+ post.id"><small> {{ post.numberOfComments }} kommentarer</small></router-link>
+                    </a>
+                  </div>
+                </nav>
+              </div>
             </div>
           </div>
         </article>
@@ -90,6 +92,19 @@ export default {
 </script>
 
 <style scoped>
+
+.media-content {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img{
+  max-height: 200px;
+  width: auto;
+}
+
 .profile-box{
   background-color: #fff;
   border: 1px solid #000;
@@ -114,5 +129,7 @@ figure:empty{
 /* nav.topics{
   word-wrap: break-word;
 } */
-
+.post {
+  cursor: pointer;
+}
 </style>
