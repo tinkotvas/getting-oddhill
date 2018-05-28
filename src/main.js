@@ -55,6 +55,8 @@ export const auth = firebase.auth()
 
 Vue.config.productionTip = false
 
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+
 export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
