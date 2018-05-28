@@ -31,28 +31,19 @@ $button-background-color: #3e30ed;
 $button-color: #fff;
 $button-hover-color: none;
 
-
-// @import '~bulma/sass/utilities/_all';
-
-@import "~bulma/sass/utilities/initial-variables";
-
 // $tablet: 768px;
 // The container horizontal gap, which acts as the offset for breakpoints
-$gap: 32px !default;
+$gap: 32px;
 // 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
-$tablet: 600px !default;
+$tablet: 600px;
 // 960px container + 4rem
-$desktop: 900px !default;
+$desktop: 900px;
 // 1152px container + 4rem
-$widescreen: 1200px !default;
+$widescreen: 1200px;
 // 1344px container + 4rem
-$fullhd: 1800px !default;
+$fullhd: 1800px;
 
-@import "~bulma/sass/utilities/functions";
-@import "~bulma/sass/utilities/derived-variables";
-@import "~bulma/sass/utilities/animations";
-@import "~bulma/sass/utilities/mixins";
-@import "~bulma/sass/utilities/controls";
+@import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
 
@@ -83,14 +74,7 @@ $link-focus-border: $primary;
 
 /* --- End custom variables --- */
 
-// @import '~bulma'; // Do not import the entire package if we want to customize, instead:
-@import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/_all";
-@import "~bulma/sass/components/_all";
-@import "~bulma/sass/grid/_all";
-@import "~bulma/sass/layout/_all";
-
-
+@import '~bulma';
 @import '~buefy/src/scss/buefy';
 @import "~bulmaswatch/flatly/overrides";
 // @import '~bulmaswatch/darkly/overrides';
