@@ -33,7 +33,7 @@
       <nav class="level is-mobile">
         <div class="level-left">
           <div class="level-item">
-            <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></small></router-link>
           </div>
         </div>
         <div class="level-right">
