@@ -8,7 +8,7 @@
       class="media post"
       @click="$router.push('/post/'+post.id)">
       <!--Main content -->
-      <div class="media-content no-overflow">
+      <div  class="media-content no-overflow">
         <div class="content">
           <p class="post-header"><strong>{{ post.heading }}</strong></p>
           <p class="post-content"><vue-markdown :source="post.message | truncate"/>
@@ -16,7 +16,8 @@
         </div>
 
       </div>
-      <div class="media-right"> <div class="level">
+      <div class="media-right">
+        <div class="level">
         <div class="level-left"/>
         <div v-if="post.imageUrl" class="level-right">
             <figure class="image is-128x128">
@@ -36,7 +37,7 @@
                 v-for="(topic,key) of post.topics"
                 :key="key"
                 class="is-primary is-small tag topic-btn"
-                :to="'/topic/'+ post.topics">
+                :to="'/topic/'+ key">
                 {{ key }}
               </router-link>
             </b-taglist>
@@ -89,23 +90,24 @@ export default {
    max-height: 16em;
    overflow:hidden;
 }
-  .image img {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.image img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .post-header {
-    font-size: 20px;
-  }
+.post-header {
+  font-size: 20px;
+}
 
-  /* .post-content {
-    padding: 0 50px;;
-  } */
+/* .post-content {
+  padding: 0 50px;;
+} */
 
-  .promoted-title {
-    font-size: 22px;
-  }
+.promoted-title strong{
+  font-size: 32px;
+  color: rgb(42, 41, 52);
+}
 
   .topic-btn {
     padding:2px;
@@ -119,4 +121,8 @@ export default {
     margin-bottom:10px;
   }
  
+.post-header {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 24px;
+}
 </style>
