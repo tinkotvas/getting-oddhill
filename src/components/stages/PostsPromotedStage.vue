@@ -32,7 +32,11 @@
       </div>
     </div>
     <nav class="level is-mobile">
-          <div class="level-left"/>
+          <div class="level-left">
+            <div class="level-item">
+              <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+              </div>
+          </div>
           <div class="level-right">
             <b-taglist>
               <router-link
