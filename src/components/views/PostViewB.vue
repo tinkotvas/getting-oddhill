@@ -22,7 +22,9 @@
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
                 </figure>
-                <p><vue-markdown :source="post.message | truncateB"/></p>
+                <p><fadeout :text="post.message"
+                :truncate-chars="200"
+                :fade-chars="20"/></p>
 
 
               </div>
@@ -63,11 +65,13 @@
 // Stages
 import PostsPage from '../pages/PostsPage'
 import VueMarkdown from 'vue-markdown'
+import Fadeout from '../misc/Fadeout'
 
 export default {
   components: {
     PostsPage,
-    VueMarkdown
+    VueMarkdown,
+    Fadeout
   },
 
   filters: {

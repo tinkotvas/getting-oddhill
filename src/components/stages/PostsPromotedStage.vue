@@ -59,7 +59,7 @@
 import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
 
-const fadeChars = 35
+const fadeChars = 25
 let truncateChars = 250
 
 export default {
