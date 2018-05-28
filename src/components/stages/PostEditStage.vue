@@ -19,6 +19,7 @@
         :data="filteredTopics"
         field="topic"
         icon="label"
+        :allowNew="true"
         placeholder="Add a topic"
         @typing="getFilteredTopics"/>
     </b-field>

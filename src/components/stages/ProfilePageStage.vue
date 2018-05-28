@@ -8,9 +8,9 @@
             class="profile-picture">
         </div>
         <section class="info">
-          <p><strong><small>Namn : </small></strong>
+          <p><strong><small>namn : </small></strong>
             {{ userData.username }}</p>
-          <p><strong><small>Title : </small></strong>{{ userData.title }}</p>
+          <p><strong><small>title : </small></strong>{{ userData.title }}</p>
           <!-- <p><strong>Språk : </strong>..</p>
           <p><strong>Verktyg : </strong>...</p>
           <p><strong>Framework : </strong>...</p> -->
@@ -22,7 +22,7 @@
         </div>
         <router-link
           class="button is-small"
-          :to="'/profile/edit/' + userData.id">Edit profile
+          :to="'/profile/edit/' + userData.id">edit profile
         </router-link>
       </div>
       <div class="column is-6 is-centered">
