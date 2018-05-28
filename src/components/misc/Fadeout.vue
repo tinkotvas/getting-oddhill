@@ -1,5 +1,10 @@
 <template>
-  <div/>
+  <div>
+    {{ truncated[0][0] }} <span
+      v-for="(chars, key) of truncated.slice(1)"
+      :key="key"
+      :style="`opacity: ${chars[1]};`">{{ chars[0] }}</span>
+  </div>
 </template>
 
 <script>
@@ -10,7 +15,7 @@ export default {
       type: Number
     },
     truncateChars: {
-      default: 250,
+      default: 249,
       type: Number
     },
     text: {
