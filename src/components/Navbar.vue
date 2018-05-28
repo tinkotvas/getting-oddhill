@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-fixed-top is-white container">
+  <nav class="navbar is-fixed-top is-white container is-transparent">
     <div class="navbar-brand">
       <span class="navbar-item">
         <router-link to="/" active-class="" exact-active-class="" class="logo"><strong>getting odd hill.</strong></router-link>
