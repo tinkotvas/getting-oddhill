@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-     this.filteredTopics = this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })
+     this.filteredTopics = [text, ...this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })]
     },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
