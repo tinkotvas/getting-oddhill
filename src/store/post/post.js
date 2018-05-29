@@ -223,7 +223,7 @@ export default {
             createdAt: payload.createdAt,
             heading: payload.heading,
             message: payload.message,
-            topics: arrayToObject(payload.topics),
+            topics: arrayToObject(payload.topics.map(topic => topic.toLowerCase())),
             promoted: payload.promoted
           })
           .then(re => {
@@ -236,7 +236,7 @@ export default {
     editPost ({ commit }, payload) {
       let id = payload.id
       let topicsArray = payload.topics.slice()
-      payload.topics = arrayToObject(payload.topics)
+      payload.topics = arrayToObject(payload.topics.map(topic => topic.toLowerCase()))
       delete payload.id
       db
         .collection('posts')

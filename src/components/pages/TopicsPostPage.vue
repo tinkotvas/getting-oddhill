@@ -56,7 +56,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.dispatch('getTopicPosts', {topic: 'Oddhill'})
+    this.$store.dispatch('getTopicPosts', {topic: this.$route.params.topics})
   },
   methods: {
     localTimeSv: function (value) {

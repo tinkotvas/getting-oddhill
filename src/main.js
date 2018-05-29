@@ -55,6 +55,24 @@ export const auth = firebase.auth()
 
 Vue.config.productionTip = false
 
+export const githubAuthProvider = new firebase.auth.GithubAuthProvider()
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+// firebase
+//   .auth()
+//   .signInWithPopup(githubAuthProvider)
+//   .then(function (result) {
+//     console.log(result)
+//   })
+
+// firebase
+//   .auth()
+//   .signInWithPopup(googleAuthProvider)
+//   .then(function (result) {
+//     console.log(result)
+//   })
+
+
 export const routes = [
   { path: '/', component: HomePage },
   { path: '/posts', component: PostsPage },
@@ -74,7 +92,7 @@ export const routes = [
         }
       } else {
         let unWatch = store.watch(
-          (state) => {
+          state => {
             return state.user.authReady
           },
           () => {
@@ -111,13 +129,13 @@ new Vue({
   router,
   store,
   created () {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.$store.dispatch('updateUserInfo', user)
       } else {
         this.$store.dispatch('signOut')
       }
-      this.$store.commit('setAuthReady', true)
+      // this.$store.commit('setAuthReady', true)
     })
   },
 

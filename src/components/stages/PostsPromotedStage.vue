@@ -39,7 +39,7 @@
             <router-link
               v-for="(topic,key) of post.topics"
               :key="key"
-              class="is-primary is-small tag topic-btn"
+              class="button topics-btn"
               :to="'/topic/'+ key">
               {{ key }}
             </router-link>
@@ -100,7 +100,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 .content {
   max-height: 16em;
   overflow: hidden;
@@ -124,8 +125,9 @@ export default {
   color: rgb(42, 41, 52);
 }
 
-.topic-btn {
-  padding: 2px;
+.topics-btn {
+  @include topic-btn;
+  margin-right: 10px;
 }
 
 .post {
