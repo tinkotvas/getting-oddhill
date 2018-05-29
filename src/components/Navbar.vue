@@ -24,7 +24,6 @@
       <div
         v-if="authReady"
         class="navbar-end">
-        <super-navigator/>
         <router-link
           class="navbar-item"
           to="/posts">posts</router-link>
