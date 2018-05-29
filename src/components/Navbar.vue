@@ -24,7 +24,6 @@
       <div
         v-if="authReady"
         class="navbar-end">
-        <super-navigator/>
         <router-link
           class="navbar-item"
           to="/posts">posts</router-link>
@@ -81,6 +80,10 @@
                     class="button log-btn is-bottom-left"
                     @click.prevent="onSignUp">register</button>
                 </div>
+                <div>
+                  <button class="button git-login"><b-icon icon="github-circle"/></button>
+                  <button class="button google-login"><b-icon icon="google"/></button>
+                </div>
               </nav>
             </form>
           </b-dropdown-item>
@@ -92,12 +95,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import SuperNavigator from './SuperNavigator'
 
 export default {
-  components: {
-    SuperNavigator
-  },
   data () {
     return {
       navActive: false,
@@ -138,6 +137,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import ".././styles/variables.scss";
 $navactive: #3e30ed;
 .is-active {
   color: $navactive !important;
@@ -158,7 +158,7 @@ $navactive: #3e30ed;
 .logo {
   font-family: Helvetica, sans-serif;
   font-size: 20px;
-  color:#000;;
+  color:#000;
 }
 
 .navbar-item,
@@ -167,19 +167,7 @@ $navactive: #3e30ed;
 }
 
 .log-btn {
-  font-family: Helvetica,sans-serif;
-  font-size: 12px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 100  px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+  @include btn;
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ truncated[0][0] }} <span
+    {{ truncated[0][0] }}<span
       v-for="(chars, key) of truncated.slice(1)"
       :key="key"
       :style="`opacity: ${chars[1]};`">{{ chars[0] }}</span>

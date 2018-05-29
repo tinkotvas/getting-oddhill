@@ -19,7 +19,9 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 // Import theme variables first and overrides last, do not change the order
 // Change to Darkly for dark theme and Flatly for light theme
+@import "./styles/variables";
 @import "~bulmaswatch/flatly/variables";
+
 // @import '~bulmaswatch/darkly/variables';
 //Font
 $family-sans-serif: 'Roboto Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -29,8 +31,20 @@ p {
 
 $button-background-color: #3e30ed;
 $button-color: #fff;
-$button-hover-color: none;
+$button-hover-color: #fff;
 
+//Nav
+$navbar-item-color:#000;
+$navbar-item-hover-color: $link;
+$navbar-item-active-color: $link;
+$navbar-dropdown-background-color: $white-ter;
+$navbar-dropdown-border-top: 1px solid $navbar-divider-background-color;
+$navbar-dropdown-item-hover-background-color: transparent;
+$navbar-dropdown-item-active-background-color: transparent;
+$navbar-dropdown-item-active-color: $link;
+
+
+//
 
 $blue-purple: #3e30ed;
 // Links
