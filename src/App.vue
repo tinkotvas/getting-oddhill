@@ -65,6 +65,8 @@ $widescreen: 1200px;
 // 1344px container + 4rem
 $fullhd: 1800px;
 
+$navbar-break: 599px;
+
 @import '~bulma/sass/utilities/_all';
 
 /* --- Begin custom variables --- (https://buefy.github.io/#/documentation/customization) */
@@ -99,10 +101,44 @@ $colors: (
 
 /* --- End custom variables --- */
 
-@import '~bulma';
+/* --- Begin Bulma imports --- */
+// @import '~bulma'; // Do not import the entire package if we want to customize, instead:
+
+@import "~bulma/sass/base/_all";
+@import "~bulma/sass/elements/_all";
+
+// @import "~bulma/sass/components/_all";
+@import "~bulma/sass/components/breadcrumb.sass";
+@import "~bulma/sass/components/card.sass";
+@import "~bulma/sass/components/dropdown.sass";
+@import "~bulma/sass/components/level.sass";
+@import "~bulma/sass/components/media.sass";
+@import "~bulma/sass/components/menu.sass";
+@import "~bulma/sass/components/message.sass";
+@import "~bulma/sass/components/modal.sass";
+$desktop-old: $desktop;
+$desktop: $navbar-break;
+@import "~bulma/sass/components/navbar.sass";
+$desktop: $desktop-old;
+@import "~bulma/sass/components/pagination.sass";
+@import "~bulma/sass/components/panel.sass";
+@import "~bulma/sass/components/tabs.sass";
+
+@import "~bulma/sass/grid/_all";
+@import "~bulma/sass/layout/_all";
+
+/* --- End Bulma imports --- */
+
 @import '~buefy/src/scss/buefy';
+
+@mixin touch{
+  @media screen and (max-width: $navbar-break - 1px){
+    @content
+    }
+  }
 @import "~bulmaswatch/flatly/overrides";
 // @import '~bulmaswatch/darkly/overrides';
+
 
 .load-overlay{
   position: relative;
