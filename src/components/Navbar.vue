@@ -82,7 +82,7 @@
                 </div>
                 <div>
                   <button class="button git-login" @click.prevent="$store.dispatch('signInWithGithub')"><b-icon icon="github-circle"/></button>
-                  <button class="button google-login"><b-icon icon="google"/></button>
+                  <button class="button google-login" @click.prevent="$store.dispatch('signInWithGoogle')"><b-icon icon="google"/></button>
                 </div>
               </nav>
             </form>
