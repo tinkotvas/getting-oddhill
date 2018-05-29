@@ -47,7 +47,7 @@
           </a>
           <b-dropdown-item
             custom
-            style="min-width:350px">
+            style="min-width:500px">
             <form action="">
               <b-field label="Email">
                 <b-input
@@ -170,4 +170,20 @@ $navactive: #3e30ed;
   @include btn;
 }
 
+.navbar-burger:hover {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 899px) {
+  .navbar .navbar-menu {
+    background-color: #fff;
+  }
+}
+
+  @media screen and (max-width: 899px) {
+    .navbar .navbar-item:not(.is-active):not(:hover) {
+      background-color: #3e30ed;
+    }
+
+  }
 </style>
