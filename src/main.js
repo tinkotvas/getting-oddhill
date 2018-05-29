@@ -55,8 +55,8 @@ export const auth = firebase.auth()
 
 Vue.config.productionTip = false
 
-const githubAuthProvider = new firebase.auth.GithubAuthProvider()
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+export const githubAuthProvider = new firebase.auth.GithubAuthProvider()
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
 // firebase
 //   .auth()
