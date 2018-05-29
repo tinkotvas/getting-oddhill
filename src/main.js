@@ -65,12 +65,12 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 //     console.log(result)
 //   })
 
-firebase
-  .auth()
-  .signInWithPopup(googleAuthProvider)
-  .then(function (result) {
-    console.log(result)
-  })
+// firebase
+//   .auth()
+//   .signInWithPopup(googleAuthProvider)
+//   .then(function (result) {
+//     console.log(result)
+//   })
 
 
 export const routes = [
