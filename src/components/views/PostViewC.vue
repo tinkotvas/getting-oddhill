@@ -13,7 +13,7 @@
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p><fadeout :text="post.message"
             :truncate-chars="80"
-            :fade-chars="20"/></p>
+            :fade-chars="15"/></p>
 
             <nav
               class="level">
