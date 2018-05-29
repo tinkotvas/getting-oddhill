@@ -91,6 +91,9 @@ export default {
     },
     signInWithGithub () {
       firebase.auth().signInWithPopup(githubAuthProvider)
+    },
+    signInAnonymously () {
+      firebase.auth().signInAnonymously()
     }
   },
   getters: {
