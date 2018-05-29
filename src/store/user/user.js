@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { db } from '../../main.js'
+import { db, githubAuthProvider, googleAuthProvider } from '../../main.js'
 
 export default {
   state: {
@@ -78,11 +78,22 @@ export default {
           tmp.id = doc.id
           commit('setProfileData', tmp)
         }
+        commit('setAuthReady', true)
       })
     },
     signOut ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
+      commit('setAuthReady', true)
+    },
+    signInWithGoogle () {
+      firebase.auth().signInWithPopup(googleAuthProvider)
+    },
+    signInWithGithub () {
+      firebase.auth().signInWithPopup(githubAuthProvider)
+    },
+    signInAnonymously () {
+      firebase.auth().signInAnonymously()
     }
   },
   getters: {
