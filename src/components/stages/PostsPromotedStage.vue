@@ -106,10 +106,18 @@ export default {
   max-height: 16em;
   overflow: hidden;
 }
+
+figure{
+  display: flex;
+  justify-content: center;
+}
 .image img {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  margin-top: 10px;
+  max-height: 100px;
+  width: auto;
 }
 
 .post-header {
