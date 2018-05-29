@@ -81,6 +81,10 @@
                     class="button log-btn is-bottom-left"
                     @click.prevent="onSignUp">register</button>
                 </div>
+                <div>
+                  <button class="button git-login"><b-icon icon="github-circle"/></button>
+                  <button class="button google-login"><b-icon icon="google"/></button>
+                </div>
               </nav>
             </form>
           </b-dropdown-item>
@@ -92,12 +96,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import SuperNavigator from './SuperNavigator'
 
 export default {
-  components: {
-    SuperNavigator
-  },
   data () {
     return {
       navActive: false,
@@ -158,7 +158,7 @@ $navactive: #3e30ed;
 .logo {
   font-family: Helvetica, sans-serif;
   font-size: 20px;
-  color:#000;;
+  color:#000;
 }
 
 .navbar-item,
@@ -181,5 +181,10 @@ $navactive: #3e30ed;
   text-decoration: none;
   cursor: pointer;
   justify-content: center;
+}
+
+.git-login,
+.google-login {
+
 }
 </style>
