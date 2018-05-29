@@ -7,7 +7,7 @@
       :key="index">
       <router-link
         class="button is-small topic-btn"
-        :to="'/topic/'+ tag.tag"> <small>{{ tag.tag | uppercase }}</small>
+        :to="'/topic/'+ tag.tag"> <small>{{ tag.tag }}</small>
       </router-link>
     </div>
 
@@ -20,11 +20,6 @@ const json = require('@/assets/json/topics.json')
 
 export default {
 
-  filters: {
-    uppercase: function (value) {
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  },
   data () {
     return {
       myTopics: json.topics
@@ -53,12 +48,13 @@ export default {
   }
 
   .button{
-    margin-right: 5px;
-    margin-top: 10px;
+    margin-right: 10px;
   }
 
   .topic-btn {
     border: none;
     font-family: Helvetica, sans-serif;
   }
+
+
 </style>
