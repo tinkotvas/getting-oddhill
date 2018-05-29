@@ -29,7 +29,7 @@ p {
 
 $button-background-color: #3e30ed;
 $button-color: #fff;
-$button-hover-color: none;
+$button-hover-color: #fff;
 
 //Nav
 $navbar-item-color:#000;
