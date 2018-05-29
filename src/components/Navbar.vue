@@ -182,7 +182,7 @@ $navactive: #3e30ed;
 
   @media screen and (max-width: 899px) {
     .navbar .navbar-item:not(.is-active):not(:hover) {
-      background-color: #3e30ed;
+
     }
 
   }
