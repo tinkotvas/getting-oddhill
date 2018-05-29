@@ -41,7 +41,7 @@
                   <div class="level-right">
                     <b-taglist>
                       <router-link
-                        v-for="(topic,key) of post.topics"
+                        v-for="(topic,key) of Object.keys(post.topics)"
                         :key="key"
                         class="is-info is-small tag"
                         :to="'topic?'+topic">

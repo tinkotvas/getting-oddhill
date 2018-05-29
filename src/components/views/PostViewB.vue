@@ -30,19 +30,15 @@
               </div>
               <div>
                 <nav class="topics level is-mobile">
-                  <div class="level-left">
-                    <div class="level-item">
-                      <b-taglist>
+                      <b-taglist class="columns is-multiline margin-0">
                         <router-link
                           v-for="(topic,key) of post.topics"
                           :key="key"
-                          class="button tags-btn"
-                          :to="'/topic/'+ post.topics">
+                          class="column is-narrow button tags-btn"
+                          :to="'/topic/'+ key">
                           {{ key }}
                         </router-link>
                       </b-taglist>
-                    </div>
-                  </div>
                   <div class="level-right"/>
                 </nav>
                 <nav class="level is-mobile">
@@ -142,5 +138,9 @@ figure:empty{
 } */
 .post {
   cursor: pointer;
+}
+
+.margin-0 {
+  margin: 0
 }
 </style>
