@@ -31,6 +31,10 @@ $button-background-color: #3e30ed;
 $button-color: #fff;
 $button-hover-color: none;
 
+//Nav
+$navbar-item-color:#000;
+
+//
 
 $blue-purple: #3e30ed;
 // Links
