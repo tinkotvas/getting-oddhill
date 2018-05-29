@@ -22,11 +22,12 @@
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
                 </figure>
-                <p class="post-message"><fadeout :text="post.message"
-                :truncate-chars="200"
-                :fade-chars="20"/></p>
 
-
+                <p class="post-message">
+                  <fadeout
+                    :text="post.message"
+                    :truncate-chars="200"
+                    :fade-chars="20"/></p>
               </div>
               <div>
                 <nav class="topics level is-mobile">
@@ -70,11 +71,11 @@ export default {
     Fadeout
   },
 
-  filters: {
-    truncateB: function (value) {
-      return value.substring(0, 200)
-    }
-  },
+  // filters: {
+  //   truncateB: function (value) {
+  //     return value.substring(0, 200)
+  //   }
+  // },
 
   props: {
     posts: {
@@ -105,6 +106,7 @@ export default {
 .tags-btn{
   @include topic-btn;
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 img{
