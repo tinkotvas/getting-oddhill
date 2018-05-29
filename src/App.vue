@@ -53,16 +53,12 @@ $link-hover: darken($link, 10);
 $link-focus: darken($link, 10);
 $link-active: darken($link, 10);
 
-// $tablet: 768px;
-// The container horizontal gap, which acts as the offset for breakpoints
+
+//breakpoints
 $gap: 32px;
-// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
 $tablet: 600px;
-// 960px container + 4rem
 $desktop: 900px;
-// 1152px container + 4rem
 $widescreen: 1200px;
-// 1344px container + 4rem
 $fullhd: 1800px;
 
 $navbar-break: 599px;

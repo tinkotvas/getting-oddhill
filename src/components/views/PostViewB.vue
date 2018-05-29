@@ -22,7 +22,7 @@
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
                 </figure>
-                <p><fadeout :text="post.message"
+                <p class="post-message"><fadeout :text="post.message"
                 :truncate-chars="200"
                 :fade-chars="20"/></p>
 
