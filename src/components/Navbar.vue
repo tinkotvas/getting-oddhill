@@ -47,7 +47,7 @@
           </a>
           <b-dropdown-item
             custom
-            style="min-width:350px">
+            style="min-width:500px">
             <form action="">
               <b-field label="Email">
                 <b-input

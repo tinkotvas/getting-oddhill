@@ -17,7 +17,7 @@
                 | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <figure
                   class="image img"
-                  style="margin-bottom: 10px;">
+                  style="margin-bottom: 10px; margin-top:10px;">
                   <img
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
@@ -126,7 +126,6 @@ figure{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-top: 20px;
   margin-bottom: 5px;
 }
 
