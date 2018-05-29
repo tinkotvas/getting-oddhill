@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-10-desktop">
+    <div class="column is-8-desktop">
       <article
         class="media"
         v-for="(post, key) of posts"
