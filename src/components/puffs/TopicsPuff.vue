@@ -3,11 +3,11 @@
 
     <div
       id="tags"
-      v-for="(tag, index) of sortArray"
+      v-for="(tag, index) of sortArray.slice(0,10)"
       :key="index">
       <router-link
         class="button topic-btn"
-        :to="'/topic/'+ tag.tag"> <small>{{ tag.tag }}</small>
+        :to="'/topic/'+ tag.topic"> <small>{{ tag.topic }}</small>
       </router-link>
     </div>
 
@@ -16,28 +16,23 @@
 
 <script>
 
-const json = require('@/assets/json/topics.json')
-
 export default {
-
-  data () {
-    return {
-      myTopics: json.topics
-    }
-  },
-
   computed: {
+    myTopics: function () {
+      return this.$store.state.post.topics
+    },
     sortArray: function () {
       function compare (a, b) {
-        if (a.mentions > b.mentions) { return -1 }
-        if (a.mentions < b.mentions) { return 1 }
+        if (a.count > b.count) { return -1 }
+        if (a.count < b.count) { return 1 }
         return 0
       }
-
       return Object.values(this.myTopics).sort(compare)
     }
+  },
+  mounted () {
+    this.$store.dispatch('getTopics')
   }
-
 }
 </script>
 
