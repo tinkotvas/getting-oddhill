@@ -30,6 +30,7 @@
         icon="label"
         placeholder="Add a topic"
         :allow-new="true"
+        :rounded="true"
         @typing="getFilteredTopics"/>
     </b-field>
 
