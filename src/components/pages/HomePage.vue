@@ -3,7 +3,7 @@
     id="home"
     class="section">
     <div class="columns is-centered">
-      <div class="column is-10">
+      <div class="column is-8">
 
         <topics-puff class=""/>
         <div
