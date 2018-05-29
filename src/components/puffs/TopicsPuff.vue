@@ -36,8 +36,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+  @import "../../styles/variables.scss";
   div#tags{
     display: inline;
   }
@@ -47,20 +47,7 @@ export default {
   }
 
   .topic-btn {
-    border: none;
-    font-family: Helvetica, sans-serif;
-    font-size: 12px;
-    display: inline-block;
-    border-radius: 30px;
-    font-weight: 500;
-    min-width: 50px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    justify-content: center;
+   @include topic-btn;
   }
   @media (min-width: 300px) {
   .topic-btn {

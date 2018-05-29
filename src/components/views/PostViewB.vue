@@ -36,7 +36,7 @@
                         <router-link
                           v-for="(topic,key) of post.topics"
                           :key="key"
-                          class="is-light is-small tag"
+                          class="button tags-btn"
                           :to="'/topic/'+ post.topics">
                           {{ key }}
                         </router-link>
@@ -96,13 +96,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 
 .media-content {
   height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.tags-btn{
+  @include topic-btn;
+  margin-right: 10px;
 }
 
 img{
@@ -125,7 +131,7 @@ figure{
 }
 
 .time-author{
-  color: rgba(58,58,58);
+  color: rgb(58,58,58);
 }
 
 figure:empty{
