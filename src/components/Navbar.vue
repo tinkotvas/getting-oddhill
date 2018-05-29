@@ -137,6 +137,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import ".././styles/variables.scss";
 $navactive: #3e30ed;
 .is-active {
   color: $navactive !important;
@@ -166,24 +167,7 @@ $navactive: #3e30ed;
 }
 
 .log-btn {
-  font-family: Helvetica,sans-serif;
-  font-size: 12px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 100  px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+  @include btn;
 }
 
-.git-login,
-.google-login {
-
-}
 </style>
