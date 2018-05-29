@@ -84,6 +84,7 @@ export default {
     signOut ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
+      commit('setAuthReady', true)
     },
     signInWithGoogle () {
       firebase.auth().signInWithPopup(googleAuthProvider)
