@@ -100,7 +100,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 .content {
   max-height: 16em;
   overflow: hidden;

@@ -78,6 +78,7 @@ export default {
           tmp.id = doc.id
           commit('setProfileData', tmp)
         }
+        commit('setAuthReady', true)
       })
     },
     signOut ({ commit }) {

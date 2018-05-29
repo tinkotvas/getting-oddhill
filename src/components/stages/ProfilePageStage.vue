@@ -94,7 +94,8 @@ export default {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
   .profile-picture {
     width: 200px;
     border-radius: 50%;
@@ -114,20 +115,7 @@ export default {
   }
 
   .button {
-    font: Helvetica,Arial,sans-serif;
-    font-size: 12px;
-    color: #fff;
-    display: inline-block;
-    border-radius: 50px;
-    font-weight: 500;
-    min-width: 150px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 15px;
-    padding-bottom: 35px;
-    text-decoration: none;
-    cursor: pointer;
-    justify-content: center;
+    @include btn;
   }
 
   .icons {

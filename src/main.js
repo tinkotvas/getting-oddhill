@@ -135,7 +135,7 @@ new Vue({
       } else {
         this.$store.dispatch('signOut')
       }
-      this.$store.commit('setAuthReady', true)
+      // this.$store.commit('setAuthReady', true)
     })
   },
 

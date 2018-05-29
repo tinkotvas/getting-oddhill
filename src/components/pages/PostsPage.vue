@@ -131,7 +131,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
+
 .view-btns{
   float: right;
 }
@@ -160,9 +162,6 @@ b-icon{
     cursor: pointer;
     justify-content: center;
     }
-.post-btn:hover{
-  color: #fff;
-}
 
 .view-btn{
   font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
@@ -172,34 +171,6 @@ b-icon{
   padding: 20px;
   text-decoration: none;
   cursor: pointer;
-}
-.view-btn:hover {
-  color:#fff;
-}
-
-.button{
-  z-index: 2;
-}
-
-.slider-fade{
-  z-index: 1;
-}
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-100px);
-  opacity: 0;
-}
-
-@media (max-width: 773px){
-  .level-invisible{
-    display: none;
-  }
 }
 
 .center-absolute {
