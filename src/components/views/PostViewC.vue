@@ -23,7 +23,7 @@
                     <router-link
                       v-for="(topic,key) of post.topics"
                       :key="key"
-                      class="is-light is-small is-rounded tag"
+                      class="tags-btn"
                       :to="'/topic/'+ post.topics">
                       {{ key }}
                     </router-link>
@@ -68,13 +68,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 .profile-box {
  background-color: rgba(152, 226, 248, 0.212);
 }
 
 .time-author{
-  color: rgba(58,58,58);
+  color: rgb(58,58,58);
 }
 
 .level-item{
@@ -84,5 +85,9 @@ export default {
 
 .post{
   cursor: pointer;
+}
+
+.tags-btn{
+  @include topic-btn;
 }
 </style>

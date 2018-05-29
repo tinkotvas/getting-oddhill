@@ -17,32 +17,29 @@
                 | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
                 <figure
                   class="image img"
-                  style="margin-bottom: 10px;">
+                  style="margin-bottom: 10px; margin-top:10px;">
                   <img
                     :src="post.imageUrl"
                     v-if="post.imageUrl">
                 </figure>
-                <p><fadeout :text="post.message"
-                :truncate-chars="200"
-                :fade-chars="20"/></p>
 
-
+                <p class="post-message">
+                  <fadeout
+                    :text="post.message"
+                    :truncate-chars="200"
+                    :fade-chars="20"/></p>
               </div>
               <div>
                 <nav class="topics level is-mobile">
-                  <div class="level-left">
-                    <div class="level-item">
-                      <b-taglist>
+                      <b-taglist class="columns is-multiline margin-0">
                         <router-link
                           v-for="(topic,key) of post.topics"
                           :key="key"
-                          class="is-light is-small tag"
-                          :to="'/topic/'+ post.topics">
+                          class="column is-narrow button tags-btn"
+                          :to="'/topic/'+ key">
                           {{ key }}
                         </router-link>
                       </b-taglist>
-                    </div>
-                  </div>
                   <div class="level-right"/>
                 </nav>
                 <nav class="level is-mobile">
@@ -74,11 +71,11 @@ export default {
     Fadeout
   },
 
-  filters: {
-    truncateB: function (value) {
-      return value.substring(0, 200)
-    }
-  },
+  // filters: {
+  //   truncateB: function (value) {
+  //     return value.substring(0, 200)
+  //   }
+  // },
 
   props: {
     posts: {
@@ -96,13 +93,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 
 .media-content {
   height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.tags-btn{
+  @include topic-btn;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 img{
@@ -120,12 +124,11 @@ figure{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-top: 20px;
   margin-bottom: 5px;
 }
 
 .time-author{
-  color: rgba(58,58,58);
+  color: rgb(58,58,58);
 }
 
 figure:empty{
@@ -137,5 +140,9 @@ figure:empty{
 } */
 .post {
   cursor: pointer;
+}
+
+.margin-0 {
+  margin: 0
 }
 </style>

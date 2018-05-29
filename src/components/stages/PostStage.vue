@@ -38,46 +38,22 @@ export default {
   }
 }
 
-</script scoped>
+</script>
 
 <style scoped lang="scss">
+@import "../../styles/variables.scss";
 .post-header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
 }
 
 .edit-btn {
-  font: Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 150px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 15px;
-  padding-bottom: 35px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+  @include btn;
 }
 
 .delete-btn {
+  @include btn;
   background-color: #FF0047;
-  font: Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  color: #000;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 150px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 15px;
-  padding-bottom: 35px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+
 }
 </style>

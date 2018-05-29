@@ -47,7 +47,7 @@
           </a>
           <b-dropdown-item
             custom
-            style="min-width:350px">
+            style="min-width:500px">
             <form action="">
               <b-field label="Email">
                 <b-input
@@ -81,8 +81,8 @@
                     @click.prevent="onSignUp">register</button>
                 </div>
                 <div>
-                  <button class="button git-login"><b-icon icon="github-circle"/></button>
-                  <button class="button google-login"><b-icon icon="google"/></button>
+                  <button class="button git-login" @click.prevent="$store.dispatch('signInWithGithub')"><b-icon icon="github-circle"/></button>
+                  <button class="button google-login" @click.prevent="$store.dispatch('signInWithGoogle')"><b-icon icon="google"/></button>
                 </div>
               </nav>
             </form>
@@ -137,6 +137,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import ".././styles/variables.scss";
 $navactive: #3e30ed;
 .is-active {
   color: $navactive !important;
@@ -166,24 +167,23 @@ $navactive: #3e30ed;
 }
 
 .log-btn {
-  font-family: Helvetica,sans-serif;
-  font-size: 12px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 100  px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+  @include btn;
 }
 
-.git-login,
-.google-login {
-
+.navbar-burger:hover {
+  background-color: #fff;
 }
+
+@media screen and (max-width: 899px) {
+  .navbar .navbar-menu {
+    background-color: #fff;
+  }
+}
+
+  @media screen and (max-width: 899px) {
+    .navbar .navbar-item:not(.is-active):not(:hover) {
+      color: #000;
+    }
+
+  }
 </style>

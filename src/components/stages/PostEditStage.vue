@@ -20,6 +20,7 @@
         icon="label"
         :allow-new="true"
         placeholder="Add a topic"
+        :rounded="true"
         @typing="getFilteredTopics"/>
     </b-field>
 
@@ -98,7 +99,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-     this.filteredTopics = this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })
+     this.filteredTopics = [text, ...this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })]
     },
     setInitialValues () {
       if (Object.keys(this.post).length === 0) return
@@ -134,25 +135,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
+.box {
+  background-color: #fff;
+}
+
 .message{
   max-width:400px;
 }
 
 .save-btn {
-  font: Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 30px;
-  font-weight: 500;
-  min-width: 150px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 15px;
-  padding-bottom: 35px;
-  text-decoration: none;
-  cursor: pointer;
-  justify-content: center;
+  @include btn;
 }
 </style>

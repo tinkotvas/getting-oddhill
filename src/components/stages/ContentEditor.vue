@@ -30,6 +30,7 @@
         icon="label"
         placeholder="Add a topic"
         :allow-new="true"
+        :rounded="true"
         @typing="getFilteredTopics"/>
     </b-field>
 
@@ -81,7 +82,7 @@ export default {
   },
   methods: {
     getFilteredTopics (text) {
-      this.filteredTopics = this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })
+      this.filteredTopics = [text, ...this.$store.getters.filteredTopics(text).map((topic) => { return topic.topic })]
     },
     addPost (heading, message, topics, promoted) {
       const createdAt = new Date()
@@ -100,24 +101,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../styles/variables.scss";
 .column{
   max-width: 1000px;
 }
 
 .add-post {
-  font: Helvetica,Arial,sans-serif;
-    font-size: 12px;
-    color: #fff;
-    display: inline-block;
-    border-radius: 30px;
-    font-weight: 500;
-    min-width: 150px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 15px;
-    padding-bottom: 35px;
-    text-decoration: none;
-    cursor: pointer;
-    justify-content: center;
+  @include btn;
 }
 </style>
