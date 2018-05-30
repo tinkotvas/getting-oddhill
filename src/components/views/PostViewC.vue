@@ -13,8 +13,10 @@
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p class="post-header"
             style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
-            <p style="margin-top: 10px;"> {{ post.message | truncate }} </p>
-
+            <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 10px;"> <fadeout :text="post.message"
+            :truncate-chars="125"
+            :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
+            <p v-else v-html="post.message"></p>
             <nav
               class="level">
               <div class="level-left">
@@ -47,8 +49,12 @@
 // Stages
 import PostsPage from '../pages/PostsPage'
 import Fadeout from '../misc/Fadeout'
+import { iframeRegex } from '../../main'
 
 export default {
+  data () {
+    return {iframeRegex: iframeRegex}
+  },
   components: {
     PostsPage,
     Fadeout
@@ -95,4 +101,9 @@ export default {
 .tags-btn{
   @include topic-btn;
 }
+
+// iframe {
+//   transform: scale(0.8);
+//   transform-origin: left;
+// }
 </style>
