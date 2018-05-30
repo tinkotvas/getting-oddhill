@@ -21,12 +21,12 @@
                 <!-- <a
                   class="button view-btn"
                   @click="savePostsView('post-view-a')">A</a> -->
-                <a
+                <!-- <a
                   class="button view-btn"
-                  @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a>
-                <a
+                  @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a> -->
+                <!-- <a
                   class="button view-btn"
-                  @click="savePostsView('post-view-c')"><b-icon icon="view-headline"/></a>
+                  @click="savePostsView('post-view-c')"><b-icon icon="view-headline"/></a> -->
               </p>
             </div>
           </div>

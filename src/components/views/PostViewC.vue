@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-10-desktop">
+    <div class="column is-8-desktop" style="margin-top: 15px;">
       <article
         class="media"
         v-for="(post, key) of posts"
@@ -11,9 +11,9 @@
             @click="$router.push('/post/'+post.id)">
               <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p><fadeout :text="post.message"
-            :truncate-chars="80"
-            :fade-chars="15"/></p>
+            <p class="post-header"
+            style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
+            <p style="margin-top: 10px;"> {{ post.message | truncate }} </p>
 
             <nav
               class="level">
@@ -23,7 +23,7 @@
                     <router-link
                       v-for="(topic,key) of post.topics"
                       :key="key"
-                      class="is-light is-small is-rounded tag"
+                      class="tags-btn"
                       :to="'/topic/'+ post.topics">
                       {{ key }}
                     </router-link>
@@ -53,6 +53,11 @@ export default {
     PostsPage,
     Fadeout
   },
+   filters: {
+    truncate: function (value) {
+      return value.substring(0, 125) + '...'
+    }
+  },
   props: {
     posts: {
       type: Array,
@@ -68,13 +73,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../styles/variables.scss";
 .profile-box {
  background-color: rgba(152, 226, 248, 0.212);
 }
 
 .time-author{
-  color: rgba(58,58,58);
+  color: rgb(58,58,58);
 }
 
 .level-item{
@@ -84,5 +90,9 @@ export default {
 
 .post{
   cursor: pointer;
+}
+
+.tags-btn{
+  @include topic-btn;
 }
 </style>
