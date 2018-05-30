@@ -86,7 +86,8 @@ export default {
   },
   watch: {
     post: function () {
-      this.$refs.editorMessage.editor.setValue(this.post.message)
+      this.$refs.editorMessage.editor.setValue('')
+      this.$refs.editorMessage.editor.insertText(this.post.message)
       this.setInitialValues()
     }
   },
