@@ -26,24 +26,24 @@
         class="navbar-end">
         <router-link
           class="navbar-item"
-          to="/posts">posts</router-link>
+          to="/posts">posts.</router-link>
         <router-link
           class="navbar-item"
-          to="/profiles">profiles</router-link>
+          to="/profiles">profiles.</router-link>
         <router-link
           class="navbar-item"
-          to="/profile">profile</router-link>
+          to="/profile">profile.</router-link>
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
-          class="navbar-item">log out</a>
+          class="navbar-item">log out.</a>
         <b-dropdown
           v-if="!currentUser"
           position="is-bottom-left">
           <a
             class="navbar-item"
             slot="trigger">
-            <span>log in</span>
+            <span>log in.</span>
           </a>
           <b-dropdown-item
             custom
@@ -156,18 +156,20 @@ $navactive: #3e30ed;
 }
 
 .logo {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Averta W01 Regular';
   font-size: 20px;
   color:#000;
 }
 
 .navbar-item,
 .email-text {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Averta W01 Regular';
+  font-weight: 600;
 }
 
 .log-btn {
   @include btn;
+  min-width: 100px;;
 }
 
 .navbar-burger:hover {

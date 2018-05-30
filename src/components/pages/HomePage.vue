@@ -3,7 +3,7 @@
     id="home"
     class="section">
     <div class="columns is-centered">
-      <div class="column is-8">
+      <div class="column is-8 is-6-fullhd">
 
         <topics-puff class=""/>
         <div
