@@ -7,25 +7,31 @@
       <div
         class="media post"
         @click="$router.push('/post/'+post.id)">
-        <div class="media-left">
-          <div class="level">
-            <div class="level-left"
-              v-if="post.imageUrl">
-              <figure class="image is-3by2">
-                <img :src="post.imageUrl"/>
-              </figure>
-            </div>
-          </div>
-        </div>
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
             <span class="post-header"
-            style="margin-top: 25px; margin-bottom: 0px; "><h4>{{ post.heading }}</h4></span>
+            ><h4>{{ post.heading }}</h4></span>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-content"
-            style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
-            </p>
+
+              <div class="media-left">
+                <div class="level">
+                  <div class="level-left"
+                    v-if="post.imageUrl">
+                    <figure class="image is-3by2" style="margin-top:20px;">
+                      <img :src="post.imageUrl"/>
+                    </figure>
+                  </div>
+
+
+              <div>
+                <p class="post-content"
+                style="margin-top: 15px;"><vue-markdown :source="post.message"/>
+                </p>
+              </div>
+              </div>
+              </div>
+
           </div>
         </div>
 
@@ -118,15 +124,19 @@ export default {
 //   justify-content: center;
 // }
 
-figure.image {
+figure {
   // position: relative;
   // top: 50%;
   // transform: translateY(-50%);
-  max-height: 200px;
+  margin-left: 0.5em;
+  &.image {
+      max-height: 200px;
   width: 200px;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 2px 40px #bac9dc;
+  overflow: alway;
+  }
 
 }
 .image.is-square img, .image.is-1by1 img, .image.is-4by3 img,.image.is-3by2 img, .image.is-16by9 img, .image.is-2by1 img{
@@ -153,5 +163,9 @@ figure.image {
   article{
     margin-bottom:96px;
   }
+
+ .media-content .content {
+       overflow: visible;
+ }
 
 </style>
