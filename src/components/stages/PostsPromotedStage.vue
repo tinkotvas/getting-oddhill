@@ -9,13 +9,13 @@
         @click="$router.push('/post/'+post.id)">
         <div class="media-left">
           <div class="level">
-            <div class="level-left" v-if="post.imageUrl">
-              <figure class="image is-128x128">
+            <div class="level-left"
+              v-if="post.imageUrl">
+              <figure class="image is-3by2">
                 <img :src="post.imageUrl"/>
               </figure>
             </div>
           </div>
-
         </div>
         <!--Main content -->
         <div class="media-content no-overflow">
@@ -109,17 +109,28 @@ export default {
   overflow: hidden;
 }
 
-figure{
-  display: flex;
-  justify-content: center;
+.media{
+  align-items: center;
 }
-.image img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 10px;
-  max-height: 100px;
-  width: auto;
+
+// figure{
+//   display: flex;
+//   justify-content: center;
+// }
+
+figure.image {
+  // position: relative;
+  // top: 50%;
+  // transform: translateY(-50%);
+  max-height: 200px;
+  width: 200px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 2px 40px #bac9dc;
+
+}
+.image.is-square img, .image.is-1by1 img, .image.is-4by3 img,.image.is-3by2 img, .image.is-16by9 img, .image.is-2by1 img{
+  object-fit: cover;
 }
 
 .post-header {
