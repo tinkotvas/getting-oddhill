@@ -7,23 +7,9 @@
       <div
         class="media post"
         @click="$router.push('/post/'+post.id)">
-        <!--Main content -->
-        <div class="media-content no-overflow">
-          <div class="content">
-            <p class="post-header"
-            style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
-            <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-content"
-            style="margin-top: 5px;"><vue-markdown :source="post.message | truncate"/>
-            </p>
-          </div>
-        </div>
-        <div class="media-right">
+        <div class="media-left">
           <div class="level">
-            <div class="level-left"/>
-            <div
-              v-if="post.imageUrl"
-              class="level-right">
+            <div class="level-left" v-if="post.imageUrl">
               <figure class="image is-128x128">
                 <img :src="post.imageUrl"/>
               </figure>
@@ -31,6 +17,18 @@
           </div>
 
         </div>
+        <!--Main content -->
+        <div class="media-content no-overflow">
+          <div class="content">
+            <p class="post-header"
+            style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
+            <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
+            <p class="post-content"
+            style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
+            </p>
+          </div>
+        </div>
+
       </div>
       <nav class="level is-mobile"
       style="padding-top: 10px;">
@@ -143,11 +141,11 @@ figure{
 }
 
   article{
-    margin-bottom:10px;
+    margin-bottom:96px;
   }
 
 .post-header {
-  font-family: Arial, Helvetica, sans-serif;
+
   font-size: 24px;
 }
 </style>
