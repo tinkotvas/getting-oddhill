@@ -101,18 +101,26 @@ export default {
       }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
     },
-    replaceYouTubeUrls (message) {
+        replaceYouTubeUrls (message) {
       let width = 560
       let height = 315
       let matchedUrls = message.match(youtubeRegex)
 
       matchedUrls.forEach((url) => {
+        let replaceWith = '';
+
+        if(url.endsWith(']')){
+          url = '[' + url
+        }else{
         let videoId = this.getYouTubeId(url)
-
-        var iframeMarkup = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
-      videoId + '" frameborder="0" allowfullscreen></iframe>'
-
-        message = message.replace(url, iframeMarkup)
+        replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+        videoId + '" frameborder="0" allowfullscreen></iframe>'
+        }
+        console.log("replace url", url)
+        console.log("replace with", replaceWith)
+        
+        message = message.replace('('+url+')', replaceWith)
+        message = message.replace(url, replaceWith)
       })
       return message
     },
