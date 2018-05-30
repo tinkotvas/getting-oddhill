@@ -170,8 +170,4 @@ figure.image {
     margin-bottom:96px;
   }
 
-.post-header {
-
-  font-size: 24px;
-}
 </style>
