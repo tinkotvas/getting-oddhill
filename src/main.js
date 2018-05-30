@@ -32,6 +32,8 @@ import LoadingOverlay from './plugins/LoadingOverlay.js'
 
 import VueAnalytics from 'vue-analytics'
 
+export const iframeRegex = /^<iframe.+<\/iframe>$/
+
 // Tracking/analytics ID
 const GA_ID = 'UA-120061177-1'
 
