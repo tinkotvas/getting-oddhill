@@ -24,9 +24,7 @@
                 </figure>
                 <p class="post-message"><fadeout :text="post.message"
                 :truncate-chars="200"
-                :fade-chars="20"/></p>
-
-
+                :fade-chars="4" :dots="true" :fade="true" :offset="2"/></p>
               </div>
               <div>
                 <nav class="topics level is-mobile">
