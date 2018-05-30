@@ -32,12 +32,15 @@
 }
 
 @mixin topic-post-btn {
-  background-color: #fff;
+  background-color: transparent;
   color: #3e30ed;
   border: none;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
+  &:hover{
+    border: 1px solid red;
+  }
 }
 
 
