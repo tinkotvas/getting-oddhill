@@ -7,7 +7,7 @@
       <div
         class="media post"
         @click="$router.push('/post/'+post.id)">
-        <div class="media-left">
+        <!-- <div class="media-left">
           <div class="level">
             <div class="level-left"
               v-if="post.imageUrl">
@@ -16,16 +16,32 @@
               </figure>
             </div>
           </div>
-        </div>
+        </div> -->
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
             <span class="post-header"
             style="margin-top: 25px; margin-bottom: 0px; "><h4>{{ post.heading }}</h4></span>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-content"
-            style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
-            </p>
+
+              <div class="media-left">
+                <div class="level">
+                  <div class="level-left"
+                    v-if="post.imageUrl">
+                    <figure class="image is-3by2" style="margin-top:15px; margin-left: 15px;">
+                      <img :src="post.imageUrl"/>
+                    </figure>
+                  </div>
+
+
+              <div>
+                <p class="post-content"
+                style="margin-top: 15px;"><vue-markdown :source="post.message"/>
+                </p>
+              </div>
+              </div>
+              </div>
+
           </div>
         </div>
 
