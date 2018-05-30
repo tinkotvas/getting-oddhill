@@ -63,8 +63,8 @@
 
 <script>
 import WysiwygEditor from './WysiwygEditor'
-
 import { storage } from '../../main.js'
+const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)?(?:\?v=)?(?:\S{11})(]|)/g
 
 export default {
   components: {
@@ -125,11 +125,47 @@ export default {
           }
           payload.message = payload.message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
         }
+        if (youtubeRegex.test(payload.message)) {
+          payload.message = this.replaceYouTubeUrls(payload.message)
+        }
         Object.assign(payload, { editedAt, id: this.$route.params.id })
         this.$store.dispatch('editPost', payload)
         this.saveStatus = 'saved'
       } else {
         this.saveStatus = 'nochange'
+      }
+    },
+    replaceYouTubeUrls (message) {
+      let width = 560
+      let height = 315
+      let matchedUrls = message.match(youtubeRegex)
+
+      matchedUrls.forEach((url) => {
+        let replaceWith = '';
+
+        if(url.endsWith(']')){
+          url = '[' + url
+        }else{
+        let videoId = this.getYouTubeId(url)
+        replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+        videoId + '" frameborder="0" allowfullscreen></iframe>'
+        }
+        console.log("replace url", url)
+        console.log("replace with", replaceWith)
+        
+        message = message.replace('('+url+')', replaceWith)
+        message = message.replace(url, replaceWith)
+      })
+      return message
+    },
+    getYouTubeId (url) {
+      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+      var match = url.match(regExp)
+
+      if (match && match[2].length == 11) {
+        return match[2]
+      } else {
+        return 'error'
       }
     }
   }
