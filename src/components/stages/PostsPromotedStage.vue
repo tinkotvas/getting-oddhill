@@ -20,8 +20,8 @@
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
-            <p class="post-header"
-            style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
+            <span class="post-header"
+            style="margin-top: 25px; margin-bottom: 0px; "><h4>{{ post.heading }}</h4></span>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p class="post-content"
             style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
