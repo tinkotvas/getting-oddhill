@@ -25,9 +25,12 @@ export default {
 // @import '~bulmaswatch/darkly/variables';
 //Font
 $family-sans-serif: 'Roboto Mono', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-monospace: 'Averta W01 Regular';
 p {
-  font-size: 12pt;
+  font-size: 14pt;
+  line-height: 24px;
 }
+
 
 $button-background-color: #3e30ed;
 $button-color: #fff;
