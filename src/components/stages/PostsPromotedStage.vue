@@ -37,14 +37,9 @@
 
       </div>
 
-
-
-
-
-
-
-      <nav class="level is-mobile">
-            <b-taglist class="columms is-multiline">
+        <nav class="level is-mobile">
+        <div class="level-right">
+          <b-taglist class="columms is-multiline">
             <router-link
               v-for="(topic,key) of post.topics"
               :key="key"
@@ -53,13 +48,12 @@
               {{ key }}
             </router-link>
           </b-taglist>
-        <div class="level-right"/>
-        </nav>
-        <nav class="level is-mobile">
-        <div class="level-right"/>
+        </div>
+
         <div class="level-left">
-          <div class="level-item">
-            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+          <div class="level-item kommentarer">
+            <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
+              v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
           </div>
         </div>
       </nav>
@@ -78,6 +72,8 @@
 <script>
 import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
+import Fadeout from '../misc/Fadeout'
+import { iframeRegex } from '../../main'
 
 const fadeChars = 25
 let truncateChars = 250
@@ -86,7 +82,7 @@ export default {
   filters: {
 
     truncate: function (value) {
-      return value.substring(0, 125) + '...'
+      return value.length > 125 ? value.substring(0, 125).trim() + '...' : value
     }
     // truncate: function(value) {
     //   let truncated =
@@ -206,6 +202,9 @@ img{
   overflow: alway;
   }
 
+}
+.kommentarer{
+  size: 12px;
 }
 }
 </style>
