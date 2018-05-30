@@ -37,14 +37,9 @@
 
       </div>
 
-
-
-
-
-
-
-      <nav class="level is-mobile">
-            <b-taglist class="columms is-multiline">
+        <nav class="level is-mobile">
+        <div class="level-right">
+          <b-taglist class="columms is-multiline">
             <router-link
               v-for="(topic,key) of post.topics"
               :key="key"
@@ -53,13 +48,12 @@
               {{ key }}
             </router-link>
           </b-taglist>
-        <div class="level-right"/>
-        </nav>
-        <nav class="level is-mobile">
-        <div class="level-right"/>
+        </div>
+
         <div class="level-left">
-          <div class="level-item">
-            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+          <div class="level-item kommentarer">
+            <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
+              v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
           </div>
         </div>
       </nav>
@@ -206,6 +200,9 @@ img{
   overflow: alway;
   }
 
+}
+.kommentarer{
+  size: 12px;
 }
 }
 </style>
