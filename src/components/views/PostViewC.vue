@@ -15,7 +15,7 @@
             style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
             <p style="margin-top: 10px;"> <fadeout :text="post.message"
             :truncate-chars="125"
-            :fade-chars="4" :dots="true" :fade="true" :offset="2"/> </p>
+            :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
             <nav
               class="level">
               <div class="level-left">
