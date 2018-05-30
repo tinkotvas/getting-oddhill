@@ -107,12 +107,18 @@ export default {
       let matchedUrls = message.match(youtubeRegex)
 
       matchedUrls.forEach((url) => {
-        let videoId = this.getYouTubeId(url)
+        let replaceWith = ''
 
-        var iframeMarkup = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
-      videoId + '" frameborder="0" allowfullscreen></iframe>'
+        if (url.endsWith(']')) {
+          url = '[' + url
+        } else {
+          let videoId = this.getYouTubeId(url)
+          replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+        videoId + '" frameborder="0" allowfullscreen></iframe>'
+        }
 
-        message = message.replace(url, iframeMarkup)
+        message = message.replace('(' + url + ')', replaceWith)
+        message = message.replace(url, replaceWith)
       })
       return message
     },
