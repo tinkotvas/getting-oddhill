@@ -3,7 +3,7 @@
 
 export default {
   state: {
-    postsView: 'post-view-b'
+    postsView: 'post-view-c'
   },
   mutations: {
     setPostsView (state, payload) {

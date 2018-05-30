@@ -10,27 +10,31 @@
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
-            <p class="post-header"
-            style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
+            <span class="post-header"
+            ><h4>{{ post.heading }}</h4></span>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-content"
-            style="margin-top: 5px;"><vue-markdown :source="post.message | truncate"/>
-            </p>
-          </div>
-        </div>
-        <div class="media-right">
-          <div class="level">
-            <div class="level-left"/>
-            <div
-              v-if="post.imageUrl"
-              class="level-right">
-              <figure class="image is-128x128">
-                <img :src="post.imageUrl"/>
-              </figure>
-            </div>
-          </div>
 
+              <div class="media-left">
+                <div class="level">
+                  <div class="level-left"
+                    v-if="post.imageUrl">
+                    <figure class="image is-3by2" style="margin-top:20px;">
+                      <img :src="post.imageUrl"/>
+                    </figure>
+                  </div>
+
+
+              <div>
+                <p class="post-content"
+                style="margin-top: 15px;"><vue-markdown :source="post.message"/>
+                </p>
+              </div>
+              </div>
+              </div>
+
+          </div>
         </div>
+
       </div>
       <nav class="level is-mobile"
       style="padding-top: 10px;">
@@ -64,25 +68,29 @@ let truncateChars = 250
 
 export default {
   filters: {
-    truncate: function(value) {
-      let truncated =
-        value.length > truncateChars ? value.substring(0, truncateChars) : value
-      if (truncated.length >= truncateChars) {
-        // truncated = truncated + '...'
-        // truncateChars = truncated.length
-        let faded = Array.prototype.map.call(
-          truncated.substring(truncateChars - fadeChars, truncateChars),
-          (char, index) => {
-            let x = index / fadeChars
-            let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
-            return `<span style="opacity: ${quickMaffs};">${char}</span>`
-          }
-        )
-        truncated =
-          truncated.substring(0, truncateChars - fadeChars) + faded.join('')
-      }
-      return truncated
+
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
     }
+    // truncate: function(value) {
+    //   let truncated =
+    //     value.length > truncateChars ? value.substring(0, truncateChars) : value
+    //   if (truncated.length >= truncateChars) {
+    //     // truncated = truncated + '...'
+    //     // truncateChars = truncated.length
+    //     let faded = Array.prototype.map.call(
+    //       truncated.substring(truncateChars - fadeChars, truncateChars),
+    //       (char, index) => {
+    //         let x = index / fadeChars
+    //         let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
+    //         return `<span style="opacity: ${quickMaffs};">${char}</span>`
+    //       }
+    //     )
+    //     truncated =
+    //       truncated.substring(0, truncateChars - fadeChars) + faded.join('')
+    //   }
+    //   return truncated
+    // }
   },
   components: {
     VueMarkdown
@@ -107,17 +115,32 @@ export default {
   overflow: hidden;
 }
 
-figure{
-  display: flex;
-  justify-content: center;
+.media{
+  align-items: center;
 }
-.image img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 10px;
-  max-height: 100px;
-  width: auto;
+
+// figure{
+//   display: flex;
+//   justify-content: center;
+// }
+
+figure {
+  // position: relative;
+  // top: 50%;
+  // transform: translateY(-50%);
+  margin-left: 0.5em;
+  &.image {
+      max-height: 200px;
+  width: 200px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 2px 40px #bac9dc;
+  overflow: alway;
+  }
+
+}
+.image.is-square img, .image.is-1by1 img, .image.is-4by3 img,.image.is-3by2 img, .image.is-16by9 img, .image.is-2by1 img{
+  object-fit: cover;
 }
 
 .post-header {
@@ -128,14 +151,9 @@ figure{
   padding: 0 50px;;
 } */
 
-.promoted-title strong {
-  font-size: 32px;
-  color: rgb(42, 41, 52);
-}
 
 .topics-btn {
-  @include topic-btn;
-  margin-right: 10px;
+  @include topic-post-btn;
 }
 
 .post {
@@ -143,11 +161,11 @@ figure{
 }
 
   article{
-    margin-bottom:10px;
+    margin-bottom:96px;
   }
 
-.post-header {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;
-}
+ .media-content .content {
+       overflow: visible;
+ }
+
 </style>
