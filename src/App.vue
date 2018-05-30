@@ -29,9 +29,16 @@ $family-monospace: 'Averta W01 Regular';
 p {
   font-size: 14pt;
   line-height: 24px;
+  color: #2A2934;
 }
-h1, h2, h3, h4 {
+content h1,
+content h2,
+content h3,
+content h4,
+content h5,
+content h6 {
   font-family: 'Averta W01 Regular';
+  color: #2A2934 !important;
 }
 
 h1 {

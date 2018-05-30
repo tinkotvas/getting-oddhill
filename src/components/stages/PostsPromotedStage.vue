@@ -130,14 +130,9 @@ figure{
   padding: 0 50px;;
 } */
 
-.promoted-title strong {
-  font-size: 32px;
-  color: rgb(42, 41, 52);
-}
 
 .topics-btn {
-  @include topic-btn;
-  margin-right: 10px;
+  @include topic-post-btn;
 }
 
 .post {
