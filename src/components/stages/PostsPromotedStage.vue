@@ -14,7 +14,7 @@
             style="margin-top: 25px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p class="post-content"
-            style="margin-top: 5px;"><vue-markdown :source="post.message | truncate"/>
+            style="margin-top: 5px;"> {{ post.message | truncate }} </p>
             </p>
           </div>
         </div>
@@ -64,25 +64,29 @@ let truncateChars = 250
 
 export default {
   filters: {
-    truncate: function(value) {
-      let truncated =
-        value.length > truncateChars ? value.substring(0, truncateChars) : value
-      if (truncated.length >= truncateChars) {
-        // truncated = truncated + '...'
-        // truncateChars = truncated.length
-        let faded = Array.prototype.map.call(
-          truncated.substring(truncateChars - fadeChars, truncateChars),
-          (char, index) => {
-            let x = index / fadeChars
-            let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
-            return `<span style="opacity: ${quickMaffs};">${char}</span>`
-          }
-        )
-        truncated =
-          truncated.substring(0, truncateChars - fadeChars) + faded.join('')
-      }
-      return truncated
+
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
     }
+    // truncate: function(value) {
+    //   let truncated =
+    //     value.length > truncateChars ? value.substring(0, truncateChars) : value
+    //   if (truncated.length >= truncateChars) {
+    //     // truncated = truncated + '...'
+    //     // truncateChars = truncated.length
+    //     let faded = Array.prototype.map.call(
+    //       truncated.substring(truncateChars - fadeChars, truncateChars),
+    //       (char, index) => {
+    //         let x = index / fadeChars
+    //         let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
+    //         return `<span style="opacity: ${quickMaffs};">${char}</span>`
+    //       }
+    //     )
+    //     truncated =
+    //       truncated.substring(0, truncateChars - fadeChars) + faded.join('')
+    //   }
+    //   return truncated
+    // }
   },
   components: {
     VueMarkdown
