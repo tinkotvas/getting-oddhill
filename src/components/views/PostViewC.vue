@@ -78,6 +78,7 @@ export default {
       window.addEventListener('resize', () => {
         this.truncateChars = window.innerWidth / 10.24
       })
+      this.truncateChars = window.innerWidth / 10.24
     })
   },
   methods: {
