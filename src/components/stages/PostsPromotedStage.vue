@@ -78,6 +78,8 @@
 <script>
 import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
+import Fadeout from '../misc/Fadeout'
+import { iframeRegex } from '../../main'
 
 const fadeChars = 25
 let truncateChars = 250
@@ -86,7 +88,7 @@ export default {
   filters: {
 
     truncate: function (value) {
-      return value.substring(0, 125) + '...'
+      return value.length > 125 ? value.substring(0, 125).trim() + '...' : value
     }
     // truncate: function(value) {
     //   let truncated =
