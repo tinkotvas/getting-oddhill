@@ -18,7 +18,7 @@
                 <div class="level">
                   <div class="level-left"
                     v-if="post.imageUrl">
-                    <figure class="image is-3by2" style="margin-top:20px;">
+                    <figure class="image is-3by2-mobile" style="margin-top:20px;">
                       <img :src="post.imageUrl"/>
                     </figure>
                   </div>
@@ -26,7 +26,7 @@
 
               <div>
                 <p class="post-content"
-                style="margin-top: 15px;"><vue-markdown :source="post.message"/>
+                style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
                 </p>
               </div>
               </div>
@@ -36,10 +36,10 @@
         </div>
 
       </div>
-      <nav class="level is-mobile"
-      style="padding-top: 10px;">
-        <div class="level-left">
-            <b-taglist>
+
+        <nav class="level is-mobile">
+        <div class="level-right">
+          <b-taglist class="columms is-multiline">
             <router-link
               v-for="(topic,key) of post.topics"
               :key="key"
@@ -49,12 +49,22 @@
             </router-link>
           </b-taglist>
         </div>
-        <div class="level-right">
-          <div class="level-item">
-            <router-link :to="'/post/'+ post.id"><small><a v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></small></router-link>
+
+        <div class="level-left">
+          <div class="level-item kommentarer">
+            <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
+              v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
           </div>
         </div>
       </nav>
+
+
+
+
+
+
+
+
     </article>
   </div>
 </template>
@@ -62,6 +72,8 @@
 <script>
 import { db } from '../../main.js'
 import VueMarkdown from 'vue-markdown'
+import Fadeout from '../misc/Fadeout'
+import { iframeRegex } from '../../main'
 
 const fadeChars = 25
 let truncateChars = 250
@@ -70,7 +82,7 @@ export default {
   filters: {
 
     truncate: function (value) {
-      return value.substring(0, 300) + '...'
+      return value.length > 125 ? value.substring(0, 125).trim() + '...' : value
     }
     // truncate: function(value) {
     //   let truncated =
@@ -110,6 +122,12 @@ export default {
 
 <style scoped lang="scss">
 @import "../../styles/variables.scss";
+
+article{
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   max-height: 16em;
   overflow: hidden;
@@ -137,9 +155,10 @@ figure {
   box-shadow: 0px 2px 40px #bac9dc;
   overflow: alway;
   }
-
 }
-.image.is-square img, .image.is-1by1 img, .image.is-4by3 img,.image.is-3by2 img, .image.is-16by9 img, .image.is-2by1 img{
+
+img{
+  max-height: 200px;
   object-fit: cover;
 }
 
@@ -160,7 +179,7 @@ figure {
   cursor: pointer;
 }
 
-  article{
+ article{
     margin-bottom:96px;
   }
 
@@ -168,4 +187,24 @@ figure {
        overflow: visible;
  }
 
+@media (max-height: 599px){
+  figure {
+  // position: relative;
+  // top: 50%;
+  // transform: translateY(-50%);
+  margin-left: 0.5em;
+  &.image {
+      max-height: 200px;
+  width: 200px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 2px 40px #bac9dc;
+  overflow: alway;
+  }
+
+}
+.kommentarer{
+  size: 12px;
+}
+}
 </style>

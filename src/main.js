@@ -30,6 +30,13 @@ import 'moment/locale/sv'
 import 'moment/locale/en-gb'
 import LoadingOverlay from './plugins/LoadingOverlay.js'
 
+import VueAnalytics from 'vue-analytics'
+
+export const iframeRegex = /^<iframe.+<\/iframe>$/
+
+// Tracking/analytics ID
+const GA_ID = 'UA-120061177-1'
+
 Vue.use(LoadingOverlay)
 Vue.use(Buefy)
 Vue.use(VueRouter)
@@ -121,6 +128,11 @@ const router = new VueRouter({
   routes, // short for routes: routes
   mode: 'history',
   linkExactActiveClass: 'is-active'
+})
+
+Vue.use(VueAnalytics,{
+  id: GA_ID,
+  router
 })
 
 new Vue({

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { db } from '../../main.js'
+import { db, iframeRegex } from '../../main.js'
 import * as removeMd from 'remove-markdown'
 
 export default {
@@ -300,7 +300,7 @@ export default {
       const imageRegex = /!\[.*?\]\((.+?)\)/
       return state.posts.map(post => {
         let imageUrl = imageRegex.exec(post.message)
-        let text = removeMd(post.message).substring(0, maxCharacters)
+        let text = iframeRegex.test(post.message) ? post.message : removeMd(post.message).substring(0, maxCharacters)
         return Object.assign({}, post, {
           message: text,
           imageUrl: imageUrl && imageUrl[1] ? imageUrl[1] : null
