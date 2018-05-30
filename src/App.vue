@@ -30,7 +30,25 @@ p {
   font-size: 14pt;
   line-height: 24px;
 }
+h1, h2, h3, h4 {
+  font-family: 'Averta W01 Regular';
+}
 
+h1 {
+  font-size: 37pt;
+}
+
+h2 {
+  font-size: 24pt;
+}
+
+h3 {
+  font-size: 18pt;
+}
+
+h4 {
+  font-size: 14pt;
+}
 
 $button-background-color: #3e30ed;
 $button-color: #fff;
