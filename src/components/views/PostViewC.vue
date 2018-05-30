@@ -14,7 +14,7 @@
             <p class="post-header"
             style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
             <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 10px;"> <fadeout :text="post.message"
-            :truncate-chars="125"
+            :truncate-chars="truncateChars"
             :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
             <p v-else v-html="post.message"></p>
             <nav
@@ -53,7 +53,10 @@ import { iframeRegex } from '../../main'
 
 export default {
   data () {
-    return {iframeRegex: iframeRegex}
+    return {
+      iframeRegex: iframeRegex,
+      truncateChars: 125
+    }
   },
   components: {
     PostsPage,
@@ -69,6 +72,13 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.truncateChars = window.innerWidth / 10.24
+      })
+    })
   },
   methods: {
     localTimeSv: function (value) {
