@@ -23,7 +23,7 @@
     </b-field>
 
     <b-field>
-       <b-taginput
+      <b-taginput
         autocomplete
         v-model="topics"
         :data="filteredTopics"
@@ -50,6 +50,7 @@
 
 <script>
 import WysiwygEditor from './WysiwygEditor'
+const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)?(?:\?v=)?(?:\S+)?/g
 
 export default {
   components: {
@@ -91,9 +92,39 @@ export default {
           console.log('All images not yet uploaded PLACEHOLDER')
           return
         }
+
         message = message.replace(this.imageCache[image].blobPath, this.imageCache[image].storagePath)
       }
+
+      if (youtubeRegex.test(message)) {
+        message = this.replaceYouTubeUrls(message)
+      }
       this.$store.dispatch('addPost', { createdAt, heading, message, topics, promoted, vm: this })
+    },
+    replaceYouTubeUrls (message) {
+      let width = 560
+      let height = 315
+      let matchedUrls = message.match(youtubeRegex)
+
+      matchedUrls.forEach((url) => {
+        let videoId = this.getYouTubeId(url)
+
+        var iframeMarkup = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+      videoId + '" frameborder="0" allowfullscreen></iframe>'
+
+        message = message.replace(url, iframeMarkup)
+      })
+      return message
+    },
+    getYouTubeId (url) {
+      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+      var match = url.match(regExp)
+
+      if (match && match[2].length == 11) {
+        return match[2]
+      } else {
+        return 'error'
+      }
     }
   }
 }
