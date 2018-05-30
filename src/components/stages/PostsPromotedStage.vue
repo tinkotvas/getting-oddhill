@@ -26,7 +26,7 @@
 
               <div>
                 <p class="post-content"
-                style="margin-top: 15px;"><vue-markdown :source="post.message | truncate"/>
+                style="margin-top: 15px;"><vue-markdown :source="truncate(post.message)"/>
                 </p>
               </div>
               </div>
@@ -75,15 +75,14 @@ import VueMarkdown from 'vue-markdown'
 import Fadeout from '../misc/Fadeout'
 import { iframeRegex } from '../../main'
 
-const fadeChars = 25
-let truncateChars = 250
-
 export default {
-  filters: {
-
-    truncate: function (value) {
-      return value.length > 125 ? value.substring(0, 125).trim() + '...' : value
+  data(){
+    return {
+        truncateChars: 125
     }
+  },
+
+
     // truncate: function(value) {
     //   let truncated =
     //     value.length > truncateChars ? value.substring(0, truncateChars) : value
@@ -103,11 +102,20 @@ export default {
     //   }
     //   return truncated
     // }
-  },
   components: {
     VueMarkdown
   },
   props: ['posts'],
+
+   mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.truncateChars = window.innerWidth / 10.24
+      })
+     this.truncateChars = window.innerWidth / 10.24
+    })
+  },
+
   methods: {
     isPromoted: function(index) {
       return this.posts[index].promoted
@@ -115,6 +123,9 @@ export default {
     localTimeSv: function (value) {
     let date = this.$moment(value)
     return date.locale('sv').format('dddd Do MMMM YYYY')
+    },
+    truncate: function (value) {
+        return iframeRegex.test(value) ? value : value.length > this.truncateChars ? (value.substring(0, this.truncateChars).trim() + '...') : value
     }
   }
 }
