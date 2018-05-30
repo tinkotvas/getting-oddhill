@@ -150,9 +150,7 @@ export default {
         replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
         videoId + '" frameborder="0" allowfullscreen></iframe>'
         }
-        console.log("replace url", url)
-        console.log("replace with", replaceWith)
-        
+
         message = message.replace('('+url+')', replaceWith)
         message = message.replace(url, replaceWith)
       })
