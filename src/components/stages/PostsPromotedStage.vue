@@ -62,25 +62,29 @@ let truncateChars = 250
 
 export default {
   filters: {
-    truncate: function(value) {
-      let truncated =
-        value.length > truncateChars ? value.substring(0, truncateChars) : value
-      if (truncated.length >= truncateChars) {
-        // truncated = truncated + '...'
-        // truncateChars = truncated.length
-        let faded = Array.prototype.map.call(
-          truncated.substring(truncateChars - fadeChars, truncateChars),
-          (char, index) => {
-            let x = index / fadeChars
-            let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
-            return `<span style="opacity: ${quickMaffs};">${char}</span>`
-          }
-        )
-        truncated =
-          truncated.substring(0, truncateChars - fadeChars) + faded.join('')
-      }
-      return truncated
+
+    truncate: function (value) {
+      return value.substring(0, 300) + '...'
     }
+    // truncate: function(value) {
+    //   let truncated =
+    //     value.length > truncateChars ? value.substring(0, truncateChars) : value
+    //   if (truncated.length >= truncateChars) {
+    //     // truncated = truncated + '...'
+    //     // truncateChars = truncated.length
+    //     let faded = Array.prototype.map.call(
+    //       truncated.substring(truncateChars - fadeChars, truncateChars),
+    //       (char, index) => {
+    //         let x = index / fadeChars
+    //         let quickMaffs = 1 - 0.12 * x - 0.88 * x ** 2
+    //         return `<span style="opacity: ${quickMaffs};">${char}</span>`
+    //       }
+    //     )
+    //     truncated =
+    //       truncated.substring(0, truncateChars - fadeChars) + faded.join('')
+    //   }
+    //   return truncated
+    // }
   },
   components: {
     VueMarkdown
