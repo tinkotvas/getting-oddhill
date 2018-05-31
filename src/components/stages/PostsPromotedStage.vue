@@ -18,7 +18,7 @@
                 <div
                   class="level-left"
                   v-if="post.imageUrl">
-                  <figure class="image is-3by2-mobile" style="margin-top:20px;">
+                  <figure class="image is-3by2-mobile" style="margin-top:25px;">
                     <img :src="post.imageUrl"/>
                   </figure>
                 </div>
@@ -124,6 +124,10 @@ export default {
 
 <style scoped lang="scss">
 @import "../../styles/variables.scss";
+
+#promoted-stage{
+  margin-top: 80px;
+}
 
 article{
   margin-bottom:96px;
