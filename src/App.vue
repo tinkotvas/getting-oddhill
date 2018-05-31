@@ -31,31 +31,6 @@ p {
   line-height: 24px;
   color: #2A2934;
 }
-content h1,
-content h2,
-content h3,
-content h4,
-content h5,
-content h6 {
-  font-family: 'Averta W01 Regular';
-  color: #2A2934 !important;
-}
-
-h1 {
-  font-size: 37pt;
-}
-
-h2 {
-  font-size: 24pt;
-}
-
-h3 {
-  font-size: 18pt;
-}
-
-h4 {
-  font-size: 14pt;
-}
 
 $button-background-color: #3e30ed;
 $button-color: #fff;
@@ -162,6 +137,32 @@ $desktop: $desktop-old;
   }
 @import "~bulmaswatch/flatly/overrides";
 // @import '~bulmaswatch/darkly/overrides';
+
+h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+  font-family: 'Averta W01 Regular';
+  color: #2A2934 !important;
+}
+
+h1 {
+  font-size: 37pt;
+}
+
+h2 {
+  font-size: 24pt;
+}
+
+h3 {
+  font-size: 18pt;
+}
+
+h4 {
+  font-size: 14pt;
+}
 
 
 .load-overlay{
