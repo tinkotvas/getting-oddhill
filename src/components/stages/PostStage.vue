@@ -1,6 +1,12 @@
 <template>
   <!-- Since vue-markdown -->
   <div>
+
+    <span class="post-header"><h1>{{ post.heading }}</h1></span>
+    <vue-markdown
+
+      :source="post.message"
+      class="content post-page-content"/>
     <div class="field is-grouped is-grouped-centered">
       <p class="control">
         <router-link
@@ -13,12 +19,6 @@
           @click="deletePost($route.params.id)">delete post</a>
       </p>
     </div>
-    <p class="post-header"><strong>{{ post.heading }}</strong></p>
-    <vue-markdown
-
-      :source="post.message"
-      class="content"/>
-
   </div>
 </template>
 
@@ -40,11 +40,10 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "../../styles/variables.scss";
-.post-header {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;
+span .post-header {
+  text-align: center;
 }
 
 .edit-btn {
@@ -54,6 +53,29 @@ export default {
 .delete-btn {
   @include btn;
   background-color: #FF0047;
-
 }
+
+.post-page-content {
+  img {
+    max-width: 50%;
+    display: block;
+    margin-top: 20px;
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-bottom: 20px;
+  }
+
+iframe {
+    display: block;
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @media(max-width:599px) {
+      height: 200px;
+    }
+  }
+}
+
+
 </style>
