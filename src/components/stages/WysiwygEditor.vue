@@ -32,7 +32,7 @@ export default {
   mounted () {
     this.editor = new Editor({
       el: document.querySelector('#editSection'),
-      initialEditType: 'markdown',
+      initialEditType: 'wysiwyg',
       initialValue: this.message,
       previewStyle: 'vertical',
       usageStatistics: 'false',
@@ -45,9 +45,17 @@ export default {
         }
       }
     })
+    this.editor.setValue("")
+    this.editor.insertText(this.message)
   },
   destroyed () {
     this.$store.dispatch('clearImageCache')
+  },
+  watch: {
+    message: function() {
+      this.editor.setValue("")
+      this.editor.insertText(this.message)
+    }
   }
 }
 

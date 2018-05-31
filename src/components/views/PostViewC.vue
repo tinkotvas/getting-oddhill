@@ -11,31 +11,36 @@
             @click="$router.push('/post/'+post.id)">
               <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span> |
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <p class="post-header"
-            style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
-            <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 10px;"> <fadeout :text="post.message"
+            <h1 class="post-header"
+            style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></h1>
+            <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 25px;"> <fadeout :text="post.message"
             :truncate-chars="125"
             :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
             <p v-else v-html="post.message"></p>
-              <nav class="level is-mobile">
-            <div class="level-right">
-              <b-taglist class="columms is-multiline">
-                <router-link
-                  v-for="(topic,key) of post.topics"
-                  :key="key"
-                  class="button topics-btn"
-                  :to="'/topic/'+ key">
-                  {{ key }}
-                </router-link>
-              </b-taglist>
-            </div>
 
-            <div class="level-left">
-              <div class="level-item kommentarer">
-                <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
-                  v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <div class="level-item">
+                  <router-link
+                    v-for="(topic,key) of post.topics"
+                    :key="key"
+                    class="button topics-btn"
+                    :to="'/topic/'+ key">
+                    {{ key }}
+                  </router-link>
+                </div>
               </div>
-            </div>
+
+              <div class="level-right">
+                <div class="level-item">
+                  <router-link
+                    :to="'/post/'+ post.id"
+                    class="button topics-btn"
+                    v-if="post.numberOfComments !== undefined">
+                    {{ post.numberOfComments }} kommentarer
+                  </router-link>
+                </div>
+              </div>
           </nav>
           </div>
         </div>

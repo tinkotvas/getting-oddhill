@@ -50,7 +50,7 @@
 
 <script>
 import WysiwygEditor from './WysiwygEditor'
-const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)?(?:\?v=)?(?:\S+)?/g
+const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)(?:\?v=)?(?:\S{11})(]|)/g
 
 export default {
   components: {
@@ -106,18 +106,21 @@ export default {
       let height = 315
       let matchedUrls = message.match(youtubeRegex)
 
-      matchedUrls.forEach((url) => {
-        let replaceWith = ''
 
-        if (url.endsWith(']')) {
+      console.log(matchedUrls)
+
+      matchedUrls.forEach((url) => {
+        let replaceWith = '';
+
+        if(url.endsWith(']')){
           url = '[' + url
-        } else {
-          let videoId = this.getYouTubeId(url)
-          replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
-        videoId + '" frameborder="0" allowfullscreen></iframe>'
+        }else{
+        let videoId = this.getYouTubeId(url)
+        replaceWith = '<p style="text-align: center;"><iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+        videoId + '" frameborder="0" allowfullscreen></iframe></p>'
         }
 
-        message = message.replace('(' + url + ')', replaceWith)
+        message = message.replace('('+url+')', replaceWith)
         message = message.replace(url, replaceWith)
       })
       return message
