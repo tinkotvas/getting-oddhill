@@ -180,7 +180,7 @@ h4 {
 
 .pattern-bg {
     background-repeat: repeat;
-    height: 720px;
+    height: 400px;
     width: 100%;
     z-index: -10;
     -webkit-transform: translateY(calc(-40% - 12px));
