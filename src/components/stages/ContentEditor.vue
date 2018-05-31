@@ -3,7 +3,7 @@
     <b-field v-if="wysiwyg">
       <b-input
         v-model="heading"
-        placeholder="Add a heading"/>
+        placeholder="add a heading"/>
     </b-field>
 
     <b-field
@@ -13,7 +13,7 @@
         maxlength="5000"
         type="textarea"
         :has-counter="false"
-        placeholder="Add content"/>
+        placeholder="add content"/>
     </b-field>
 
     <b-field v-if="wysiwyg">
@@ -28,7 +28,7 @@
         v-model="topics"
         :data="filteredTopics"
         icon="label"
-        placeholder="Add a topic"
+        placeholder="add a topic"
         :allow-new="true"
         :rounded="true"
         @typing="getFilteredTopics"/>
@@ -37,12 +37,12 @@
     <p class="level is-mobile">
       <button
         class="button add-post"
-        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">Add Post</button>
+        @click="addPost(heading, (wysiwyg ? $refs.editorMessage.editor.getValue() : message), topics, promoted)">add Post</button>
       <b-switch v-model="promoted">
-        Promoted
+        promoted
       </b-switch>
       <b-switch v-model="wysiwyg">
-        Rich Editor
+        rich Editor
       </b-switch>
     </p>
   </div>
