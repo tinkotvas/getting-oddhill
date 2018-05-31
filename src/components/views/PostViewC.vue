@@ -11,9 +11,9 @@
             @click="$router.push('/post/'+post.id)">
               <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span> |
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
-            <h1 class="post-header"
-            style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></h1>
-            <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 25px;"> <fadeout :text="post.message"
+            <p class="post-header"
+            style="margin-top: 15px; margin-bottom: 0px; ">{{ post.heading }}</p>
+            <p v-if="(!iframeRegex.test(post.message))" style="margin-top: 10px;"> <fadeout :text="post.message"
             :truncate-chars="125"
             :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
             <p v-else v-html="post.message"></p>

@@ -85,8 +85,7 @@ export const routes = [
   { path: '/posts', component: PostsPage },
   { path: '/post/edit/:id', component: PostEditPage },
   { path: '/post/:id', component: PostPage },
-  { path: '/profile/:id', component: ProfilePage },
-  { path: '/profile/edit/:id', component: ProfileEditPage },
+
   {
     path: '/profile',
     component: ProfilePage,

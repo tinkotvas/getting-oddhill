@@ -2,6 +2,7 @@
   <div
     id="home"
     class="section">
+    <div class="pattern-bg"/>
     <div class="columns is-centered">
       <div class="column is-8 is-6-fullhd">
 
@@ -62,9 +63,27 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .profile-box {
   background-color: #fff;
 }
+
+iframe {
+    display: block;
+    width: 50vw;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 40px #bac9dc;
+    @media(max-width:599px) {
+      width: 85vw;
+      height: 200px;
+    }
+    @media(min-width: 600px) and (max-width: 899px){
+      width: 60vw;
+      height: 200px;
+    }
+  }
+
 
 </style>
