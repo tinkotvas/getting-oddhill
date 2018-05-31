@@ -64,7 +64,7 @@ export default {
   img {
     max-width: 50%;
     display: block;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 25%;
     margin-left: 25%;
     margin-bottom: 20px;
