@@ -9,7 +9,7 @@
           <div
             class="post content"
             @click="$router.push('/post/'+post.id)">
-              <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span>
+              <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username : 'Anonym' }}</small></span> |
               <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
             <p class="post-header"
             style="margin-top: 15px; margin-bottom: 0px; "><strong>{{ post.heading }}</strong></p>
