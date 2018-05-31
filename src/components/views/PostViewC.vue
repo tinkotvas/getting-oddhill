@@ -99,11 +99,7 @@ export default {
 }
 
 .tags-btn{
-  @include topic-btn;
+  @include topic-post-btn;
 }
 
-// iframe {
-//   transform: scale(0.8);
-//   transform-origin: left;
-// }
 </style>

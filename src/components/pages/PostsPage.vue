@@ -10,7 +10,7 @@
           <div class="center-absolute text-center">
             <span
               class="button post-btn is-medium"
-              @click="showEditor()">New Post</span>
+              @click="showEditor()">new post</span>
           </div>
           <div class="level-left"/>
           <div class="level-right">
@@ -18,15 +18,6 @@
               class="view-btns field is-grouped"
               align="right">
               <p class="control">
-                <!-- <a
-                  class="button view-btn"
-                  @click="savePostsView('post-view-a')">A</a> -->
-                <!-- <a
-                  class="button view-btn"
-                  @click="savePostsView('post-view-b')"><b-icon icon="view-grid"/></a> -->
-                <!-- <a
-                  class="button view-btn"
-                  @click="savePostsView('post-view-c')"><b-icon icon="view-headline"/></a> -->
               </p>
             </div>
           </div>
@@ -57,7 +48,7 @@
               id="getMoreBtn"
               class="button post-btn"
               v-if="showMoreButton"
-              @click="getMorePosts()">Get more posts...</button>
+              @click="getMorePosts()">get more posts...</button>
           </div>
         </div>
       </section>
@@ -134,7 +125,7 @@ export default {
 <style scoped lang="scss">
 @import "../../styles/variables.scss";
 
-.view-btns{
+.view-btns {
   float: right;
 }
 
@@ -142,23 +133,14 @@ export default {
   overflow: hidden;
 }
 
-b-icon{
+b-icon {
   margin-top: 2px;
 }
 
-.post-btn{
+.post-btn {
     @include btn;
-    }
-
-.view-btn{
-  font: "Proxima N W01 Smbd",Helvetica,Arial,sans-serif;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 50px;
-  padding: 20px;
-  text-decoration: none;
-  cursor: pointer;
 }
+
 
 .center-absolute {
   position: absolute;
