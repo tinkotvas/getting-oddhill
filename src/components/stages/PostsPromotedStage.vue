@@ -31,8 +31,8 @@
 
           </div>
           <nav class="level is-mobile">
-            <div class="level-right">
-              <b-taglist class="columms is-multiline">
+            <div class="level-left">
+              <div class="level-item">
                 <router-link
                   v-for="(topic,key) of post.topics"
                   :key="key"
@@ -40,13 +40,17 @@
                   :to="'/topic/'+ key">
                   {{ key }}
                 </router-link>
-              </b-taglist>
+              </div>
             </div>
 
-            <div class="level-left">
-              <div class="level-item kommentarer">
-                <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
-                  v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
+            <div class="level-right">
+              <div class="level-item">
+                <router-link
+                  :to="'/post/'+ post.id"
+                  class="button topics-btn"
+                  v-if="post.numberOfComments !== undefined">
+                  {{ post.numberOfComments }} kommentarer
+                </router-link>
               </div>
             </div>
           </nav>
