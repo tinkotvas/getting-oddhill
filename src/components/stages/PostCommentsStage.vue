@@ -12,7 +12,7 @@
         </div>
         <nav class="level">
           <div class="level-left">
-            <div class="level-item">
+            <div class="level-item" style="min-height: 60px;">
               <a
                 class="button post-btn"
                 @click="addComment(this)">post comment</a>
