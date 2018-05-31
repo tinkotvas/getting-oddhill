@@ -24,9 +24,7 @@
                   </figure>
                 </div>
                 <div>
-                  <p
-                    class="post-content"
-                    style="margin-top: 15px;"><vue-markdown :source="truncate(post.message)"/>
+                  <p class="post-content"><vue-markdown :source="truncate(post.message)"/>
                   </p>
                 </div>
               </div>
@@ -142,8 +140,8 @@ figure {
   // position: relative;
   // top: 50%;
   // transform: translateY(-50%);
-  margin-left: 0.5em;
-  border-radius: 10px;
+  margin-left: 0em;
+  border-radius: 4px;
   &.image {
       max-height: 200px;
   width: 200px;
@@ -154,10 +152,10 @@ figure {
   }
 }
 
-img{
+img {
   max-height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .topics-btn{
@@ -166,6 +164,14 @@ img{
 
 .post-header {
   font-size: 20px;
+}
+
+.post-content{
+  margin-top: 25px
+}
+
+nav {
+  margin-top: 20px;
 }
 
 .topics-btn {
@@ -180,12 +186,16 @@ img{
     overflow: visible;
  }
 
-@media (max-height: 599px){
+ .kommentarer{
+  size: 12px;
+}
+
+@media (max-width: 599px){
   figure {
   // position: relative;
   // top: 50%;
   // transform: translateY(-50%);
-  margin-left: 0.5em;
+  margin-left: 0em;
   &.image {
       max-height: 200px;
   width: 200px;
@@ -196,8 +206,9 @@ img{
   }
 
 }
-.kommentarer{
-  size: 12px;
+
+article{
+  margin-bottom: 66px;
 }
 }
 </style>
