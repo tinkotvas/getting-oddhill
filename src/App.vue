@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <navbar/>
+    <div class="pattern-bg"/>
     <!-- the router outlet, where all matched components would ber viewed -->
     <router-view class="has-navbar-fixed-top"/>
   </div>
@@ -176,4 +177,16 @@ h4 {
 .has-navbar-fixed-top {
   padding: 6rem 1.5rem;
 }
+
+.pattern-bg {
+    background-repeat: repeat;
+    height: 720px;
+    width: 100%;
+    z-index: -10;
+    -webkit-transform: translateY(calc(-40% - 12px));
+    transform: translateY(calc(-40% - 12px));
+    position: absolute;
+    top: 700px;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/getting-oddhill.appspot.com/o/img%2Fdot_grid_light.svg?alt=media);
+  }
 </style>
