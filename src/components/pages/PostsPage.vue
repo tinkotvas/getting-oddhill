@@ -17,13 +17,14 @@
           <transition
             name="slide-fade"
             :duration="{ enter: 500, leave: 800 }">
-            <content-editor v-if="editorVisible"/>
+            <content-editor v-if="editorVisible" style="margin-top: 20px;"/>
           </transition>
         </div>
       </div>
       <div
         ref="allPosts"
-        class="section load-overlay">
+        class="section load-overlay"
+        style="margin-top: 30px;">
         <keep-alive>
           <component
             :is="postsView"
@@ -165,6 +166,10 @@ b-icon {
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-100px);
   opacity: 0;
+}
+
+.padding {
+  min-height: 50px;
 }
 
 </style>

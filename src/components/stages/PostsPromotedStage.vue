@@ -10,8 +10,7 @@
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
-            <span class="post-header"
-            ><h4>{{ post.heading }}</h4></span>
+            <h1>{{ post.heading }}</h1>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
 
             <div class="media-left">
@@ -32,8 +31,8 @@
 
           </div>
           <nav class="level is-mobile">
-            <div class="level-right">
-              <b-taglist class="columms is-multiline">
+            <div class="level-left">
+              <div class="level-item">
                 <router-link
                   v-for="(topic,key) of post.topics"
                   :key="key"
@@ -41,13 +40,17 @@
                   :to="'/topic/'+ key">
                   {{ key }}
                 </router-link>
-              </b-taglist>
+              </div>
             </div>
 
-            <div class="level-left">
-              <div class="level-item kommentarer">
-                <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
-                  v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
+            <div class="level-right">
+              <div class="level-item">
+                <router-link
+                  :to="'/post/'+ post.id"
+                  class="button topics-btn"
+                  v-if="post.numberOfComments !== undefined">
+                  {{ post.numberOfComments }} kommentarer
+                </router-link>
               </div>
             </div>
           </nav>
@@ -160,10 +163,6 @@ img {
 
 .topics-btn{
   padding-left: 0px;
-}
-
-.post-header {
-  font-size: 20px;
 }
 
 .post-content{

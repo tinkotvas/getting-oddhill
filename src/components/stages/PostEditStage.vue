@@ -64,7 +64,7 @@
 <script>
 import WysiwygEditor from './WysiwygEditor'
 import { storage } from '../../main.js'
-const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)?(?:\?v=)?(?:\S{11})(]|)/g
+const youtubeRegex = /(?:http:|https:)?\/\/(?:www\.)?(?:youtube.com|youtu.be)\/(?:watch)(?:\?v=)?(?:\S{11})(]|)/g
 
 export default {
   components: {
@@ -147,8 +147,8 @@ export default {
           url = '[' + url
         }else{
         let videoId = this.getYouTubeId(url)
-        replaceWith = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
-        videoId + '" frameborder="0" allowfullscreen></iframe>'
+        replaceWith = '<p style="text-align: center;"><iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
+        videoId + '" frameborder="0" allowfullscreen></iframe></p>'
         }
 
         message = message.replace('('+url+')', replaceWith)

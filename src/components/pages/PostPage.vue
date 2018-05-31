@@ -5,12 +5,12 @@
         <div
           class="columns is-centered"
           ref="section">
-          <div class="column is-12-tablet is-8-desktop">
+          <div class="column is-8 is-6-fullhd">
             <post-stage :post="post"/>
           </div>
         </div>
         <div class="columns is-centered">
-          <div class="column">
+          <div class="column is-8 is-6-fullhd">
             <post-comments-stage
               :comments="comments"
               :postid="post"/>
@@ -75,8 +75,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+section {
+  @media(max-width: 599px) {
+    padding-top: 0;
+  }
+}
 //for loader
 
 </style>
