@@ -17,27 +17,26 @@
             :truncate-chars="125"
             :fade-chars="4" :dots="true" :fade="false" :offset="2"/> </p>
             <p v-else v-html="post.message"></p>
-            <nav
-              class="level">
-              <div class="level-left">
-               <div class="level-item">
-                  <b-taglist>
-                    <router-link
-                      v-for="(topic,key) of post.topics"
-                      :key="key"
-                      class="tags-btn"
-                      :to="'/topic/'+ post.topics">
-                      {{ key }}
-                    </router-link>
-                  </b-taglist>
-                </div>
+              <nav class="level is-mobile">
+            <div class="level-right">
+              <b-taglist class="columms is-multiline">
+                <router-link
+                  v-for="(topic,key) of post.topics"
+                  :key="key"
+                  class="button topics-btn"
+                  :to="'/topic/'+ key">
+                  {{ key }}
+                </router-link>
+              </b-taglist>
+            </div>
+
+            <div class="level-left">
+              <div class="level-item kommentarer">
+                <router-link :to="'/post/'+ post.id" class="button topics-btn"><a
+                  v-if="post.numberOfComments !== undefined"> {{ post.numberOfComments }} kommentarer</a></router-link>
               </div>
-              <div class="level-left">
-                 <div class="level-item">
-                  <router-link :to="'/post/'+ post.id"><small><a> {{ post.numberOfComments }} kommentarer</a></small></router-link>
-                </div>
-              </div>
-            </nav>
+            </div>
+          </nav>
           </div>
         </div>
       </article>
@@ -98,8 +97,9 @@ export default {
   cursor: pointer;
 }
 
-.tags-btn{
+.topics-btn{
   @include topic-post-btn;
+  padding-left: 0px;
 }
 
 </style>
