@@ -27,12 +27,12 @@
         <router-link
           class="navbar-item"
           to="/posts">posts.</router-link>
-        <router-link
+        <!-- <router-link
           class="navbar-item"
           to="/profiles">profiles.</router-link>
         <router-link
           class="navbar-item"
-          to="/profile">profile.</router-link>
+          to="/profile">profile.</router-link> -->
         <a
           v-if="currentUser"
           @click.prevent="onSignOut"
