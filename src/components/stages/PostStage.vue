@@ -2,7 +2,7 @@
   <!-- Since vue-markdown -->
   <div>
 
-    <span class="post-header"><h1>{{ post.heading }}</h1></span>
+    <span class="post-header-center"><h1>{{ post.heading }}</h1></span>
     <vue-markdown
 
       :source="post.message"
@@ -42,17 +42,22 @@ export default {
 
 <style lang="scss">
 @import "../../styles/variables.scss";
-span .post-header {
+.post-header-center h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .edit-btn {
   @include btn;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .delete-btn {
   @include btn;
   background-color: #FF0047;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .post-page-content {
@@ -63,6 +68,7 @@ span .post-header {
     margin-right: 25%;
     margin-left: 25%;
     margin-bottom: 20px;
+    box-shadow: 0px 2px 40px #bac9dc;
   }
 
 iframe {
