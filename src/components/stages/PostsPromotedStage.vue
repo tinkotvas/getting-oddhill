@@ -10,8 +10,7 @@
         <!--Main content -->
         <div class="media-content no-overflow">
           <div class="content">
-            <span class="post-header"
-            ><h4>{{ post.heading }}</h4></span>
+            <h1>{{ post.heading }}</h1>
             <span class="time-author"><small>{{ (post.author && post.author.username) ? post.author.username :'Anonym' }}</small></span> | <span class="time-author"><small>{{ localTimeSv(post.createdAt.toDate()) }}</small></span>
 
             <div class="media-left">
@@ -164,10 +163,6 @@ img {
 
 .topics-btn{
   padding-left: 0px;
-}
-
-.post-header {
-  font-size: 20px;
 }
 
 .post-content{
