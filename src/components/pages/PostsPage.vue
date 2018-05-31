@@ -6,20 +6,11 @@
       id="posts-stage">
 
       <div class="container">
-        <div class="level is-mobile">
-          <div class="center-absolute text-center">
+        <div class="columns text-center">
+          <div class="column is-12-mobile">
             <span
-              class="button post-btn is-medium"
+              class="button post-btn"
               @click="showEditor()">new post</span>
-          </div>
-          <div class="level-left"/>
-          <div class="level-right">
-            <div
-              class="view-btns field is-grouped"
-              align="right">
-              <p class="control">
-              </p>
-            </div>
           </div>
         </div>
         <div class="columns is-centered">
@@ -141,17 +132,39 @@ b-icon {
     @include btn;
 }
 
-
 .center-absolute {
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
-@media (min-width: 500px) {
+.text-center {
+    text-align: center;
+  }
+
+@media (max-width: 500px) {
   .text-center {
     text-align: center;
   }
+}
+
+.button{
+  z-index: 2;
+}
+
+.slider-fade{
+  z-index: 1;
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
 }
 
 </style>
